@@ -1,0 +1,47 @@
+world
+{
+	video src=introductionVideo0;
+	backgound src=background0 transition=InstantTransition;
+	weather type=snow level=0.2 transition=GradualTransition Speed=0.5;
+	天空渐渐飘下了雪花。>
+	在校门口隐约着有个人影。>
+	sound src=sound0;
+}
+
+dokiChan
+{
+	move position=center transition=InstantTransition;
+	face src=happyFace0 transition=InstantTransition;
+	voice src=voice001;
+	等你好久了。>>
+	face src=happyFace1;
+	voice src=voice002;
+	一直在等着你。>>
+	posture src=posture0 transition=GradualTransition Speed=0.5;
+	voice src=voice003;
+	还以为你不来了呢。>>
+}
+
+world
+	我微笑着走了过去。>>
+
+player
+{
+	face src=happyFace1 transition=InstantTransition;
+	怎么会呢，我们不是约好了么。>>
+}
+
+dokiChan
+	move position=(0.45,0,0) transition=InstantTransition;        //Here, (0.45,0,0) could be 0.45
+	voice src=voice004;
+	是呢，一年前的约定。>>
+
+player
+	嗯，一年过去了。>>
+	
+
+world
+	这家伙还是一点没变，仿佛时间已经抛弃了她。>>
+	两个人仅仅呆站这那儿，无言的看着对方。>>
+	weather type=sunny level=0.5 transition=GradualTransition Speed=0.5;
+	不经意间，雪停了>>

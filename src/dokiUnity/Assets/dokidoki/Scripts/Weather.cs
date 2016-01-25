@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class dokiScript : MonoBehaviour {
+public class Weather : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
