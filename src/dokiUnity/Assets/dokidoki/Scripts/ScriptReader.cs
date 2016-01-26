@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Text;
 
-public class ScriptReader : MonoBehaviour {
-
+public class ScriptReader{
+    //save data
     public string currentScriptPath;
-    public long rowNumber;
+    public long rowNumber = -1;
 
+    
     private TextAsset currentScriptTextAsset;
     private StringBuilder scriptText;
 
@@ -14,17 +15,27 @@ public class ScriptReader : MonoBehaviour {
         this.currentScriptPath = currentScriptPath;
     }
 
+    public void loadScript() {
+        if (currentScriptTextAsset == null)
+        {
+            currentScriptTextAsset = Resources.Load(currentScriptPath) as TextAsset;
+            //if load script failed, exit
+            if (currentScriptTextAsset == null)
+            {
+                Debug.LogError(ScriptError.LOAD_SCRIPT_FAILED + currentScriptPath);
+                Application.Quit();
+            }
+        }
+        if (scriptText == null)
+        {
+            scriptText = new StringBuilder(currentScriptTextAsset.ToString());
+        }
+    }
+
     public string readLine() {
         string line;
 
-        if (currentScriptTextAsset==null) {
-            Debug.Log(currentScriptPath);
-            currentScriptTextAsset = Resources.Load(currentScriptPath) as TextAsset;
-        }
-        Debug.Log(currentScriptTextAsset.text);
-        if (scriptText==null) {
-            scriptText = new StringBuilder(currentScriptTextAsset.ToString());
-        }
+        
 
         line = scriptText.ToString();
 
