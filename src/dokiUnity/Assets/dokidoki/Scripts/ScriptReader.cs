@@ -27,8 +27,7 @@ public class ScriptReader {
         scriptPathList = new List<string>();
         foreach (FileInfo script in scriptFiles)
         {
-            scriptPathList.Add(FolderStructure.SCRIPTS + "/" + Path.GetFileNameWithoutExtension(script.Name));
-            //Debug.Log(projectRootPath + "/" + FolderStructure.SCRIPT_FOLDER + "/" + Path.GetFileNameWithoutExtension(f.Name));
+            scriptPathList.Add(FolderStructure.SCRIPTS + Path.GetFileNameWithoutExtension(script.Name));
         }
         scriptPathList.Sort();
     }
@@ -110,7 +109,7 @@ public class ScriptReader {
             {ScriptKeyword.MODE, ScriptKeyword.MODE_LOOP}
         }));
         newActions1.Add(new Action(ScriptKeyword.BACKGROUND, new Dictionary<string, string>(){
-            {ScriptKeyword.SRC,"background0"},
+			{ScriptKeyword.SRC,"background0"},
             {ScriptKeyword.TRANSITION, ScriptKeyword.TRANSITION_INSTANT}
         }));
         newActions1.Add(new Action(ScriptKeyword.WEATHER, new Dictionary<string, string>(){

@@ -119,6 +119,7 @@ public class WorldControl : MonoBehaviour {
                 GameObject newCharacter = Instantiate(characterPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 newCharacter.transform.parent = world.transform;
                 newCharacter.GetComponent<Character>().id = focusAction.parameters[ScriptKeyword.ID];
+				newCharacter.GetComponent<Character>().dialogText = world.GetComponent<World>().dialogText;
                 characters.Add(focusAction.parameters[ScriptKeyword.ID], newCharacter);
             }
             focusGameObject = characters[focusAction.parameters[ScriptKeyword.ID]];

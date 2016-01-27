@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public class World : MonoBehaviour {
 
     public GameObject videoBoard;
+	public GameObject background;
+	public GameObject dialogText;
 
     void Start () {
-        if (videoBoard == null) {
+		if (videoBoard == null || background==null || dialogText==null) {
             Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
             Application.Quit();
         }
@@ -19,7 +21,9 @@ public class World : MonoBehaviour {
 
     public void takeBackgroundAction(Action backgroundAction)
     {
-        Debug.Log(backgroundAction.tag);
+		Sprite sprite = Resources.Load<Sprite>(FolderStructure.WORLD + FolderStructure.BACKGROUNDS + backgroundAction.parameters [ScriptKeyword.SRC]);
+		background.GetComponent<SpriteRenderer> ().sprite = sprite;
+
     }
 
     public void takeWeatherAction(Action weatherAction)
@@ -39,17 +43,17 @@ public class World : MonoBehaviour {
 
     public void takeVideoAction(Action videoAction)
     {
-        Debug.Log(videoAction.tag);
-        MovieTexture movTexture = Resources.Load(FolderStructure.VIDEOS + "/" + videoAction.parameters[ScriptKeyword.SRC]) as MovieTexture;
+        MovieTexture movTexture = Resources.Load(FolderStructure.WORLD + FolderStructure.VIDEOS + videoAction.parameters[ScriptKeyword.SRC]) as MovieTexture;
         
         videoBoard.GetComponent<Renderer>().material.mainTexture = movTexture;
         videoBoard.GetComponent<AudioSource>().clip = movTexture.audioClip;
+
         movTexture.Play();
         videoBoard.GetComponent<AudioSource>().Play();
     }
 
     public void takeTextAction(Action textAction)
     {
-        Debug.Log(textAction.tag);
+		dialogText.GetComponent<Text> ().text = textAction.parameters [ScriptKeyword.CONTENT];
     }
 }
