@@ -1,50 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+
 
 public class World : MonoBehaviour {
 
-    public string projectRootPath;
-
-    private string SCRIPTS_PATH;
-    private string SCRIPTS_EXTENSION;
-
-    private List<string> scriptPathList;
-    private ScriptReader scriptReader;
+    public GameObject videoBoard;
 
     void Start () {
-        //search script directory files
-        if (projectRootPath == null) {
-            return;
-        }
-        //Resources is set as the root folder of game projects
-        SCRIPTS_PATH = Application.dataPath+ "/Resources/" + projectRootPath + "/" +FolderStructure.SCRIPT_FOLDER;
-        SCRIPTS_EXTENSION = "*.txt";
-
-        DirectoryInfo dir = new DirectoryInfo(SCRIPTS_PATH);
-        FileInfo[] info = dir.GetFiles(SCRIPTS_EXTENSION);
-        scriptPathList = new List<string>();
-        foreach (FileInfo f in info) {
-            scriptPathList.Add(projectRootPath + "/" + FolderStructure.SCRIPT_FOLDER+"/"+Path.GetFileNameWithoutExtension(f.Name));
-            //Debug.Log(projectRootPath + "/" + FolderStructure.SCRIPT_FOLDER + "/" + Path.GetFileNameWithoutExtension(f.Name));
-        }
-        scriptPathList.Sort();
-
-        //set up scriptReader, new game and load game
-        if (scriptReader==null) {
-            scriptReader = new ScriptReader(scriptPathList[0]);
+        if (videoBoard == null) {
+            Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
+            Application.Quit();
         }
     }
 
-    int count = 0;
-
-    public void step() {
-        Debug.Log("Screen click..."+count++);
-        Debug.Log(scriptReader.readLine());
-    }
-	
 	void Update () {
 	
 	}
+
+    public void takeBackgroundAction(Action backgroundAction)
+    {
+        Debug.Log(backgroundAction.tag);
+    }
+
+    public void takeWeatherAction(Action weatherAction)
+    {
+        Debug.Log(weatherAction.tag);
+    }
+
+    public void takeSoundAction(Action soundAction)
+    {
+        Debug.Log(soundAction.tag);
+    }
+
+    public void takeBgmAction(Action bgmAction)
+    {
+        Debug.Log(bgmAction.tag);
+    }
+
+    public void takeVideoAction(Action videoAction)
+    {
+        Debug.Log(videoAction.tag);
+        MovieTexture movTexture = Resources.Load(FolderStructure.VIDEOS + "/" + videoAction.parameters[ScriptKeyword.SRC]) as MovieTexture;
+        
+        videoBoard.GetComponent<Renderer>().material.mainTexture = movTexture;
+        videoBoard.GetComponent<AudioSource>().clip = movTexture.audioClip;
+        movTexture.Play();
+        videoBoard.GetComponent<AudioSource>().Play();
+    }
+
+    public void takeTextAction(Action textAction)
+    {
+        Debug.Log(textAction.tag);
+    }
 }

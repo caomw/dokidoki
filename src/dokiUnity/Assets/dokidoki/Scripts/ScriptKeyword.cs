@@ -17,25 +17,30 @@ public class ScriptKeyword{
     public const string POSTURE = "posture";
     public const string FACE = "face";
     public const string VOICE = "voice";
+    public const string ROLE = "role";
+    public const string FOCUS = "focus";
 
     //parameter keywords
-        //background src=xxx transition=(instant|gradual) speed=0.xxx;
+    //background src=xxx transition=(instant|gradual) speed=0.xxx;
     public const string SRC = "src";
     public const string TRANSITION = "transition";
     public const string TRANSITION_INSTANT = "instant";
     public const string TRANSITION_GRADUAL = "gradual";
     public const string SPEED = "speed";
-        //weather type=xxx level=xxx transition=xxx speed=xxx;
+        //weather type=(sunny|cloudy|rain|snow) level=xxx transition=xxx speed=xxx;
     public const string TYPE = "type";
+    public const string TYPE_SUNNY = "sunny";
+    public const string TYPE_CLOUDY = "cloudy";
+    public const string TYPE_RAIN = "rain";
+    public const string TYPE_SNOW = "snow";
     public const string LEVEL = "level";
         //sound src=xxx 
         //bgm src=xxx mode=(loop|1|2|...)
     public const string MODE = "mode";
-    public const string LOOP = "loop";
+    public const string MODE_LOOP = "loop";
         //video src=xxx
-        //text (>|>>)
-    public const string TEXT_CLICK = ">";
-    public const string TEXT_DOUBLE_CLICK = ">>";
+        //textContent (>|>>)
+    public const string CONTENT = "content";
         //move position=(center|left|right|(0.xxx,0.xxx,0.xxx)) transition=(instant|gradual) speed=0.xxx
     public const string POSITION = "position";
     public const string POSITION_CENTER = "center";
@@ -44,4 +49,28 @@ public class ScriptKeyword{
         //posture src=xxx
         //face src=xxx
         //voice src=xxx
+        //role type=(player|character) name=xxx
+    public const string TYPE_PLAYER = "player";
+    public const string TYPE_CHARACTER = "character";
+    public const string NAME = "name";
+    //focusId
+    public const string ID = "id";
+
+    //symbol keywords
+    public const string BRACKET_LEFT = "{";
+    public const string BRACKET_RIGHT = "}";
+    public const string PARENTHESE_LEFT = "(";
+    public const string PARENTHESE_RIGHT = ")";
+    public const string PERIOD = ".";
+    public const string COMMA = ",";
+    public const string SEMICOLON = ";";
+    public const string EQUAL = "=";
+    public const string CLICK = ">";
+    public const string CLICK_NEXT_DIALOGUE_PAGE = ">>";
+    public const string STRING = "\"";
+    public const string TAB = "\t";
+    public const string ENTER = "\n";
+    public const string COMMENT = "//";
+    public const string COMMENT_START = "/*";
+    public const string COMMENT_END = "*/";
 }
