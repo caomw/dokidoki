@@ -8,20 +8,22 @@ public class WorldControl : MonoBehaviour {
     private GameObject focusGameObject;
 
     public GameObject world;
+    public GameObject UI;
     public GameObject characterPrefab;
     public Dictionary<string, GameObject> characters;
 
     private List<Action> currentActions;
-    
+    private Action lastAction;
 
-    void Start () {
+
+    void Start() {
         //set up scriptReader, new game and load game
         if (scriptReader == null)
         {
             scriptReader = new ScriptReader();
         }
 
-        if (world==null) {
+        if (world == null) {
             Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
             Application.Quit();
         }
@@ -29,19 +31,23 @@ public class WorldControl : MonoBehaviour {
         characters = new Dictionary<string, GameObject>();
     }
 
-	void Update () {
-	    
-	}
+    void Update() {
+
+    }
 
 
     int count = 0;
 
-    public void step(){
+    public void step() {
         Debug.Log("Screen click..." + count++);
-        if (currentActions==null || currentActions.Count<1) {
+        if (currentActions == null || currentActions.Count < 1) {
             currentActions = scriptReader.testReadNextActions();
         }
-        while(currentActions.Count>0)
+        if (lastAction != null && lastAction.tag == ScriptKeyword.VIDEO) {
+            world.GetComponent<World>().skipVideoAction();
+            showUI();
+        }
+        while (currentActions.Count > 0)
         {
             Action currentAction = currentActions[0];
             if (currentAction.tag == ScriptKeyword.FOCUS)
@@ -68,6 +74,7 @@ public class WorldControl : MonoBehaviour {
             }
             else if (currentAction.tag == ScriptKeyword.VIDEO)
             {
+                hideUI();
                 focusGameObject.GetComponent<World>().takeVideoAction(currentAction);
             }
             else if (currentAction.tag == ScriptKeyword.TEXT)
@@ -100,6 +107,8 @@ public class WorldControl : MonoBehaviour {
             {
                 focusGameObject.GetComponent<Character>().takeRoleAction(currentAction);
             }
+            //store last action
+            lastAction = currentAction;
             //remove already completed action
             currentActions.RemoveAt(0);
         }
@@ -119,11 +128,18 @@ public class WorldControl : MonoBehaviour {
                 GameObject newCharacter = Instantiate(characterPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 newCharacter.transform.parent = world.transform;
                 newCharacter.GetComponent<Character>().id = focusAction.parameters[ScriptKeyword.ID];
-				newCharacter.GetComponent<Character>().dialogText = world.GetComponent<World>().dialogText;
+                newCharacter.GetComponent<Character>().dialogText = world.GetComponent<World>().dialogText;
                 characters.Add(focusAction.parameters[ScriptKeyword.ID], newCharacter);
             }
             focusGameObject = characters[focusAction.parameters[ScriptKeyword.ID]];
         }
     }
 
+    public void hideUI() {
+        UI.SetActive(false);
+    }
+
+    public void showUI() {
+        UI.SetActive(true);
+    }
 }

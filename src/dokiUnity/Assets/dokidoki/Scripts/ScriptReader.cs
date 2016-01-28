@@ -133,6 +133,10 @@ public class ScriptReader {
         newActions3.Add(new Action(ScriptKeyword.SOUND, new Dictionary<string, string>(){
             {ScriptKeyword.SRC,"sound0"}
         }));
+        newActions3.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+            {ScriptKeyword.CONTENT,"我慢慢的走过去。"},
+            {ScriptKeyword.TYPE, ScriptKeyword.CLICK}
+        }));
 
         List<Action> newActions4 = new List<Action>();
         newActions4.Add(new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
@@ -140,14 +144,14 @@ public class ScriptReader {
         }));
         newActions4.Add(new Action(ScriptKeyword.ROLE, new Dictionary<string, string>(){
             {ScriptKeyword.TYPE,ScriptKeyword.TYPE_CHARACTER},
-            {ScriptKeyword.NAME, "doki doki"}
+            {ScriptKeyword.NAME, "character0"}
         }));
         newActions4.Add(new Action(ScriptKeyword.MOVE, new Dictionary<string, string>(){
             {ScriptKeyword.POSITION,ScriptKeyword.POSITION_CENTER},
             {ScriptKeyword.TRANSITION, ScriptKeyword.TRANSITION_INSTANT}
         }));
         newActions4.Add(new Action(ScriptKeyword.POSTURE, new Dictionary<string, string>(){
-            {ScriptKeyword.SRC, "posture"}
+            {ScriptKeyword.SRC, "kuon0"}
         }));
         newActions4.Add(new Action(ScriptKeyword.VOICE, new Dictionary<string, string>(){
             {ScriptKeyword.SRC, "voice001"}

@@ -6,9 +6,10 @@ world
 	天空渐渐飘下了雪花。>
 	在校门口隐约着有个人影。>
 	sound src=sound0;
+	我慢慢的走过去。>
 
 dokiChan
-	role type=character name="doki doki";
+	role type=character name="character0";
 	move position=center transition=instant;
 	posture src=posture0;
 	face src=happyFace0;

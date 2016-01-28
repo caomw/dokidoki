@@ -20,7 +20,6 @@ public class Character : MonoBehaviour {
 	}
 
     public void takeRoleAction(Action roleAction) {
-        Debug.Log(id+roleAction.tag);
 		if (roleAction.parameters.TryGetValue (ScriptKeyword.TYPE, out role)) {
 			
 		} else {
@@ -35,7 +34,8 @@ public class Character : MonoBehaviour {
 
     public void takePostureAction(Action postureAction)
     {
-        Debug.Log(id + postureAction.tag);
+        Sprite postureSprite = Resources.Load<Sprite>(FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
+        this.GetComponent<SpriteRenderer>().sprite = postureSprite;
     }
 
     public void takeFaceAction(Action faceAction)
@@ -54,11 +54,13 @@ public class Character : MonoBehaviour {
 
     public void takeVoiceAction(Action voiceAction)
     {
-        Debug.Log(id + voiceAction.tag);
+        AudioClip voiceAudioClip = Resources.Load(FolderStructure.CHARACTERS + FolderStructure.VOICES + voiceAction.parameters[ScriptKeyword.SRC]) as AudioClip;
+        this.GetComponent<AudioSource>().clip = voiceAudioClip;
+        this.GetComponent<AudioSource>().Play();
     }
 
     public void takeMoveAction(Action moveAction)
     {
-        Debug.Log(id + moveAction.tag);
+        transform.localPosition = new Vector3(0,0,-10);
     }
 }
