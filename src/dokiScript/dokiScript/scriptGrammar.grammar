@@ -1,0 +1,89 @@
+%header%
+GRAMMARTYPE   = "LL"
+AUTHOR        = "Kesumu,Aetf"
+CASESENSITIVE = "true"
+VERSION       = "0.0.1"
+
+%tokens%
+
+LBRACE        = "{"
+RBRACE        = "}"
+DOUBLEMARK    = ">>"
+SINGLEMARK    = ">"
+SEMI          = ";"
+LPARA         = "("
+RPARA         = ")"
+SEP           = "\n"
+WORLD_ID      = "world"
+ID            = "id"
+WORD          = <<\w>>  // not sure if this works
+NUMBER        = <<[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?>>
+COMMA         = ","
+NONCOMMA      = <<[^,]+>>
+WHITESPACE    = <<[ \t\n\r]+>> %ignore%
+TAG_BG        = "background"
+TAG_WT        = "weather"
+TAG_SND       = "sound"
+TAG_BGM       = "bgm"
+TAG_VI        = "video"
+TAG_MV        = "move"
+TAG_POS       = "posture"
+TAG_FACE      = "face"
+TAG_VO        = "voide"
+TAG_ROLE      = "role"
+ASSIGN        = "="
+KEY_SRC       = "src"
+KEY_TRANS     = "transition"
+KEY_SPD       = "speed"
+KEY_TYPE      = "type"
+KEY_LV        = "level"
+KEY_MODE      = "mode"
+KEY_POS       = "position"
+KEY_NAME      = "name"
+VAL_INST      = "instant"
+VAL_GRAD      = "gradual"
+VAL_SUNNY     = "sunny"
+VAL_CLOUDY    = "cloudy"
+VAL_RAIN      = "rain"
+VAL_SNOW      = "snow"
+VAL_LOOP      = "loop"
+VAL_CENTER    = "center"
+VAL_LEFT      = "left"
+VAL_RIGHT     = "right"
+VAL_PLAYER    = "player"
+VAL_CH        = "character"
+
+%productions%
+
+Script = Block (SEP Block)*
+       | LBRACE Block (SEP Block)* RBRACE ;
+
+Block  = WORLD_ID Action+
+       | ID Action+ ;
+
+Action = WORD+ DialogueMark
+       | Tag Parameters SEMI;
+
+DialogueMark = SINGLEMARK
+             | DOUBLEMARK;
+
+Tag = TAG_BG | TAG_WT | TAG_SND | TAG_BGM | TAG_VI
+    | TAG_MV | TAG_POS | TAG_FACE | TAG_VO | TAG_ROLE ;
+
+Parameters = Key ASSIGN Value (COMMA Key ASSIGN Value)* ;
+
+Key = KEY_SRC | KEY_TRANS | KEY_SPD | KEY_TYPE | KEY_LV
+    | KEY_MODE | KEY_POS | KEY_NAME ;
+
+Value = NONCOMMA ;
+/*
+Value = WORD+
+      | NUMBER
+      | LPARA NUMBER COMMA NUMBER COMMA NUMBER RPARA
+      | H
+      | VAL_INST | VAL_GRAD | VAL_SUNNY | VAL_CLOUDY
+      | VAL_RAIN | VAL_SNOW | VAL_LOOP | VAL_CENTER | VAL_LEFT
+      | VAL_RIGHT | VAL_PLAYER | VAL_CH ;
+
+H     = WORD+ ("_" WORD+) ;
+*/
