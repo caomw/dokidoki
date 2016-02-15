@@ -21,8 +21,7 @@ namespace UnlimitedCodeWorks {
          */
         private enum SynteticPatterns {
             SUBPRODUCTION_1 = 3001,
-            SUBPRODUCTION_2 = 3002,
-            SUBPRODUCTION_3 = 3003
+            SUBPRODUCTION_2 = 3002
         }
 
         /**
@@ -87,30 +86,39 @@ namespace UnlimitedCodeWorks {
             alt.AddProduction((int) DokiScriptConstants.BLOCK, 1, 1);
             alt.AddProduction((int) SynteticPatterns.SUBPRODUCTION_1, 0, -1);
             pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.LBRACE, 1, 1);
-            alt.AddProduction((int) DokiScriptConstants.BLOCK, 1, 1);
-            alt.AddProduction((int) SynteticPatterns.SUBPRODUCTION_2, 0, -1);
-            alt.AddToken((int) DokiScriptConstants.RBRACE, 1, 1);
-            pattern.AddAlternative(alt);
             AddPattern(pattern);
 
             pattern = new ProductionPattern((int) DokiScriptConstants.BLOCK,
                                             "Block");
             alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.WORLD_ID, 1, 1);
+            alt.AddProduction((int) DokiScriptConstants.OBJECT_ID, 1, 1);
+            alt.AddProduction((int) DokiScriptConstants.ACTION_LIST, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) DokiScriptConstants.OBJECT_ID,
+                                            "ObjectId");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) DokiScriptConstants.KEYWORD, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) DokiScriptConstants.ACTION_LIST,
+                                            "ActionList");
+            alt = new ProductionPatternAlternative();
             alt.AddProduction((int) DokiScriptConstants.ACTION, 1, -1);
             pattern.AddAlternative(alt);
             alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.ID, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.LBRACE, 1, 1);
             alt.AddProduction((int) DokiScriptConstants.ACTION, 1, -1);
+            alt.AddToken((int) DokiScriptConstants.RBRACE, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
             pattern = new ProductionPattern((int) DokiScriptConstants.ACTION,
                                             "Action");
             alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.WORD, 1, -1);
+            alt.AddProduction((int) DokiScriptConstants.DIALOGUE_STR, 1, 1);
             alt.AddProduction((int) DokiScriptConstants.DIALOGUE_MARK, 1, 1);
             pattern.AddAlternative(alt);
             alt = new ProductionPatternAlternative();
@@ -133,34 +141,7 @@ namespace UnlimitedCodeWorks {
             pattern = new ProductionPattern((int) DokiScriptConstants.TAG,
                                             "Tag");
             alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_BG, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_WT, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_SND, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_BGM, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_VI, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_MV, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_POS, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_FACE, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_VO, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.TAG_ROLE, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.KEYWORD, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
@@ -170,42 +151,64 @@ namespace UnlimitedCodeWorks {
             alt.AddProduction((int) DokiScriptConstants.KEY, 1, 1);
             alt.AddToken((int) DokiScriptConstants.ASSIGN, 1, 1);
             alt.AddProduction((int) DokiScriptConstants.VALUE, 1, 1);
-            alt.AddProduction((int) SynteticPatterns.SUBPRODUCTION_3, 0, -1);
+            alt.AddProduction((int) SynteticPatterns.SUBPRODUCTION_2, 0, -1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) DokiScriptConstants.PARAMETER_SEP,
+                                            "ParameterSep");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) DokiScriptConstants.SPACE, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
             pattern = new ProductionPattern((int) DokiScriptConstants.KEY,
                                             "Key");
             alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.KEY_SRC, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.KEY_TRANS, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.KEY_SPD, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.KEY_TYPE, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.KEY_LV, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.KEY_MODE, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.KEY_POS, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.KEY_NAME, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.KEYWORD, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
             pattern = new ProductionPattern((int) DokiScriptConstants.VALUE,
                                             "Value");
             alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.NONCOMMA, 1, 1);
+            alt.AddProduction((int) DokiScriptConstants.QUATED_VALUE_STR, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddProduction((int) DokiScriptConstants.VECTOR, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) DokiScriptConstants.KEYWORD, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) DokiScriptConstants.VECTOR,
+                                            "Vector");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) DokiScriptConstants.NUMBER, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) DokiScriptConstants.LPARA, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.NUMBER, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.COMMA, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.NUMBER, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.COMMA, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.NUMBER, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.RPARA, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) DokiScriptConstants.DIALOGUE_STR,
+                                            "DialogueStr");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) DokiScriptConstants.ESCAPEDSTR, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) DokiScriptConstants.QUATED_VALUE_STR,
+                                            "QuatedValueStr");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) DokiScriptConstants.QUATEDSTR, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
@@ -213,7 +216,7 @@ namespace UnlimitedCodeWorks {
                                             "Subproduction1");
             pattern.Synthetic = true;
             alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.SEP, 1, 1);
+            alt.AddToken((int) DokiScriptConstants.WHITESPACE, 1, 1);
             alt.AddProduction((int) DokiScriptConstants.BLOCK, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
@@ -222,16 +225,7 @@ namespace UnlimitedCodeWorks {
                                             "Subproduction2");
             pattern.Synthetic = true;
             alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.SEP, 1, 1);
-            alt.AddProduction((int) DokiScriptConstants.BLOCK, 1, 1);
-            pattern.AddAlternative(alt);
-            AddPattern(pattern);
-
-            pattern = new ProductionPattern((int) SynteticPatterns.SUBPRODUCTION_3,
-                                            "Subproduction3");
-            pattern.Synthetic = true;
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int) DokiScriptConstants.COMMA, 1, 1);
+            alt.AddProduction((int) DokiScriptConstants.PARAMETER_SEP, 1, 1);
             alt.AddProduction((int) DokiScriptConstants.KEY, 1, 1);
             alt.AddToken((int) DokiScriptConstants.ASSIGN, 1, 1);
             alt.AddProduction((int) DokiScriptConstants.VALUE, 1, 1);
