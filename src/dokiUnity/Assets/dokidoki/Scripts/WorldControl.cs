@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,13 +9,22 @@ public class WorldControl : MonoBehaviour {
     private GameObject focusGameObject;
 
     public GameObject world;
-    public GameObject UI;
+    public GameObject inPlayUI;
     public GameObject characterPrefab;
+	public GameObject backLogText;
+	public GameObject dialogText;
     public Dictionary<string, GameObject> characters;
 
     private List<Action> currentActions;
     private Action lastAction;
 
+	private string currentGameState = NORMAL;
+	const string NORMAL = "Normal";
+	const string BACKLOG = "BackLog";
+	const string SAVE = "Save";
+	const string LOAD = "Load";
+	const string AUTO = "Auto";
+	const string SKIP = "Skip";
 
     void Start() {
         //set up scriptReader, new game and load game
@@ -45,7 +55,7 @@ public class WorldControl : MonoBehaviour {
         }
         if (lastAction != null && lastAction.tag == ScriptKeyword.VIDEO) {
             world.GetComponent<World>().skipVideoAction();
-            showUI();
+            showUI(inPlayUI);
         }
         while (currentActions.Count > 0)
         {
@@ -74,7 +84,7 @@ public class WorldControl : MonoBehaviour {
             }
             else if (currentAction.tag == ScriptKeyword.VIDEO)
             {
-                hideUI();
+                hideUI(inPlayUI);
                 focusGameObject.GetComponent<World>().takeVideoAction(currentAction);
             }
             else if (currentAction.tag == ScriptKeyword.TEXT)
@@ -135,11 +145,25 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
-    public void hideUI() {
+    public void hideUI(GameObject UI) {
         UI.SetActive(false);
     }
 
-    public void showUI() {
+	public void showUI(GameObject UI) {
         UI.SetActive(true);
     }
+
+	public void backLog(){
+		currentGameState = BACKLOG;
+
+		List<Dialog> historyDialogs = dialogText.GetComponent<DialogManage> ().historyDialogs;
+		string historyDialogText = "";
+		for(int i=0;i<historyDialogs.Count;i++){
+			if(historyDialogs[i].shownName != ""){
+				historyDialogText = historyDialogText + historyDialogs[i].shownName + ": ";
+			}
+			historyDialogText = historyDialogText + historyDialogs[i].content + "\n";
+		}
+		backLogText.GetComponent<Text> ().text = historyDialogText;
+	}
 }

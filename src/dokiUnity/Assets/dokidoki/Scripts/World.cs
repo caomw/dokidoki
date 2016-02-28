@@ -95,7 +95,8 @@ public class World : MonoBehaviour {
 
     public void takeTextAction(Action textAction)
     {
-		dialogText.GetComponent<Text> ().text = textAction.parameters [ScriptKeyword.CONTENT];
+		//dialogText.GetComponent<Text> ().text = textAction.parameters [ScriptKeyword.CONTENT];
+		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard ("", textAction.parameters [ScriptKeyword.CONTENT], "");
     }
 
     public void skipVideoAction() {

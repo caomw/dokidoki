@@ -9,7 +9,7 @@ public class Character : MonoBehaviour {
 
     public string id;
 	public string role;
-    public string shownName;
+    public string shownName = "???";
 
 	void Start () {
 
@@ -49,7 +49,8 @@ public class Character : MonoBehaviour {
 			Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
 			Application.Quit();
 		}
-		dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
+		//dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
+		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard (shownName, textAction.parameters [ScriptKeyword.CONTENT], "");
     }
 
     public void takeVoiceAction(Action voiceAction)
