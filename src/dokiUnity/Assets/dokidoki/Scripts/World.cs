@@ -80,7 +80,7 @@ public class World : MonoBehaviour {
         background.GetComponent<AudioSource>().Play();
     }
 
-    public void takeVideoAction(Action videoAction)
+    public float takeVideoAction(Action videoAction)
     {
         videoBoard.GetComponent<Renderer>().enabled = true;
 
@@ -89,14 +89,23 @@ public class World : MonoBehaviour {
         videoBoard.GetComponent<Renderer>().material.mainTexture = movTexture;
         videoBoard.GetComponent<AudioSource>().clip = movTexture.audioClip;
 
+        //Debug.Log("Video length: " + movTexture.duration);
+
         movTexture.Play();
         videoBoard.GetComponent<AudioSource>().Play();
+
+        float nextAutoClickTime = Time.realtimeSinceStartup;
+        nextAutoClickTime = nextAutoClickTime + movTexture.duration + GameParameter.AUTO_DELAY;
+        return nextAutoClickTime;
     }
 
-    public void takeTextAction(Action textAction)
+    public float takeTextAction(Action textAction)
     {
 		//dialogText.GetComponent<Text> ().text = textAction.parameters [ScriptKeyword.CONTENT];
 		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard ("", textAction.parameters [ScriptKeyword.CONTENT], "");
+        float nextAutoClickTime = Time.realtimeSinceStartup;
+        nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * GameParameter.LETTER_DELAY + GameParameter.AUTO_DELAY;
+        return nextAutoClickTime;
     }
 
     public void skipVideoAction() {

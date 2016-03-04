@@ -43,7 +43,7 @@ public class Character : MonoBehaviour {
         Debug.Log(id + faceAction.tag);
     }
 
-    public void takeTextAction(Action textAction)
+    public float takeTextAction(Action textAction)
     {
 		if (dialogText == null) {
 			Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
@@ -51,13 +51,22 @@ public class Character : MonoBehaviour {
 		}
 		//dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
 		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard (shownName, textAction.parameters [ScriptKeyword.CONTENT], "");
+        float nextAutoClickTime = Time.realtimeSinceStartup;
+        nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * GameParameter.LETTER_DELAY + GameParameter.AUTO_DELAY;
+        return nextAutoClickTime;
     }
 
-    public void takeVoiceAction(Action voiceAction)
+    public float takeVoiceAction(Action voiceAction)
     {
         AudioClip voiceAudioClip = Resources.Load(FolderStructure.CHARACTERS + FolderStructure.VOICES + voiceAction.parameters[ScriptKeyword.SRC]) as AudioClip;
         this.GetComponent<AudioSource>().clip = voiceAudioClip;
         this.GetComponent<AudioSource>().Play();
+
+        //Debug.Log("AudioClip length: " + this.GetComponent<AudioSource>().clip.length);
+
+        float nextAutoClickTime = Time.realtimeSinceStartup;
+        nextAutoClickTime = nextAutoClickTime + this.GetComponent<AudioSource>().clip.length + GameParameter.AUTO_DELAY;
+        return nextAutoClickTime;
     }
 
     public void takeMoveAction(Action moveAction)

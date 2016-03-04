@@ -100,7 +100,7 @@ public class ScriptReader {
             {ScriptKeyword.ID,"world"}
         }));
         newActions0.Add(new Action(ScriptKeyword.VIDEO, new Dictionary<string, string>(){
-            {ScriptKeyword.SRC,"video0"}
+            {ScriptKeyword.SRC,"video1"}
         }));
 
         List<Action> newActions1 = new List<Action>();

@@ -9,7 +9,12 @@ public class WorldControl : MonoBehaviour {
     private GameObject focusGameObject;
 
     public GameObject world;
-    public GameObject inPlayUI;
+    //In play UI gameobjects
+    public GameObject dialog;
+    public GameObject quickButtons;
+    public GameObject backLog;
+
+
     public GameObject characterPrefab;
 	public GameObject backLogText;
 	public GameObject dialogText;
@@ -18,13 +23,16 @@ public class WorldControl : MonoBehaviour {
     private List<Action> currentActions;
     private Action lastAction;
 
-	private string currentGameState = NORMAL;
+	public string currentGameState = NORMAL;
 	const string NORMAL = "Normal";
 	const string BACKLOG = "BackLog";
 	const string SAVE = "Save";
 	const string LOAD = "Load";
 	const string AUTO = "Auto";
 	const string SKIP = "Skip";
+    const string HIDE = "Hide";
+
+    public float nextAutoClickTime = 0f;
 
     void Start() {
         //set up scriptReader, new game and load game
@@ -41,21 +49,47 @@ public class WorldControl : MonoBehaviour {
         characters = new Dictionary<string, GameObject>();
     }
 
-    void Update() {
-
+    void FixedUpdate() {
+        if(currentGameState == AUTO){
+            float currentTime = Time.realtimeSinceStartup;
+            //Auto click
+            if (currentTime > nextAutoClickTime)
+            {
+                //Debug.Log("Auto click");
+                //Click once, wait for next time update
+                nextAutoClickTime = Mathf.Infinity;
+                step();
+            }
+        }
     }
 
-
-    int count = 0;
-
+    //public int count = 0;
+    /// <summary>
+    /// Game click
+    /// </summary>
     public void step() {
-        Debug.Log("Screen click..." + count++);
+        //Debug.Log(++count);
+        //Check game state first
+        if(currentGameState == BACKLOG){
+            clickBackLogButton();
+            return;
+        }
+        else if (currentGameState == AUTO)
+        {
+            nextAutoClickTime = Mathf.Infinity;
+        }else if(currentGameState == HIDE){
+            clickHideButton();
+            return;
+        }
+
+        //If in NORMAL state, plays the game normally
         if (currentActions == null || currentActions.Count < 1) {
+            //To be done
             currentActions = scriptReader.testReadNextActions();
         }
         if (lastAction != null && lastAction.tag == ScriptKeyword.VIDEO) {
             world.GetComponent<World>().skipVideoAction();
-            showUI(inPlayUI);
+            showInPlayUI();
         }
         while (currentActions.Count > 0)
         {
@@ -84,17 +118,17 @@ public class WorldControl : MonoBehaviour {
             }
             else if (currentAction.tag == ScriptKeyword.VIDEO)
             {
-                hideUI(inPlayUI);
-                focusGameObject.GetComponent<World>().takeVideoAction(currentAction);
+                hideInPlayUI();
+                updateNextAutoClickTime( focusGameObject.GetComponent<World>().takeVideoAction(currentAction));
             }
             else if (currentAction.tag == ScriptKeyword.TEXT)
             {
                 if (focusGameObject.GetComponent<World>() != null) {
-                    focusGameObject.GetComponent<World>().takeTextAction(currentAction);
+                    updateNextAutoClickTime( focusGameObject.GetComponent<World>().takeTextAction(currentAction));
                 }
                 if (focusGameObject.GetComponent<Character>() != null)
                 {
-                    focusGameObject.GetComponent<Character>().takeTextAction(currentAction);
+                    updateNextAutoClickTime(focusGameObject.GetComponent<Character>().takeTextAction(currentAction));
                 }
             }
             else if (currentAction.tag == ScriptKeyword.MOVE)
@@ -111,7 +145,7 @@ public class WorldControl : MonoBehaviour {
             }
             else if (currentAction.tag == ScriptKeyword.VOICE)
             {
-                focusGameObject.GetComponent<Character>().takeVoiceAction(currentAction);
+                updateNextAutoClickTime( focusGameObject.GetComponent<Character>().takeVoiceAction(currentAction));
             }
             else if (currentAction.tag == ScriptKeyword.ROLE)
             {
@@ -145,25 +179,80 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
-    public void hideUI(GameObject UI) {
-        UI.SetActive(false);
+    public void hideInPlayUI() {
+        dialog.SetActive(false);
+        quickButtons.SetActive(false);
     }
 
-	public void showUI(GameObject UI) {
-        UI.SetActive(true);
+	public void showInPlayUI() {
+        dialog.SetActive(true);
+        quickButtons.SetActive(true);
     }
 
-	public void backLog(){
-		currentGameState = BACKLOG;
+	public void clickBackLogButton(){
+        if (currentGameState == NORMAL)
+        {
+            //Open backlog window
+            currentGameState = BACKLOG;
 
-		List<Dialog> historyDialogs = dialogText.GetComponent<DialogManage> ().historyDialogs;
-		string historyDialogText = "";
-		for(int i=0;i<historyDialogs.Count;i++){
-			if(historyDialogs[i].shownName != ""){
-				historyDialogText = historyDialogText + historyDialogs[i].shownName + ": ";
-			}
-			historyDialogText = historyDialogText + historyDialogs[i].content + "\n";
-		}
-		backLogText.GetComponent<Text> ().text = historyDialogText;
+            backLog.SetActive(true);
+
+            List<Dialog> historyDialogs = dialogText.GetComponent<DialogManage>().historyDialogs;
+            string historyDialogText = "";
+            for (int i = 0; i < historyDialogs.Count; i++)
+            {
+                if (historyDialogs[i].shownName != "")
+                {
+                    historyDialogText = historyDialogText + historyDialogs[i].shownName + ": ";
+                }
+                historyDialogText = historyDialogText + historyDialogs[i].content + "\n";
+            }
+            backLogText.GetComponent<Text>().text = historyDialogText;
+        }
+        else if (currentGameState == BACKLOG)
+        { 
+            //close backlog window
+            backLog.SetActive(false);
+            currentGameState = NORMAL;
+        }
 	}
+
+    public void clickAutoButton() {
+        if (currentGameState == NORMAL)
+        {
+            //Enter AUTO state
+            currentGameState = AUTO;
+        }
+        else if(currentGameState == AUTO){ 
+            //Leave AUTO state
+            currentGameState = NORMAL;
+        }
+    }
+
+    /// <summary>
+    /// Update the most long next auto click time, except for Mathf.Infinity
+    /// </summary>
+    /// <param name="newNextAutoClickTime">
+    /// New next auto click time
+    /// </param>
+    public void updateNextAutoClickTime(float newNextAutoClickTime) {
+        if (this.nextAutoClickTime == Mathf.Infinity)
+        {
+            this.nextAutoClickTime = newNextAutoClickTime;
+        }
+        else if (this.nextAutoClickTime < Mathf.Infinity)
+        {
+            this.nextAutoClickTime = Mathf.Max(this.nextAutoClickTime, newNextAutoClickTime);
+        }
+    }
+
+    public void clickHideButton() { 
+        if(currentGameState == NORMAL){
+            currentGameState = HIDE;
+            hideInPlayUI();
+        }else if(currentGameState == HIDE){
+            currentGameState = NORMAL;
+            showInPlayUI();
+        }
+    }
 }
