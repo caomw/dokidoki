@@ -22,7 +22,8 @@ public class DialogManage : MonoBehaviour {
 		//save new dialog for Back Log, and up to 100
 		Dialog newDialog = new Dialog (shownName, content, voiceSrc);
 		historyDialogs.Add (newDialog);
-		if(historyDialogs.Count > GameParameter.HISTORY_DIALOG_MAX){
+        if (historyDialogs.Count > GameConstants.HISTORY_DIALOG_MAX)
+        {
 			historyDialogs.RemoveAt(0);
 		}
 		//Debug.Log ("writeOnDialogBoard: "+content);
@@ -35,17 +36,11 @@ public class DialogManage : MonoBehaviour {
         while (i < content.Length)
         {
             this.GetComponent<Text>().text += content[i++];
-            yield return new WaitForSeconds(GameParameter.LETTER_DELAY);
+            yield return new WaitForSeconds(GameConstants.LETTER_DELAY);
         }
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void clear() {
+        historyDialogs = new List<Dialog>();
+    }
 }

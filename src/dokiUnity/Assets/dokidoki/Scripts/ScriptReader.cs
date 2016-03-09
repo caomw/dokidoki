@@ -160,12 +160,52 @@ public class ScriptReader {
             {ScriptKeyword.CONTENT,"等你好久了。"},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
+        List<Action> newActions5 = new List<Action>();
+        newActions5.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+            {ScriptKeyword.CONTENT,"等你好久了1。"},
+            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+        }));
+
+        List<Action> newActions6 = new List<Action>();
+        newActions6.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+            {ScriptKeyword.CONTENT,"等你好久了2。"},
+            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+        }));
+
+        List<Action> newActions7 = new List<Action>();
+        newActions7.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+            {ScriptKeyword.CONTENT,"等你好久了3。"},
+            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+        }));
+
+        List<Action> newActions8 = new List<Action>();
+        newActions8.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+            {ScriptKeyword.CONTENT,"等你好久了4。"},
+            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+        }));
+
+        List<Action> newActions9 = new List<Action>();
+        newActions9.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+            {ScriptKeyword.CONTENT,"等你好久了5。"},
+            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+        }));
+        List<Action> newActions10 = new List<Action>();
+        newActions10.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+            {ScriptKeyword.CONTENT,"等你好久了6。"},
+            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+        }));
 
         testActionsSequence.Add(newActions0);
         testActionsSequence.Add(newActions1);
         testActionsSequence.Add(newActions2);
         testActionsSequence.Add(newActions3);
         testActionsSequence.Add(newActions4);
+        testActionsSequence.Add(newActions5);
+        testActionsSequence.Add(newActions6);
+        testActionsSequence.Add(newActions7);
+        testActionsSequence.Add(newActions8);
+        testActionsSequence.Add(newActions9);
+        testActionsSequence.Add(newActions10);
     }
 
     public List<Action> testReadNextActions() {
