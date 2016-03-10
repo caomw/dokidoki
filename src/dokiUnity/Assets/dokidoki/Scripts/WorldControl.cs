@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
+using UnityEngine.Events;
+//using UnityEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,12 +15,15 @@ public class WorldControl : MonoBehaviour {
 
     public GameObject world;
     //In play UI gameobjects
+    public GameObject gameBoardUI;
     public GameObject dialogUI;
     public GameObject quickButtonsUI;
     public GameObject backLogUI;
     public GameObject saveBoardUI;
     public GameObject loadBoardUI;
-
+    public GameObject startBoardUI;
+    public GameObject configBoardUI;
+    public GameObject confirmBoardUI;
 
     public GameObject characterPrefab;
     public GameObject logTextPrefab;
@@ -35,7 +39,7 @@ public class WorldControl : MonoBehaviour {
     private List<Action> currentActions;
     private Action lastAction;
 
-	public string currentGameState = NORMAL;
+    public string currentGameState = NORMAL;
 	const string NORMAL = "Normal";
 	const string BACKLOG = "BackLog";
 	const string SAVE = "Save";
@@ -43,6 +47,7 @@ public class WorldControl : MonoBehaviour {
 	const string AUTO = "Auto";
 	const string SKIP = "Skip";
     const string HIDE = "Hide";
+    const string CONFIG = "Config";
 
     public float nextAutoClickTime = 0f;
 
@@ -65,6 +70,63 @@ public class WorldControl : MonoBehaviour {
         if (worldControlData == null)
         {
             worldControlData = new WorldControlData();
+        }
+    }
+
+    public void clickStartButton() {
+        startBoardUI.SetActive(false);
+        gameBoardUI.SetActive(true);
+        step();
+    }
+    public void clickConfigButton() {
+        if (currentGameState == NORMAL)
+        {
+            currentGameState = CONFIG;
+            configBoardUI.SetActive(true);
+        }
+        else if(currentGameState == CONFIG){
+            configBoardUI.SetActive(false);
+            currentGameState = NORMAL;
+        }
+    }
+    public void clickExitButton(bool confirmed){
+        if (!confirmed)
+        {
+            confirmCurrentAction("Do you want to exit?", "This action would lose current game data.",clickExitButton);
+            return;
+        }
+        Application.Quit();
+    }
+
+    void Update() {
+        if (Input.GetMouseButtonDown(1)) {
+            if (currentGameState == BACKLOG)
+            {
+                clickBackLogButton();
+                return;
+            }
+            else if (currentGameState == SAVE)
+            {
+                clickSaveButton();
+                return;
+            }
+            else if (currentGameState == LOAD)
+            {
+                clickLoadButton();
+                return;
+            }
+            else if (currentGameState == HIDE || currentGameState == NORMAL)
+            {
+                if(gameBoardUI.activeSelf){
+                    clickHideButton();
+                }
+                return;
+            }
+            else if (currentGameState == CONFIG)
+            {
+                clickConfigButton();
+                return;
+            }
         }
     }
 
@@ -265,18 +327,18 @@ public class WorldControl : MonoBehaviour {
         return newLogTextButton;
     }
 
-    public GameObject createTextButton(string text, GameObject prefab, GameObject parentGameObject, Func<System.Object, int> onclick, System.Object parameter)
+    public GameObject createTextButton(string text, GameObject prefab, GameObject parentGameObject, UnityAction<bool, System.Object> onclick, System.Object parameter)
     {
 
         GameObject newTextButton = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         newTextButton.transform.SetParent(parentGameObject.transform);
         newTextButton.transform.localPosition = new Vector3(0, -newTextButton.GetComponent<RectTransform>().rect.height, 0);
         newTextButton.GetComponentInChildren<Text>().text = text;
-        newTextButton.GetComponent<Button>().onClick.AddListener(() => { onclick(parameter); });
+        newTextButton.GetComponent<Button>().onClick.AddListener(() => { onclick(false, parameter); });
         return newTextButton;
     }
 
-    public void setupTextButtonBoard(List<string> texts, GameObject buttonPrefab, GameObject contentGameObject, bool toBottom, Func<System.Object, int> onclick, List<System.Object> parameters)
+    public void setupTextButtonBoard(List<string> texts, GameObject buttonPrefab, GameObject contentGameObject, bool toBottom, UnityAction<bool, System.Object> onclick, List<System.Object> parameters)
     {
         //Destroy all previous text buttons
         for (int i = 0; i < contentGameObject.transform.childCount; i++){
@@ -345,22 +407,26 @@ public class WorldControl : MonoBehaviour {
         }
 	}
 
-    public int onLogTextButtonClick(System.Object voiceSrc)
+    public void onLogTextButtonClick(bool confirmed, System.Object voiceSrc)
     {
         Debug.Log("voiceSrc: " + voiceSrc);
-        return 0;
+        return;
     }
 
-    public void clickQuickSaveButton() {
-        if (!EditorUtility.DisplayDialog("Do you want to quick save?", "This action would overwrite the original saved data.", "yes", "no")) {
+    public void clickQuickSaveButton(bool confirmed) {
+        if (!confirmed) {
+            this.confirmCurrentAction("Do you want to quick save?", "This action would overwrite the original saved data.",clickQuickSaveButton);
             return;
         }
         saveTo(0);
     }
 
-    public void clickQuickLoadButton() {
-        if (!EditorUtility.DisplayDialog("Do you want to quick load?", "This action would lose current game data.", "yes", "no"))
+    public void clickQuickLoadButton(bool confirmed)
+    {
+        if (!confirmed)
         {
+
+            this.confirmCurrentAction("Do you want to quick load?", "This action would lose current game data.", clickQuickLoadButton);
             return;
         }
         dialogContent.GetComponent<DialogManage>().clear();
@@ -396,14 +462,15 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
-    public int onSaveTextButtonClick(System.Object position) {
-        if (!EditorUtility.DisplayDialog("Do you want to quick save?", "This action would overwrite the original saved data.", "yes", "no"))
+    public void onSaveTextButtonClick(bool confirmed, System.Object position) {
+        if (!confirmed)
         {
-            return 0;
+            this.confirmCurrentAction("Do you want to quick save?", "This action would overwrite the original saved data.", onSaveTextButtonClick, position);
+            return;
         }
         saveTo((int)position);
         clickSaveButton();
-        return 0;
+        return;
     }
 
     public void clickLoadButton() {
@@ -435,15 +502,16 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
-    public int onLoadTextButtonClick(System.Object position)
+    public void onLoadTextButtonClick(bool confirmed, System.Object position)
     {
-        if (!EditorUtility.DisplayDialog("Do you want to load?", "This action would lose current game data.", "yes", "no"))
+        if (!confirmed)
         {
-            return 0;
+            this.confirmCurrentAction("Do you want to load?", "This action would lose current game data.", onLoadTextButtonClick, position);
+            return;
         }
         loadFrom((int)position);
         clickLoadButton();
-        return 0;
+        return;
     }
 
     public void checkSavedData(List<string> texts) {
@@ -490,7 +558,8 @@ public class WorldControl : MonoBehaviour {
             if (Directory.Exists(dirPath))
             {
                 //Delete original saved files, then create new directory
-                FileUtil.DeleteFileOrDirectory(dirPath);
+                Directory.Delete(dirPath, true);
+                //FileUtil.DeleteFileOrDirectory(dirPath);
             }
             Directory.CreateDirectory(dirPath);
 
@@ -517,7 +586,7 @@ public class WorldControl : MonoBehaviour {
         catch (IOException ex)
         {
             Debug.LogError("IO error when saving: " + ex.Message);
-            EditorUtility.DisplayDialog("Save failed", "Please try again", "yes", "");
+            //EditorUtility.DisplayDialog("Save failed", "Please try again", "yes", "");
         }
     }
 
@@ -581,7 +650,7 @@ public class WorldControl : MonoBehaviour {
         catch (IOException ex)
         {
             Debug.LogError("IO error when saving: " + ex.Message);
-            EditorUtility.DisplayDialog("Load failed", "Please try again", "yes", "");
+            //EditorUtility.DisplayDialog("Load failed", "Please try again", "yes", "");
         }
     }
 
@@ -624,5 +693,37 @@ public class WorldControl : MonoBehaviour {
             currentGameState = NORMAL;
             showInPlayUI();
         }
+    }
+
+    public void confirmCurrentAction(string title, string message, UnityAction<bool> clickButtonWithYes) {
+        confirmBoardUI.SetActive(true);
+        confirmBoardUI.GetComponent<ModalPanel>().Choice(title, message, clickButtonWithYes);
+    }
+    public void confirmCurrentAction(string title, string message, UnityAction<bool, System.Object> clickButtonWithYes, System.Object yesParameter)
+    {
+        confirmBoardUI.SetActive(true);
+        confirmBoardUI.GetComponent<ModalPanel>().Choice(title, message, clickButtonWithYes, yesParameter);
+    }
+
+    public void valueChangedScreenMode(int value) {
+        Debug.Log("value: " + value);
+    }
+    public void valueChangedBgmVolume(float value) {
+        Debug.Log("value: " + value);
+    }
+    public void valueChangedSeVolume(float value)
+    {
+        Debug.Log("value: " + value);
+    }
+    public void valueChangedVoiceVolume(float value)
+    {
+        Debug.Log("value: " + value);
+    }
+    public void valueChangedTextSpeed(float value)
+    {
+        Debug.Log("value: " + value);
+    }public void valueChangedAutoSpeed(float value)
+    {
+        Debug.Log("value: " + value);
     }
 }
