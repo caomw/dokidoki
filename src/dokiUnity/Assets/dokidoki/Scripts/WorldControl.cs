@@ -60,11 +60,6 @@ public class WorldControl : MonoBehaviour {
             scriptReader = new ScriptReader();
         }
 
-        if (world == null) {
-            Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
-            Application.Quit();
-        }
-
         characters = new Dictionary<string, GameObject>();
 
         if (worldControlData == null)
@@ -423,6 +418,12 @@ public class WorldControl : MonoBehaviour {
 
     public void clickQuickLoadButton(bool confirmed)
     {
+        //Check whether this position has saved data
+        string dirPath = Application.persistentDataPath + "/" + GameConstants.SAVE_DIRECTORY + "/0";
+        if (!Directory.Exists(dirPath))
+        {
+            return;
+        }
         if (!confirmed)
         {
 
@@ -504,11 +505,19 @@ public class WorldControl : MonoBehaviour {
 
     public void onLoadTextButtonClick(bool confirmed, System.Object position)
     {
+        //Check whether this position has saved data
+        string dirPath = Application.persistentDataPath + "/" + GameConstants.SAVE_DIRECTORY + "/" + (int)position;
+        if (!Directory.Exists(dirPath))
+        {
+            return;
+        }
         if (!confirmed)
         {
             this.confirmCurrentAction("Do you want to load?", "This action would lose current game data.", onLoadTextButtonClick, position);
             return;
         }
+        gameBoardUI.SetActive(true);
+        startBoardUI.SetActive(false);
         loadFrom((int)position);
         clickLoadButton();
         return;
@@ -517,6 +526,9 @@ public class WorldControl : MonoBehaviour {
     public void checkSavedData(List<string> texts) {
         //Check saved data
         string dirPath = Application.persistentDataPath + "/" + GameConstants.SAVE_DIRECTORY;
+        if(!Directory.Exists(dirPath)){
+            return;
+        }
         string[] filePaths = Directory.GetDirectories(dirPath);
         for (int i = 0; i < filePaths.Length; i++)
         {
@@ -706,24 +718,61 @@ public class WorldControl : MonoBehaviour {
     }
 
     public void valueChangedScreenMode(int value) {
-        Debug.Log("value: " + value);
+        PlayerPrefs.SetInt(GameConstants.CONFIG_SCREEN_MODE, value);
+
+        //To be done
+        PlayerPrefs.Save();
     }
     public void valueChangedBgmVolume(float value) {
-        Debug.Log("value: " + value);
+        PlayerPrefs.SetFloat(GameConstants.CONFIG_BGM_VOLUME, value);
+
+        GameObject[] backgroundGameObjects = GameObject.FindGameObjectsWithTag("Background");
+        for (int i = 0; i < backgroundGameObjects.Length; i++ )
+        {
+            backgroundGameObjects[i].GetComponent<AudioSource>().volume = value;
+        }
+        PlayerPrefs.Save();
     }
     public void valueChangedSeVolume(float value)
     {
-        Debug.Log("value: " + value);
+        PlayerPrefs.SetFloat(GameConstants.CONFIG_SE_VOLUME, value);
+
+        GameObject[] worldGameObjects = GameObject.FindGameObjectsWithTag("World");
+        for (int i = 0; i < worldGameObjects.Length; i++)
+        {
+            worldGameObjects[i].GetComponent<AudioSource>().volume = value;
+        }
+        PlayerPrefs.Save();
     }
     public void valueChangedVoiceVolume(float value)
     {
-        Debug.Log("value: " + value);
+        PlayerPrefs.SetFloat(GameConstants.CONFIG_VOICE_VOLUME, value);
+
+        GameObject[] characterGameObjects = GameObject.FindGameObjectsWithTag("Character");
+        for (int i = 0; i < characterGameObjects.Length; i++)
+        {
+            characterGameObjects[i].GetComponent<AudioSource>().volume = value;
+        }
+        PlayerPrefs.Save();
     }
     public void valueChangedTextSpeed(float value)
     {
-        Debug.Log("value: " + value);
-    }public void valueChangedAutoSpeed(float value)
+        PlayerPrefs.SetFloat(GameConstants.CONFIG_TEXT_SPEED, value);
+        PlayerPrefs.Save();
+    }
+    
+    public void valueChangedAutoSpeed(float value)
     {
-        Debug.Log("value: " + value);
+        PlayerPrefs.SetFloat(GameConstants.CONFIG_AUTO_SPEED, value);
+        PlayerPrefs.Save();
+    }
+
+    public void clickTitleButton(bool confirmed) {
+        if (!confirmed)
+        {
+            confirmCurrentAction("Do you want to go back to title?", "This action would lose current game data.", clickTitleButton);
+            return;
+        }
+        Application.LoadLevel(0); 
     }
 }

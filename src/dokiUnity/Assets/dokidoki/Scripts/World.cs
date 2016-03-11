@@ -103,7 +103,7 @@ public class World : MonoBehaviour {
         videoBoard.GetComponent<AudioSource>().Play();
 
         float nextAutoClickTime = Time.realtimeSinceStartup;
-        nextAutoClickTime = nextAutoClickTime + movTexture.duration + GameConstants.AUTO_DELAY;
+        nextAutoClickTime = nextAutoClickTime + movTexture.duration + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
         return nextAutoClickTime;
     }
 
@@ -112,7 +112,7 @@ public class World : MonoBehaviour {
 		//dialogText.GetComponent<Text> ().text = textAction.parameters [ScriptKeyword.CONTENT];
 		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard ("", textAction.parameters [ScriptKeyword.CONTENT], "");
         float nextAutoClickTime = Time.realtimeSinceStartup;
-        nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * GameConstants.LETTER_DELAY + GameConstants.AUTO_DELAY;
+        nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
         return nextAutoClickTime;
     }
 

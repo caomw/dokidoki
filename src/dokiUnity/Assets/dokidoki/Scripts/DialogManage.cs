@@ -36,7 +36,7 @@ public class DialogManage : MonoBehaviour {
         while (i < content.Length)
         {
             this.GetComponent<Text>().text += content[i++];
-            yield return new WaitForSeconds(GameConstants.LETTER_DELAY);
+            yield return new WaitForSeconds( PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR);
         }
     }
 

@@ -53,7 +53,7 @@ public class Character : MonoBehaviour {
 		//dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
 		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard (characterData.shownName, textAction.parameters [ScriptKeyword.CONTENT], "");
         float nextAutoClickTime = Time.realtimeSinceStartup;
-        nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * GameConstants.LETTER_DELAY + GameConstants.AUTO_DELAY;
+        nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * (PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR) + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
         return nextAutoClickTime;
     }
 
@@ -66,7 +66,7 @@ public class Character : MonoBehaviour {
         //Debug.Log("AudioClip length: " + this.GetComponent<AudioSource>().clip.length);
 
         float nextAutoClickTime = Time.realtimeSinceStartup;
-        nextAutoClickTime = nextAutoClickTime + this.GetComponent<AudioSource>().clip.length + GameConstants.AUTO_DELAY;
+        nextAutoClickTime = nextAutoClickTime + this.GetComponent<AudioSource>().clip.length + (PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR);
         return nextAutoClickTime;
     }
 
