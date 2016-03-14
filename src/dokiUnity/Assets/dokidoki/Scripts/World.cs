@@ -90,10 +90,11 @@ public class World : MonoBehaviour {
 
     public float takeVideoAction(Action videoAction)
     {
+#if UNITY_STANDALONE || UNITY_EDITOR
         videoBoard.GetComponent<Renderer>().enabled = true;
 
         MovieTexture movTexture = Resources.Load(FolderStructure.WORLD + FolderStructure.VIDEOS + videoAction.parameters[ScriptKeyword.SRC]) as MovieTexture;
-        
+
         videoBoard.GetComponent<Renderer>().material.mainTexture = movTexture;
         videoBoard.GetComponent<AudioSource>().clip = movTexture.audioClip;
 
@@ -105,6 +106,15 @@ public class World : MonoBehaviour {
         float nextAutoClickTime = Time.realtimeSinceStartup;
         nextAutoClickTime = nextAutoClickTime + movTexture.duration + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
         return nextAutoClickTime;
+#endif
+#if UNITY_IPHONE
+        return 0;
+#endif
+#if UNITY_ANDROID
+        Handheld.PlayFullScreenMovie("StreamingAssets/" + FolderStructure.WORLD + FolderStructure.VIDEOS + videoAction.parameters[ScriptKeyword.SRC]);
+        Debug.Log("Play video");
+        return 0;
+#endif
     }
 
     public float takeTextAction(Action textAction)
@@ -116,7 +126,9 @@ public class World : MonoBehaviour {
         return nextAutoClickTime;
     }
 
-    public void skipVideoAction() {
+    public void skipVideoAction()
+    {
+#if UNITY_STANDALONE  || UNITY_EDITOR
         if (videoBoard.GetComponent<Renderer>().material.mainTexture != null) {
             ((MovieTexture)videoBoard.GetComponent<Renderer>().material.mainTexture).Stop();
         }
@@ -124,6 +136,11 @@ public class World : MonoBehaviour {
             videoBoard.GetComponent<AudioSource>().Stop();
         }
         videoBoard.GetComponent<Renderer>().enabled = false;
+#endif
+#if UNITY_IOS
+#endif
+#if UNITY_ANDROID
+#endif
     }
 
     public void loadData(WorldData worldData) {
