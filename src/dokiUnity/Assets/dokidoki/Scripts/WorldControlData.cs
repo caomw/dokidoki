@@ -6,4 +6,5 @@ public class WorldControlData
     public string focusGameObjectId;
     public string textContent;
     public string saveTime;
+    public string worldLine;
 }

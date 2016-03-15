@@ -41,10 +41,20 @@ public class World : MonoBehaviour {
         if (weatherAction.parameters[ScriptKeyword.TYPE] == ScriptKeyword.TYPE_SNOW)
         {
             weatherSnow.SetActive(true);
+            EllipsoidParticleEmitter ellipsoidParticleEmitter = weatherSnow.GetComponent<EllipsoidParticleEmitter>();
+            string level = "0.5";
+            if (weatherAction.parameters.TryGetValue(ScriptKeyword.LEVEL, out level)) {
+
+                ellipsoidParticleEmitter.minEmission = 100 * float.Parse(level);
+                ellipsoidParticleEmitter.maxEmission = 100 * float.Parse(level);
+            }
+        }else {
+            weatherSnow.SetActive(true);
+            EllipsoidParticleEmitter ellipsoidParticleEmitter = weatherSnow.GetComponent<EllipsoidParticleEmitter>();
+            ellipsoidParticleEmitter.minEmission = 0;
+            ellipsoidParticleEmitter.maxEmission = 0;
         }
-        else {
-            weatherSnow.SetActive(false);
-        }
+
         if (weatherAction.parameters[ScriptKeyword.TYPE] == ScriptKeyword.TYPE_RAIN)
         {
             weatherRain.SetActive(true);

@@ -21,6 +21,9 @@ dokiChan
 	voice src=voice003;
 	还以为你不来了呢。>>
 
+[我抬起头看着她的脸，向她走了过去(sample1) | 我只是呆站着那儿，一动也不动的(sample1)] //Here means the option and the dokiScript name contains the option
+
+<我抬起头看着她的脸，向她走了过去>
 {   //code in {} could not be skipped
 world
 	我微笑着走了过去。>>
@@ -38,10 +41,14 @@ dokiChan
 
 player
 	嗯，一年过去了。>>
-	
 
+(sample2) //Here means then the next dokiScript is sample2
+	
+<我只是呆站着那儿，一动也不动的>
 world
 	这家伙还是一点没变，仿佛时间已经抛弃了她。>>
 	两个人仅仅呆站这那儿，无言的看着对方。>>
 	weather type=sunny level=0.5 transition=gradual speed=0.5;
 	不经意间，雪停了>>
+
+(sample3)

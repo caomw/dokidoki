@@ -19,6 +19,7 @@ public class ScriptKeyword{
     public const string VOICE = "voice";
     public const string ROLE = "role";
     public const string FOCUS = "focus";
+    public const string FLAG = "flag";
 
     //parameter keywords
     //background src=xxx transition=(instant|gradual) speed=0.xxx;
@@ -55,10 +56,39 @@ public class ScriptKeyword{
     public const string NAME = "name";
     //focusId
     public const string ID = "id";
+    //[xxx(xxx) | xxx(xxx) ...]
+        //the option number
+    public const string OPTION = "option";
+        //the first option
+    public const string OPTION_1 = "option1";
+        //the first option src dokiscript
+        //The OPTION_ and OPTION_SRC_ used only for iterate
+    public const string OPTION_ = "option";
+    public const string OPTION_SRC_ = "optionSrc";
+
+    public const string OPTION_SRC_1 = "optionSrc1";
+    public const string OPTION_2 = "option2";
+    public const string OPTION_SRC_2 = "optionSrc2";
+    public const string OPTION_3 = "option3";
+    public const string OPTION_SRC_3 = "optionSrc3";
+    public const string OPTION_4 = "option4";
+    public const string OPTION_SRC_4 = "optionSrc4";
+    public const string OPTION_5 = "option5";
+    public const string OPTION_SRC_5 = "optionSrc5";
+    public const string OPTION_6 = "option6";
+    public const string OPTION_SRC_6 = "optionSrc6";
+    public const string OPTION_7 = "option7";
+    public const string OPTION_SRC_7 = "optionSrc7";
+    public const string OPTION_8 = "option8";
+    public const string OPTION_SRC_8 = "optionSrc8";
+    public const string OPTION_9 = "option9";
+    public const string OPTION_SRC_9 = "optionSrc9";
 
     //symbol keywords
     public const string BRACKET_LEFT = "{";
     public const string BRACKET_RIGHT = "}";
+    public const string SQUARE_BRACKET_LEFT = "[";
+    public const string SQUARE_BRACKET_RIGHT = "]";
     public const string PARENTHESE_LEFT = "(";
     public const string PARENTHESE_RIGHT = ")";
     public const string PERIOD = ".";

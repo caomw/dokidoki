@@ -24,15 +24,18 @@ public class WorldControl : MonoBehaviour {
     public GameObject startBoardUI;
     public GameObject configBoardUI;
     public GameObject confirmBoardUI;
+    public GameObject flagBoardUI;
 
     public GameObject characterPrefab;
     public GameObject logTextPrefab;
     public GameObject saveTextPrefab;
     public GameObject loadTextPrefab;
+    public GameObject flagTextPrefab;
 
 	public GameObject backLogContent;
     public GameObject saveContent;
     public GameObject loadContent;
+    public GameObject flagContent;
 	public GameObject dialogContent;
     public Dictionary<string, GameObject> characters;
 
@@ -48,6 +51,7 @@ public class WorldControl : MonoBehaviour {
 	const string SKIP = "Skip";
     const string HIDE = "Hide";
     const string CONFIG = "Config";
+    const string FLAG = "Flag";
 
     public float nextAutoClickTime = 0f;
 
@@ -66,6 +70,12 @@ public class WorldControl : MonoBehaviour {
         {
             worldControlData = new WorldControlData();
         }
+
+        //Load PlayerPrefs
+        configBoardUI.SetActive(true);
+        configBoardUI.SetActive(false);
+
+        startBoardUI.SetActive(true);
     }
 
     public void clickStartButton() {
@@ -123,6 +133,16 @@ public class WorldControl : MonoBehaviour {
                 return;
             }
         }
+
+        //Skip key pressed
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        {
+            clickSkipButton();
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
+        {
+            clickSkipButton();
+        }    
     }
 
     void FixedUpdate() {
@@ -161,6 +181,8 @@ public class WorldControl : MonoBehaviour {
             return;
         }else if(currentGameState == HIDE){
             clickHideButton();
+            return;
+        }else if(currentGameState == FLAG){
             return;
         }
 
@@ -233,6 +255,10 @@ public class WorldControl : MonoBehaviour {
             {
                 focusGameObject.GetComponent<Character>().takeRoleAction(currentAction);
             }
+            else if (currentAction.tag == ScriptKeyword.FLAG)
+            {
+                this.takeFlagAction(currentAction);
+            }
             //store last action
             lastAction = currentAction;
             if(currentAction.tag == ScriptKeyword.TEXT){
@@ -261,6 +287,60 @@ public class WorldControl : MonoBehaviour {
             }
             focusGameObject = characters[focusAction.parameters[ScriptKeyword.ID]];
         }
+    }
+
+    public void takeFlagAction(Action flagAction) {
+        if(currentGameState == AUTO){
+            clickAutoButton();
+        }
+        if (currentGameState == SKIP)
+        {
+            clickSkipButton();
+        }
+        if (currentGameState == NORMAL)
+        {
+            currentGameState = FLAG;
+            flagBoardUI.SetActive(true);
+
+            string option;
+            if (flagAction.parameters.TryGetValue(ScriptKeyword.OPTION, out option)) {
+                List<string> texts = new List<string>();
+                for (int i = 0; i < int.Parse(option); i++)
+                {
+                    string text = flagAction.parameters[ScriptKeyword.OPTION_ + (i + 1)];
+                    texts.Add(text);
+                }
+                List<System.Object> parameters = new List<object>();
+                for (int i = 0; i < int.Parse(option); i++)
+                {
+                    List<string> optionParameter = new List<string>();
+                    optionParameter.Add(""+ (i + 1));
+                    optionParameter.Add(flagAction.parameters[ScriptKeyword.OPTION_ + (i + 1)]);
+                    optionParameter.Add(flagAction.parameters[ScriptKeyword.OPTION_SRC_ + (i + 1)]);
+
+                    parameters.Add(optionParameter);
+                }
+
+                setupTextButtonBoard(texts, flagTextPrefab, flagContent, false, onFlagTextButtonClick, parameters);
+            }
+        }
+    }
+
+    public void onFlagTextButtonClick(bool confirmed, System.Object optionParameter) {
+        this.worldControlData.worldLine += ((List<string>)optionParameter)[0];
+
+        if (currentGameState == FLAG)
+        {
+            flagBoardUI.SetActive(false);
+            currentGameState = NORMAL;
+        }
+
+        Debug.Log("((List<string>)optionParameter)[0]: " + ((List<string>)optionParameter)[0]);
+        Debug.Log("((List<string>)optionParameter)[1]: " + ((List<string>)optionParameter)[1]);
+        Debug.Log("((List<string>)optionParameter)[2]: " + ((List<string>)optionParameter)[2]);
+
+        //Jump to this option
+        //To be done
     }
 
     /// <summary>
@@ -676,6 +756,21 @@ public class WorldControl : MonoBehaviour {
         }
         else if(currentGameState == AUTO){ 
             //Leave AUTO state
+            currentGameState = NORMAL;
+        }
+    }
+
+    public void clickSkipButton() {
+        if (currentGameState == NORMAL && startBoardUI.activeSelf == false)
+        {
+            currentGameState = SKIP;
+            //Start skip mode, here could modify the speed of skip
+            InvokeRepeating("step", 0.1f, 0.3f);
+        }
+        else if (currentGameState == SKIP)
+        {
+            //Stop skip mode
+            CancelInvoke("step");
             currentGameState = NORMAL;
         }
     }
