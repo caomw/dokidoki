@@ -142,7 +142,7 @@ public class ScriptReader {
         }));
         newActions4.Add(new Action(ScriptKeyword.ROLE, new Dictionary<string, string>(){
             {ScriptKeyword.TYPE,ScriptKeyword.TYPE_CHARACTER},
-            {ScriptKeyword.NAME, "character0"}
+			{ScriptKeyword.NAME, "小雪"}
         }));
         newActions4.Add(new Action(ScriptKeyword.MOVE, new Dictionary<string, string>(){
             {ScriptKeyword.POSITION,ScriptKeyword.POSITION_CENTER},
@@ -152,20 +152,18 @@ public class ScriptReader {
             {ScriptKeyword.SRC, "kuon0"}
         }));
         newActions4.Add(new Action(ScriptKeyword.VOICE, new Dictionary<string, string>(){
-            {ScriptKeyword.SRC, "voice001"}
-        }));
-        newActions4.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
-            {ScriptKeyword.CONTENT,"等你好久了。"},
-            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+            {ScriptKeyword.SRC, "voice001"},
+			{ScriptKeyword.CONTENT,"等你好久了。"},
+			{ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
         List<Action> newActions5 = new List<Action>();
-        newActions5.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+		newActions5.Add(new Action(ScriptKeyword.VOICE, new Dictionary<string, string>(){
             {ScriptKeyword.CONTENT,"一直在等着你。"},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
 
         List<Action> newActions6 = new List<Action>();
-        newActions6.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+		newActions6.Add(new Action(ScriptKeyword.VOICE, new Dictionary<string, string>(){
             {ScriptKeyword.CONTENT,"还以为你不来了呢。"},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
@@ -174,8 +172,10 @@ public class ScriptReader {
         newActionsFlag.Add(new Action(ScriptKeyword.FLAG, new Dictionary<string, string>(){
             {ScriptKeyword.OPTION, "2"},
             {ScriptKeyword.OPTION_1, "我抬起头看着她的脸，向她走了过去"},
+			{ScriptKeyword.OPTION_ID_1, "option011"},
             {ScriptKeyword.OPTION_SRC_1, "sample1"},
             {ScriptKeyword.OPTION_2, "我只是呆站着那儿，一动也不动的"},
+			{ScriptKeyword.OPTION_ID_2, "option012"},
             {ScriptKeyword.OPTION_SRC_2, "sample1"}
         }));
 
@@ -196,7 +196,7 @@ public class ScriptReader {
             {ScriptKeyword.TYPE,ScriptKeyword.TYPE_PLAYER},
             {ScriptKeyword.NAME, "我"}
         }));
-        newActions8.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+        newActions8.Add(new Action(ScriptKeyword.VOICE, new Dictionary<string, string>(){
             {ScriptKeyword.CONTENT,"怎么会呢，我们不是约好了么。"},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
@@ -205,7 +205,7 @@ public class ScriptReader {
         newActions9.Add(new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
             {ScriptKeyword.ID,"dokiChan"}
         }));
-        newActions9.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+        newActions9.Add(new Action(ScriptKeyword.VOICE, new Dictionary<string, string>(){
             {ScriptKeyword.CONTENT,"是呢，一年前的约定。"},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
@@ -214,27 +214,32 @@ public class ScriptReader {
         newActions10.Add(new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
             {ScriptKeyword.ID,"player"}
         }));
-        newActions10.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+        newActions10.Add(new Action(ScriptKeyword.VOICE, new Dictionary<string, string>(){
             {ScriptKeyword.CONTENT,"嗯，一年过去了。"},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
 
-        List<Action> newActions11 = new List<Action>();
-        newActions11.Add(new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
+		List<Action> newActions11 = new List<Action>();
+		newActions11.Add(new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
+			{ScriptKeyword.ID,"player"}
+		}));
+		newActions11.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+			{ScriptKeyword.CONTENT,"这家伙还是一点没变，仿佛时间已经抛弃了她。"},
+			{ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+		}));
+
+        List<Action> newActions12 = new List<Action>();
+        newActions12.Add(new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
             {ScriptKeyword.ID,"world"}
         }));
-        newActions11.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
-            {ScriptKeyword.CONTENT,"这家伙还是一点没变，仿佛时间已经抛弃了她。"},
-            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
-        }));
-        newActions11.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+        newActions12.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
             {ScriptKeyword.CONTENT,"两个人仅仅呆站这那儿，无言的看着对方。"},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
-        newActions11.Add(new Action(ScriptKeyword.WEATHER, new Dictionary<string, string>(){
+        newActions12.Add(new Action(ScriptKeyword.WEATHER, new Dictionary<string, string>(){
             {ScriptKeyword.TYPE,ScriptKeyword.TYPE_SUNNY}
         }));
-        newActions11.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+        newActions12.Add(new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
             {ScriptKeyword.CONTENT,"不经意间，雪停了"},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         }));
@@ -252,6 +257,7 @@ public class ScriptReader {
         testActionsSequence.Add(newActions9);
         testActionsSequence.Add(newActions10);
         testActionsSequence.Add(newActions11);
+		testActionsSequence.Add(newActions12);
     }
 
     public List<Action> testReadNextActions() {

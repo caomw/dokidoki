@@ -261,7 +261,7 @@ public class WorldControl : MonoBehaviour {
             }
             //store last action
             lastAction = currentAction;
-            if(currentAction.tag == ScriptKeyword.TEXT){
+            if(currentAction.tag == ScriptKeyword.TEXT || currentAction.tag == ScriptKeyword.VOICE){
                 worldControlData.textContent = currentAction.parameters[ScriptKeyword.CONTENT];
             }
             //remove already completed action
@@ -316,6 +316,7 @@ public class WorldControl : MonoBehaviour {
                     List<string> optionParameter = new List<string>();
                     optionParameter.Add(""+ (i + 1));
                     optionParameter.Add(flagAction.parameters[ScriptKeyword.OPTION_ + (i + 1)]);
+					optionParameter.Add(flagAction.parameters[ScriptKeyword.OPTION_ID_ + (i + 1)]);
                     optionParameter.Add(flagAction.parameters[ScriptKeyword.OPTION_SRC_ + (i + 1)]);
 
                     parameters.Add(optionParameter);
@@ -338,6 +339,7 @@ public class WorldControl : MonoBehaviour {
         Debug.Log("((List<string>)optionParameter)[0]: " + ((List<string>)optionParameter)[0]);
         Debug.Log("((List<string>)optionParameter)[1]: " + ((List<string>)optionParameter)[1]);
         Debug.Log("((List<string>)optionParameter)[2]: " + ((List<string>)optionParameter)[2]);
+		Debug.Log("((List<string>)optionParameter)[3]: " + ((List<string>)optionParameter)[3]);
 
         //Jump to this option
         //To be done

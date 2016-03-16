@@ -59,15 +59,31 @@ public class Character : MonoBehaviour {
 
     public float takeVoiceAction(Action voiceAction)
     {
-        AudioClip voiceAudioClip = Resources.Load(FolderStructure.CHARACTERS + FolderStructure.VOICES + voiceAction.parameters[ScriptKeyword.SRC]) as AudioClip;
-        this.GetComponent<AudioSource>().clip = voiceAudioClip;
-        this.GetComponent<AudioSource>().Play();
+		string voiceSrc = "";
+
+		//Play the voice audio
+		float nextAutoClickTimeVoice = Time.realtimeSinceStartup;
+		if(voiceAction.parameters.TryGetValue(ScriptKeyword.SRC, out voiceSrc)){
+			AudioClip voiceAudioClip = Resources.Load(FolderStructure.CHARACTERS + FolderStructure.VOICES + voiceSrc) as AudioClip;
+			this.GetComponent<AudioSource>().clip = voiceAudioClip;
+			this.GetComponent<AudioSource>().Play();
+			nextAutoClickTimeVoice = nextAutoClickTimeVoice + this.GetComponent<AudioSource>().clip.length + (PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR);
+		}
+
+		//Similar to the takeTextAction
+		if (dialogText == null) {
+			Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
+			Application.Quit();
+		}
+		//dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
+		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard (characterData.shownName, voiceAction.parameters [ScriptKeyword.CONTENT], voiceSrc);
+
+		float nextAutoClickTimeText = Time.realtimeSinceStartup;
+		nextAutoClickTimeText = nextAutoClickTimeText + voiceAction.parameters[ScriptKeyword.CONTENT].Length * (PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR) + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
 
         //Debug.Log("AudioClip length: " + this.GetComponent<AudioSource>().clip.length);
 
-        float nextAutoClickTime = Time.realtimeSinceStartup;
-        nextAutoClickTime = nextAutoClickTime + this.GetComponent<AudioSource>().clip.length + (PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR);
-        return nextAutoClickTime;
+		return Mathf.Max(nextAutoClickTimeVoice, nextAutoClickTimeText);
     }
 
     public void takeMoveAction(Action moveAction)

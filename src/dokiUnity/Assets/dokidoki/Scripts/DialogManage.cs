@@ -21,6 +21,7 @@ public class DialogManage : MonoBehaviour {
 
 		//save new dialog for Back Log, and up to 100
 		Dialog newDialog = new Dialog (shownName, content, voiceSrc);
+		Debug.Log ("newDialog.voiceSrc: "+newDialog.voiceSrc);
 		historyDialogs.Add (newDialog);
         if (historyDialogs.Count > GameConstants.HISTORY_DIALOG_MAX)
         {
