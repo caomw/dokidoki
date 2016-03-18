@@ -101,6 +101,8 @@ public class ScriptKeyword{
     public const string SQUARE_BRACKET_RIGHT = "]";
     public const string PARENTHESE_LEFT = "(";
     public const string PARENTHESE_RIGHT = ")";
+    public const string ANGLE_BRACKET_LEFT = "<";
+    public const string DOUBLE_QUOTE = "\"";
     public const string PERIOD = ".";
     public const string COMMA = ",";
     public const string SEMICOLON = ";";
@@ -113,4 +115,7 @@ public class ScriptKeyword{
     public const string COMMENT = "//";
     public const string COMMENT_START = "/*";
     public const string COMMENT_END = "*/";
+    public const string ASSIGN = "=";
+    public const string OR = "|";
+
 }
