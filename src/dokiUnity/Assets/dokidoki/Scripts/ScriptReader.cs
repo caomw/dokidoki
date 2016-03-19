@@ -170,7 +170,7 @@ public class ScriptReader {
 
         List<Action> newActionsFlag = new List<Action>();
         newActionsFlag.Add(new Action(ScriptKeyword.FLAG, new Dictionary<string, string>(){
-            {ScriptKeyword.OPTION, "2"},
+            {ScriptKeyword.COUNT, "2"},
             {ScriptKeyword.OPTION_1, "我抬起头看着她的脸，向她走了过去"},
 			{ScriptKeyword.OPTION_ID_1, "option011"},
             {ScriptKeyword.OPTION_SRC_1, "sample1"},

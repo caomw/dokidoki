@@ -302,16 +302,16 @@ public class WorldControl : MonoBehaviour {
             currentGameState = FLAG;
             flagBoardUI.SetActive(true);
 
-            string option;
-            if (flagAction.parameters.TryGetValue(ScriptKeyword.OPTION, out option)) {
+            string count;
+			if (flagAction.parameters.TryGetValue(ScriptKeyword.COUNT, out count)) {
                 List<string> texts = new List<string>();
-                for (int i = 0; i < int.Parse(option); i++)
+				for (int i = 0; i < int.Parse(count); i++)
                 {
                     string text = flagAction.parameters[ScriptKeyword.OPTION_ + (i + 1)];
                     texts.Add(text);
                 }
                 List<System.Object> parameters = new List<object>();
-                for (int i = 0; i < int.Parse(option); i++)
+				for (int i = 0; i < int.Parse(count); i++)
                 {
                     List<string> optionParameter = new List<string>();
                     optionParameter.Add(""+ (i + 1));
