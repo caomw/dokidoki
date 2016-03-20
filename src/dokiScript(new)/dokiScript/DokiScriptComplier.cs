@@ -3,6 +3,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using PerCederberg.Grammatica.Runtime;
+using dokiScriptSetting;
+using Action = dokiScriptSetting.Action;
 
 namespace dokiScript
 {
@@ -15,6 +17,8 @@ namespace dokiScript
 		public DokiScriptComplier ()
 		{
 		}
+
+
 
 		public List<Action> compile(string script){
 			actions = null;

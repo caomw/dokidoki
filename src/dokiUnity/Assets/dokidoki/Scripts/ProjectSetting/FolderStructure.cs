@@ -5,7 +5,7 @@ public static class FolderStructure {
 
     public const string DOKIDOKI = "dokidoki/";
     public const string DOKIDOKI_PREFABS = "Prefabs/";
-    public const string SCRIPTS = "dokiScripts/";
+    public const string SCRIPTS = "DokiScripts/";
 
 
     public const string CHARACTERS = "Characters/";

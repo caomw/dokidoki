@@ -3,92 +3,87 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using dokiScriptSetting;
+using Action = dokiScriptSetting.Action;
+using Script = dokiScriptSetting.Script;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class ScriptReader {
-    public string currentScriptPath;
-    public long rowNumber = -1;
+    public string currentScriptName;
+    private List<string> scriptNames;
 
-    private List<string> scriptPathList;
-
-    private TextAsset currentScriptTextAsset;
-    private StringBuilder scriptText;
+	public Script currentScript;
 
     public ScriptReader() {
         prepareTestActionsSequence();
+		searchScript ();
     }
 
     private void searchScript() {
         //Resources is set as the root folder of game projects
         string SCRIPTS_PATH = Application.dataPath + "/Resources/" + FolderStructure.SCRIPTS;
-        string SCRIPTS_EXTENSION = "*.txt";
+        string SCRIPTS_EXTENSION = "*.dksc";
 
         DirectoryInfo scriptFolder = new DirectoryInfo(SCRIPTS_PATH);
         FileInfo[] scriptFiles = scriptFolder.GetFiles(SCRIPTS_EXTENSION);
-        scriptPathList = new List<string>();
+		scriptNames = new List<string>();
         foreach (FileInfo script in scriptFiles)
         {
-            scriptPathList.Add(FolderStructure.SCRIPTS + Path.GetFileNameWithoutExtension(script.Name));
+			scriptNames.Add(Path.GetFileNameWithoutExtension(script.Name));
         }
-        scriptPathList.Sort();
+		scriptNames.Sort();
+
+		Debug.Log (scriptNames[0]);
     }
 
-    private void loadNextScript() {
-        if (scriptPathList == null || scriptPathList.Count <= 0)
-        {
-            searchScript();
-        }
+    public List<Action> loadNextScript(string scriptName = null) {
 
-        if (currentScriptPath == null)
-        {
-            //point to first script
-            currentScriptPath = scriptPathList[0];
-        } else {
-            //point to next script
-            int currentScriptNumber = scriptPathList.IndexOf(currentScriptPath);
-            if (currentScriptNumber < scriptPathList.Count)
-            {
-                currentScriptPath = scriptPathList[currentScriptNumber + 1];
-            }
-            else {
-                //this is already the last script
-                return;
-            }
-        }
+		if(scriptName == null){
+			if(currentScript == null){
+				currentScriptName = scriptNames[0];
+				scriptName = currentScriptName;
+			}else{
+				Debug.Log ("scriptNames.IndexOf(currentScriptName) = "+scriptNames.IndexOf(currentScriptName));
+				Debug.Log ("scriptNames.Count = "+scriptNames.Count);
+				if(scriptNames.IndexOf(currentScriptName) +1 == scriptNames.Count){
+					//No more scripts
+					Debug.Log("No more scripts");
+					return null;
+				}
+				scriptName = scriptNames[scriptNames.IndexOf(currentScriptName)+1];
+				currentScriptName = scriptName;
+			}
+		}
+		string scriptPath = Application.dataPath + "/Resources/" + FolderStructure.SCRIPTS + scriptName + ".dksc";
+		Debug.Log ("scriptPath: " + scriptPath);
+		try{
+			if (!File.Exists(scriptPath))
+			{
+				return null;
+			}
+			
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream scriptFile = File.Open(scriptPath, FileMode.Open);
+			Script scriptData = (Script)bf.Deserialize(scriptFile);
+			scriptFile.Close();
 
-        //load script pointed to
-        currentScriptTextAsset = Resources.Load(currentScriptPath) as TextAsset;
-        //if load script failed, exit
-        if (currentScriptTextAsset == null)
-        {
-            Debug.LogError(ScriptError.LOAD_SCRIPT_FAILED + currentScriptPath);
-            Application.Quit();
-        }
+			this.currentScript = scriptData;
 
-        //get the text of script from TextAsset
-        scriptText = new StringBuilder(currentScriptTextAsset.ToString());
+			Debug.Log ("scriptData.actions.Count: " + scriptData.actions.Count);
+			return scriptData.actions;
+			
+		}catch(IOException ex){
+			Debug.LogError("IO error when saving: " + ex.Message);
+		}
+
+		return null;
     }
 
-    public List<Action> readNextActions() {
-        if (scriptText == null || scriptText.Length < 1) {
-            //complete current scriptText, or no current scriptText
-            loadNextScript();
-        }
 
-        //to do with scriptText...
-        //...
-        //...
 
-        string tag = "to do";
-        Dictionary<string, string> parameters = new Dictionary<string, string>();
-        parameters.Add("to do", "to, do");
 
-        Action newAction = new Action(tag, parameters);
 
-        List<Action> newActions = new List<Action>();
-        newActions.Add(newAction);
 
-        return newActions;
-    }
 
     private List<List<Action>> testActionsSequence = new List<List<Action>>();
     private int testCount;

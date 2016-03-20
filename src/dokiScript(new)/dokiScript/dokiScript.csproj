@@ -35,7 +35,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="grammatica-1.6">
-      <HintPath>..\..\..\..\Downloads\grammatica-1.6\lib\grammatica-1.6.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\grammatica-1.6\lib\grammatica-1.6.dll</HintPath>
+    </Reference>
+    <Reference Include="dokiScriptSetting">
+      <HintPath>..\..\dokiScriptSetting\dokiScriptSetting\bin\Release\dokiScriptSetting.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -46,8 +49,6 @@
     <Compile Include="DokiScriptParser.cs" />
     <Compile Include="DokiScriptTokenizer.cs" />
     <Compile Include="DokiScriptComplier.cs" />
-    <Compile Include="Action.cs" />
-    <Compile Include="ScriptKeyword.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,3 +10,5 @@
 /Users/kesumu/_Projects/dokidoki/src/dokiScript(new)/dokiScript/obj/x86/Debug/dokiScript.exe
 /Users/kesumu/_Projects/dokidoki/src/dokiScript(new)/dokiScript/obj/x86/Debug/dokiScript.exe.mdb
 /Users/kesumu/_Projects/dokidoki/src/dokiScript(new)/dokiScript/bin/Debug/grammatica-1.6.dll
+/Users/kesumu/_Projects/dokidoki/src/dokiScript(new)/dokiScript/bin/Debug/dokiScriptConstants.dll
+/Users/kesumu/_Projects/dokidoki/src/dokiScript(new)/dokiScript/bin/Debug/dokiScriptSetting.dll

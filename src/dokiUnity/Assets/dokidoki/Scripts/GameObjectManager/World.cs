@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using dokiScriptSetting;
+using Action = dokiScriptSetting.Action;
 
 public class World : MonoBehaviour {
 

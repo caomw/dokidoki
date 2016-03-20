@@ -7,6 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using dokiScriptSetting;
+using Action = dokiScriptSetting.Action;
 
 public class WorldControl : MonoBehaviour {
     private ScriptReader scriptReader;
@@ -189,7 +191,11 @@ public class WorldControl : MonoBehaviour {
         //If in NORMAL state, plays the game normally
         if (currentActions == null || currentActions.Count < 1) {
             //To be done
-            currentActions = scriptReader.testReadNextActions();
+            currentActions = scriptReader.loadNextScript();
+			if(currentActions == null){
+				Debug.Log("Fin");
+				clickExitButton(false);
+			}
         }
         if (lastAction != null && lastAction.tag == ScriptKeyword.VIDEO) {
             world.GetComponent<World>().skipVideoAction();
@@ -198,6 +204,17 @@ public class WorldControl : MonoBehaviour {
         while (currentActions.Count > 0)
         {
             Action currentAction = currentActions[0];
+			//store last action
+			lastAction = currentAction;
+			//Save the last text content
+			if(currentAction.tag == ScriptKeyword.TEXT || currentAction.tag == ScriptKeyword.VOICE){
+				worldControlData.textContent = currentAction.parameters[ScriptKeyword.CONTENT];
+			}
+			//remove already completed action
+			currentActions.RemoveAt(0);
+
+
+
             if (currentAction.tag == ScriptKeyword.FOCUS)
             {
                 this.takeFocusAction(currentAction);
@@ -224,6 +241,8 @@ public class WorldControl : MonoBehaviour {
             {
                 hideInPlayUI();
                 updateNextAutoClickTime( focusGameObject.GetComponent<World>().takeVideoAction(currentAction));
+				//wait next click for video action
+				break;
             }
             else if (currentAction.tag == ScriptKeyword.TEXT)
             {
@@ -234,6 +253,7 @@ public class WorldControl : MonoBehaviour {
                 {
                     updateNextAutoClickTime(focusGameObject.GetComponent<Character>().takeTextAction(currentAction));
                 }
+				break;
             }
             else if (currentAction.tag == ScriptKeyword.MOVE)
             {
@@ -250,6 +270,7 @@ public class WorldControl : MonoBehaviour {
             else if (currentAction.tag == ScriptKeyword.VOICE)
             {
                 updateNextAutoClickTime( focusGameObject.GetComponent<Character>().takeVoiceAction(currentAction));
+				break;
             }
             else if (currentAction.tag == ScriptKeyword.ROLE)
             {
@@ -258,14 +279,8 @@ public class WorldControl : MonoBehaviour {
             else if (currentAction.tag == ScriptKeyword.FLAG)
             {
                 this.takeFlagAction(currentAction);
+				break;
             }
-            //store last action
-            lastAction = currentAction;
-            if(currentAction.tag == ScriptKeyword.TEXT || currentAction.tag == ScriptKeyword.VOICE){
-                worldControlData.textContent = currentAction.parameters[ScriptKeyword.CONTENT];
-            }
-            //remove already completed action
-            currentActions.RemoveAt(0);
         }
     }
 
