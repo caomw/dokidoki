@@ -35,7 +35,7 @@ namespace dokiScript
 				Script scriptData = new Script();
 				scriptData.actions = actions;
 					
-				FileStream scriptFile = File.Create(dirPath + "/" + "sample1");
+				FileStream scriptFile = File.Create(dirPath + "/" + "sample1.dksc");
 				bf.Serialize(scriptFile, scriptData);
 				scriptFile.Close();
 				

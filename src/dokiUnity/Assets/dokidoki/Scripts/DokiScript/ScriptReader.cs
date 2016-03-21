@@ -33,27 +33,26 @@ public class ScriptReader {
         }
 		scriptNames.Sort();
 
-		Debug.Log (scriptNames[0]);
+		//Debug.Log (scriptNames[0]);
     }
 
     public List<Action> loadNextScript(string scriptName = null) {
 
 		if(scriptName == null){
 			if(currentScript == null){
-				currentScriptName = scriptNames[0];
-				scriptName = currentScriptName;
+				scriptName = scriptNames[0];
 			}else{
-				Debug.Log ("scriptNames.IndexOf(currentScriptName) = "+scriptNames.IndexOf(currentScriptName));
-				Debug.Log ("scriptNames.Count = "+scriptNames.Count);
+				//Debug.Log ("scriptNames.IndexOf(currentScriptName) = "+scriptNames.IndexOf(currentScriptName));
+				//Debug.Log ("scriptNames.Count = "+scriptNames.Count);
 				if(scriptNames.IndexOf(currentScriptName) +1 == scriptNames.Count){
 					//No more scripts
 					Debug.Log("No more scripts");
 					return null;
 				}
 				scriptName = scriptNames[scriptNames.IndexOf(currentScriptName)+1];
-				currentScriptName = scriptName;
 			}
 		}
+		currentScriptName = scriptName;
 		string scriptPath = Application.dataPath + "/Resources/" + FolderStructure.SCRIPTS + scriptName + ".dksc";
 		Debug.Log ("scriptPath: " + scriptPath);
 		try{

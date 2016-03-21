@@ -280,7 +280,9 @@ public class WorldControl : MonoBehaviour {
             {
                 this.takeFlagAction(currentAction);
 				break;
-            }
+			}else if(currentAction.tag == ScriptKeyword.JUMP){
+				this.takeJumpAction(currentAction);
+			}
         }
     }
 
@@ -351,14 +353,34 @@ public class WorldControl : MonoBehaviour {
             currentGameState = NORMAL;
         }
 
-        Debug.Log("((List<string>)optionParameter)[0]: " + ((List<string>)optionParameter)[0]);
-        Debug.Log("((List<string>)optionParameter)[1]: " + ((List<string>)optionParameter)[1]);
-        Debug.Log("((List<string>)optionParameter)[2]: " + ((List<string>)optionParameter)[2]);
-		Debug.Log("((List<string>)optionParameter)[3]: " + ((List<string>)optionParameter)[3]);
+
+        //Debug.Log("((List<string>)optionParameter)[0]: " + ((List<string>)optionParameter)[0]);
+        //Debug.Log("((List<string>)optionParameter)[1]: " + ((List<string>)optionParameter)[1]);
+        //Debug.Log("((List<string>)optionParameter)[2]: " + ((List<string>)optionParameter)[2]);
+		//Debug.Log("((List<string>)optionParameter)[3]: " + ((List<string>)optionParameter)[3]);
+
+		if(!scriptReader.currentScriptName.Equals(((List<string>)optionParameter)[3])){
+			currentActions = scriptReader.loadNextScript(((List<string>)optionParameter)[3]);
+		}
 
         //Jump to this option
-        //To be done
+		while(true){
+			//Remove current action until find the specific Option action
+			if(currentActions[0].tag.Equals(ScriptKeyword.OPTION) && currentActions[0].parameters[ScriptKeyword.ID].Equals(((List<string>)optionParameter)[2])){
+				currentActions.RemoveAt(0);
+				break;
+			}else{
+				currentActions.RemoveAt(0);
+			}
+		}
+
+		this.step ();
     }
+
+	public void takeJumpAction(Action jumpAction){
+		Debug.Log ("Jump to: "+jumpAction.parameters[ScriptKeyword.SRC]);
+		currentActions = scriptReader.loadNextScript(jumpAction.parameters[ScriptKeyword.SRC]);
+	}
 
     /// <summary>
     /// Create new character GameObject with id
@@ -501,7 +523,13 @@ public class WorldControl : MonoBehaviour {
 
     public void onLogTextButtonClick(bool confirmed, System.Object voiceSrc)
     {
-        Debug.Log("voiceSrc: " + voiceSrc);
+        //Debug.Log("voiceSrc: " + voiceSrc);
+		//The log voice plays on the AudioSource from the world, ...need further thinking
+		if(voiceSrc != null && !voiceSrc.Equals("")){
+			AudioClip voiceAudioClip = Resources.Load(FolderStructure.CHARACTERS + FolderStructure.VOICES + voiceSrc) as AudioClip;
+			world.GetComponent<AudioSource>().clip = voiceAudioClip;
+			world.GetComponent<AudioSource>().Play();
+		}
         return;
     }
 
