@@ -2,6 +2,9 @@
 
 namespace dokiScriptSetting{
 	public class ScriptKeyword{
+
+		public const string SCRIPT_EXTENSION = "dks";
+		public const string SCRIPT_COMPILED_EXTENSION = "txt";
 	    
 	    //world keyword
 	    public const string WORLD = "world";

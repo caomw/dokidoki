@@ -1,14 +1,15 @@
-﻿<Properties StartupItem="dokiScriptSetting/dokiScriptSetting.csproj">
+﻿<Properties StartupItem="dokiScriptSetting\dokiScriptSetting.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="dokiScriptSetting/Script.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="dokiScriptSetting\ScriptKeyword.cs">
     <Files>
-      <File FileName="dokiScriptSetting/Action.cs" Line="1" Column="1" />
-      <File FileName="dokiScriptSetting/ScriptKeyword.cs" Line="1" Column="1" />
-      <File FileName="dokiScriptSetting/Script.cs" Line="15" Column="2" />
+      <File FileName="dokiScriptSetting\Action.cs" Line="1" Column="1" />
+      <File FileName="dokiScriptSetting\ScriptKeyword.cs" Line="16" Column="38" />
+      <File FileName="dokiScriptSetting\Script.cs" Line="11" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <AuthorInfo Name="zou" Email="" Copyright="zou" Company="" Trademark="" />
 </Properties>

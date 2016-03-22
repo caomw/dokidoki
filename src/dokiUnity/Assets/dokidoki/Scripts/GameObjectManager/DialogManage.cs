@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
 
 public class DialogManage : MonoBehaviour {
 
@@ -10,6 +11,21 @@ public class DialogManage : MonoBehaviour {
     IEnumerator currentAnimateText = null;
 
 	public void writeOnDialogBoard(string shownName, string content, string voiceSrc){
+        //Debug.Log("shownName = " + shownName);
+        //Debug.Log("content = " + content);
+        if(shownName != null && shownName.Length > 1){
+            //Remove shownName's ""
+            shownName = shownName.Substring(1, shownName.Length - 2);
+        }
+        //Debug.Log("shownName = " + shownName);
+
+
+        //Remove content's >> or >
+        while (content != null && content.StartsWith(ScriptKeyword.CLICK))
+        {
+            content = content.Substring(1);
+        }
+
         //Display dialog
         if (currentAnimateText != null)
         {

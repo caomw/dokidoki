@@ -11,8 +11,7 @@ public class ConfigBoardManager : MonoBehaviour {
     public Slider textSpeedSlider;
     public Slider autoSpeedSlider;
 
-	// Use this for initialization
-	void Start () {
+    void Awake() {
         int screenMode = PlayerPrefs.GetInt(GameConstants.CONFIG_SCREEN_MODE, 0);
         float bgmVolume = PlayerPrefs.GetFloat(GameConstants.CONFIG_BGM_VOLUME, 0.5f);
         float seVolume = PlayerPrefs.GetFloat(GameConstants.CONFIG_SE_VOLUME, 0.5f);
@@ -26,5 +25,5 @@ public class ConfigBoardManager : MonoBehaviour {
         voiceVolumeSlider.value = voiceVolume;
         textSpeedSlider.value = textSpeed;
         autoSpeedSlider.value = autoSpeed;
-	}
+    }
 }

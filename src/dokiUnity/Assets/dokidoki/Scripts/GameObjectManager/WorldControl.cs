@@ -195,6 +195,7 @@ public class WorldControl : MonoBehaviour {
 			if(currentActions == null){
 				Debug.Log("Fin");
 				clickExitButton(false);
+                return;
 			}
         }
         if (lastAction != null && lastAction.tag == ScriptKeyword.VIDEO) {
@@ -425,6 +426,15 @@ public class WorldControl : MonoBehaviour {
         {
             updateNextAutoClickTime(focusGameObject.GetComponent<Character>().takeTextAction(loadedTextAction));
         }
+
+        //Load saved script to saved action index
+        this.currentActions = scriptReader.loadNextScript(worldControlData.currentScriptName);
+        for (int i = 0; i < worldControlData.currentActionIndex + 1; i++ )
+        {
+            currentActions.RemoveAt(0);
+        }
+        //Recover history dialogs
+        dialogContent.GetComponent<DialogManage>().historyDialogs = worldControlData.historyDialogs;
     }
 
     public GameObject createLogTextButton(Dialog dialog) { 
@@ -555,7 +565,8 @@ public class WorldControl : MonoBehaviour {
             this.confirmCurrentAction("Do you want to quick load?", "This action would lose current game data.", clickQuickLoadButton);
             return;
         }
-        dialogContent.GetComponent<DialogManage>().clear();
+        gameBoardUI.SetActive(true);
+        startBoardUI.SetActive(false);
         loadFrom(0);
     }
 
@@ -676,7 +687,12 @@ public class WorldControl : MonoBehaviour {
                 WorldControlData worldControlData = (WorldControlData)bf.Deserialize(worldControlFile);
                 worldControlFile.Close();
 
-                texts[label - 1] = "No." + (label) + "\n" + worldControlData.saveTime;
+                //Remove worldControlData.textContent's >> or >
+                while (worldControlData.textContent != null && worldControlData.textContent.StartsWith(ScriptKeyword.CLICK))
+                {
+                    worldControlData.textContent = worldControlData.textContent.Substring(1);
+                }
+                texts[label - 1] = "No." + (label) + "\n" + worldControlData.textContent + "    " + worldControlData.saveTime;
             }
             catch (IOException ex)
             {
@@ -686,7 +702,18 @@ public class WorldControl : MonoBehaviour {
     }
 
     public void saveTo(int label) {
+        this.worldControlData.currentScriptName = scriptReader.currentScriptName;
+        this.worldControlData.currentActionIndex = scriptReader.getCurrentActionIndex(lastAction);
+        this.worldControlData.historyDialogs = dialogContent.GetComponent<DialogManage>().historyDialogs;
+
         this.worldControlData.saveTime = DateTime.Now.ToString("yyyy/MM/dd h:mm tt");
+
+        Debug.Log("worldControlData.focusGameObjectId: " + this.worldControlData.focusGameObjectId);
+        Debug.Log("worldControlData.textContent: " + this.worldControlData.textContent);
+        Debug.Log("worldControlData.saveTime: " + this.worldControlData.saveTime);
+        Debug.Log("worldControlData.worldLine: " + this.worldControlData.worldLine);
+        Debug.Log("worldControlData.currentScriptName: " + this.worldControlData.currentScriptName);
+        Debug.Log("worldControlData.currentActionIndex: " + this.worldControlData.currentActionIndex);
 
         string dirPath = Application.persistentDataPath + "/" + GameConstants.SAVE_DIRECTORY + "/" + label;
         Debug.Log("dirPath: " + dirPath);
@@ -702,7 +729,6 @@ public class WorldControl : MonoBehaviour {
 
             BinaryFormatter bf = new BinaryFormatter();
 
-            WorldControlData worldControlData = this.GetComponent<WorldControl>().worldControlData;
             FileStream worldControlFile = File.Create(dirPath + "/" + GameConstants.WORLD_CONTROL + GameConstants.SAVE_FILE_EXTENSION);
             bf.Serialize(worldControlFile, worldControlData);
             worldControlFile.Close();

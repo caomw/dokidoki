@@ -6,6 +6,7 @@ using System.IO;
 using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 using Script = dokiScriptSetting.Script;
+using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class ScriptReader {
@@ -13,33 +14,53 @@ public class ScriptReader {
     private List<string> scriptNames;
 
 	public Script currentScript;
+    public int currentScriptActionsCount;
 
     public ScriptReader() {
-        prepareTestActionsSequence();
 		searchScript ();
     }
 
     private void searchScript() {
+        Debug.Log("Hello from searchScript().");
+        /*
         //Resources is set as the root folder of game projects
         string SCRIPTS_PATH = Application.dataPath + "/Resources/" + FolderStructure.SCRIPTS;
-        string SCRIPTS_EXTENSION = "*.dksc";
+        string SCRIPTS_EXTENSION = "*." + ScriptKeyword.SCRIPT_COMPILED_EXTENSION;
 
         DirectoryInfo scriptFolder = new DirectoryInfo(SCRIPTS_PATH);
         FileInfo[] scriptFiles = scriptFolder.GetFiles(SCRIPTS_EXTENSION);
+        
 		scriptNames = new List<string>();
         foreach (FileInfo script in scriptFiles)
         {
 			scriptNames.Add(Path.GetFileNameWithoutExtension(script.Name));
         }
-		scriptNames.Sort();
+        */
+        Object[] scriptObjects = Resources.LoadAll(FolderStructure.SCRIPTS);
 
-		//Debug.Log (scriptNames[0]);
+        scriptNames = new List<string>();
+        foreach (Object scriptObject in scriptObjects)
+        {
+            scriptNames.Add(Path.GetFileNameWithoutExtension(scriptObject.name));
+        }
+
+        scriptNames.Sort();
+
+        string allScriptNames = "";
+        for (int i = 0; i < scriptNames.Count;i++ )
+        {
+            allScriptNames += scriptNames[i] + ", ";
+        }
+		Debug.Log ("DokiScripts: "+allScriptNames);
     }
 
     public List<Action> loadNextScript(string scriptName = null) {
 
 		if(scriptName == null){
 			if(currentScript == null){
+                if(scriptNames == null || scriptNames.Count<1){
+                    return null;
+                }
 				scriptName = scriptNames[0];
 			}else{
 				//Debug.Log ("scriptNames.IndexOf(currentScriptName) = "+scriptNames.IndexOf(currentScriptName));
@@ -53,21 +74,22 @@ public class ScriptReader {
 			}
 		}
 		currentScriptName = scriptName;
-		string scriptPath = Application.dataPath + "/Resources/" + FolderStructure.SCRIPTS + scriptName + ".dksc";
+        string scriptPath = FolderStructure.SCRIPTS + scriptName;
 		Debug.Log ("scriptPath: " + scriptPath);
 		try{
-			if (!File.Exists(scriptPath))
-			{
-				return null;
-			}
-			
 			BinaryFormatter bf = new BinaryFormatter();
-			FileStream scriptFile = File.Open(scriptPath, FileMode.Open);
+
+            TextAsset asset = Resources.Load(scriptPath) as TextAsset;
+            Stream scriptFile = new MemoryStream(asset.bytes);
+
+			//FileStream scriptFile = File.Open(scriptPath, FileMode.Open);
 			Script scriptData = (Script)bf.Deserialize(scriptFile);
 			scriptFile.Close();
 
-			this.currentScript = scriptData;
+            Debug.Log("scriptData = " + scriptData);
 
+			this.currentScript = scriptData;
+            this.currentScriptActionsCount = scriptData.actions.Count;
 			Debug.Log ("scriptData.actions.Count: " + scriptData.actions.Count);
 			return scriptData.actions;
 			
@@ -76,6 +98,10 @@ public class ScriptReader {
 		}
 
 		return null;
+    }
+
+    public int getCurrentActionIndex(Action action) {
+        return currentScriptActionsCount - currentScript.actions.Count - 1;
     }
 
 
@@ -255,7 +281,7 @@ public class ScriptReader {
     }
 
     public List<Action> testReadNextActions() {
-
+        prepareTestActionsSequence();
         if (testCount > testActionsSequence.Count) {
             return null;
         }

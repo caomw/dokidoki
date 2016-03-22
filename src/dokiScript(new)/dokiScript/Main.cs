@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using PerCederberg.Grammatica.Runtime;
 using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
+using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace dokiScript
@@ -12,7 +13,7 @@ namespace dokiScript
 	{
 		public static void Main (string[] args)
 		{
-			string input = File.ReadAllText ("sample1.dks", System.Text.Encoding.UTF8);
+            string input = File.ReadAllText("sample1." + ScriptKeyword.SCRIPT_EXTENSION, System.Text.Encoding.UTF8);
 
 			DokiScriptComplier  compiler = null;
 			compiler = new DokiScriptComplier();
@@ -22,20 +23,17 @@ namespace dokiScript
 			string dirPath = "DokiScripts";
 
 			try{
-				if (Directory.Exists(dirPath))
+				if (!Directory.Exists(dirPath))
 				{
-					//Delete original saved files, then create new directory
-					Directory.Delete(dirPath, true);
-					//FileUtil.DeleteFileOrDirectory(dirPath);
+                    Directory.CreateDirectory(dirPath);
 				}
-				Directory.CreateDirectory(dirPath);
 
 				BinaryFormatter bf = new BinaryFormatter();
 
 				Script scriptData = new Script();
 				scriptData.actions = actions;
-					
-				FileStream scriptFile = File.Create(dirPath + "/" + "sample1.dksc");
+
+                FileStream scriptFile = File.Create(dirPath + "/" + "sample1." + ScriptKeyword.SCRIPT_COMPILED_EXTENSION);
 				bf.Serialize(scriptFile, scriptData);
 				scriptFile.Close();
 				
@@ -52,6 +50,7 @@ namespace dokiScript
 				Console.WriteLine ();
 			}
 			Console.WriteLine ("Hello World!");
+            Console.ReadKey();
 		}
 
 	}

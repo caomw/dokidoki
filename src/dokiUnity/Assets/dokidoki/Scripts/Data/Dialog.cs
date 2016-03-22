@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 
+[System.Serializable]
 public class Dialog{
 	public string shownName;
 	public string content;
