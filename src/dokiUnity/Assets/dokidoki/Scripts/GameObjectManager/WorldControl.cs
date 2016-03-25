@@ -144,7 +144,49 @@ public class WorldControl : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
         {
             clickSkipButton();
-        }    
+        }
+
+        //Hot key
+        //Return key could be used as click
+        if(Input.GetKeyDown(KeyCode.Return)){
+            if (startBoardUI.activeSelf == true)
+            {
+                clickStartButton();
+            }
+            else {
+                step();
+            }
+        }else if(Input.GetKeyDown(KeyCode.C)){
+            clickConfigButton();
+        }
+        else if (Input.GetKeyDown(KeyCode.B))
+        {
+            clickBackLogButton();
+        }
+        else if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.S))
+        {
+            clickQuickSaveButton(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.L))
+        {
+            clickQuickLoadButton(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            clickSaveButton();
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            clickLoadButton();
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            clickAutoButton();
+        }
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            clickHideButton();
+        }
     }
 
     void FixedUpdate() {
