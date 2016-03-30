@@ -9,6 +9,7 @@ using Action = dokiScriptSetting.Action;
 public class Character : MonoBehaviour {
 
 	public GameObject dialogText;
+    public GameObject worldControl;
 
     public CharacterData characterData = new CharacterData();
 
@@ -53,7 +54,7 @@ public class Character : MonoBehaviour {
 			Application.Quit();
 		}
 		//dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
-		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard (characterData.shownName, textAction.parameters [ScriptKeyword.CONTENT], "");
+		dialogText.GetComponent<DialogManager> ().writeOnDialogBoard (characterData.shownName, textAction.parameters [ScriptKeyword.CONTENT], "");
         float nextAutoClickTime = Time.realtimeSinceStartup;
         nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * (PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR) + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
         return nextAutoClickTime;
@@ -77,14 +78,22 @@ public class Character : MonoBehaviour {
 			Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
 			Application.Quit();
 		}
-		//dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
-		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard (characterData.shownName, voiceAction.parameters [ScriptKeyword.CONTENT], voiceSrc);
 
+        //dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
+		dialogText.GetComponent<DialogManager> ().writeOnDialogBoard (characterData.shownName, voiceAction.parameters [ScriptKeyword.CONTENT], voiceSrc);
+
+        if (this.characterData.roleType == ScriptKeyword.TYPE_CHARACTER && worldControl.GetComponent<WorldControl>().getDialogMode() == GameConstants.BUBBLE)
+        {
+            this.GetComponentInChildren<BubbleManager>().writeOnBubbleBoard(characterData.shownName, voiceAction.parameters[ScriptKeyword.CONTENT], voiceSrc, new Vector2(-1f, 1f));
+        }
+        else {
+            this.GetComponentInChildren<BubbleManager>().hide();
+        }
+		
 		float nextAutoClickTimeText = Time.realtimeSinceStartup;
 		nextAutoClickTimeText = nextAutoClickTimeText + voiceAction.parameters[ScriptKeyword.CONTENT].Length * (PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR) + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
 
         //Debug.Log("AudioClip length: " + this.GetComponent<AudioSource>().clip.length);
-
 		return Mathf.Max(nextAutoClickTimeVoice, nextAutoClickTimeText);
     }
 

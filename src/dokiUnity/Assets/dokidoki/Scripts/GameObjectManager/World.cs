@@ -20,6 +20,7 @@ public class World : MonoBehaviour {
             Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
             Application.Quit();
         }
+        videoBoard.SetActive(true);
         //hide videoBoard at first
         videoBoard.GetComponent<Renderer>().enabled = false;
 
@@ -132,7 +133,7 @@ public class World : MonoBehaviour {
     public float takeTextAction(Action textAction)
     {
 		//dialogText.GetComponent<Text> ().text = textAction.parameters [ScriptKeyword.CONTENT];
-		dialogText.GetComponent<DialogManage> ().writeOnDialogBoard ("", textAction.parameters [ScriptKeyword.CONTENT], "");
+		dialogText.GetComponent<DialogManager> ().writeOnDialogBoard ("", textAction.parameters [ScriptKeyword.CONTENT], "");
         float nextAutoClickTime = Time.realtimeSinceStartup;
         nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
         return nextAutoClickTime;

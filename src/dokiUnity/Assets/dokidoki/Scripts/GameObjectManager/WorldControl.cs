@@ -18,7 +18,7 @@ public class WorldControl : MonoBehaviour {
     public GameObject world;
     //In play UI gameobjects
     public GameObject gameBoardUI;
-    public GameObject dialogUI;
+    public GameObject dialogBoardUI;
     public GameObject quickButtonsUI;
     public GameObject backLogUI;
     public GameObject saveBoardUI;
@@ -44,18 +44,12 @@ public class WorldControl : MonoBehaviour {
     private List<Action> currentActions;
     private Action lastAction;
 
-    public string currentGameState = NORMAL;
-	const string NORMAL = "Normal";
-	const string BACKLOG = "BackLog";
-	const string SAVE = "Save";
-	const string LOAD = "Load";
-	const string AUTO = "Auto";
-	const string SKIP = "Skip";
-    const string HIDE = "Hide";
-    const string CONFIG = "Config";
-    const string FLAG = "Flag";
+    public string currentGameState = GameConstants.NORMAL;
+	
 
     public float nextAutoClickTime = 0f;
+
+    public string dialogMode = GameConstants.NORMAL;
 
     public WorldControlData worldControlData = new WorldControlData();
 
@@ -86,14 +80,15 @@ public class WorldControl : MonoBehaviour {
         step();
     }
     public void clickConfigButton() {
-        if (currentGameState == NORMAL)
+        if (currentGameState == GameConstants.NORMAL)
         {
-            currentGameState = CONFIG;
+            currentGameState = GameConstants.CONFIG;
             configBoardUI.SetActive(true);
         }
-        else if(currentGameState == CONFIG){
+        else if (currentGameState == GameConstants.CONFIG)
+        {
             configBoardUI.SetActive(false);
-            currentGameState = NORMAL;
+            currentGameState = GameConstants.NORMAL;
         }
     }
     public void clickExitButton(bool confirmed){
@@ -107,29 +102,29 @@ public class WorldControl : MonoBehaviour {
 
     void Update() {
         if (Input.GetMouseButtonDown(1)) {
-            if (currentGameState == BACKLOG)
+            if (currentGameState == GameConstants.BACKLOG)
             {
                 clickBackLogButton();
                 return;
             }
-            else if (currentGameState == SAVE)
+            else if (currentGameState == GameConstants.SAVE)
             {
                 clickSaveButton();
                 return;
             }
-            else if (currentGameState == LOAD)
+            else if (currentGameState == GameConstants.LOAD)
             {
                 clickLoadButton();
                 return;
             }
-            else if (currentGameState == HIDE || currentGameState == NORMAL)
+            else if (currentGameState == GameConstants.HIDE || currentGameState == GameConstants.NORMAL)
             {
                 if(gameBoardUI.activeSelf){
                     clickHideButton();
                 }
                 return;
             }
-            else if (currentGameState == CONFIG)
+            else if (currentGameState == GameConstants.CONFIG)
             {
                 clickConfigButton();
                 return;
@@ -190,7 +185,8 @@ public class WorldControl : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if(currentGameState == AUTO){
+        if (currentGameState == GameConstants.AUTO)
+        {
             float currentTime = Time.realtimeSinceStartup;
             //Auto click
             if (currentTime > nextAutoClickTime)
@@ -210,23 +206,32 @@ public class WorldControl : MonoBehaviour {
     public void step() {
         //Debug.Log(++count);
         //Check game state first
-        if(currentGameState == BACKLOG){
+        if (currentGameState == GameConstants.BACKLOG)
+        {
             clickBackLogButton();
             return;
         }
-        else if (currentGameState == AUTO)
+        else if (currentGameState == GameConstants.AUTO)
         {
             nextAutoClickTime = Mathf.Infinity;
-        }else if(currentGameState == SAVE){
+        }
+        else if (currentGameState == GameConstants.SAVE)
+        {
             clickSaveButton();
             return;
-        }else if(currentGameState == LOAD){
+        }
+        else if (currentGameState == GameConstants.LOAD)
+        {
             clickLoadButton();
             return;
-        }else if(currentGameState == HIDE){
+        }
+        else if (currentGameState == GameConstants.HIDE)
+        {
             clickHideButton();
             return;
-        }else if(currentGameState == FLAG){
+        }
+        else if (currentGameState == GameConstants.FLAG)
+        {
             return;
         }
 
@@ -350,16 +355,17 @@ public class WorldControl : MonoBehaviour {
     }
 
     public void takeFlagAction(Action flagAction) {
-        if(currentGameState == AUTO){
+        if (currentGameState == GameConstants.AUTO)
+        {
             clickAutoButton();
         }
-        if (currentGameState == SKIP)
+        if (currentGameState == GameConstants.SKIP)
         {
             clickSkipButton();
         }
-        if (currentGameState == NORMAL)
+        if (currentGameState == GameConstants.NORMAL)
         {
-            currentGameState = FLAG;
+            currentGameState = GameConstants.FLAG;
             flagBoardUI.SetActive(true);
 
             string count;
@@ -390,10 +396,10 @@ public class WorldControl : MonoBehaviour {
     public void onFlagTextButtonClick(bool confirmed, System.Object optionParameter) {
         this.worldControlData.worldLine += ((List<string>)optionParameter)[0];
 
-        if (currentGameState == FLAG)
+        if (currentGameState == GameConstants.FLAG)
         {
             flagBoardUI.SetActive(false);
-            currentGameState = NORMAL;
+            currentGameState = GameConstants.NORMAL;
         }
 
 
@@ -435,16 +441,18 @@ public class WorldControl : MonoBehaviour {
         newCharacter.transform.parent = this.world.transform;
         newCharacter.GetComponent<Character>().characterData.id = id;
         newCharacter.GetComponent<Character>().dialogText = this.world.GetComponent<World>().dialogText;
+        newCharacter.GetComponent<Character>().worldControl = this.gameObject;
+        newCharacter.GetComponentInChildren<BubbleManager>().hide();
         return newCharacter;
     }
 
     public void hideInPlayUI() {
-        dialogUI.SetActive(false);
+        dialogBoardUI.SetActive(false);
         quickButtonsUI.SetActive(false);
     }
 
 	public void showInPlayUI() {
-        dialogUI.SetActive(true);
+        dialogBoardUI.SetActive(true);
         quickButtonsUI.SetActive(true);
     }
 
@@ -476,7 +484,7 @@ public class WorldControl : MonoBehaviour {
             currentActions.RemoveAt(0);
         }
         //Recover history dialogs
-        dialogContent.GetComponent<DialogManage>().historyDialogs = worldControlData.historyDialogs;
+        dialogContent.GetComponent<DialogManager>().historyDialogs = worldControlData.historyDialogs;
     }
 
     public GameObject createLogTextButton(Dialog dialog) { 
@@ -538,14 +546,14 @@ public class WorldControl : MonoBehaviour {
 
 //Quick button functions
 	public void clickBackLogButton(){
-        if (currentGameState == NORMAL)
+        if (currentGameState == GameConstants.NORMAL)
         {
             //Open backlog window
-            currentGameState = BACKLOG;
+            currentGameState = GameConstants.BACKLOG;
             backLogUI.SetActive(true);
 
             //Get texts to display
-            List<Dialog> historyDialogs = dialogContent.GetComponent<DialogManage>().historyDialogs;
+            List<Dialog> historyDialogs = dialogContent.GetComponent<DialogManager>().historyDialogs;
             List<string> texts = new List<string>();
             for (int i = 0; i < historyDialogs.Count; i++)
             {
@@ -565,11 +573,11 @@ public class WorldControl : MonoBehaviour {
             //Set up log text buttons board
             setupTextButtonBoard(texts, logTextPrefab, backLogContent, true, onLogTextButtonClick, parameters); 
         }
-        else if (currentGameState == BACKLOG)
+        else if (currentGameState == GameConstants.BACKLOG)
         { 
             //close backlog window
             backLogUI.SetActive(false);
-            currentGameState = NORMAL;
+            currentGameState = GameConstants.NORMAL;
         }
 	}
 
@@ -613,9 +621,9 @@ public class WorldControl : MonoBehaviour {
     }
 
     public void clickSaveButton() {
-        if (currentGameState == NORMAL)
+        if (currentGameState == GameConstants.NORMAL)
         {
-            currentGameState = SAVE;
+            currentGameState = GameConstants.SAVE;
             saveBoardUI.SetActive(true);
 
             List<string> texts = new List<string>();
@@ -634,10 +642,10 @@ public class WorldControl : MonoBehaviour {
 
             setupTextButtonBoard(texts, saveTextPrefab, saveContent, false, onSaveTextButtonClick, parameters);
         }
-        else if (currentGameState == SAVE)
+        else if (currentGameState == GameConstants.SAVE)
         {
             saveBoardUI.SetActive(false);
-            currentGameState = NORMAL;
+            currentGameState = GameConstants.NORMAL;
         }
     }
 
@@ -653,9 +661,9 @@ public class WorldControl : MonoBehaviour {
     }
 
     public void clickLoadButton() {
-        if (currentGameState == NORMAL)
+        if (currentGameState == GameConstants.NORMAL)
         {
-            currentGameState = LOAD;
+            currentGameState = GameConstants.LOAD;
             loadBoardUI.SetActive(true);
 
             List<string> texts = new List<string>();
@@ -674,10 +682,10 @@ public class WorldControl : MonoBehaviour {
 
             setupTextButtonBoard(texts, loadTextPrefab, loadContent, false, onLoadTextButtonClick, parameters);
         }
-        else if (currentGameState == LOAD)
+        else if (currentGameState == GameConstants.LOAD)
         {
             loadBoardUI.SetActive(false);
-            currentGameState = NORMAL;
+            currentGameState = GameConstants.NORMAL;
         }
     }
 
@@ -746,7 +754,7 @@ public class WorldControl : MonoBehaviour {
     public void saveTo(int label) {
         this.worldControlData.currentScriptName = scriptReader.currentScriptName;
         this.worldControlData.currentActionIndex = scriptReader.getCurrentActionIndex(lastAction);
-        this.worldControlData.historyDialogs = dialogContent.GetComponent<DialogManage>().historyDialogs;
+        this.worldControlData.historyDialogs = dialogContent.GetComponent<DialogManager>().historyDialogs;
 
         this.worldControlData.saveTime = DateTime.Now.ToString("yyyy/MM/dd h:mm tt");
 
@@ -860,31 +868,32 @@ public class WorldControl : MonoBehaviour {
     }
 
     public void clickAutoButton() {
-        if (currentGameState == NORMAL)
+        if (currentGameState == GameConstants.NORMAL)
         {
             //Enter AUTO state
-            currentGameState = AUTO;
+            currentGameState = GameConstants.AUTO;
             //Click once now
             nextAutoClickTime = 0f;
         }
-        else if(currentGameState == AUTO){ 
+        else if (currentGameState == GameConstants.AUTO)
+        { 
             //Leave AUTO state
-            currentGameState = NORMAL;
+            currentGameState = GameConstants.NORMAL;
         }
     }
 
     public void clickSkipButton() {
-        if (currentGameState == NORMAL && startBoardUI.activeSelf == false)
+        if (currentGameState == GameConstants.NORMAL && startBoardUI.activeSelf == false)
         {
-            currentGameState = SKIP;
+            currentGameState = GameConstants.SKIP;
             //Start skip mode, here could modify the speed of skip
             InvokeRepeating("step", 0.1f, 0.3f);
         }
-        else if (currentGameState == SKIP)
+        else if (currentGameState == GameConstants.SKIP)
         {
             //Stop skip mode
             CancelInvoke("step");
-            currentGameState = NORMAL;
+            currentGameState = GameConstants.NORMAL;
         }
     }
 
@@ -905,12 +914,15 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
-    public void clickHideButton() { 
-        if(currentGameState == NORMAL){
-            currentGameState = HIDE;
+    public void clickHideButton() {
+        if (currentGameState == GameConstants.NORMAL)
+        {
+            currentGameState = GameConstants.HIDE;
             hideInPlayUI();
-        }else if(currentGameState == HIDE){
-            currentGameState = NORMAL;
+        }
+        else if (currentGameState == GameConstants.HIDE)
+        {
+            currentGameState = GameConstants.NORMAL;
             showInPlayUI();
         }
     }
@@ -931,6 +943,24 @@ public class WorldControl : MonoBehaviour {
         //To be done
         PlayerPrefs.Save();
     }
+
+    public void valueChangedDialogMode(int value) {
+        PlayerPrefs.SetInt(GameConstants.CONFIG_DIALOG_MODE, value);
+
+        switch(value){
+            case 0: {
+                dialogMode = GameConstants.NORMAL;
+                break;
+            }
+            case 1: {
+                dialogMode = GameConstants.BUBBLE;
+                break;
+            }
+        }
+
+        PlayerPrefs.Save();
+    }
+
     public void valueChangedBgmVolume(float value) {
         PlayerPrefs.SetFloat(GameConstants.CONFIG_BGM_VOLUME, value);
 
@@ -982,5 +1012,8 @@ public class WorldControl : MonoBehaviour {
             return;
         }
         Application.LoadLevel(0); 
+    }
+    public string getDialogMode() {
+        return this.dialogMode;
     }
 }
