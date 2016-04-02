@@ -1,17 +1,36 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
 
-public class BattleAction : MonoBehaviour, IComparable<BattleAction> {
-    public List<BattleCharacter> sources;
-    public List<BattleCharacter> targets;
+public class BattleAction : IComparable<BattleAction> {
+    public List<BattleCharacter> sources = new List<BattleCharacter>();
+    public List<BattleCharacter> targets = new List<BattleCharacter>();
     public BattleSkill skill;
 
-    public void take() { 
-        //Take this action
+    public string take() {
+		string log = "";
+		foreach (BattleCharacter source in this.sources) {
+			log = source.takeBattleAction(this) + log;
+		}
+		foreach(BattleCharacter target in this.targets){
+			log = target.receiveBattleAction(this) + log;
+		}
+		return log;
     }
+
+	public string toString(){
+		string log ="(";
+		for(int i=0;i<this.sources.Count;i++){
+			log += this.sources[i].name + " ";
+		}
+		log += ") <" + this.skill.name + "> (";
+		for(int i=0;i<this.targets.Count;i++){
+			log += this.targets[i].name + " ";
+		}
+		log += ")\n";
+		return log;
+	}
 
     public int CompareTo(BattleAction otherBattleAction) {
         float sourcesLowestSpeed = this.sources[0].speed;
