@@ -37,8 +37,8 @@ public class BubbleManager : MonoBehaviour
         {
             return;
         }
-        Debug.Log("x = " + textMesh.GetComponent<Renderer>().bounds.extents.x);
-        Debug.Log("y = " + textMesh.GetComponent<Renderer>().bounds.extents.y);
+        //Debug.Log("x = " + textMesh.GetComponent<Renderer>().bounds.extents.x);
+        //Debug.Log("y = " + textMesh.GetComponent<Renderer>().bounds.extents.y);
         string text = textMesh.text;
         int lineLength = (int)((MaxWidth / textMesh.GetComponent<Renderer>().bounds.extents.x) * text.Length) - 1;
         string newText = text.Substring(0, lineLength/2) + "\n";

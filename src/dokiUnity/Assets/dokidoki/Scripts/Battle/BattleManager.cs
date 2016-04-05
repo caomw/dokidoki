@@ -32,14 +32,20 @@ public class BattleManager : MonoBehaviour {
 
 		BattleSkill skill1 = new BattleSkill ("skill1", "sleep", null, null, 0
 		                                      ,null, 0);
+        Dictionary<string, float> skill1Damage = new Dictionary<string, float>();
+        skill1Damage.Add("HP", 2f);
+        BattleSkill skill2 = new BattleSkill("skill2", "superpower", null, skill1Damage, 1
+                                              , null, 0);
 		battleSkills.Add (skill0);
 		battleSkills.Add (skill1);
+        battleSkills.Add(skill2);
 	}
 
 	public void loadCareers(){
 		BattleCareer career0 = new BattleCareer ("career0", "creature");
 		career0.addSkill (battleSkills[0]);
 		career0.addSkill (battleSkills[1]);
+        career0.addSkill(battleSkills[2]);
 		battleCareers.Add (career0);
 	}
 
@@ -51,14 +57,22 @@ public class BattleManager : MonoBehaviour {
 		                                          , meStatuses, null, battleWeapons[0]);
 		me.addCareer (battleCareers[0]);
 
-		Dictionary<string, float> suraimuStatuses = new Dictionary<string, float> ();
-		suraimuStatuses.Add ("HP", 3f);
-		BattleCharacter suraimu = new BattleCharacter ("character1", "suraimu"
-		                                          , BattleConstants.CHARACTER_ROLE_BLUE
-		                                          , suraimuStatuses, null, battleWeapons[0]);
-		suraimu.addCareer (battleCareers[0]);
+		Dictionary<string, float> me2Statuses = new Dictionary<string, float> ();
+        me2Statuses.Add("HP", 5f);
+		BattleCharacter me2 = new BattleCharacter ("character1", "you"
+                                                  , BattleConstants.CHARACTER_ROLE_RED
+                                                  , me2Statuses, null, battleWeapons[0]);
+        me2.addCareer(battleCareers[0]);
+
+        Dictionary<string, float> suraimuStatuses = new Dictionary<string, float>();
+        suraimuStatuses.Add("HP", 3f);
+        BattleCharacter suraimu = new BattleCharacter("character1", "suraimu"
+                                                  , BattleConstants.CHARACTER_ROLE_BLUE
+                                                  , suraimuStatuses, null, battleWeapons[0]);
+        suraimu.addCareer(battleCareers[0]);
 
 		battleCharacters.Add (me);
+        battleCharacters.Add(me2);
 		battleCharacters.Add (suraimu);
 	}
 

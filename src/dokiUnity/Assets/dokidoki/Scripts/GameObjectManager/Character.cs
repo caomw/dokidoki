@@ -99,10 +99,38 @@ public class Character : MonoBehaviour {
 
     public void takeMoveAction(Action moveAction)
     {
-        characterData.posX = 0.2f;
-        characterData.posY = 0;
-        characterData.posZ = 0;
-        transform.localPosition = new Vector3(0,0,-10);
+        string positionValue = moveAction.parameters[ScriptKeyword.POSITION];
+        if (positionValue == null || positionValue.Equals("")) {
+            return;
+        }
+        if (positionValue.Equals(ScriptKeyword.POSITION_CENTER)) {
+            characterData.posX = 0f;
+            characterData.posY = 0f;
+            characterData.posZ = 0f;
+        } else if (positionValue.Equals(ScriptKeyword.POSITION_LEFT)) {
+            characterData.posX = -0.3f;
+            characterData.posY = 0f;
+            characterData.posZ = 0f;
+        } else if (positionValue.Equals(ScriptKeyword.POSITION_RIGHT)) {
+            characterData.posX = 0.3f;
+            characterData.posY = 0f;
+            characterData.posZ = 0f;
+        } else { 
+            //the position is written in (x.xxx, x.xxx, x.xxx)
+            Debug.Log(ScriptKeyword.PARENTHESE_LEFT);
+            positionValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
+            positionValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);
+            positionValue.Replace(@"\s+", string.Empty);
+            Debug.Log(positionValue.Contains(ScriptKeyword.PARENTHESE_LEFT));
+            string[] posString = positionValue.Split(ScriptKeyword.COMMA.ToCharArray());
+            characterData.posX = 0.3f;
+            characterData.posY = 0f;
+            characterData.posZ = 0f;
+            Debug.Log(posString[0]);
+        }
+        float backgroundWidth = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.x;
+        float backgroundHeight = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.y;
+        this.transform.localPosition = new Vector3(characterData.posX * backgroundWidth, characterData.posY * backgroundHeight, characterData.posZ);
     }
 
     public void loadData(CharacterData characterData) {

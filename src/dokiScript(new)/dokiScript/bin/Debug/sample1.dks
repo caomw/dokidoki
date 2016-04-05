@@ -31,7 +31,7 @@ I
 	voice >>怎么会呢，我们不是约好了么。
 
 dokiChan
-	move position=(0.45, 0.0, 0.0) transition=instant; 
+	move position=(0.2, 0.0, 0.0) transition=instant; 
 	voice src=voice004 >>是呢，一年前的约定。
 
 I

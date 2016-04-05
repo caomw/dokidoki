@@ -1,8 +1,9 @@
-﻿<Properties StartupItem="dokiScript/dokiScript.csproj">
+﻿<Properties StartupItem="dokiScript\dokiScript.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="dokiScript/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="dokiScript\DokiScriptComplier.cs">
     <Files>
-      <File FileName="dokiScript/Main.cs" Line="39" Column="42" />
+      <File FileName="dokiScript\Main.cs" Line="44" Column="38" />
+      <File FileName="dokiScript\DokiScriptComplier.cs" Line="273" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

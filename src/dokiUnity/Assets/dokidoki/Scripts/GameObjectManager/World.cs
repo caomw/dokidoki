@@ -21,6 +21,7 @@ public class World : MonoBehaviour {
             Application.Quit();
         }
         videoBoard.SetActive(true);
+        videoBoard.GetComponent<Renderer>().sortingOrder = 100;
         //hide videoBoard at first
         videoBoard.GetComponent<Renderer>().enabled = false;
 
