@@ -26,7 +26,7 @@ public class Battle{
     public void start() {
 		string log = "battle: (";
 		for(int i=0;i<battleCharacters.Count;i++){
-			log += battleCharacters[i].name + " ";
+            log += battleCharacters[i].name + "(HP:" + battleCharacters[i].statuses["HP"]+")  ";
 		}
 		log += ")";
 		battleManager.log (log);

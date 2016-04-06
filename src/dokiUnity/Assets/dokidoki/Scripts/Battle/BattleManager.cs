@@ -72,7 +72,6 @@ public class BattleManager : MonoBehaviour {
         suraimu.addCareer(battleCareers[0]);
 
 		battleCharacters.Add (me);
-        battleCharacters.Add(me2);
 		battleCharacters.Add (suraimu);
 	}
 
