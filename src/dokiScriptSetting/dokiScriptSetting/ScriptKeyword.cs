@@ -52,9 +52,10 @@ namespace dokiScriptSetting{
 	    public const string POSITION_CENTER = "center";
 	    public const string POSITION_LEFT = "left";
 	    public const string POSITION_RIGHT = "right";
-			//posture src=xxx;
+			//posture src=xxx anchor=(0.xxx, 0.xxx);
+		public const string ANCHOR="anchor";
 			//face src=xxx;
-			//voice src=xxx content=xxx(>|>>);
+			//voice src=xxx content=(>|>>)xxx;
 			//role type=(player|character) name=xxx;
 	    public const string TYPE_PLAYER = "player";
 	    public const string TYPE_CHARACTER = "character";

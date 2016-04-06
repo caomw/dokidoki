@@ -209,6 +209,9 @@ internal class DokiScriptParser : RecursiveDescentParser {
         alt = new ProductionPatternAlternative();
         alt.AddToken((int) DokiScriptConstants.NAME, 1, 1);
         pattern.AddAlternative(alt);
+        alt = new ProductionPatternAlternative();
+        alt.AddToken((int) DokiScriptConstants.ANCHOR, 1, 1);
+        pattern.AddAlternative(alt);
         AddPattern(pattern);
 
         pattern = new ProductionPattern((int) DokiScriptConstants.VALUE,
@@ -219,6 +222,17 @@ internal class DokiScriptParser : RecursiveDescentParser {
         alt.AddToken((int) DokiScriptConstants.DECIMAL, 1, 1);
         alt.AddToken((int) DokiScriptConstants.SPACE, 0, 1);
         alt.AddToken((int) DokiScriptConstants.COMMA, 1, 1);
+        alt.AddToken((int) DokiScriptConstants.SPACE, 0, 1);
+        alt.AddToken((int) DokiScriptConstants.DECIMAL, 1, 1);
+        alt.AddToken((int) DokiScriptConstants.SPACE, 0, 1);
+        alt.AddToken((int) DokiScriptConstants.COMMA, 1, 1);
+        alt.AddToken((int) DokiScriptConstants.SPACE, 0, 1);
+        alt.AddToken((int) DokiScriptConstants.DECIMAL, 1, 1);
+        alt.AddToken((int) DokiScriptConstants.SPACE, 0, 1);
+        alt.AddToken((int) DokiScriptConstants.PARENTHESE_RIGHT, 1, 1);
+        pattern.AddAlternative(alt);
+        alt = new ProductionPatternAlternative();
+        alt.AddToken((int) DokiScriptConstants.PARENTHESE_LEFT, 1, 1);
         alt.AddToken((int) DokiScriptConstants.SPACE, 0, 1);
         alt.AddToken((int) DokiScriptConstants.DECIMAL, 1, 1);
         alt.AddToken((int) DokiScriptConstants.SPACE, 0, 1);

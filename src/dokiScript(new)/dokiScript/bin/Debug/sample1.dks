@@ -12,7 +12,7 @@ world
 dokiChan
 	role type=character name = "小雪"; 
 	move position=center transition=instant; 
-	posture src=posture0; 
+	posture src=posture0 anchor=(0.5, 0.4); 
 	voice src=voice001 >>等你好久了。
 	voice src=voice002 >>一直在等着你。
 	voice src=voice003 >>还以为你不来了呢。

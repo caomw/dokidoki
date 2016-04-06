@@ -12,8 +12,8 @@ public class BubbleManager : MonoBehaviour
 
     Vector2 position;
 
-    float MaxWidth = 0.8f;
-    float MaxWidth_Padding = 1.0f;
+    float MaxWidth = 1.4f;
+    float MaxWidth_Padding = 1.6f;
     
     
     void Reset() { 
@@ -21,7 +21,7 @@ public class BubbleManager : MonoBehaviour
     }
 
     void Awake() {
-        textMesh.GetComponent<Renderer>().sortingOrder = 20;
+        textMesh.GetComponent<Renderer>().sortingOrder = 100;
         position = new Vector2(1f,1f);
     }
 
@@ -96,10 +96,14 @@ public class BubbleManager : MonoBehaviour
         this.transform.localPosition += randomVector;
     }
 
-    public void writeOnBubbleBoard(string shownName, string content, string voiceSrc, Vector2 position){
+    public void writeOnBubbleBoard(string shownName, string content, string voiceSrc, Vector2 characterPosition){
         this.show();
         textMesh.text = content;
-        this.position = position;
+        this.position.x = (characterPosition.x < 0.5)?1:-1;
+        this.position.y = (characterPosition.y <= 0.5)?1:-1;
+        positionBubble(this.position);
+        //Debug.Log("characterPosition = " + characterPosition);
+        //Debug.Log("this.position = " + this.position);
     }
 
     public void testBubbleBoard() {

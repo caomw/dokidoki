@@ -109,6 +109,9 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
         case (int) DokiScriptConstants.NAME:
             EnterName((Token) node);
             break;
+        case (int) DokiScriptConstants.ANCHOR:
+            EnterAnchor((Token) node);
+            break;
         case (int) DokiScriptConstants.BRACKET_LEFT:
             EnterBracketLeft((Token) node);
             break;
@@ -285,6 +288,8 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
             return ExitTypeCharacter((Token) node);
         case (int) DokiScriptConstants.NAME:
             return ExitName((Token) node);
+        case (int) DokiScriptConstants.ANCHOR:
+            return ExitAnchor((Token) node);
         case (int) DokiScriptConstants.BRACKET_LEFT:
             return ExitBracketLeft((Token) node);
         case (int) DokiScriptConstants.BRACKET_RIGHT:
@@ -1159,6 +1164,32 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
      * discovered errors</exception>
      */
     public virtual Node ExitName(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterAnchor(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitAnchor(Token node) {
         return node;
     }
 

@@ -1,9 +1,9 @@
 ﻿<Properties StartupItem="dokiScript\dokiScript.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="dokiScript\DokiScriptComplier.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\_Projects\dokidoki\src\dokiScript(new)\dokiScript\DokiScriptComplier.cs">
     <Files>
-      <File FileName="dokiScript\Main.cs" Line="44" Column="38" />
-      <File FileName="dokiScript\DokiScriptComplier.cs" Line="273" Column="16" />
+      <File FileName="dokiScript\Main.cs" Line="36" Column="77" />
+      <File FileName="c:\_Projects\dokidoki\src\dokiScript(new)\dokiScript\DokiScriptComplier.cs" Line="238" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

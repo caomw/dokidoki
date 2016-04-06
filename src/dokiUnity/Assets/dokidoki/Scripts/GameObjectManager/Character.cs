@@ -36,12 +36,31 @@ public class Character : MonoBehaviour {
 
     public void takePostureAction(Action postureAction)
     {
-        characterData.postrueSrc = postureAction.parameters[ScriptKeyword.SRC];
-
-        Sprite postureSprite = Resources.Load<Sprite>(FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
+        
+        string anchorStringValue = postureAction.parameters[ScriptKeyword.ANCHOR];
+        if (postureAction.parameters.TryGetValue(ScriptKeyword.ANCHOR, out anchorStringValue)) {
+            anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
+            anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);
+            anchorStringValue = anchorStringValue.Replace(@"\s+", string.Empty);
+            string[] anchorStrings = anchorStringValue.Split(ScriptKeyword.COMMA.ToCharArray());
+            characterData.anchorX = float.Parse(anchorStrings[0]);
+            characterData.anchorY = float.Parse(anchorStrings[1]);
+            characterData.postrueSrc = postureAction.parameters[ScriptKeyword.SRC];
+        }
+        //read pixelsPerUnit from user setting
+        Sprite postureSpriteOriginal = Resources.Load<Sprite>(FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
+        float pixelsPerUnity = postureSpriteOriginal.pixelsPerUnit;
+        //create the sprite again for setting the pivot from the script
+        Texture2D postureTexture2D = Resources.Load<Texture2D>(
+                                FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
+        Sprite postureSprite = Sprite.Create(postureTexture2D
+                                , new Rect(0,0,postureTexture2D.width, postureTexture2D.height)
+                                , new Vector2(characterData.anchorX, characterData.anchorY)
+                                , pixelsPerUnity);
         this.GetComponent<SpriteRenderer>().sprite = postureSprite;
     }
 
+    //this is reserved
     public void takeFaceAction(Action faceAction)
     {
         Debug.Log(characterData.id + faceAction.tag);
@@ -84,7 +103,9 @@ public class Character : MonoBehaviour {
 
         if (this.characterData.roleType == ScriptKeyword.TYPE_CHARACTER && worldControl.GetComponent<WorldControl>().getDialogMode() == GameConstants.BUBBLE)
         {
-            this.GetComponentInChildren<BubbleManager>().writeOnBubbleBoard(characterData.shownName, voiceAction.parameters[ScriptKeyword.CONTENT], voiceSrc, new Vector2(-1f, 1f));
+            this.GetComponentInChildren<BubbleManager>().writeOnBubbleBoard(characterData.shownName
+                                                                            , voiceAction.parameters[ScriptKeyword.CONTENT], voiceSrc
+                                                                            , new Vector2(characterData.positionX, characterData.positionY));
         }
         else {
             this.GetComponentInChildren<BubbleManager>().hide();
@@ -104,33 +125,33 @@ public class Character : MonoBehaviour {
             return;
         }
         if (positionValue.Equals(ScriptKeyword.POSITION_CENTER)) {
-            characterData.posX = 0f;
-            characterData.posY = 0f;
-            characterData.posZ = 0f;
+            characterData.positionX = 0.5f;
+            characterData.positionY = 0f;
+            characterData.positionZ = 0f;
         } else if (positionValue.Equals(ScriptKeyword.POSITION_LEFT)) {
-            characterData.posX = -0.3f;
-            characterData.posY = 0f;
-            characterData.posZ = 0f;
+            characterData.positionX = 0.2f;
+            characterData.positionY = 0f;
+            characterData.positionZ = 0f;
         } else if (positionValue.Equals(ScriptKeyword.POSITION_RIGHT)) {
-            characterData.posX = 0.3f;
-            characterData.posY = 0f;
-            characterData.posZ = 0f;
+            characterData.positionX = 0.8f;
+            characterData.positionY = 0f;
+            characterData.positionZ = 0f;
         } else { 
             //the position is written in (x.xxx, x.xxx, x.xxx)
-            Debug.Log(ScriptKeyword.PARENTHESE_LEFT);
-            positionValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
-            positionValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);
-            positionValue.Replace(@"\s+", string.Empty);
-            Debug.Log(positionValue.Contains(ScriptKeyword.PARENTHESE_LEFT));
+            positionValue = positionValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
+            positionValue = positionValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);
+            positionValue = positionValue.Replace(@"\s+", string.Empty);
             string[] posString = positionValue.Split(ScriptKeyword.COMMA.ToCharArray());
-            characterData.posX = 0.3f;
-            characterData.posY = 0f;
-            characterData.posZ = 0f;
-            Debug.Log(posString[0]);
+            characterData.positionX = float.Parse(posString[0]);
+            characterData.positionY = float.Parse(posString[1]);
+            characterData.positionZ = float.Parse(posString[2]);
         }
-        float backgroundWidth = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.x;
-        float backgroundHeight = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.y;
-        this.transform.localPosition = new Vector3(characterData.posX * backgroundWidth, characterData.posY * backgroundHeight, characterData.posZ);
+        //float backgroundWidth = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.x;
+        //float backgroundHeight = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.y;
+        //Debug.Log("characterData.posX = " + characterData.positionX + ", characterData.posY = " + characterData.positionY + ", characterData.posZ = " + characterData.positionZ);
+        Vector3 characterScreenToWorldPoint = Camera.main.ViewportToWorldPoint(new Vector3(characterData.positionX, characterData.positionY
+                                                                                         , Mathf.Abs(Camera.main.transform.position.z)));
+        this.transform.localPosition = characterScreenToWorldPoint;
     }
 
     public void loadData(CharacterData characterData) {

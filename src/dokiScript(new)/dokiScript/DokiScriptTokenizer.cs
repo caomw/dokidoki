@@ -212,6 +212,12 @@ internal class DokiScriptTokenizer : Tokenizer {
                                    "name");
         AddPattern(pattern);
 
+        pattern = new TokenPattern((int) DokiScriptConstants.ANCHOR,
+                                   "ANCHOR",
+                                   TokenPattern.PatternType.STRING,
+                                   "anchor");
+        AddPattern(pattern);
+
         pattern = new TokenPattern((int) DokiScriptConstants.BRACKET_LEFT,
                                    "BRACKET_LEFT",
                                    TokenPattern.PatternType.STRING,

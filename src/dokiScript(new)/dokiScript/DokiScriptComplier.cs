@@ -123,6 +123,9 @@ namespace dokiScript
 		public override Node ExitName(Token node){node.Values.Add("name");
 			return node;
 		}
+		public override Node ExitAnchor(Token node){node.Values.Add ("anchor");
+			return node;
+		}
 
 
 		public override Node ExitBracketLeft(Token node){node.Values.Add("{");
@@ -229,9 +232,20 @@ namespace dokiScript
 			node.Values.AddRange(GetChildValues(node));
 
 			if(node.Values.Count <= 1){
+				//detect >|>> to set the mode
+				string mode = "";
+				if (node.Values [0].ToString ().Contains (ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE)) {
+					mode = ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE;
+				} else if(node.Values [0].ToString ().Contains (ScriptKeyword.CLICK)) {
+					mode = ScriptKeyword.CLICK;
+				}
+				//remove >|>> from the content
+				string content = node.Values [0].ToString ();
+				content = content.Replace (ScriptKeyword.CLICK, string.Empty);
 				//Text Action
 				Action textAction = new Action (ScriptKeyword.TEXT, new Dictionary<string, string>(){
-					{ScriptKeyword.CONTENT, node.Values[0].ToString()} 
+					{ScriptKeyword.CONTENT, content},
+					{ScriptKeyword.MODE, mode}
 				});
 				actions.Add (textAction);
 			}else if(node.Values[0].Equals(ScriptKeyword.VOICE)){
@@ -240,7 +254,20 @@ namespace dokiScript
 				for(int i=0; i<(node.Values.Count - 2)/3 ;i++){
 					parameters.Add(node.Values[i*3+1].ToString(), node.Values[i*3+3].ToString());
 				}
-				parameters.Add (ScriptKeyword.CONTENT, node.Values[node.Values.Count-1].ToString());
+
+				//detect >|>> to set the mode
+				string mode = "";
+				if (node.Values[node.Values.Count-1].ToString().Contains (ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE)) {
+					mode = ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE;
+				} else if(node.Values[node.Values.Count-1].ToString().Contains (ScriptKeyword.CLICK)) {
+					mode = ScriptKeyword.CLICK;
+				}
+				//remove >|>> from the content
+				string content = node.Values[node.Values.Count-1].ToString();
+				content = content.Replace (ScriptKeyword.CLICK, string.Empty);
+
+				parameters.Add (ScriptKeyword.CONTENT, content);
+				parameters.Add (ScriptKeyword.MODE, mode);
 				Action voiceAction = new Action (ScriptKeyword.VOICE, parameters);
 				actions.Add (voiceAction);
 			}else{
