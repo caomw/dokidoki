@@ -2,3 +2,4 @@ I
 	voice src=voice0 >Yes
 world
 	>You are right
+	voice src=1214 ;
