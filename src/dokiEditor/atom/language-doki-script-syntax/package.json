@@ -1,0 +1,15 @@
+{
+  "name": "language-doki-script-syntax",
+  "theme": "syntax",
+  "version": "0.0.1",
+  "description": "Theme syntax for dokiScript.",
+  "keywords": [
+    "syntax",
+    "theme"
+  ],
+  "repository": "https://github.com/atom/language-doki-script-syntax",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}

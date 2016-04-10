@@ -1,15 +1,15 @@
 {
   "name": "language-doki-script",
   "main": "./lib/language-doki-script",
-  "version": "0.0.0",
-  "description": "A short description of your package",
+  "version": "0.0.1",
+  "description": "Editor package for dokiScript to efficient your script writting.",
   "keywords": [
   ],
   "activationCommands": {
     "atom-workspace": "language-doki-script:toggle"
   },
   "activationHooks":["language-doki-script:grammar-used"],
-  "repository": "https://github.com/atom/language-doki-script",
+  "repository": "https://github.com/kesumu/dokidoki/tree/master/src/dokiEditor/atom/language-doki-script",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
