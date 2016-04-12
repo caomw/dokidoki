@@ -13,7 +13,7 @@ namespace dokiScript
 	{
 		public static void Main (string[] args)
 		{
-            string input = File.ReadAllText("sample2." + ScriptKeyword.SCRIPT_EXTENSION, System.Text.Encoding.UTF8);
+            string input = File.ReadAllText("sample1." + ScriptKeyword.SCRIPT_EXTENSION, System.Text.Encoding.UTF8);
 
 			DokiScriptComplier  compiler = null;
 			compiler = new DokiScriptComplier();
@@ -33,7 +33,7 @@ namespace dokiScript
 				Script scriptData = new Script();
 				scriptData.actions = actions;
 
-                FileStream scriptFile = File.Create(dirPath + "/" + "sample2." + ScriptKeyword.SCRIPT_COMPILED_EXTENSION);
+                FileStream scriptFile = File.Create(dirPath + "/" + "sample1." + ScriptKeyword.SCRIPT_COMPILED_EXTENSION);
 				bf.Serialize(scriptFile, scriptData);
 				scriptFile.Close();
 				

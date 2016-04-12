@@ -37,7 +37,13 @@ public class Character : MonoBehaviour {
     public void takePostureAction(Action postureAction)
     {
         
-        string anchorStringValue = postureAction.parameters[ScriptKeyword.ANCHOR];
+        string anchorStringValue = "";
+        if (postureAction.parameters.TryGetValue(ScriptKeyword.ANCHOR, out anchorStringValue)) {
+
+        } else {
+            anchorStringValue = "(0.5, 0.5)";
+        }
+
         if (postureAction.parameters.TryGetValue(ScriptKeyword.ANCHOR, out anchorStringValue)) {
             anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
             anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);

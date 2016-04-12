@@ -1,7 +1,7 @@
 {
   "name": "language-doki-script",
   "main": "./lib/language-doki-script",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Editor package for dokiScript to efficient your script writting.",
   "keywords": [
   ],
