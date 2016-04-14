@@ -1,8 +1,0 @@
-I
-	voice src=voice0 >Yes
-world
-	>You are right
-	voice src=1214 ;
-I
-	voice src=voice1;
-//this is the commment.

@@ -1,0 +1,7 @@
+I
+	voice src=voice0 >Yes
+world
+	>You are right
+	voice src=v1214 >Ok
+I
+	voice src=voice1 >NO!

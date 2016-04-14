@@ -20,12 +20,12 @@ namespace dokiScript
 
 
 
-		public List<Action> compile(string script){
+		public List<Action> compile(string scriptText){
 			actions = null;
 			actions = new List<Action> ();
 
 			DokiScriptParser  parser;
-			parser = new DokiScriptParser(new StringReader(script), this);
+			parser = new DokiScriptParser(new StringReader(scriptText), this);
 			parser.Prepare();
 			parser.Parse();
 
