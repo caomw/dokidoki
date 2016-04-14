@@ -5,21 +5,33 @@ using UnityEngine.UI;
 using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 
-
+/// <summary>
+/// Character is a GameObject, represents a character in game, used to take a series actions to tell game story.
+/// Those actions contain: RoleAction, PostureAction, TextAction, VoiceAction, MoveAction.
+/// Character could show appearence, speak voice, show psychological descriptions that are texts without voice, move around.
+/// Character GameObject itseft is a child of World GameObject
+/// Character has childs as Bubble board.
+/// </summary>
 public class Character : MonoBehaviour {
-
-	public GameObject dialogText;
-    public GameObject worldControl;
-
+    /// <summary>
+    /// CharacterData records status for saving and loading
+    /// </summary>
     public CharacterData characterData = new CharacterData();
 
-	void Start () {
-        if (characterData == null)
-        {
-            characterData = new CharacterData();    
-        }
-	}
-
+    //Effect related GameObjects
+    /// <summary>
+    /// worldControl is a GameObject to control all things in the game like world, characters and UIs. Here it is used to read the worldControl modes.
+    /// </summary>
+    public GameObject worldControl;
+    /// <summary>
+    /// dialogContent is a GameObject to show dialog text on dialog window, which is a child of UI Canvas
+    /// </summary>
+	public GameObject dialogContent;
+    
+    /// <summary>
+    /// Character takes role action to change character infomation, like this character type, character name
+    /// </summary>
+    /// <param name="roleAction">Action tagged as weather, which contains the parameters for weather setting</param>
     public void takeRoleAction(Action roleAction) {
 		if (roleAction.parameters.TryGetValue (ScriptKeyword.TYPE, out characterData.roleType)) {
 			
@@ -34,6 +46,11 @@ public class Character : MonoBehaviour {
 		}
     }
 
+    /// <summary>
+    /// Character takes posture action to change character appearence, like this character cloth, character face expression, gestures.
+    /// Anyway, this action is to change the picture this character shows
+    /// </summary>
+    /// <param name="postureAction">Action tagged as posture, which contains the parameters for posture setting</param>
     public void takePostureAction(Action postureAction)
     {
         
@@ -44,15 +61,14 @@ public class Character : MonoBehaviour {
             anchorStringValue = "(0.5, 0.5)";
         }
 
-        if (postureAction.parameters.TryGetValue(ScriptKeyword.ANCHOR, out anchorStringValue)) {
-            anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
-            anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);
-            anchorStringValue = anchorStringValue.Replace(@"\s+", string.Empty);
-            string[] anchorStrings = anchorStringValue.Split(ScriptKeyword.COMMA.ToCharArray());
-            characterData.anchorX = float.Parse(anchorStrings[0]);
-            characterData.anchorY = float.Parse(anchorStrings[1]);
-            characterData.postrueSrc = postureAction.parameters[ScriptKeyword.SRC];
-        }
+        anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
+        anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);
+        anchorStringValue = anchorStringValue.Replace(@"\s+", string.Empty);
+        string[] anchorStrings = anchorStringValue.Split(ScriptKeyword.COMMA.ToCharArray());
+        this.characterData.anchorX = float.Parse(anchorStrings[0]);
+        this.characterData.anchorY = float.Parse(anchorStrings[1]);
+        this.characterData.postrueSrc = postureAction.parameters[ScriptKeyword.SRC];
+
         //read pixelsPerUnit from user setting
         Sprite postureSpriteOriginal = Resources.Load<Sprite>(FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
         float pixelsPerUnity = postureSpriteOriginal.pixelsPerUnit;
@@ -66,25 +82,29 @@ public class Character : MonoBehaviour {
         this.GetComponent<SpriteRenderer>().sprite = postureSprite;
     }
 
-    //this is reserved
-    public void takeFaceAction(Action faceAction)
-    {
-        Debug.Log(characterData.id + faceAction.tag);
-    }
-
+    /// <summary>
+    /// Character takes text action to show character's psychological descriptions, mainly it is used for first-view character
+    /// </summary>
+    /// <param name="textAction">Action tagged as text, which contains the parameters for text setting</param>
+    /// <returns>Returns end of the time at which this action is supposed over</returns>
     public float takeTextAction(Action textAction)
     {
-		if (dialogText == null) {
+		if (dialogContent == null) {
 			Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
 			Application.Quit();
 		}
-		//dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
-		dialogText.GetComponent<DialogManager> ().writeOnDialogBoard (characterData.shownName, textAction.parameters [ScriptKeyword.CONTENT], "");
+		//dialogContent.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
+		dialogContent.GetComponent<DialogManager> ().writeOnDialogBoard (characterData.shownName, textAction.parameters [ScriptKeyword.CONTENT], "");
         float nextAutoClickTime = Time.realtimeSinceStartup;
         nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * (PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR) + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
         return nextAutoClickTime;
     }
 
+    /// <summary>
+    /// Character takes text action to speack something with or without audio, be careful that World GameObject should not speak voice
+    /// </summary>
+    /// <param name="voiceAction">Action tagged as voice, which contains the parameters for voice setting</param>
+    /// <returns>Returns end of the time at which this action is supposed over</returns>
     public float takeVoiceAction(Action voiceAction)
     {
 		string voiceSrc = "";
@@ -99,13 +119,13 @@ public class Character : MonoBehaviour {
 		}
 
 		//Similar to the takeTextAction
-		if (dialogText == null) {
+		if (dialogContent == null) {
 			Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
 			Application.Quit();
 		}
 
-        //dialogText.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
-		dialogText.GetComponent<DialogManager> ().writeOnDialogBoard (characterData.shownName, voiceAction.parameters [ScriptKeyword.CONTENT], voiceSrc);
+        //dialogContent.GetComponent<Text> ().text = shownName + "\n\n" + textAction.parameters [ScriptKeyword.CONTENT];
+		dialogContent.GetComponent<DialogManager> ().writeOnDialogBoard (characterData.shownName, voiceAction.parameters [ScriptKeyword.CONTENT], voiceSrc);
 
         if (this.characterData.roleType == ScriptKeyword.TYPE_CHARACTER && worldControl.GetComponent<WorldControl>().getDialogMode() == GameConstants.BUBBLE)
         {
@@ -124,6 +144,10 @@ public class Character : MonoBehaviour {
 		return Mathf.Max(nextAutoClickTimeVoice, nextAutoClickTimeText);
     }
 
+    /// <summary>
+    /// Character takes move action to move arround in the World, exactly arround the background GameObject
+    /// </summary>
+    /// <param name="moveAction">Action tagged as voice, which contains the parameters for voice setting</param>
     public void takeMoveAction(Action moveAction)
     {
         string positionValue = moveAction.parameters[ScriptKeyword.POSITION];
@@ -160,6 +184,10 @@ public class Character : MonoBehaviour {
         this.transform.localPosition = characterScreenToWorldPoint;
     }
 
+    /// <summary>
+    /// Character game entity load data from saving data (on the disk)
+    /// </summary>
+    /// <param name="characterData">characterData is the serialized data on the disk</param>
     public void loadData(CharacterData characterData) {
         this.characterData = characterData;
 
@@ -170,10 +198,12 @@ public class Character : MonoBehaviour {
             {ScriptKeyword.NAME, characterData.shownName}
         });
         this.takeRoleAction(loadedRoleAction);
-        Action loadedPostureAction = new Action(ScriptKeyword.POSTURE, new Dictionary<string, string>(){
-            {ScriptKeyword.SRC, characterData.postrueSrc}
-        });
-        this.takePostureAction(loadedPostureAction);
+        if (characterData.postrueSrc != null && !characterData.postrueSrc.Equals("")) {
+            Action loadedPostureAction = new Action(ScriptKeyword.POSTURE, new Dictionary<string, string>(){
+                {ScriptKeyword.SRC, characterData.postrueSrc}
+                });
+            this.takePostureAction(loadedPostureAction);
+        }
         Action loadedMoveAction = new Action(ScriptKeyword.MOVE, new Dictionary<string, string>(){
             {ScriptKeyword.POSITION, ScriptKeyword.POSITION_CENTER},
             {ScriptKeyword.TRANSITION, ScriptKeyword.TRANSITION_INSTANT}

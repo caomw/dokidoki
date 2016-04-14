@@ -10,5 +10,9 @@ public class WorldControlData
     public string currentScriptName;
     public int currentActionIndex;
 
+    public string currentGameState = GameConstants.NORMAL;
+    public float nextAutoClickTime = 0f;
+    public string dialogMode = GameConstants.NORMAL;
+
     public List<Dialog> historyDialogs;
 }

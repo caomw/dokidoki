@@ -10,227 +10,287 @@ using System.Runtime.Serialization.Formatters.Binary;
 using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 
+/// <summary>
+/// WorldControl is a GameObject, represents the controller of the world, used to distribute actions to World or Characters to take, and also itself could take some actinos to manipulate the flow the game.
+/// Those actions contain: JumpAction, FlagAction.
+/// In addition, WorldControls contain all setting operation of the world for all UI components.
+/// WorldControl could save and load the game, change the volume, screen size, and other game commands like auto, skip.
+/// </summary>
 public class WorldControl : MonoBehaviour {
-    private ScriptReader scriptReader;
-
-    private GameObject focusGameObject;
-
-    public GameObject world;
-    //In play UI gameobjects
-    public GameObject gameBoardUI;
-    public GameObject dialogBoardUI;
-    public GameObject quickButtonsUI;
-    public GameObject backLogUI;
-    public GameObject saveBoardUI;
-    public GameObject loadBoardUI;
-    public GameObject startBoardUI;
-    public GameObject configBoardUI;
-    public GameObject confirmBoardUI;
-    public GameObject flagBoardUI;
-
-    public GameObject characterPrefab;
-    public GameObject logTextPrefab;
-    public GameObject saveTextPrefab;
-    public GameObject loadTextPrefab;
-    public GameObject flagTextPrefab;
-
-	public GameObject backLogContent;
-    public GameObject saveContent;
-    public GameObject loadContent;
-    public GameObject flagContent;
-	public GameObject dialogContent;
-    public Dictionary<string, GameObject> characters;
-
-    private List<Action> currentActions;
-    private Action lastAction;
-
-    public string currentGameState = GameConstants.NORMAL;
-	
-
-    public float nextAutoClickTime = 0f;
-
-    public string dialogMode = GameConstants.NORMAL;
-
+    /// <summary>
+    /// worldControlData records status for saving and loading
+    /// </summary>
     public WorldControlData worldControlData = new WorldControlData();
 
+    /// <summary>
+    /// scriptReader is used to load dokiScripts from resources
+    /// </summary>
+    private ScriptReader scriptReader;
+
+    /// <summary>
+    /// currentActions are loaded script actions needed to distribute to take
+    /// </summary>
+    private List<Action> currentActions;
+
+    /// <summary>
+    /// record lastAction to do something, like decide when should SkipAction be taken
+    /// </summary>
+    private Action lastAction;
+
+    /// <summary>
+    /// world is the pointer of the World GameObject, for worldControl to distribute actions to them
+    /// </summary>
+    public GameObject world;
+
+    /// <summary>
+    /// characters is a dictionary of all characters, for worldControl to distribute actions to them
+    /// </summary>
+    public Dictionary<string, GameObject> characters = new Dictionary<string, GameObject>();
+
+    /// <summary>
+    /// focusGameObject is used to know current actions should distribute to whom
+    /// </summary>
+    private GameObject focusGameObject;
+
+
+    //In play UI gameobjects
+    /// <summary>
+    /// gameBoardUI pointer is used to show and hide gameBoard
+    /// </summary>
+    public GameObject gameBoardUI;
+
+    /// <summary>
+    /// dialogBoardUI pointer is used to show and hide dialogBoard
+    /// </summary>
+    public GameObject dialogBoardUI;
+
+    /// <summary>
+    /// quickButtonsUI pointer is used to show and hide quickButtons
+    /// </summary>
+    public GameObject quickButtonsUI;
+
+    /// <summary>
+    /// backLogUI pointer is used to show and hide backLog
+    /// </summary>
+    public GameObject backLogUI;
+
+    /// <summary>
+    /// saveBoardUI pointer is used to show and hide saveBoard
+    /// </summary>
+    public GameObject saveBoardUI;
+
+    /// <summary>
+    /// loadBoardUI pointer is used to show and hide loadBoard
+    /// </summary>
+    public GameObject loadBoardUI;
+
+    /// <summary>
+    /// startBoardUI pointer is used to show and hide startBoard
+    /// </summary>
+    public GameObject startBoardUI;
+
+    /// <summary>
+    /// configBoardUI pointer is used to show and hide configBoard
+    /// </summary>
+    public GameObject configBoardUI;
+
+    /// <summary>
+    /// confirmBoardUI pointer is used to show and hide confirmBoard
+    /// </summary>
+    public GameObject confirmBoardUI;
+
+    /// <summary>
+    /// flagBoardUI pointer is used to show and hide flagBoard
+    /// </summary>
+    public GameObject flagBoardUI;
+
+
+    //prefabs pointer used to initiate new GameObjects at runtime
+    /// <summary>
+    /// characterPrefab is a unity prefab, used to create new character, when a new character appear to take some actions
+    /// </summary>
+    public GameObject characterPrefab;
+
+    /// <summary>
+    /// logTextPrefab is a unity prefab, used to create new logText Buttons when logBoard is shown
+    /// </summary>
+    public GameObject logTextPrefab;
+
+    /// <summary>
+    /// saveTextPrefab is a unity prefab, used to create new saveText Buttons when saveBoard is shown
+    /// </summary>
+    public GameObject saveTextPrefab;
+
+    /// <summary>
+    /// loadTextPrefab is a unity prefab, used to create new loadText Buttons when loadBoard is shown
+    /// </summary>
+    public GameObject loadTextPrefab;
+
+    /// <summary>
+    /// flagTextPrefab is a unity prefab, used to create new flagText Buttons when flagBoard is shown
+    /// </summary>
+    public GameObject flagTextPrefab;
+
+
+    //UI content pointers are used to shown content of UI
+    /// <summary>
+    /// backLogContent pointer is a child of backLogBoard GameObject, used to change the content of backgroundBoard, such as a set logText Buttons
+    /// </summary>
+	public GameObject backLogContent;
+
+    /// <summary>
+    /// saveContent pointer is a child of saveBoard GameObject, used to change the content of saveBoard, such as a set saveText Buttons
+    /// </summary>
+    public GameObject saveContent;
+
+    /// <summary>
+    /// loadContent pointer is a child of loadBoard GameObject, used to change the content of loadBoard, such as a set loadText Buttons
+    /// </summary>
+    public GameObject loadContent;
+
+    /// <summary>
+    /// flagContent pointer is a child of flagBoard GameObject, used to change the content of flagBoard, such as a set flagText Buttons
+    /// </summary>
+    public GameObject flagContent;
+
+    /// <summary>
+    /// dialogContent pointer is a child of dialogContent GameObject, used to change the content of dialogBoard, such as dialog text
+    /// </summary>
+	public GameObject dialogContent;
+
+    /// <summary>
+    /// get the dialogMode in the game config, normal or bubble
+    /// </summary>
+    /// <returns>the dialogMode value</returns>
+    public string getDialogMode() {
+        return this.worldControlData.dialogMode;
+    }
+
+    /// <summary>
+    /// UI shown or hidden setting when game on startBoard
+    /// </summary>
     void Start() {
-        //set up scriptReader, new game and load game
-        if (scriptReader == null)
-        {
+        if (scriptReader == null) {
             scriptReader = new ScriptReader();
         }
-
-        characters = new Dictionary<string, GameObject>();
-
-        if (worldControlData == null)
-        {
-            worldControlData = new WorldControlData();
-        }
-
         //Load PlayerPrefs
         configBoardUI.SetActive(true);
         configBoardUI.SetActive(false);
-
         startBoardUI.SetActive(true);
     }
 
-    public void clickStartButton() {
-        startBoardUI.SetActive(false);
-        gameBoardUI.SetActive(true);
-        step();
-    }
-    public void clickConfigButton() {
-        if (currentGameState == GameConstants.NORMAL)
-        {
-            currentGameState = GameConstants.CONFIG;
-            configBoardUI.SetActive(true);
-        }
-        else if (currentGameState == GameConstants.CONFIG)
-        {
-            configBoardUI.SetActive(false);
-            currentGameState = GameConstants.NORMAL;
-        }
-    }
-    public void clickExitButton(bool confirmed){
-        if (!confirmed)
-        {
-            confirmCurrentAction("Do you want to exit?", "This action would lose current game data.",clickExitButton);
-            return;
-        }
-        Application.Quit();
-    }
-
+    /// <summary>
+    /// Mouse and Key command to call game operation fuctions.
+    /// Click in normal mode and not on a button to step the game.
+    /// Click on button to call specific button functions.
+    /// Also, shortcut key equals to click on the responding button.
+    /// Ctrl key is used to skip game.
+    /// </summary>
     void Update() {
         if (Input.GetMouseButtonDown(1)) {
-            if (currentGameState == GameConstants.BACKLOG)
-            {
+            if (this.worldControlData.currentGameState == GameConstants.BACKLOG) {
                 clickBackLogButton();
                 return;
-            }
-            else if (currentGameState == GameConstants.SAVE)
-            {
+            } else if (this.worldControlData.currentGameState == GameConstants.SAVE) {
                 clickSaveButton();
                 return;
-            }
-            else if (currentGameState == GameConstants.LOAD)
-            {
+            } else if (this.worldControlData.currentGameState == GameConstants.LOAD) {
                 clickLoadButton();
                 return;
-            }
-            else if (currentGameState == GameConstants.HIDE || currentGameState == GameConstants.NORMAL)
-            {
-                if(gameBoardUI.activeSelf){
+            } else if (this.worldControlData.currentGameState == GameConstants.HIDE || this.worldControlData.currentGameState == GameConstants.NORMAL) {
+                if (gameBoardUI.activeSelf) {
                     clickHideButton();
                 }
                 return;
-            }
-            else if (currentGameState == GameConstants.CONFIG)
-            {
+            } else if (this.worldControlData.currentGameState == GameConstants.CONFIG) {
                 clickConfigButton();
                 return;
             }
         }
 
         //Skip key pressed
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
-        {
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) {
             clickSkipButton();
         }
-        if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
-        {
+        if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl)) {
             clickSkipButton();
         }
 
         //Hot key
         //Return key could be used as click
-        if(Input.GetKeyDown(KeyCode.Return)){
-            if (startBoardUI.activeSelf == true)
-            {
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            if (startBoardUI.activeSelf == true) {
                 clickStartButton();
-            }
-            else {
+            } else {
                 step();
             }
-        }else if(Input.GetKeyDown(KeyCode.C)){
+        } else if (Input.GetKeyDown(KeyCode.C)) {
             clickConfigButton();
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
+        } else if (Input.GetKeyDown(KeyCode.B)) {
             clickBackLogButton();
-        }
-        else if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.S))
-        {
+        } else if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.S)) {
             clickQuickSaveButton(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.L))
-        {
+        } else if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.L)) {
             clickQuickLoadButton(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
+        } else if (Input.GetKeyDown(KeyCode.S)) {
             clickSaveButton();
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
+        } else if (Input.GetKeyDown(KeyCode.L)) {
             clickLoadButton();
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
+        } else if (Input.GetKeyDown(KeyCode.A)) {
             clickAutoButton();
-        }
-        else if (Input.GetKeyDown(KeyCode.H))
-        {
+        } else if (Input.GetKeyDown(KeyCode.H)) {
             clickHideButton();
         }
     }
 
+    /// <summary>
+    /// this function is used for auto mode, to call step function after nextAutoClickTime
+    /// </summary>
     void FixedUpdate() {
-        if (currentGameState == GameConstants.AUTO)
-        {
+        if (this.worldControlData.currentGameState == GameConstants.AUTO) {
             float currentTime = Time.realtimeSinceStartup;
             //Auto click
-            if (currentTime > nextAutoClickTime)
-            {
+            if (currentTime > this.worldControlData.nextAutoClickTime) {
                 //Debug.Log("Auto click");
                 //Click once, wait for next time update
-                nextAutoClickTime = Mathf.Infinity;
+                this.worldControlData.nextAutoClickTime = Mathf.Infinity;
                 step();
             }
         }
     }
 
-    //public int count = 0;
     /// <summary>
-    /// Game click
+    /// Step the game, which means distribute a set of actions to World or a Character to take, the last action should be ended with the mouse click.
+    /// Also, when needs to jump to another script or take flag action, worldControl itself takes them
     /// </summary>
     public void step() {
         //Debug.Log(++count);
         //Check game state first
-        if (currentGameState == GameConstants.BACKLOG)
+        if (this.worldControlData.currentGameState == GameConstants.BACKLOG)
         {
             clickBackLogButton();
             return;
         }
-        else if (currentGameState == GameConstants.AUTO)
+        else if (this.worldControlData.currentGameState == GameConstants.AUTO)
         {
-            nextAutoClickTime = Mathf.Infinity;
+            this.worldControlData.nextAutoClickTime = Mathf.Infinity;
         }
-        else if (currentGameState == GameConstants.SAVE)
+        else if (this.worldControlData.currentGameState == GameConstants.SAVE)
         {
             clickSaveButton();
             return;
         }
-        else if (currentGameState == GameConstants.LOAD)
+        else if (this.worldControlData.currentGameState == GameConstants.LOAD)
         {
             clickLoadButton();
             return;
         }
-        else if (currentGameState == GameConstants.HIDE)
+        else if (this.worldControlData.currentGameState == GameConstants.HIDE)
         {
             clickHideButton();
             return;
         }
-        else if (currentGameState == GameConstants.FLAG)
+        else if (this.worldControlData.currentGameState == GameConstants.FLAG)
         {
             return;
         }
@@ -311,10 +371,6 @@ public class WorldControl : MonoBehaviour {
             {
                 focusGameObject.GetComponent<Character>().takePostureAction(currentAction);
             }
-            else if (currentAction.tag == ScriptKeyword.FACE)
-            {
-                focusGameObject.GetComponent<Character>().takeFaceAction(currentAction);
-            }
             else if (currentAction.tag == ScriptKeyword.VOICE)
             {
                 updateNextAutoClickTime( focusGameObject.GetComponent<Character>().takeVoiceAction(currentAction));
@@ -334,8 +390,11 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// WorldControl takes focus action to change current focusedGameObject that further is the target to distribute actions to
+    /// </summary>
+    /// <param name="focusAction">Action tagged as focus, which contains the parameters for focus setting</param>
     public void takeFocusAction(Action focusAction) {
-
         worldControlData.focusGameObjectId = focusAction.parameters[ScriptKeyword.ID];
 
         focusGameObject = null;
@@ -354,18 +413,22 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// WorldControl takes flag action to show flagBoard, wait for user to choose
+    /// </summary>
+    /// <param name="flagAction">Action tagged as flag, which contains the parameters for flag setting</param>
     public void takeFlagAction(Action flagAction) {
-        if (currentGameState == GameConstants.AUTO)
+        if (this.worldControlData.currentGameState == GameConstants.AUTO)
         {
             clickAutoButton();
         }
-        if (currentGameState == GameConstants.SKIP)
+        if (this.worldControlData.currentGameState == GameConstants.SKIP)
         {
             clickSkipButton();
         }
-        if (currentGameState == GameConstants.NORMAL)
+        if (this.worldControlData.currentGameState == GameConstants.NORMAL)
         {
-            currentGameState = GameConstants.FLAG;
+            this.worldControlData.currentGameState = GameConstants.FLAG;
             flagBoardUI.SetActive(true);
 
             string count;
@@ -393,15 +456,20 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// This functions is called when player clicks on a flagTextButton, which represents a option.
+    /// And then jump to that option by loading new scripts
+    /// </summary>
+    /// <param name="confirmed">Whether to do operations directly, or pop up a confirm window to ask for confirmation</param>
+    /// <param name="optionParameter">OptionParameter constains the infomation about player's choice</param>
     public void onFlagTextButtonClick(bool confirmed, System.Object optionParameter) {
         this.worldControlData.worldLine += ((List<string>)optionParameter)[0];
 
-        if (currentGameState == GameConstants.FLAG)
+        if (this.worldControlData.currentGameState == GameConstants.FLAG)
         {
             flagBoardUI.SetActive(false);
-            currentGameState = GameConstants.NORMAL;
+            this.worldControlData.currentGameState = GameConstants.NORMAL;
         }
-
 
         //Debug.Log("((List<string>)optionParameter)[0]: " + ((List<string>)optionParameter)[0]);
         //Debug.Log("((List<string>)optionParameter)[1]: " + ((List<string>)optionParameter)[1]);
@@ -426,6 +494,10 @@ public class WorldControl : MonoBehaviour {
 		this.step ();
     }
 
+    /// <summary>
+    /// WorldControl takes jump action to jump to specific scripts
+    /// </summary>
+    /// <param name="jumpAction">Action tagged as jump, which contains the parameters for jump setting</param>
 	public void takeJumpAction(Action jumpAction){
 		Debug.Log ("Jump to: "+jumpAction.parameters[ScriptKeyword.SRC]);
 		currentActions = scriptReader.loadNextScript(jumpAction.parameters[ScriptKeyword.SRC]);
@@ -434,59 +506,36 @@ public class WorldControl : MonoBehaviour {
     /// <summary>
     /// Create new character GameObject with id
     /// </summary>
-    /// <param name="id">the id of new character in scripts</param>
-    /// <returns>The GameObject reference of the new character</returns>
+    /// <param name="id">Id of new character in scripts</param>
+    /// <returns>The GameObject pointer of the new character GameObject</returns>
     public GameObject createNewCharacter(string id) {
         GameObject newCharacter = Instantiate(characterPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         newCharacter.transform.parent = this.world.transform;
         newCharacter.GetComponent<Character>().characterData.id = id;
-        newCharacter.GetComponent<Character>().dialogText = this.world.GetComponent<World>().dialogText;
+        newCharacter.GetComponent<Character>().dialogContent = this.world.GetComponent<World>().dialogContent;
         newCharacter.GetComponent<Character>().worldControl = this.gameObject;
         newCharacter.GetComponentInChildren<BubbleManager>().hide();
         return newCharacter;
     }
-
+    /// <summary>
+    /// Hide gameBoard UI
+    /// </summary>
     public void hideInPlayUI() {
         dialogBoardUI.SetActive(false);
         quickButtonsUI.SetActive(false);
     }
-
+    /// <summary>
+    /// show gameBoard UI
+    /// </summary>
 	public void showInPlayUI() {
         dialogBoardUI.SetActive(true);
         quickButtonsUI.SetActive(true);
     }
-
-    public void loadData(WorldControlData worldControlData) {
-        this.worldControlData = worldControlData;
-
-        Action loadedFocusAction = new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
-            {ScriptKeyword.ID, worldControlData.focusGameObjectId}
-        });
-        this.takeFocusAction(loadedFocusAction);
-
-        Action loadedTextAction = new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
-            {ScriptKeyword.CONTENT, worldControlData.textContent},
-            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
-        });
-        if (focusGameObject.GetComponent<World>() != null)
-        {
-            updateNextAutoClickTime(focusGameObject.GetComponent<World>().takeTextAction(loadedTextAction));
-        }
-        if (focusGameObject.GetComponent<Character>() != null)
-        {
-            updateNextAutoClickTime(focusGameObject.GetComponent<Character>().takeTextAction(loadedTextAction));
-        }
-
-        //Load saved script to saved action index
-        this.currentActions = scriptReader.loadNextScript(worldControlData.currentScriptName);
-        for (int i = 0; i < worldControlData.currentActionIndex + 1; i++ )
-        {
-            currentActions.RemoveAt(0);
-        }
-        //Recover history dialogs
-        dialogContent.GetComponent<DialogManager>().historyDialogs = worldControlData.historyDialogs;
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dialog">The dialog to display on the logTextButton</param>
+    /// <returns>GameObject pointer to the new created LogTextButton</returns>
     public GameObject createLogTextButton(Dialog dialog) { 
         GameObject newLogTextButton = Instantiate(logTextPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         newLogTextButton.transform.SetParent(this.backLogContent.transform);
@@ -501,9 +550,17 @@ public class WorldControl : MonoBehaviour {
         return newLogTextButton;
     }
 
+    /// <summary>
+    /// this function is used to create a new textButton from TextPrefab which its appearence could be custumized by developers
+    /// </summary>
+    /// <param name="text">Text display on the button</param>
+    /// <param name="prefab">TextPrefab defines the new created button's appearence</param>
+    /// <param name="parentGameObject">Create new textButton to be a child of this parentGameObject</param>
+    /// <param name="onclick">Call the onclick function when this new created button is clicked</param>
+    /// <param name="parameter">Attach some paramenters to this new created button, the parameter would be passed to the onclick function</param>
+    /// <returns>Return the GameObject pointer of the new created TextButton</returns>
     public GameObject createTextButton(string text, GameObject prefab, GameObject parentGameObject, UnityAction<bool, System.Object> onclick, System.Object parameter)
     {
-
         GameObject newTextButton = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         newTextButton.transform.SetParent(parentGameObject.transform);
         newTextButton.transform.localPosition = new Vector3(0, -newTextButton.GetComponent<RectTransform>().rect.height, 0);
@@ -511,7 +568,15 @@ public class WorldControl : MonoBehaviour {
         newTextButton.GetComponent<Button>().onClick.AddListener(() => { onclick(false, parameter); });
         return newTextButton;
     }
-
+    /// <summary>
+    /// Create the content of a board, which content is a set of TextButton.
+    /// </summary>
+    /// <param name="texts">The text array should be displayed on a set of TextButtons</param>
+    /// <param name="buttonPrefab">prefab of the TextButton, which could be customized by developers</param>
+    /// <param name="contentGameObject">parent GameObject that the created a set of TextButtons should be child of</param>
+    /// <param name="toBottom">whether the content of board should scroll to bottom when shown</param>
+    /// <param name="onclick">function to be called when responding TextButton is clicked</param>
+    /// <param name="parameters">parameter array should be attached to the TextButton and would be passed to the on click function</param>
     public void setupTextButtonBoard(List<string> texts, GameObject buttonPrefab, GameObject contentGameObject, bool toBottom, UnityAction<bool, System.Object> onclick, List<System.Object> parameters)
     {
         //Destroy all previous text buttons
@@ -544,12 +609,50 @@ public class WorldControl : MonoBehaviour {
         }
     }
 
-//Quick button functions
+
+    //StartBoard button functions
+    /// <summary>
+    /// Called when StartButton is clicked, to start the game from beginning
+    /// </summary>
+    public void clickStartButton() {
+        startBoardUI.SetActive(false);
+        gameBoardUI.SetActive(true);
+        step();
+    }
+    /// <summary>
+    /// Called when ConfigButton is clicked, to show or hide ConfigBoard
+    /// </summary>
+    public void clickConfigButton() {
+        if (this.worldControlData.currentGameState == GameConstants.NORMAL) {
+            this.worldControlData.currentGameState = GameConstants.CONFIG;
+            configBoardUI.SetActive(true);
+        } else if (this.worldControlData.currentGameState == GameConstants.CONFIG) {
+            configBoardUI.SetActive(false);
+            this.worldControlData.currentGameState = GameConstants.NORMAL;
+        }
+    }
+    /// <summary>
+    /// Called when ExitButton is clicked, to exit game which needs confirmation from poped up ConfirmBoard
+    /// </summary>
+    /// <param name="confirmed"></param>
+    public void clickExitButton(bool confirmed) {
+        if (!confirmed) {
+            confirmCurrentAction("Do you want to exit?", "This action would lose current game data.", clickExitButton);
+            return;
+        }
+        Application.Quit();
+    }
+
+
+    //Quick button functions
+    /// <summary>
+    /// Called when BackLogButton is clicked, to show or hide BackLogBoard, which needs updates BackLog, creates new BackLogTextButtons before show BackLogBoard
+    /// </summary>
 	public void clickBackLogButton(){
-        if (currentGameState == GameConstants.NORMAL)
+        if (this.worldControlData.currentGameState == GameConstants.NORMAL)
         {
             //Open backlog window
-            currentGameState = GameConstants.BACKLOG;
+            this.worldControlData.currentGameState = GameConstants.BACKLOG;
             backLogUI.SetActive(true);
 
             //Get texts to display
@@ -573,14 +676,18 @@ public class WorldControl : MonoBehaviour {
             //Set up log text buttons board
             setupTextButtonBoard(texts, logTextPrefab, backLogContent, true, onLogTextButtonClick, parameters); 
         }
-        else if (currentGameState == GameConstants.BACKLOG)
+        else if (this.worldControlData.currentGameState == GameConstants.BACKLOG)
         { 
             //close backlog window
             backLogUI.SetActive(false);
-            currentGameState = GameConstants.NORMAL;
+            this.worldControlData.currentGameState = GameConstants.NORMAL;
         }
 	}
-
+    /// <summary>
+    /// Called when LogTextButton is clicked, used to replay the voice audio, which needs confirmation from poped up ConfirmBoard
+    /// </summary>
+    /// <param name="confirmed">Whether current action is confirmed or not</param>
+    /// <param name="voiceSrc">Name of voice audio to replay</param>
     public void onLogTextButtonClick(bool confirmed, System.Object voiceSrc)
     {
         //Debug.Log("voiceSrc: " + voiceSrc);
@@ -592,7 +699,10 @@ public class WorldControl : MonoBehaviour {
 		}
         return;
     }
-
+    /// <summary>
+    /// Called when QuickSaveButton is clicked, used to save current game to 0 position, which needs confirmation from poped up ConfirmBoard
+    /// </summary>
+    /// <param name="confirmed">Whether current action is confirmed or not</param>
     public void clickQuickSaveButton(bool confirmed) {
         if (!confirmed) {
             this.confirmCurrentAction("Do you want to quick save?", "This action would overwrite the original saved data.",clickQuickSaveButton);
@@ -600,7 +710,10 @@ public class WorldControl : MonoBehaviour {
         }
         saveTo(0);
     }
-
+    /// <summary>
+    /// Called when QuickLoadButton is clicked, used to load game from 0 position, which needs confirmation from poped up ConfirmBoard
+    /// </summary>
+    /// <param name="confirmed">Whether current action is confirmed or not</param>
     public void clickQuickLoadButton(bool confirmed)
     {
         //Check whether this position has saved data
@@ -619,11 +732,13 @@ public class WorldControl : MonoBehaviour {
         startBoardUI.SetActive(false);
         loadFrom(0);
     }
-
+    /// <summary>
+    /// Called when SaveButton is clicked, to show or hide SaveBoard, which needs updates SaveTextButton, creates new SaveTextButton before show SaveBoard
+    /// </summary>
     public void clickSaveButton() {
-        if (currentGameState == GameConstants.NORMAL)
+        if (this.worldControlData.currentGameState == GameConstants.NORMAL)
         {
-            currentGameState = GameConstants.SAVE;
+            this.worldControlData.currentGameState = GameConstants.SAVE;
             saveBoardUI.SetActive(true);
 
             List<string> texts = new List<string>();
@@ -642,13 +757,17 @@ public class WorldControl : MonoBehaviour {
 
             setupTextButtonBoard(texts, saveTextPrefab, saveContent, false, onSaveTextButtonClick, parameters);
         }
-        else if (currentGameState == GameConstants.SAVE)
+        else if (this.worldControlData.currentGameState == GameConstants.SAVE)
         {
             saveBoardUI.SetActive(false);
-            currentGameState = GameConstants.NORMAL;
+            this.worldControlData.currentGameState = GameConstants.NORMAL;
         }
     }
-
+    /// <summary>
+    /// Called when SaveTextButton is clicked, used to save current game to specific postion, which needs confirmation from poped up ConfirmBoard
+    /// </summary>
+    /// <param name="confirmed">Whether current action is confirmed or not</param>
+    /// <param name="position">where current game should save to, exactly the name of saved data folder</param>
     public void onSaveTextButtonClick(bool confirmed, System.Object position) {
         if (!confirmed)
         {
@@ -659,11 +778,13 @@ public class WorldControl : MonoBehaviour {
         clickSaveButton();
         return;
     }
-
+    /// <summary>
+    /// Called when LoadButton is clicked, to show or hide LoadBoard, which needs updates LoadTextButton, creates new LoadTextButtons before show LoadBoard
+    /// </summary>
     public void clickLoadButton() {
-        if (currentGameState == GameConstants.NORMAL)
+        if (this.worldControlData.currentGameState == GameConstants.NORMAL)
         {
-            currentGameState = GameConstants.LOAD;
+            this.worldControlData.currentGameState = GameConstants.LOAD;
             loadBoardUI.SetActive(true);
 
             List<string> texts = new List<string>();
@@ -682,13 +803,17 @@ public class WorldControl : MonoBehaviour {
 
             setupTextButtonBoard(texts, loadTextPrefab, loadContent, false, onLoadTextButtonClick, parameters);
         }
-        else if (currentGameState == GameConstants.LOAD)
+        else if (this.worldControlData.currentGameState == GameConstants.LOAD)
         {
             loadBoardUI.SetActive(false);
-            currentGameState = GameConstants.NORMAL;
+            this.worldControlData.currentGameState = GameConstants.NORMAL;
         }
     }
-
+    /// <summary>
+    /// Called when LoadTextButton is clicked, used to load game from specific postion, which needs confirmation from poped up ConfirmBoard
+    /// </summary>
+    /// <param name="confirmed">Whether current action is confirmed or not</param>
+    /// <param name="position">where the game should load from, exactly the name of saved data folder</param>
     public void onLoadTextButtonClick(bool confirmed, System.Object position)
     {
         //Check whether this position has saved data
@@ -708,7 +833,10 @@ public class WorldControl : MonoBehaviour {
         clickLoadButton();
         return;
     }
-
+    /// <summary>
+    /// Called when SaveBoard or LoadBoard is going to be shown, read saved data from disk and display saved data information
+    /// </summary>
+    /// <param name="texts">Texts array which saved data information would copy to</param>
     public void checkSavedData(List<string> texts) {
         //Check saved data
         string dirPath = Application.persistentDataPath + "/" + GameConstants.SAVE_DIRECTORY;
@@ -750,7 +878,10 @@ public class WorldControl : MonoBehaviour {
             }
         }
     }
-
+    /// <summary>
+    /// Called when SaveTextButton is confirmed or QuickSaveButton is confirmed, used to save current game to specified postion
+    /// </summary>
+    /// <param name="label">Position where current game would be saved to, exactly the name of saved data folder</param>
     public void saveTo(int label) {
         this.worldControlData.currentScriptName = scriptReader.currentScriptName;
         this.worldControlData.currentActionIndex = scriptReader.getCurrentActionIndex(lastAction);
@@ -802,7 +933,10 @@ public class WorldControl : MonoBehaviour {
             //EditorUtility.DisplayDialog("Save failed", "Please try again", "yes", "");
         }
     }
-
+    /// <summary>
+    /// Called when LoadTextButton is confirmed or QuickLoadButton is confirmed, used to load game from specified postion
+    /// </summary>
+    /// <param name="label">Position where game would load from, exactly the name of saved data folder</param>
     public void loadFrom(int label) {
         string dirPath = Application.persistentDataPath + "/" + GameConstants.SAVE_DIRECTORY + "/" + label;
         try
@@ -866,101 +1000,102 @@ public class WorldControl : MonoBehaviour {
             //EditorUtility.DisplayDialog("Load failed", "Please try again", "yes", "");
         }
     }
-
+    /// <summary>
+    /// Called when AutoButton is clicked, used to enter or exit Auto mode
+    /// </summary>
     public void clickAutoButton() {
-        if (currentGameState == GameConstants.NORMAL)
+        if (this.worldControlData.currentGameState == GameConstants.NORMAL)
         {
             //Enter AUTO state
-            currentGameState = GameConstants.AUTO;
+            this.worldControlData.currentGameState = GameConstants.AUTO;
             //Click once now
-            nextAutoClickTime = 0f;
+            this.worldControlData.nextAutoClickTime = 0f;
         }
-        else if (currentGameState == GameConstants.AUTO)
+        else if (this.worldControlData.currentGameState == GameConstants.AUTO)
         { 
             //Leave AUTO state
-            currentGameState = GameConstants.NORMAL;
+            this.worldControlData.currentGameState = GameConstants.NORMAL;
         }
     }
-
-    public void clickSkipButton() {
-        if (currentGameState == GameConstants.NORMAL && startBoardUI.activeSelf == false)
-        {
-            currentGameState = GameConstants.SKIP;
-            //Start skip mode, here could modify the speed of skip
-            InvokeRepeating("step", 0.1f, 0.3f);
-        }
-        else if (currentGameState == GameConstants.SKIP)
-        {
-            //Stop skip mode
-            CancelInvoke("step");
-            currentGameState = GameConstants.NORMAL;
-        }
-    }
-
     /// <summary>
     /// Update the most long next auto click time, except for Mathf.Infinity
     /// </summary>
-    /// <param name="newNextAutoClickTime">
-    /// New next auto click time
-    /// </param>
+    /// <param name="newNextAutoClickTime"> New next auto click time</param>
     public void updateNextAutoClickTime(float newNextAutoClickTime) {
-        if (this.nextAutoClickTime == Mathf.Infinity)
-        {
-            this.nextAutoClickTime = newNextAutoClickTime;
-        }
-        else if (this.nextAutoClickTime < Mathf.Infinity)
-        {
-            this.nextAutoClickTime = Mathf.Max(this.nextAutoClickTime, newNextAutoClickTime);
+        if (this.worldControlData.nextAutoClickTime == Mathf.Infinity) {
+            this.worldControlData.nextAutoClickTime = newNextAutoClickTime;
+        } else if (this.worldControlData.nextAutoClickTime < Mathf.Infinity) {
+            this.worldControlData.nextAutoClickTime = Mathf.Max(this.worldControlData.nextAutoClickTime, newNextAutoClickTime);
         }
     }
-
-    public void clickHideButton() {
-        if (currentGameState == GameConstants.NORMAL)
+    /// <summary>
+    /// Called when SkipButton skip key is down and called again when skip key is up, used to enter or exit skip mode
+    /// </summary>
+    public void clickSkipButton() {
+        if (this.worldControlData.currentGameState == GameConstants.NORMAL && startBoardUI.activeSelf == false)
         {
-            currentGameState = GameConstants.HIDE;
+            this.worldControlData.currentGameState = GameConstants.SKIP;
+            //Start skip mode, here could modify the speed of skip
+            InvokeRepeating("step", 0.1f, 0.3f);
+        }
+        else if (this.worldControlData.currentGameState == GameConstants.SKIP)
+        {
+            //Stop skip mode
+            CancelInvoke("step");
+            this.worldControlData.currentGameState = GameConstants.NORMAL;
+        }
+    }
+    /// <summary>
+    /// Called when HideButton is clicked, used to hide or show the GameBoard UI
+    /// </summary>
+    public void clickHideButton() {
+        if (this.worldControlData.currentGameState == GameConstants.NORMAL)
+        {
+            this.worldControlData.currentGameState = GameConstants.HIDE;
             hideInPlayUI();
         }
-        else if (currentGameState == GameConstants.HIDE)
+        else if (this.worldControlData.currentGameState == GameConstants.HIDE)
         {
-            currentGameState = GameConstants.NORMAL;
+            this.worldControlData.currentGameState = GameConstants.NORMAL;
             showInPlayUI();
         }
     }
 
-    public void confirmCurrentAction(string title, string message, UnityAction<bool> clickButtonWithYes) {
-        confirmBoardUI.SetActive(true);
-        confirmBoardUI.GetComponent<ModalPanel>().Choice(title, message, clickButtonWithYes);
-    }
-    public void confirmCurrentAction(string title, string message, UnityAction<bool, System.Object> clickButtonWithYes, System.Object yesParameter)
-    {
-        confirmBoardUI.SetActive(true);
-        confirmBoardUI.GetComponent<ModalPanel>().Choice(title, message, clickButtonWithYes, yesParameter);
-    }
-
+    //ConfigBoard button and dropdown, slider functions
+    /// <summary>
+    /// Called when ScreenMode option on ConfigBoard is changed, used for game setting and saved into PlayerPrefs
+    /// </summary>
+    /// <param name="value">Changed value</param>
     public void valueChangedScreenMode(int value) {
         PlayerPrefs.SetInt(GameConstants.CONFIG_SCREEN_MODE, value);
 
         //To be done
         PlayerPrefs.Save();
     }
-
+    /// <summary>
+    /// Called when DialogMode option on ConfigBoard is changed, used for game setting and saved into PlayerPrefs
+    /// </summary>
+    /// <param name="value">Changed value</param>
     public void valueChangedDialogMode(int value) {
         PlayerPrefs.SetInt(GameConstants.CONFIG_DIALOG_MODE, value);
 
         switch(value){
             case 0: {
-                dialogMode = GameConstants.NORMAL;
+                this.worldControlData.dialogMode = GameConstants.NORMAL;
                 break;
             }
             case 1: {
-                dialogMode = GameConstants.BUBBLE;
+                this.worldControlData.dialogMode = GameConstants.BUBBLE;
                 break;
             }
         }
 
         PlayerPrefs.Save();
     }
-
+    /// <summary>
+    /// Called when BgmVolume option on ConfigBoard is changed, used for game setting and saved into PlayerPrefs
+    /// </summary>
+    /// <param name="value">Changed value</param>
     public void valueChangedBgmVolume(float value) {
         PlayerPrefs.SetFloat(GameConstants.CONFIG_BGM_VOLUME, value);
 
@@ -971,6 +1106,10 @@ public class WorldControl : MonoBehaviour {
         }
         PlayerPrefs.Save();
     }
+    /// <summary>
+    /// Called when SeVolume option on ConfigBoard is changed, used for game setting and saved into PlayerPrefs
+    /// </summary>
+    /// <param name="value">Changed value</param>
     public void valueChangedSeVolume(float value)
     {
         PlayerPrefs.SetFloat(GameConstants.CONFIG_SE_VOLUME, value);
@@ -982,6 +1121,10 @@ public class WorldControl : MonoBehaviour {
         }
         PlayerPrefs.Save();
     }
+    /// <summary>
+    /// Called when VoiceVolume option on ConfigBoard is changed, used for game setting and saved into PlayerPrefs
+    /// </summary>
+    /// <param name="value">Changed value</param>
     public void valueChangedVoiceVolume(float value)
     {
         PlayerPrefs.SetFloat(GameConstants.CONFIG_VOICE_VOLUME, value);
@@ -993,18 +1136,28 @@ public class WorldControl : MonoBehaviour {
         }
         PlayerPrefs.Save();
     }
+    /// <summary>
+    /// Called when TextSpeed option on ConfigBoard is changed, used for game setting and saved into PlayerPrefs
+    /// </summary>
+    /// <param name="value">Changed value</param>
     public void valueChangedTextSpeed(float value)
     {
         PlayerPrefs.SetFloat(GameConstants.CONFIG_TEXT_SPEED, value);
         PlayerPrefs.Save();
     }
-    
+    /// <summary>
+    /// Called when AutoSpeed option on ConfigBoard is changed, used for game setting and saved into PlayerPrefs
+    /// </summary>
+    /// <param name="value">Changed value</param>
     public void valueChangedAutoSpeed(float value)
     {
         PlayerPrefs.SetFloat(GameConstants.CONFIG_AUTO_SPEED, value);
         PlayerPrefs.Save();
     }
-
+    /// <summary>
+    /// Called when TitleButton is clicked, used to back to game title, which needs further confirmation from poped up ConfirmBoard
+    /// </summary>
+    /// <param name="confirmed">Whether current action is confirmed or not</param>
     public void clickTitleButton(bool confirmed) {
         if (!confirmed)
         {
@@ -1013,7 +1166,64 @@ public class WorldControl : MonoBehaviour {
         }
         Application.LoadLevel(0); 
     }
-    public string getDialogMode() {
-        return this.dialogMode;
+
+    //ConfirmBoard call funtions
+    /// <summary>
+    /// Called when current operation needs confirmed, such SaveTextButton is clicked, used to pop up the ConfirmBoard to ask player whether continue current operation
+    /// </summary>
+    /// <param name="title">Title of ConfirmBoard window</param>
+    /// <param name="message">Message would be shown inside the ConfirmBoard window</param>
+    /// <param name="clickButtonWithYes">Callback function to be called when player confirms this operation</param>
+    public void confirmCurrentAction(string title, string message, UnityAction<bool> clickButtonWithYes) {
+        confirmBoardUI.SetActive(true);
+        confirmBoardUI.GetComponent<ModalPanel>().Choice(title, message, clickButtonWithYes);
     }
+    /// <summary>
+    /// Called when current operation needs confirmed, such SaveTextButton is clicked, used to pop up the ConfirmBoard to ask player whether continue current operation
+    /// </summary>
+    /// <param name="title">Title of ConfirmBoard window</param>
+    /// <param name="message">Message would be shown inside the ConfirmBoard window</param>
+    /// <param name="clickButtonWithYes">Callback function to be called when player confirms this operation</param>
+    /// <param name="yesParameter">Parameter would be passed to the clickButtonWithYes callback function</param>
+    public void confirmCurrentAction(string title, string message, UnityAction<bool, System.Object> clickButtonWithYes, System.Object yesParameter) {
+        confirmBoardUI.SetActive(true);
+        confirmBoardUI.GetComponent<ModalPanel>().Choice(title, message, clickButtonWithYes, yesParameter);
+    }
+    /// <summary>
+    /// WorldControl game entity load data from saving data (on the disk)
+    /// </summary>
+    /// <param name="worldControlData">worldControlData is the serialized data on the disk</param>
+    public void loadData(WorldControlData worldControlData) {
+
+        //dont load currentGameState
+        string currentGameState = this.worldControlData.currentGameState;
+        this.worldControlData = worldControlData;
+        //replace loaded currentGameState with old currentGameState
+        this.worldControlData.currentGameState = currentGameState;
+
+        Action loadedFocusAction = new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
+            {ScriptKeyword.ID, worldControlData.focusGameObjectId}
+        });
+        this.takeFocusAction(loadedFocusAction);
+
+        Action loadedTextAction = new Action(ScriptKeyword.TEXT, new Dictionary<string, string>(){
+            {ScriptKeyword.CONTENT, worldControlData.textContent},
+            {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
+        });
+        if (focusGameObject.GetComponent<World>() != null) {
+            updateNextAutoClickTime(focusGameObject.GetComponent<World>().takeTextAction(loadedTextAction));
+        }
+        if (focusGameObject.GetComponent<Character>() != null) {
+            updateNextAutoClickTime(focusGameObject.GetComponent<Character>().takeTextAction(loadedTextAction));
+        }
+
+        //Load saved script to saved action index
+        this.currentActions = scriptReader.loadNextScript(worldControlData.currentScriptName);
+        for (int i = 0; i < worldControlData.currentActionIndex + 1; i++) {
+            currentActions.RemoveAt(0);
+        }
+        //Recover history dialogs
+        dialogContent.GetComponent<DialogManager>().historyDialogs = worldControlData.historyDialogs;
+    }
+
 }

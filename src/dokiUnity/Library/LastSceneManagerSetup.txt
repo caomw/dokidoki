@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/dokidoki/Scenes/CSharpTest.unity
+- path: Assets/dokidoki/Scenes/main.unity
   isLoaded: 1
   isActive: 1

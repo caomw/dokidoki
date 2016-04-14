@@ -5,31 +5,56 @@ using UnityEngine.UI;
 using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 
+/// <summary>
+/// World is a GameObject, represents the world that all characters are in, used to take a series of actions to show effects.
+/// Those actions contain: BackgroundAction, BgmAction, SoundAction, TextAction, VideoAction, WeatherAction.
+/// World could display weather, play bgm, play sound, show background, play video, show aside.
+/// World GameObject has childs as background GameObject, weather GameObject, Video GameObject, a set of Character GameObjects
+/// </summary>
 public class World : MonoBehaviour {
-
-    public GameObject videoBoard;
-	public GameObject background;
-	public GameObject dialogText;
-    public GameObject weatherSnow;
-    public GameObject weatherRain;
-
+    /// <summary>
+    /// WorldData records status for saving and loading
+    /// </summary>
     public WorldData worldData = new WorldData();
 
+
+    //Effect related GameObjects
+    /// <summary>
+    /// videoBoard is a GameObject to play video, is a child of World GameObject
+    /// </summary>
+    public GameObject videoBoard;
+
+    /// <summary>
+    /// background is a GameObject to show background, is a child of World GameObject
+    /// </summary>
+	public GameObject background;
+
+    /// <summary>
+    /// dialogContent is a GameObject to show dialog text on dialog window, which is a child of UI Canvas
+    /// </summary>
+	public GameObject dialogContent;
+
+    /// <summary>
+    /// weatherSnow is a GameObject to show snow weather effect, which is a child of World GameObject
+    /// </summary>
+    public GameObject weatherSnow;
+
+    /// <summary>
+    /// weatherRain is a GameObject to show rain weather effect, which is a child of World GameObject
+    /// </summary>
+    public GameObject weatherRain;
+
     void Start () {
-		if (videoBoard == null || background==null || dialogText==null) {
-            Debug.LogError(ScriptError.NOT_ASSIGN_GAMEOBJECT);
-            Application.Quit();
-        }
         videoBoard.SetActive(true);
         videoBoard.GetComponent<Renderer>().sortingOrder = 100;
         //hide videoBoard at first
         videoBoard.GetComponent<Renderer>().enabled = false;
-
-        if(worldData == null){
-            worldData = new WorldData();
-        }
     }
 
+    /// <summary>
+    /// World takes background action to change the background effects, the background is a child GameObject below the World GameObject
+    /// </summary>
+    /// <param name="backgroundAction">Action tagged as background, which contains the parameters for background setting</param>
     public void takeBackgroundAction(Action backgroundAction)
     {
         worldData.backgroundSrc = backgroundAction.parameters[ScriptKeyword.SRC];
@@ -38,6 +63,10 @@ public class World : MonoBehaviour {
 		background.GetComponent<SpriteRenderer> ().sprite = sprite;
     }
 
+    /// <summary>
+    /// World takes background action to change weather effects, the weather is a child GameObject below the World GameObject
+    /// </summary>
+    /// <param name="weatherAction">Action tagged as weather, which contains the parameters for weather setting</param>
     public void takeWeatherAction(Action weatherAction)
     {
         worldData.weatherType = weatherAction.parameters[ScriptKeyword.TYPE];
@@ -69,6 +98,10 @@ public class World : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// World takes sound action to change sound effects, the sound is a component on the World GameObject
+    /// </summary>
+    /// <param name="soundAction">Action tagged as sound, which contains the parameters for sound setting</param>
     public void takeSoundAction(Action soundAction)
     {
         AudioClip soundAudioClip = Resources.Load(FolderStructure.WORLD + FolderStructure.SOUNDS + soundAction.parameters[ScriptKeyword.SRC]) as AudioClip;
@@ -76,6 +109,10 @@ public class World : MonoBehaviour {
         this.GetComponent<AudioSource>().Play();
     }
 
+    /// <summary>
+    /// World takes bgm action to change sound effects, the bgm is a component on the Background GameObject
+    /// </summary>
+    /// <param name="bgmAction">Action tagged as bgm, which contains the parameters for bgm setting</param>
     public void takeBgmAction(Action bgmAction)
     {
         worldData.bgmSrc = bgmAction.parameters[ScriptKeyword.SRC];
@@ -102,6 +139,11 @@ public class World : MonoBehaviour {
         background.GetComponent<AudioSource>().Play();
     }
 
+    /// <summary>
+    /// World takes video action to change video effects, the video is a child GameObject below the World GameObject
+    /// </summary>
+    /// <param name="videoAction">Action tagged as video, which contains the parameters for video setting</param>
+    /// <returns>Returns end of the time at which this action is supposed over</returns>
     public float takeVideoAction(Action videoAction)
     {
 #if UNITY_STANDALONE || UNITY_EDITOR
@@ -131,15 +173,23 @@ public class World : MonoBehaviour {
 #endif
     }
 
+    /// <summary>
+    /// World takes text action to change video effects, text is shown on the dialog board GameObject which is on the UI canvas
+    /// </summary>
+    /// <param name="textAction">Action tagged as text, which contains the parameters for text setting</param>
+    /// <returns>Returns end of the time at which this action is supposed over</returns>
     public float takeTextAction(Action textAction)
     {
-		//dialogText.GetComponent<Text> ().text = textAction.parameters [ScriptKeyword.CONTENT];
-		dialogText.GetComponent<DialogManager> ().writeOnDialogBoard ("", textAction.parameters [ScriptKeyword.CONTENT], "");
+		//dialogContent.GetComponent<Text> ().text = textAction.parameters [ScriptKeyword.CONTENT];
+		dialogContent.GetComponent<DialogManager> ().writeOnDialogBoard ("", textAction.parameters [ScriptKeyword.CONTENT], "");
         float nextAutoClickTime = Time.realtimeSinceStartup;
         nextAutoClickTime = nextAutoClickTime + textAction.parameters[ScriptKeyword.CONTENT].Length * PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
         return nextAutoClickTime;
     }
 
+    /// <summary>
+    /// this function is used to skip current video action
+    /// </summary>
     public void skipVideoAction()
     {
 #if UNITY_STANDALONE  || UNITY_EDITOR
@@ -157,6 +207,10 @@ public class World : MonoBehaviour {
 #endif
     }
 
+    /// <summary>
+    /// World game entity load data from saving data (on the disk)
+    /// </summary>
+    /// <param name="worldData">worldData is the serialized data on the disk</param>
     public void loadData(WorldData worldData) {
         this.worldData = worldData;
 
