@@ -1,6 +1,0 @@
-C:\_Projects\dokidoki\src\dokiScript(new)\dokiScript\obj\x86\Debug\dokiScript.exe
-C:\_Projects\dokidoki\src\dokiScript(new)\dokiScript\obj\x86\Debug\dokiScript.csprojResolveAssemblyReference.cache
-C:\_Projects\dokidoki\src\dokiScript(new)\dokiScript\bin\Debug\dokiScript.exe
-C:\_Projects\dokidoki\src\dokiScript(new)\dokiScript\bin\Debug\dokiScript.pdb
-C:\_Projects\dokidoki\src\dokiScript(new)\dokiScript\bin\Debug\dokiScriptSetting.dll
-C:\_Projects\dokidoki\src\dokiScript(new)\dokiScript\obj\x86\Debug\dokiScript.pdb

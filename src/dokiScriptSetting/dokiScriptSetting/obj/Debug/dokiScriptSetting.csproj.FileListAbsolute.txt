@@ -1,4 +1,0 @@
-C:\_Projects\dokidoki\src\dokiScriptSetting\dokiScriptSetting\bin\Debug\dokiScriptSetting.dll
-C:\_Projects\dokidoki\src\dokiScriptSetting\dokiScriptSetting\bin\Debug\dokiScriptSetting.pdb
-C:\_Projects\dokidoki\src\dokiScriptSetting\dokiScriptSetting\obj\Debug\dokiScriptSetting.dll
-C:\_Projects\dokidoki\src\dokiScriptSetting\dokiScriptSetting\obj\Debug\dokiScriptSetting.pdb

@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{AB6D3949-11AE-0EB2-313F-CE949EBCE918}") = "dokiUnity", "Assembly-CSharp-firstpass.csproj", "{DC7A2631-D81E-E10B-590F-AD540370BEB2}"
+EndProject
+Project("{AB6D3949-11AE-0EB2-313F-CE949EBCE918}") = "dokiUnity", "Assembly-CSharp.csproj", "{8BC92F30-5BE2-EC22-9ACA-6F9B261BEF90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC7A2631-D81E-E10B-590F-AD540370BEB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC7A2631-D81E-E10B-590F-AD540370BEB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC7A2631-D81E-E10B-590F-AD540370BEB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC7A2631-D81E-E10B-590F-AD540370BEB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BC92F30-5BE2-EC22-9ACA-6F9B261BEF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BC92F30-5BE2-EC22-9ACA-6F9B261BEF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BC92F30-5BE2-EC22-9ACA-6F9B261BEF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BC92F30-5BE2-EC22-9ACA-6F9B261BEF90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

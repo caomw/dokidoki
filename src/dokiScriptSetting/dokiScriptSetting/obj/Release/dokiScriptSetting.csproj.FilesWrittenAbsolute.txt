@@ -1,2 +1,0 @@
-/Users/kesumu/_Projects/dokidoki/src/dokiScriptSetting/dokiScriptSetting/bin/Release/dokiScriptSetting.dll
-/Users/kesumu/_Projects/dokidoki/src/dokiScriptSetting/dokiScriptSetting/obj/Release/dokiScriptSetting.dll
