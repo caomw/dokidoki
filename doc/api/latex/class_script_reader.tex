@@ -1,0 +1,109 @@
+\hypertarget{class_script_reader}{}\section{Script\+Reader Class Reference}
+\label{class_script_reader}\index{Script\+Reader@{Script\+Reader}}
+
+
+\hyperlink{class_script_reader}{Script\+Reader} is resiponsible for all script relating operations during the game. \hyperlink{class_script_reader}{Script\+Reader} could automatically search all scripts under the pre-\/defined folder(asset/\+Resources/\+Doki\+Scripts), and sort it in alphabet order. When a new game starts up, the first script would be loaded, and \hyperlink{class_script_reader}{Script\+Reader} keeps all Actions. When loads a game from saved data, the script with specific name would be loaded. A script is a set of actions. Those actions would be returned to \hyperlink{class_world_control}{World\+Control} to distribute them to \hyperlink{class_world}{World} or \hyperlink{class_character}{Character} to take in sequence.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_script_reader_a2c82ee783650e92155ce7c967dd3ec35}{Script\+Reader} ()
+\begin{DoxyCompactList}\small\item\em When script\+Read is new created, automatically searchs scripts \end{DoxyCompactList}\item 
+List$<$ \hyperlink{classdoki_script_setting_1_1_action}{Action} $>$ \hyperlink{class_script_reader_a2703b42aeba068c816b799e18643e329}{load\+Next\+Script} (string script\+Name=null)
+\begin{DoxyCompactList}\small\item\em Called when current actions are all taken, or jump action or flag action is taking. Load next script, use the script\+Name when it is set, or just load the next script in alphabet order of the script list. \end{DoxyCompactList}\item 
+int \hyperlink{class_script_reader_a090a3839aa5da85a65bcd548a2c2e23f}{get\+Current\+Action\+Index} ()
+\begin{DoxyCompactList}\small\item\em Get the index of current action to be taken in the original script actions\textquotesingle{} list \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_script_reader_a3283923dbeb9c29dedec2f76fee03709}{current\+Script\+Name}
+\begin{DoxyCompactList}\small\item\em Name of current loaded script \end{DoxyCompactList}\item 
+\hyperlink{classdoki_script_setting_1_1_script}{Script} \hyperlink{class_script_reader_a91937ac5ebccf66a8de49c27cde37b4a}{current\+Script}
+\begin{DoxyCompactList}\small\item\em Current script object of loaded script file, which contains a list of actions \end{DoxyCompactList}\item 
+int \hyperlink{class_script_reader_a48c647f1adf56637f27727921e9aef6f}{current\+Script\+Actions\+Count}
+\begin{DoxyCompactList}\small\item\em Record the actios count when the script is first loaded, in order to further record current action\textquotesingle{}s index for saving the game \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_script_reader}{Script\+Reader} is resiponsible for all script relating operations during the game. \hyperlink{class_script_reader}{Script\+Reader} could automatically search all scripts under the pre-\/defined folder(asset/\+Resources/\+Doki\+Scripts), and sort it in alphabet order. When a new game starts up, the first script would be loaded, and \hyperlink{class_script_reader}{Script\+Reader} keeps all Actions. When loads a game from saved data, the script with specific name would be loaded. A script is a set of actions. Those actions would be returned to \hyperlink{class_world_control}{World\+Control} to distribute them to \hyperlink{class_world}{World} or \hyperlink{class_character}{Character} to take in sequence. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Script\+Reader@{Script\+Reader}!Script\+Reader@{Script\+Reader}}
+\index{Script\+Reader@{Script\+Reader}!Script\+Reader@{Script\+Reader}}
+\subsubsection[{\texorpdfstring{Script\+Reader()}{ScriptReader()}}]{\setlength{\rightskip}{0pt plus 5cm}Script\+Reader.\+Script\+Reader (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_script_reader_a2c82ee783650e92155ce7c967dd3ec35}{}\label{class_script_reader_a2c82ee783650e92155ce7c967dd3ec35}
+
+
+When script\+Read is new created, automatically searchs scripts 
+
+
+
+\subsection{Member Function Documentation}
+\index{Script\+Reader@{Script\+Reader}!get\+Current\+Action\+Index@{get\+Current\+Action\+Index}}
+\index{get\+Current\+Action\+Index@{get\+Current\+Action\+Index}!Script\+Reader@{Script\+Reader}}
+\subsubsection[{\texorpdfstring{get\+Current\+Action\+Index()}{getCurrentActionIndex()}}]{\setlength{\rightskip}{0pt plus 5cm}int Script\+Reader.\+get\+Current\+Action\+Index (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_script_reader_a090a3839aa5da85a65bcd548a2c2e23f}{}\label{class_script_reader_a090a3839aa5da85a65bcd548a2c2e23f}
+
+
+Get the index of current action to be taken in the original script actions\textquotesingle{} list 
+
+\begin{DoxyReturn}{Returns}
+Index of current action in original script
+\end{DoxyReturn}
+\index{Script\+Reader@{Script\+Reader}!load\+Next\+Script@{load\+Next\+Script}}
+\index{load\+Next\+Script@{load\+Next\+Script}!Script\+Reader@{Script\+Reader}}
+\subsubsection[{\texorpdfstring{load\+Next\+Script(string script\+Name=null)}{loadNextScript(string scriptName=null)}}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Action}$>$ Script\+Reader.\+load\+Next\+Script (
+\begin{DoxyParamCaption}
+\item[{string}]{script\+Name = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_script_reader_a2703b42aeba068c816b799e18643e329}{}\label{class_script_reader_a2703b42aeba068c816b799e18643e329}
+
+
+Called when current actions are all taken, or jump action or flag action is taking. Load next script, use the script\+Name when it is set, or just load the next script in alphabet order of the script list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em script\+Name} & Name of the next script should be loaded\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return a list of action from the loaded script
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{Script\+Reader@{Script\+Reader}!current\+Script@{current\+Script}}
+\index{current\+Script@{current\+Script}!Script\+Reader@{Script\+Reader}}
+\subsubsection[{\texorpdfstring{current\+Script}{currentScript}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Script} Script\+Reader.\+current\+Script}\hypertarget{class_script_reader_a91937ac5ebccf66a8de49c27cde37b4a}{}\label{class_script_reader_a91937ac5ebccf66a8de49c27cde37b4a}
+
+
+Current script object of loaded script file, which contains a list of actions 
+
+\index{Script\+Reader@{Script\+Reader}!current\+Script\+Actions\+Count@{current\+Script\+Actions\+Count}}
+\index{current\+Script\+Actions\+Count@{current\+Script\+Actions\+Count}!Script\+Reader@{Script\+Reader}}
+\subsubsection[{\texorpdfstring{current\+Script\+Actions\+Count}{currentScriptActionsCount}}]{\setlength{\rightskip}{0pt plus 5cm}int Script\+Reader.\+current\+Script\+Actions\+Count}\hypertarget{class_script_reader_a48c647f1adf56637f27727921e9aef6f}{}\label{class_script_reader_a48c647f1adf56637f27727921e9aef6f}
+
+
+Record the actios count when the script is first loaded, in order to further record current action\textquotesingle{}s index for saving the game 
+
+\index{Script\+Reader@{Script\+Reader}!current\+Script\+Name@{current\+Script\+Name}}
+\index{current\+Script\+Name@{current\+Script\+Name}!Script\+Reader@{Script\+Reader}}
+\subsubsection[{\texorpdfstring{current\+Script\+Name}{currentScriptName}}]{\setlength{\rightskip}{0pt plus 5cm}string Script\+Reader.\+current\+Script\+Name}\hypertarget{class_script_reader_a3283923dbeb9c29dedec2f76fee03709}{}\label{class_script_reader_a3283923dbeb9c29dedec2f76fee03709}
+
+
+Name of current loaded script 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+Doki\+Script\+Util/Script\+Reader.\+cs\end{DoxyCompactItemize}

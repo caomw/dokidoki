@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Error message related to script operation
-/// </summary>
-public static class ScriptError{
-    public const string NOT_ASSIGN_GAMEOBJECT = "[DokiErr] Not assign GameObject";
+namespace dokiUnity {
+    /// <summary>
+    /// Error message related to script operation
+    /// </summary>
+    public static class ScriptError {
+        public const string NOT_ASSIGN_GAMEOBJECT = "[DokiErr] Not assign GameObject";
 
-    public const string FIND_PROJECT_ROOT_FAILED = "[DokiErr] Find project root failed :";
-    public const string FIND_WORLD_FAILED = "[DokiErr] Find world failed";
-    public const string LOAD_SCRIPT_FAILED = "[DokiErr] Load script failed :";
-    public const string NOT_FOCUS_OBJECT = "[DokiErr] No focus object to take action";
+        public const string FIND_PROJECT_ROOT_FAILED = "[DokiErr] Find project root failed :";
+        public const string FIND_WORLD_FAILED = "[DokiErr] Find world failed";
+        public const string LOAD_SCRIPT_FAILED = "[DokiErr] Load script failed :";
+        public const string NOT_FOCUS_OBJECT = "[DokiErr] No focus object to take action";
+    }
 }

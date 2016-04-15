@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 
 namespace dokiScriptSetting{
+	/// <summary>
+	/// ScriptKeyword is the pre-defined related keywords of script
+	/// </summary>
 	public class ScriptKeyword{
 
 		public const string SCRIPT_EXTENSION = "dks";
@@ -123,9 +126,5 @@ namespace dokiScriptSetting{
 	    public const string COMMENT_END = "*/";
 	    public const string ASSIGN = "=";
 	    public const string OR = "|";
-
-		public ScriptKeyword(){
-		}
-
 	}
 }

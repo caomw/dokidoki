@@ -1,0 +1,80 @@
+\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping}{}\section{Unity\+Standard\+Assets.\+Image\+Effects.\+Tonemapping Class Reference}
+\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping}\index{Unity\+Standard\+Assets.\+Image\+Effects.\+Tonemapping@{Unity\+Standard\+Assets.\+Image\+Effects.\+Tonemapping}}
+Inheritance diagram for Unity\+Standard\+Assets.\+Image\+Effects.\+Tonemapping\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Tonemapper\+Type} \{ \\*
+{\bfseries Simple\+Reinhard}, 
+{\bfseries User\+Curve}, 
+{\bfseries Hable}, 
+{\bfseries Photographic}, 
+\\*
+{\bfseries Optimized\+Heji\+Dawson}, 
+{\bfseries Adaptive\+Reinhard}, 
+{\bfseries Adaptive\+Reinhard\+Auto\+White}
+ \}\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_abdf231516a590a7b08ef8503048a3d33}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_abdf231516a590a7b08ef8503048a3d33}
+
+\item 
+enum {\bfseries Adaptive\+Tex\+Size} \{ \\*
+{\bfseries Square16} = 16, 
+{\bfseries Square32} = 32, 
+{\bfseries Square64} = 64, 
+{\bfseries Square128} = 128, 
+\\*
+{\bfseries Square256} = 256, 
+{\bfseries Square512} = 512, 
+{\bfseries Square1024} = 1024
+ \}\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_affa06af2bce28037fc1882c70b7b2131}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_affa06af2bce28037fc1882c70b7b2131}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override bool {\bfseries Check\+Resources} ()\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a2e9b0425c0f9ee9abe087130789ab8b8}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a2e9b0425c0f9ee9abe087130789ab8b8}
+
+\item 
+float {\bfseries Update\+Curve} ()\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a10e58afe7983ea449d9883cc7961f8cb}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a10e58afe7983ea449d9883cc7961f8cb}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Tonemapper\+Type {\bfseries type} = Tonemapper\+Type.\+Photographic\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a52e39b9f620d0f6b460858cdc4f38d54}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a52e39b9f620d0f6b460858cdc4f38d54}
+
+\item 
+Adaptive\+Tex\+Size {\bfseries adaptive\+Texture\+Size} = Adaptive\+Tex\+Size.\+Square256\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a4e2851e06546da666944b45c7f48b25a}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a4e2851e06546da666944b45c7f48b25a}
+
+\item 
+Animation\+Curve {\bfseries remap\+Curve}\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_ab123af79fd32ac56e5940bda3060a5fc}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_ab123af79fd32ac56e5940bda3060a5fc}
+
+\item 
+float {\bfseries exposure\+Adjustment} = 1.\+5f\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a679f2b540067a1881357906f55b97405}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a679f2b540067a1881357906f55b97405}
+
+\item 
+float {\bfseries middle\+Grey} = 0.\+4f\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_ac020f4984d972d696bb9399b9d7c39b6}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_ac020f4984d972d696bb9399b9d7c39b6}
+
+\item 
+float {\bfseries white} = 2.\+0f\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_af6e2802512825edfbe961a98e62a064e}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_af6e2802512825edfbe961a98e62a064e}
+
+\item 
+float {\bfseries adaption\+Speed} = 1.\+5f\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a66ae33480c09153c1edd26b393f59b7b}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a66ae33480c09153c1edd26b393f59b7b}
+
+\item 
+Shader {\bfseries tonemapper} = null\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a81b4dff40a21bcaf1e409b5b2889549f}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a81b4dff40a21bcaf1e409b5b2889549f}
+
+\item 
+bool {\bfseries valid\+Render\+Texture\+Format} = true\hypertarget{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a02b5dd547ece5aefb8a9ed3348b55fed}{}\label{class_unity_standard_assets_1_1_image_effects_1_1_tonemapping_a02b5dd547ece5aefb8a9ed3348b55fed}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/\+Standard Assets/\+Effects/\+Image\+Effects/\+Scripts/Tonemapping.\+cs\end{DoxyCompactItemize}

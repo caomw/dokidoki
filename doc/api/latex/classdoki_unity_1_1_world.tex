@@ -1,0 +1,234 @@
+\hypertarget{classdoki_unity_1_1_world}{}\section{doki\+Unity.\+World Class Reference}
+\label{classdoki_unity_1_1_world}\index{doki\+Unity.\+World@{doki\+Unity.\+World}}
+
+
+\hyperlink{classdoki_unity_1_1_world}{World} is a Game\+Object, represents the world that all characters are in, used to take a series of actions to show effects. Those actions contain\+: Background\+Action, Bgm\+Action, Sound\+Action, Text\+Action, Video\+Action, Weather\+Action. \hyperlink{classdoki_unity_1_1_world}{World} could display weather, play bgm, play sound, show background, play video, show aside. \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object has childs as background Game\+Object, weather Game\+Object, Video Game\+Object, a set of \hyperlink{classdoki_unity_1_1_character}{Character} Game\+Objects  
+
+
+Inheritance diagram for doki\+Unity.\+World\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdoki_unity_1_1_world}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classdoki_unity_1_1_world_aa308177fc8a31254b81e9def60f96576}{take\+Background\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} background\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World} takes background action to change the background effects, the background is a child Game\+Object below the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_a509e9d853ec760a3c3db1b3490597139}{take\+Weather\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} weather\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World} takes background action to change weather effects, the weather is a child Game\+Object below the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_a06b7c1fe9e33bf8a5ad8f6cfd74c935c}{take\+Sound\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} sound\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World} takes sound action to change sound effects, the sound is a component on the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_a3d77da3ca00cf1c70d57fc8c8be4a6a5}{take\+Bgm\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} bgm\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World} takes bgm action to change sound effects, the bgm is a component on the Background Game\+Object \end{DoxyCompactList}\item 
+float \hyperlink{classdoki_unity_1_1_world_a01567311405596f880cb123a145b0afa}{take\+Video\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} video\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World} takes video action to change video effects, the video is a child Game\+Object below the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \end{DoxyCompactList}\item 
+float \hyperlink{classdoki_unity_1_1_world_ac54321ab1f66277f8b69c4f1fb065b19}{take\+Text\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} text\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World} takes text action to change video effects, text is shown on the dialog board Game\+Object which is on the UI canvas \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_a014e87e0f64929f3a7cdc925d552f40a}{skip\+Video\+Action} ()
+\begin{DoxyCompactList}\small\item\em this function is used to skip current video action \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_a43c694c202bb44d60db104ff6e8a68b8}{load\+Data} (\hyperlink{classdoki_unity_1_1_world_data}{World\+Data} \hyperlink{classdoki_unity_1_1_world_a3e521b89596af805bc18166709368d7e}{world\+Data})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World} game entity load data from saving data (on the disk) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdoki_unity_1_1_world_data}{World\+Data} \hyperlink{classdoki_unity_1_1_world_a3e521b89596af805bc18166709368d7e}{world\+Data} = new \hyperlink{classdoki_unity_1_1_world_data}{World\+Data}()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world_data}{World\+Data} records status for saving and loading \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_a5d48c7ea4c8d189f35d8ee8a5b6b320d}{video\+Board}
+\begin{DoxyCompactList}\small\item\em video\+Board is a Game\+Object to play video, is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_a78f3a46c12e0272fcd356c1501fa6a86}{background}
+\begin{DoxyCompactList}\small\item\em background is a Game\+Object to show background, is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_a2ced8f095679e05f01ba5781f67015e5}{dialog\+Content}
+\begin{DoxyCompactList}\small\item\em dialog\+Content is a Game\+Object to show dialog text on dialog window, which is a child of UI Canvas \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_a6e987903e3c1bdd1884076bf058fc15d}{weather\+Snow}
+\begin{DoxyCompactList}\small\item\em weather\+Snow is a Game\+Object to show snow weather effect, which is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_ac49a0f2e620b31eb86a38adac5c99ac8}{weather\+Rain}
+\begin{DoxyCompactList}\small\item\em weather\+Rain is a Game\+Object to show rain weather effect, which is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classdoki_unity_1_1_world}{World} is a Game\+Object, represents the world that all characters are in, used to take a series of actions to show effects. Those actions contain\+: Background\+Action, Bgm\+Action, Sound\+Action, Text\+Action, Video\+Action, Weather\+Action. \hyperlink{classdoki_unity_1_1_world}{World} could display weather, play bgm, play sound, show background, play video, show aside. \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object has childs as background Game\+Object, weather Game\+Object, Video Game\+Object, a set of \hyperlink{classdoki_unity_1_1_character}{Character} Game\+Objects 
+
+
+
+\subsection{Member Function Documentation}
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!load\+Data@{load\+Data}}
+\index{load\+Data@{load\+Data}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{load\+Data(\+World\+Data world\+Data)}{loadData(WorldData worldData)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World.\+load\+Data (
+\begin{DoxyParamCaption}
+\item[{{\bf World\+Data}}]{world\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_a43c694c202bb44d60db104ff6e8a68b8}{}\label{classdoki_unity_1_1_world_a43c694c202bb44d60db104ff6e8a68b8}
+
+
+\hyperlink{classdoki_unity_1_1_world}{World} game entity load data from saving data (on the disk) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Data} & world\+Data is the serialized data on the disk\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!skip\+Video\+Action@{skip\+Video\+Action}}
+\index{skip\+Video\+Action@{skip\+Video\+Action}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{skip\+Video\+Action()}{skipVideoAction()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World.\+skip\+Video\+Action (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_a014e87e0f64929f3a7cdc925d552f40a}{}\label{classdoki_unity_1_1_world_a014e87e0f64929f3a7cdc925d552f40a}
+
+
+this function is used to skip current video action 
+
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!take\+Background\+Action@{take\+Background\+Action}}
+\index{take\+Background\+Action@{take\+Background\+Action}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{take\+Background\+Action(\+Action background\+Action)}{takeBackgroundAction(Action backgroundAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World.\+take\+Background\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{background\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_aa308177fc8a31254b81e9def60f96576}{}\label{classdoki_unity_1_1_world_aa308177fc8a31254b81e9def60f96576}
+
+
+\hyperlink{classdoki_unity_1_1_world}{World} takes background action to change the background effects, the background is a child Game\+Object below the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em background\+Action} & Action tagged as background, which contains the parameters for background setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!take\+Bgm\+Action@{take\+Bgm\+Action}}
+\index{take\+Bgm\+Action@{take\+Bgm\+Action}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{take\+Bgm\+Action(\+Action bgm\+Action)}{takeBgmAction(Action bgmAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World.\+take\+Bgm\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{bgm\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_a3d77da3ca00cf1c70d57fc8c8be4a6a5}{}\label{classdoki_unity_1_1_world_a3d77da3ca00cf1c70d57fc8c8be4a6a5}
+
+
+\hyperlink{classdoki_unity_1_1_world}{World} takes bgm action to change sound effects, the bgm is a component on the Background Game\+Object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bgm\+Action} & Action tagged as bgm, which contains the parameters for bgm setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!take\+Sound\+Action@{take\+Sound\+Action}}
+\index{take\+Sound\+Action@{take\+Sound\+Action}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{take\+Sound\+Action(\+Action sound\+Action)}{takeSoundAction(Action soundAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World.\+take\+Sound\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{sound\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_a06b7c1fe9e33bf8a5ad8f6cfd74c935c}{}\label{classdoki_unity_1_1_world_a06b7c1fe9e33bf8a5ad8f6cfd74c935c}
+
+
+\hyperlink{classdoki_unity_1_1_world}{World} takes sound action to change sound effects, the sound is a component on the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sound\+Action} & Action tagged as sound, which contains the parameters for sound setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!take\+Text\+Action@{take\+Text\+Action}}
+\index{take\+Text\+Action@{take\+Text\+Action}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{take\+Text\+Action(\+Action text\+Action)}{takeTextAction(Action textAction)}}]{\setlength{\rightskip}{0pt plus 5cm}float doki\+Unity.\+World.\+take\+Text\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{text\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_ac54321ab1f66277f8b69c4f1fb065b19}{}\label{classdoki_unity_1_1_world_ac54321ab1f66277f8b69c4f1fb065b19}
+
+
+\hyperlink{classdoki_unity_1_1_world}{World} takes text action to change video effects, text is shown on the dialog board Game\+Object which is on the UI canvas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+Action} & Action tagged as text, which contains the parameters for text setting\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns end of the time at which this action is supposed over
+\end{DoxyReturn}
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!take\+Video\+Action@{take\+Video\+Action}}
+\index{take\+Video\+Action@{take\+Video\+Action}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{take\+Video\+Action(\+Action video\+Action)}{takeVideoAction(Action videoAction)}}]{\setlength{\rightskip}{0pt plus 5cm}float doki\+Unity.\+World.\+take\+Video\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{video\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_a01567311405596f880cb123a145b0afa}{}\label{classdoki_unity_1_1_world_a01567311405596f880cb123a145b0afa}
+
+
+\hyperlink{classdoki_unity_1_1_world}{World} takes video action to change video effects, the video is a child Game\+Object below the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em video\+Action} & Action tagged as video, which contains the parameters for video setting\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns end of the time at which this action is supposed over
+\end{DoxyReturn}
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!take\+Weather\+Action@{take\+Weather\+Action}}
+\index{take\+Weather\+Action@{take\+Weather\+Action}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{take\+Weather\+Action(\+Action weather\+Action)}{takeWeatherAction(Action weatherAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World.\+take\+Weather\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{weather\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_a509e9d853ec760a3c3db1b3490597139}{}\label{classdoki_unity_1_1_world_a509e9d853ec760a3c3db1b3490597139}
+
+
+\hyperlink{classdoki_unity_1_1_world}{World} takes background action to change weather effects, the weather is a child Game\+Object below the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em weather\+Action} & Action tagged as weather, which contains the parameters for weather setting\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!background@{background}}
+\index{background@{background}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{background}{background}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World.\+background}\hypertarget{classdoki_unity_1_1_world_a78f3a46c12e0272fcd356c1501fa6a86}{}\label{classdoki_unity_1_1_world_a78f3a46c12e0272fcd356c1501fa6a86}
+
+
+background is a Game\+Object to show background, is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object 
+
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!dialog\+Content@{dialog\+Content}}
+\index{dialog\+Content@{dialog\+Content}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{dialog\+Content}{dialogContent}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World.\+dialog\+Content}\hypertarget{classdoki_unity_1_1_world_a2ced8f095679e05f01ba5781f67015e5}{}\label{classdoki_unity_1_1_world_a2ced8f095679e05f01ba5781f67015e5}
+
+
+dialog\+Content is a Game\+Object to show dialog text on dialog window, which is a child of UI Canvas 
+
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!video\+Board@{video\+Board}}
+\index{video\+Board@{video\+Board}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{video\+Board}{videoBoard}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World.\+video\+Board}\hypertarget{classdoki_unity_1_1_world_a5d48c7ea4c8d189f35d8ee8a5b6b320d}{}\label{classdoki_unity_1_1_world_a5d48c7ea4c8d189f35d8ee8a5b6b320d}
+
+
+video\+Board is a Game\+Object to play video, is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object 
+
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!weather\+Rain@{weather\+Rain}}
+\index{weather\+Rain@{weather\+Rain}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{weather\+Rain}{weatherRain}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World.\+weather\+Rain}\hypertarget{classdoki_unity_1_1_world_ac49a0f2e620b31eb86a38adac5c99ac8}{}\label{classdoki_unity_1_1_world_ac49a0f2e620b31eb86a38adac5c99ac8}
+
+
+weather\+Rain is a Game\+Object to show rain weather effect, which is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object 
+
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!weather\+Snow@{weather\+Snow}}
+\index{weather\+Snow@{weather\+Snow}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{weather\+Snow}{weatherSnow}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World.\+weather\+Snow}\hypertarget{classdoki_unity_1_1_world_a6e987903e3c1bdd1884076bf058fc15d}{}\label{classdoki_unity_1_1_world_a6e987903e3c1bdd1884076bf058fc15d}
+
+
+weather\+Snow is a Game\+Object to show snow weather effect, which is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object 
+
+\index{doki\+Unity\+::\+World@{doki\+Unity\+::\+World}!world\+Data@{world\+Data}}
+\index{world\+Data@{world\+Data}!doki\+Unity\+::\+World@{doki\+Unity\+::\+World}}
+\subsubsection[{\texorpdfstring{world\+Data}{worldData}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World\+Data} doki\+Unity.\+World.\+world\+Data = new {\bf World\+Data}()}\hypertarget{classdoki_unity_1_1_world_a3e521b89596af805bc18166709368d7e}{}\label{classdoki_unity_1_1_world_a3e521b89596af805bc18166709368d7e}
+
+
+\hyperlink{classdoki_unity_1_1_world_data}{World\+Data} records status for saving and loading 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+Game\+Entity/World.\+cs\end{DoxyCompactItemize}

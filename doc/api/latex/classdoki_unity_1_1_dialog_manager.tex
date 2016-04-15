@@ -1,0 +1,81 @@
+\hypertarget{classdoki_unity_1_1_dialog_manager}{}\section{doki\+Unity.\+Dialog\+Manager Class Reference}
+\label{classdoki_unity_1_1_dialog_manager}\index{doki\+Unity.\+Dialog\+Manager@{doki\+Unity.\+Dialog\+Manager}}
+
+
+\hyperlink{classdoki_unity_1_1_dialog_manager}{Dialog\+Manager} manages dialog\+Content under dialog\+Board. \hyperlink{classdoki_unity_1_1_dialog_manager}{Dialog\+Manager} could receive characters\textquotesingle{} or \hyperlink{classdoki_unity_1_1_world}{World}\textquotesingle{}s calls from voice action or text action, to display their text content on dialog\+Board.  
+
+
+Inheritance diagram for doki\+Unity.\+Dialog\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdoki_unity_1_1_dialog_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classdoki_unity_1_1_dialog_manager_aaa83f44df93ea43dfcb43b397c419335}{write\+On\+Dialog\+Board} (string shown\+Name, string content, string voice\+Src)
+\begin{DoxyCompactList}\small\item\em Called from voice action or text action, to display text content on dialog\+Board, and record a new history dialog into history\+Dialogs \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_dialog_manager_a158466e21dd6040ad2da70ad9b7ec76e}{clear} ()
+\begin{DoxyCompactList}\small\item\em Clear old history\+Dialogs when loads game from saved data \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{classdoki_unity_1_1_dialog}{Dialog} $>$ \hyperlink{classdoki_unity_1_1_dialog_manager_a0d1d2f4182d628aacef51df61b110f15}{history\+Dialogs} = new List$<$\hyperlink{classdoki_unity_1_1_dialog}{Dialog}$>$()
+\begin{DoxyCompactList}\small\item\em History dialogs recorded, for later being shown on Back\+Log\+Board \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classdoki_unity_1_1_dialog_manager}{Dialog\+Manager} manages dialog\+Content under dialog\+Board. \hyperlink{classdoki_unity_1_1_dialog_manager}{Dialog\+Manager} could receive characters\textquotesingle{} or \hyperlink{classdoki_unity_1_1_world}{World}\textquotesingle{}s calls from voice action or text action, to display their text content on dialog\+Board. 
+
+
+
+\subsection{Member Function Documentation}
+\index{doki\+Unity\+::\+Dialog\+Manager@{doki\+Unity\+::\+Dialog\+Manager}!clear@{clear}}
+\index{clear@{clear}!doki\+Unity\+::\+Dialog\+Manager@{doki\+Unity\+::\+Dialog\+Manager}}
+\subsubsection[{\texorpdfstring{clear()}{clear()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+Dialog\+Manager.\+clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_dialog_manager_a158466e21dd6040ad2da70ad9b7ec76e}{}\label{classdoki_unity_1_1_dialog_manager_a158466e21dd6040ad2da70ad9b7ec76e}
+
+
+Clear old history\+Dialogs when loads game from saved data 
+
+\index{doki\+Unity\+::\+Dialog\+Manager@{doki\+Unity\+::\+Dialog\+Manager}!write\+On\+Dialog\+Board@{write\+On\+Dialog\+Board}}
+\index{write\+On\+Dialog\+Board@{write\+On\+Dialog\+Board}!doki\+Unity\+::\+Dialog\+Manager@{doki\+Unity\+::\+Dialog\+Manager}}
+\subsubsection[{\texorpdfstring{write\+On\+Dialog\+Board(string shown\+Name, string content, string voice\+Src)}{writeOnDialogBoard(string shownName, string content, string voiceSrc)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+Dialog\+Manager.\+write\+On\+Dialog\+Board (
+\begin{DoxyParamCaption}
+\item[{string}]{shown\+Name, }
+\item[{string}]{content, }
+\item[{string}]{voice\+Src}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_dialog_manager_aaa83f44df93ea43dfcb43b397c419335}{}\label{classdoki_unity_1_1_dialog_manager_aaa83f44df93ea43dfcb43b397c419335}
+
+
+Called from voice action or text action, to display text content on dialog\+Board, and record a new history dialog into history\+Dialogs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shown\+Name} & \hyperlink{classdoki_unity_1_1_character}{Character}\textquotesingle{}s name\\
+\hline
+{\em content} & \hyperlink{classdoki_unity_1_1_dialog}{Dialog} text content\\
+\hline
+{\em voice\+Src} & \hyperlink{classdoki_unity_1_1_character}{Character}\textquotesingle{}s voice source name\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\index{doki\+Unity\+::\+Dialog\+Manager@{doki\+Unity\+::\+Dialog\+Manager}!history\+Dialogs@{history\+Dialogs}}
+\index{history\+Dialogs@{history\+Dialogs}!doki\+Unity\+::\+Dialog\+Manager@{doki\+Unity\+::\+Dialog\+Manager}}
+\subsubsection[{\texorpdfstring{history\+Dialogs}{historyDialogs}}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Dialog}$>$ doki\+Unity.\+Dialog\+Manager.\+history\+Dialogs = new List$<${\bf Dialog}$>$()}\hypertarget{classdoki_unity_1_1_dialog_manager_a0d1d2f4182d628aacef51df61b110f15}{}\label{classdoki_unity_1_1_dialog_manager_a0d1d2f4182d628aacef51df61b110f15}
+
+
+History dialogs recorded, for later being shown on Back\+Log\+Board 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+U\+I\+Manager/Dialog\+Manager.\+cs\end{DoxyCompactItemize}

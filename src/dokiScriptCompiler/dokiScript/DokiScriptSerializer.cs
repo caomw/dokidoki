@@ -7,10 +7,22 @@ using Action = dokiScriptSetting.Action;
 using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace dokiScript
+namespace dokiScriptCompiler
 {
+	/// <summary>
+	/// DokiScriptSerializer is used to compile and serialize script file(a set of actions) into the disk.
+	/// The compiled and serialized file name would be the same as original script file.
+	/// It would give debug information if script file has errors.
+	/// It could be used via commandline.
+	/// The parameter could be the root directory path of all script files, or one script file path.
+	/// If no parameter is set, it take current directory path as root directory of all script files.
+	/// </summary>
 	class DokiScriptSerializer
 	{
+		/// <summary>
+		/// Command line entry
+		/// </summary>
+		/// <param name="args">Root directory path of all script files, or one script file path</param>
 		public static void Main (string[] args)
 		{
 			DokiScriptSerializer dokiScriptSerializer = new DokiScriptSerializer ();
@@ -30,7 +42,11 @@ namespace dokiScript
 			Console.WriteLine ("Over, enter any key.");
             Console.ReadKey();
 		}
-
+		/// <summary>
+		/// Gets the current folder's file paths.
+		/// </summary>
+		/// <returns>The current folder's file paths.</returns>
+		/// <param name="folerPath">Foler path to search files</param>
 		public string[] getCurrentFolderFilePaths(string folerPath = ""){
 			string[] currentFolderFilePaths = null;
 			if (folerPath == null || folerPath.Equals ("")) {
@@ -40,13 +56,16 @@ namespace dokiScript
 			}
 			return currentFolderFilePaths;
 		}
-
+		/// <summary>
+		/// Compile and Serialize the specified script file.
+		/// </summary>
+		/// <param name="scriptPathWithoutExtension">Script path without extension.</param>
 		public void serialize(string scriptPathWithoutExtension){
 			Console.WriteLine ("...Compiling: "+scriptPathWithoutExtension);
 			string scriptText = File.ReadAllText(scriptPathWithoutExtension + "." + ScriptKeyword.SCRIPT_EXTENSION, System.Text.Encoding.UTF8);
 
-			DokiScriptComplier  compiler = null;
-			compiler = new DokiScriptComplier();
+			DokiScriptCompiler  compiler = null;
+			compiler = new DokiScriptCompiler();
 
 			List<Action> actions = compiler.compile(scriptText);
 
@@ -72,7 +91,10 @@ namespace dokiScript
 				Console.WriteLine ();
 			}
 		}
-
+		/// <summary>
+		/// Compile and serialize all script files under the specific script file folder.
+		/// </summary>
+		/// <param name="scriptFolderPath">Script files folder path.</param>
 		public void serializeAll(string scriptFolderPath = ""){
 			string[] currentFolderfilePaths = this.getCurrentFolderFilePaths (scriptFolderPath);
 			Console.WriteLine (currentFolderfilePaths[0]);

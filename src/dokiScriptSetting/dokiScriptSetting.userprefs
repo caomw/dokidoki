@@ -1,6 +1,11 @@
 ﻿<Properties StartupItem="dokiScriptSetting\dokiScriptSetting.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="dokiScriptSetting\NamespaceDoc.cs">
+    <Files>
+      <File FileName="dokiScriptSetting\ScriptKeyword.cs" Line="3" Column="29" />
+      <File FileName="dokiScriptSetting\NamespaceDoc.cs" Line="12" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,0 +1,176 @@
+\hypertarget{classdoki_unity_1_1_character}{}\section{doki\+Unity.\+Character Class Reference}
+\label{classdoki_unity_1_1_character}\index{doki\+Unity.\+Character@{doki\+Unity.\+Character}}
+
+
+\hyperlink{classdoki_unity_1_1_character}{Character} is a Game\+Object, represents a character in game, used to take a series actions to tell game story. Those actions contain\+: Role\+Action, Posture\+Action, Text\+Action, Voice\+Action, Move\+Action. \hyperlink{classdoki_unity_1_1_character}{Character} could show appearence, speak voice, show psychological descriptions that are texts without voice, move around. \hyperlink{classdoki_unity_1_1_character}{Character} Game\+Object itseft is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \hyperlink{classdoki_unity_1_1_character}{Character} has childs as Bubble board.  
+
+
+Inheritance diagram for doki\+Unity.\+Character\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdoki_unity_1_1_character}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classdoki_unity_1_1_character_a512e836f353af09226ac163a7b64d734}{take\+Role\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} role\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character}{Character} takes role action to change character infomation, like this character type, character name \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_character_ada30cfd909a5113bc9dab066ac27012d}{take\+Posture\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} posture\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character}{Character} takes posture action to change character appearence, like this character cloth, character face expression, gestures. Anyway, this action is to change the picture this character shows \end{DoxyCompactList}\item 
+float \hyperlink{classdoki_unity_1_1_character_a70a55912f6b1dade38c0d4ca1be7c807}{take\+Text\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} text\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character}{Character} takes text action to show character\textquotesingle{}s psychological descriptions, mainly it is used for first-\/view character \end{DoxyCompactList}\item 
+float \hyperlink{classdoki_unity_1_1_character_ad591f55d8a895627b424525dd145cd4b}{take\+Voice\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} voice\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character}{Character} takes text action to speack something with or without audio, be careful that \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object should not speak voice \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_character_a1531b23b9fe3dd18c6ed37ce6d67c5a6}{take\+Move\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} move\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character}{Character} takes move action to move arround in the \hyperlink{classdoki_unity_1_1_world}{World}, exactly arround the background Game\+Object \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_character_a9cfc21b81d39cdb038dc074705603aea}{load\+Data} (\hyperlink{classdoki_unity_1_1_character_data}{Character\+Data} \hyperlink{classdoki_unity_1_1_character_ae450f6f076561552e6a6dfe900377c17}{character\+Data})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character}{Character} game entity load data from saving data (on the disk) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdoki_unity_1_1_character_data}{Character\+Data} \hyperlink{classdoki_unity_1_1_character_ae450f6f076561552e6a6dfe900377c17}{character\+Data} = new \hyperlink{classdoki_unity_1_1_character_data}{Character\+Data}()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character_data}{Character\+Data} records status for saving and loading \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_character_a914f000a12efc5a53d6f0893cdccd5da}{world\+Control}
+\begin{DoxyCompactList}\small\item\em world\+Control is a Game\+Object to control all things in the game like world, characters and U\+Is. Here it is used to read the world\+Control modes. \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_character_aa8f3d81d111e099a3a85fcb81ce09f32}{dialog\+Content}
+\begin{DoxyCompactList}\small\item\em dialog\+Content is a Game\+Object to show dialog text on dialog window, which is a child of UI Canvas \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classdoki_unity_1_1_character}{Character} is a Game\+Object, represents a character in game, used to take a series actions to tell game story. Those actions contain\+: Role\+Action, Posture\+Action, Text\+Action, Voice\+Action, Move\+Action. \hyperlink{classdoki_unity_1_1_character}{Character} could show appearence, speak voice, show psychological descriptions that are texts without voice, move around. \hyperlink{classdoki_unity_1_1_character}{Character} Game\+Object itseft is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \hyperlink{classdoki_unity_1_1_character}{Character} has childs as Bubble board. 
+
+
+
+\subsection{Member Function Documentation}
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!load\+Data@{load\+Data}}
+\index{load\+Data@{load\+Data}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{load\+Data(\+Character\+Data character\+Data)}{loadData(CharacterData characterData)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+Character.\+load\+Data (
+\begin{DoxyParamCaption}
+\item[{{\bf Character\+Data}}]{character\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_character_a9cfc21b81d39cdb038dc074705603aea}{}\label{classdoki_unity_1_1_character_a9cfc21b81d39cdb038dc074705603aea}
+
+
+\hyperlink{classdoki_unity_1_1_character}{Character} game entity load data from saving data (on the disk) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em character\+Data} & character\+Data is the serialized data on the disk\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!take\+Move\+Action@{take\+Move\+Action}}
+\index{take\+Move\+Action@{take\+Move\+Action}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{take\+Move\+Action(\+Action move\+Action)}{takeMoveAction(Action moveAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+Character.\+take\+Move\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{move\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_character_a1531b23b9fe3dd18c6ed37ce6d67c5a6}{}\label{classdoki_unity_1_1_character_a1531b23b9fe3dd18c6ed37ce6d67c5a6}
+
+
+\hyperlink{classdoki_unity_1_1_character}{Character} takes move action to move arround in the \hyperlink{classdoki_unity_1_1_world}{World}, exactly arround the background Game\+Object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em move\+Action} & Action tagged as voice, which contains the parameters for voice setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!take\+Posture\+Action@{take\+Posture\+Action}}
+\index{take\+Posture\+Action@{take\+Posture\+Action}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{take\+Posture\+Action(\+Action posture\+Action)}{takePostureAction(Action postureAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+Character.\+take\+Posture\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{posture\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_character_ada30cfd909a5113bc9dab066ac27012d}{}\label{classdoki_unity_1_1_character_ada30cfd909a5113bc9dab066ac27012d}
+
+
+\hyperlink{classdoki_unity_1_1_character}{Character} takes posture action to change character appearence, like this character cloth, character face expression, gestures. Anyway, this action is to change the picture this character shows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posture\+Action} & Action tagged as posture, which contains the parameters for posture setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!take\+Role\+Action@{take\+Role\+Action}}
+\index{take\+Role\+Action@{take\+Role\+Action}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{take\+Role\+Action(\+Action role\+Action)}{takeRoleAction(Action roleAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+Character.\+take\+Role\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{role\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_character_a512e836f353af09226ac163a7b64d734}{}\label{classdoki_unity_1_1_character_a512e836f353af09226ac163a7b64d734}
+
+
+\hyperlink{classdoki_unity_1_1_character}{Character} takes role action to change character infomation, like this character type, character name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em role\+Action} & Action tagged as weather, which contains the parameters for weather setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!take\+Text\+Action@{take\+Text\+Action}}
+\index{take\+Text\+Action@{take\+Text\+Action}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{take\+Text\+Action(\+Action text\+Action)}{takeTextAction(Action textAction)}}]{\setlength{\rightskip}{0pt plus 5cm}float doki\+Unity.\+Character.\+take\+Text\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{text\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_character_a70a55912f6b1dade38c0d4ca1be7c807}{}\label{classdoki_unity_1_1_character_a70a55912f6b1dade38c0d4ca1be7c807}
+
+
+\hyperlink{classdoki_unity_1_1_character}{Character} takes text action to show character\textquotesingle{}s psychological descriptions, mainly it is used for first-\/view character 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+Action} & Action tagged as text, which contains the parameters for text setting\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns end of the time at which this action is supposed over
+\end{DoxyReturn}
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!take\+Voice\+Action@{take\+Voice\+Action}}
+\index{take\+Voice\+Action@{take\+Voice\+Action}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{take\+Voice\+Action(\+Action voice\+Action)}{takeVoiceAction(Action voiceAction)}}]{\setlength{\rightskip}{0pt plus 5cm}float doki\+Unity.\+Character.\+take\+Voice\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{voice\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_character_ad591f55d8a895627b424525dd145cd4b}{}\label{classdoki_unity_1_1_character_ad591f55d8a895627b424525dd145cd4b}
+
+
+\hyperlink{classdoki_unity_1_1_character}{Character} takes text action to speack something with or without audio, be careful that \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object should not speak voice 
+
+
+\begin{DoxyParams}{Parameters}
+{\em voice\+Action} & Action tagged as voice, which contains the parameters for voice setting\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns end of the time at which this action is supposed over
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!character\+Data@{character\+Data}}
+\index{character\+Data@{character\+Data}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{character\+Data}{characterData}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Character\+Data} doki\+Unity.\+Character.\+character\+Data = new {\bf Character\+Data}()}\hypertarget{classdoki_unity_1_1_character_ae450f6f076561552e6a6dfe900377c17}{}\label{classdoki_unity_1_1_character_ae450f6f076561552e6a6dfe900377c17}
+
+
+\hyperlink{classdoki_unity_1_1_character_data}{Character\+Data} records status for saving and loading 
+
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!dialog\+Content@{dialog\+Content}}
+\index{dialog\+Content@{dialog\+Content}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{dialog\+Content}{dialogContent}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+Character.\+dialog\+Content}\hypertarget{classdoki_unity_1_1_character_aa8f3d81d111e099a3a85fcb81ce09f32}{}\label{classdoki_unity_1_1_character_aa8f3d81d111e099a3a85fcb81ce09f32}
+
+
+dialog\+Content is a Game\+Object to show dialog text on dialog window, which is a child of UI Canvas 
+
+\index{doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}!world\+Control@{world\+Control}}
+\index{world\+Control@{world\+Control}!doki\+Unity\+::\+Character@{doki\+Unity\+::\+Character}}
+\subsubsection[{\texorpdfstring{world\+Control}{worldControl}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+Character.\+world\+Control}\hypertarget{classdoki_unity_1_1_character_a914f000a12efc5a53d6f0893cdccd5da}{}\label{classdoki_unity_1_1_character_a914f000a12efc5a53d6f0893cdccd5da}
+
+
+world\+Control is a Game\+Object to control all things in the game like world, characters and U\+Is. Here it is used to read the world\+Control modes. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+Game\+Entity/Character.\+cs\end{DoxyCompactItemize}

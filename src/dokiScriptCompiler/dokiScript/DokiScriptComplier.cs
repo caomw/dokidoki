@@ -6,20 +6,32 @@ using PerCederberg.Grammatica.Runtime;
 using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 
-namespace dokiScript
+namespace dokiScriptCompiler
 {
-	internal class DokiScriptComplier : DokiScriptAnalyzer
+	/// <summary>
+	/// DokiScriptCompiler is script compiler for dokiScript.
+	/// DokiScriptCompiler is used to compile script file text into a set of actions.
+	/// It is based on grammatica project.
+	/// DokiScriptConstants, DokiScriptTokenizer, DokiSriptParser, DokiScriptAnalyzer are all auto-generated from grammatica.
+	/// </summary>
+	internal class DokiScriptCompiler : DokiScriptAnalyzer
 	{
-
+		/// <summary>
+		/// The actions compiled from script text.
+		/// </summary>
 		public List<Action> actions = null;
+		/// <summary>
+		/// The empty focus action is used to take a position in the list which needs further parameter setting
+		/// </summary>
 		public Action emptyFocusAction = new Action("focus", null);
 
-		public DokiScriptComplier ()
+		public DokiScriptCompiler ()
 		{
 		}
-
-
-
+		/// <summary>
+		/// Compile the specified script text.
+		/// </summary>
+		/// <param name="scriptText">Script text.</param>
 		public List<Action> compile(string scriptText){
 			actions = null;
 			actions = new List<Action> ();

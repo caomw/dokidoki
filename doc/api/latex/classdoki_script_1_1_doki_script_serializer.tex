@@ -1,0 +1,101 @@
+\hypertarget{classdoki_script_1_1_doki_script_serializer}{}\section{doki\+Script.\+Doki\+Script\+Serializer Class Reference}
+\label{classdoki_script_1_1_doki_script_serializer}\index{doki\+Script.\+Doki\+Script\+Serializer@{doki\+Script.\+Doki\+Script\+Serializer}}
+
+
+\hyperlink{classdoki_script_1_1_doki_script_serializer}{Doki\+Script\+Serializer} is used to compile and serialize script file(a set of actions) into the disk. The compiled and serialized file name would be the same as original script file. It would give debug information if script file has errors. It could be used via commandline. The parameter could be the root directory path of all script files, or one script file path. If no parameter is set, it take current directory path as root directory of all script files.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{classdoki_script_1_1_doki_script_serializer_a9ab0e1d1f6167d0a4b0fa36e6d256289}{get\+Current\+Folder\+File\+Paths} (string foler\+Path=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Gets the current folder\textquotesingle{}s file paths. \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_script_1_1_doki_script_serializer_a9ed7d9738cc4b0eeccb50f92b198ddbb}{serialize} (string script\+Path\+Without\+Extension)
+\begin{DoxyCompactList}\small\item\em Compile and Serialize the specified script file. \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_script_1_1_doki_script_serializer_ad299276b93f41858859c1c7a29f75cb0}{serialize\+All} (string script\+Folder\+Path=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Compile and serialize all script files under the specific script file folder. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classdoki_script_1_1_doki_script_serializer_a7670afe553d1bfdd2c2ad947e25917f1}{Main} (string\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Command line entry \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classdoki_script_1_1_doki_script_serializer}{Doki\+Script\+Serializer} is used to compile and serialize script file(a set of actions) into the disk. The compiled and serialized file name would be the same as original script file. It would give debug information if script file has errors. It could be used via commandline. The parameter could be the root directory path of all script files, or one script file path. If no parameter is set, it take current directory path as root directory of all script files. 
+
+
+
+\subsection{Member Function Documentation}
+\index{doki\+Script\+::\+Doki\+Script\+Serializer@{doki\+Script\+::\+Doki\+Script\+Serializer}!get\+Current\+Folder\+File\+Paths@{get\+Current\+Folder\+File\+Paths}}
+\index{get\+Current\+Folder\+File\+Paths@{get\+Current\+Folder\+File\+Paths}!doki\+Script\+::\+Doki\+Script\+Serializer@{doki\+Script\+::\+Doki\+Script\+Serializer}}
+\subsubsection[{\texorpdfstring{get\+Current\+Folder\+File\+Paths(string foler\+Path="""")}{getCurrentFolderFilePaths(string folerPath="")}}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} doki\+Script.\+Doki\+Script\+Serializer.\+get\+Current\+Folder\+File\+Paths (
+\begin{DoxyParamCaption}
+\item[{string}]{foler\+Path = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_script_1_1_doki_script_serializer_a9ab0e1d1f6167d0a4b0fa36e6d256289}{}\label{classdoki_script_1_1_doki_script_serializer_a9ab0e1d1f6167d0a4b0fa36e6d256289}
+
+
+Gets the current folder\textquotesingle{}s file paths. 
+
+\begin{DoxyReturn}{Returns}
+The current folder\textquotesingle{}s file paths.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em foler\+Path} & Foler path to search files\\
+\hline
+\end{DoxyParams}
+\index{doki\+Script\+::\+Doki\+Script\+Serializer@{doki\+Script\+::\+Doki\+Script\+Serializer}!Main@{Main}}
+\index{Main@{Main}!doki\+Script\+::\+Doki\+Script\+Serializer@{doki\+Script\+::\+Doki\+Script\+Serializer}}
+\subsubsection[{\texorpdfstring{Main(string[] args)}{Main(string[] args)}}]{\setlength{\rightskip}{0pt plus 5cm}static void doki\+Script.\+Doki\+Script\+Serializer.\+Main (
+\begin{DoxyParamCaption}
+\item[{string\mbox{[}$\,$\mbox{]}}]{args}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classdoki_script_1_1_doki_script_serializer_a7670afe553d1bfdd2c2ad947e25917f1}{}\label{classdoki_script_1_1_doki_script_serializer_a7670afe553d1bfdd2c2ad947e25917f1}
+
+
+Command line entry 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Root directory path of all script files, or one script file path\\
+\hline
+\end{DoxyParams}
+\index{doki\+Script\+::\+Doki\+Script\+Serializer@{doki\+Script\+::\+Doki\+Script\+Serializer}!serialize@{serialize}}
+\index{serialize@{serialize}!doki\+Script\+::\+Doki\+Script\+Serializer@{doki\+Script\+::\+Doki\+Script\+Serializer}}
+\subsubsection[{\texorpdfstring{serialize(string script\+Path\+Without\+Extension)}{serialize(string scriptPathWithoutExtension)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Script.\+Doki\+Script\+Serializer.\+serialize (
+\begin{DoxyParamCaption}
+\item[{string}]{script\+Path\+Without\+Extension}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_script_1_1_doki_script_serializer_a9ed7d9738cc4b0eeccb50f92b198ddbb}{}\label{classdoki_script_1_1_doki_script_serializer_a9ed7d9738cc4b0eeccb50f92b198ddbb}
+
+
+Compile and Serialize the specified script file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em script\+Path\+Without\+Extension} & Script path without extension.\\
+\hline
+\end{DoxyParams}
+\index{doki\+Script\+::\+Doki\+Script\+Serializer@{doki\+Script\+::\+Doki\+Script\+Serializer}!serialize\+All@{serialize\+All}}
+\index{serialize\+All@{serialize\+All}!doki\+Script\+::\+Doki\+Script\+Serializer@{doki\+Script\+::\+Doki\+Script\+Serializer}}
+\subsubsection[{\texorpdfstring{serialize\+All(string script\+Folder\+Path="""")}{serializeAll(string scriptFolderPath="")}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Script.\+Doki\+Script\+Serializer.\+serialize\+All (
+\begin{DoxyParamCaption}
+\item[{string}]{script\+Folder\+Path = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_script_1_1_doki_script_serializer_ad299276b93f41858859c1c7a29f75cb0}{}\label{classdoki_script_1_1_doki_script_serializer_ad299276b93f41858859c1c7a29f75cb0}
+
+
+Compile and serialize all script files under the specific script file folder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em script\+Folder\+Path} & Script files folder path.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Script\+Compiler/doki\+Script/Doki\+Script\+Serializer.\+cs\end{DoxyCompactItemize}

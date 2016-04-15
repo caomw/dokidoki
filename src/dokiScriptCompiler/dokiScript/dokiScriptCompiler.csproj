@@ -51,6 +51,7 @@
     <Compile Include="DokiScriptTokenizer.cs" />
     <Compile Include="DokiScriptComplier.cs" />
     <Compile Include="DokiScriptSerializer.cs" />
+    <Compile Include="NamespaceDoc.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

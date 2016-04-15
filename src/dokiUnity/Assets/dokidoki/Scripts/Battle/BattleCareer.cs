@@ -2,18 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BattleCareer {
-	public string id;
+namespace dokiBattle {
+    public class BattleCareer {
+        public string id;
 
-    public string name;
-    public List<BattleSkill> skills = new List<BattleSkill>();
+        public string name;
+        public List<BattleSkill> skills = new List<BattleSkill>();
 
-	public BattleCareer (string id, string name){
-		this.id = id;
-		this.name = name;
-	}
+        public BattleCareer(string id, string name) {
+            this.id = id;
+            this.name = name;
+        }
 
-	public void addSkill(BattleSkill skill){
-		this.skills.Add(skill);
-	}
+        public void addSkill(BattleSkill skill) {
+            this.skills.Add(skill);
+        }
+    }
 }

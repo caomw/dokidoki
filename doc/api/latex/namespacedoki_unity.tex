@@ -1,0 +1,41 @@
+\hypertarget{namespacedoki_unity}{}\section{doki\+Unity Namespace Reference}
+\label{namespacedoki_unity}\index{doki\+Unity@{doki\+Unity}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdoki_unity_1_1_bubble_manager}{Bubble\+Manager}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_bubble_manager}{Bubble\+Manager} manages bubble of the character to show bubble effect. Create the atmosphere like reading manga \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_character}{Character}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character}{Character} is a Game\+Object, represents a character in game, used to take a series actions to tell game story. Those actions contain\+: Role\+Action, Posture\+Action, Text\+Action, Voice\+Action, Move\+Action. \hyperlink{classdoki_unity_1_1_character}{Character} could show appearence, speak voice, show psychological descriptions that are texts without voice, move around. \hyperlink{classdoki_unity_1_1_character}{Character} Game\+Object itseft is a child of \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object \hyperlink{classdoki_unity_1_1_character}{Character} has childs as Bubble board. \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_character_data}{Character\+Data}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_character}{Character}\textquotesingle{}s data to be serialized \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_config_board_manager}{Config\+Board\+Manager}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_config_board_manager}{Config\+Board\+Manager} manages the Config\+Board. \hyperlink{classdoki_unity_1_1_config_board_manager}{Config\+Board\+Manager} could read player\textquotesingle{}s game settings from Player\+Prefs when game starts up. \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_c_sharp_test}{C\+Sharp\+Test}
+\item 
+class \hyperlink{classdoki_unity_1_1_dialog}{Dialog}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_dialog}{Dialog} is the combination of text and voice and character\textquotesingle{}s name \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_dialog_manager}{Dialog\+Manager}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_dialog_manager}{Dialog\+Manager} manages dialog\+Content under dialog\+Board. \hyperlink{classdoki_unity_1_1_dialog_manager}{Dialog\+Manager} could receive characters\textquotesingle{} or \hyperlink{classdoki_unity_1_1_world}{World}\textquotesingle{}s calls from voice action or text action, to display their text content on dialog\+Board. \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_folder_structure}{Folder\+Structure}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_folder_structure}{Folder\+Structure} is used to pre-\/define the structure of all game resources. Difference type resources should be put into responding folders, in order to find it only by the name. This could greatly improce efficiency of script writing. dokidoki/ Characters/ Postures/ Voices/ Doki\+Scripts/ World/ Backgrounds/ Bgms/ Sounds/ Videos/ \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_game_constants}{Game\+Constants}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_game_constants}{Game\+Constants} contains all constant parameters in the game. \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_modal_panel}{Modal\+Panel}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_modal_panel}{Modal\+Panel} is a template to create a pop up window to wait for player\textquotesingle{}s option input. \hyperlink{classdoki_unity_1_1_modal_panel}{Modal\+Panel} has a title, message, Yes button (and No button). External callback function could be passed to this window, and when responding button is clicked, the responding functions would be called. \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_multiple_resolution_manager}{Multiple\+Resolution\+Manager}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_multiple_resolution_manager}{Multiple\+Resolution\+Manager} is attached to each Board Game\+Object, used to set the size of each Board into just the size of the screen \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_namespace_doc}{Namespace\+Doc}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{namespacedoki_unity}{doki\+Unity} namespace contains classes for effect part on Unity. \end{DoxyCompactList}\item 
+class {\bfseries Script\+Error}
+\begin{DoxyCompactList}\small\item\em Error message related to script operation \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_script_reader}{Script\+Reader}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_script_reader}{Script\+Reader} is resiponsible for all script relating operations during the game. \hyperlink{classdoki_unity_1_1_script_reader}{Script\+Reader} could automatically search all scripts under the pre-\/defined folder(asset/\+Resources/\+Doki\+Scripts), and sort it in alphabet order. When a new game starts up, the first script would be loaded, and \hyperlink{classdoki_unity_1_1_script_reader}{Script\+Reader} keeps all Actions. When loads a game from saved data, the script with specific name would be loaded. A script is a set of actions. Those actions would be returned to \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} to distribute them to \hyperlink{classdoki_unity_1_1_world}{World} or \hyperlink{classdoki_unity_1_1_character}{Character} to take in sequence. \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_world}{World}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World} is a Game\+Object, represents the world that all characters are in, used to take a series of actions to show effects. Those actions contain\+: Background\+Action, Bgm\+Action, Sound\+Action, Text\+Action, Video\+Action, Weather\+Action. \hyperlink{classdoki_unity_1_1_world}{World} could display weather, play bgm, play sound, show background, play video, show aside. \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object has childs as background Game\+Object, weather Game\+Object, Video Game\+Object, a set of \hyperlink{classdoki_unity_1_1_character}{Character} Game\+Objects \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_world_control}{World\+Control}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} is a Game\+Object, represents the controller of the world, used to distribute actions to \hyperlink{classdoki_unity_1_1_world}{World} or Characters to take, and also itself could take some actinos to manipulate the flow the game. Those actions contain\+: Jump\+Action, Flag\+Action. In addition, World\+Controls contain all setting operation of the world for all UI components. \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} could save and load the game, change the volume, screen size, and other game commands like auto, skip. \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_world_control_data}{World\+Control\+Data}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world_control}{World\+Control}\textquotesingle{}s data to be serialized \end{DoxyCompactList}\item 
+class \hyperlink{classdoki_unity_1_1_world_data}{World\+Data}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world}{World}\textquotesingle{}s data to be serialized \end{DoxyCompactList}\end{DoxyCompactItemize}

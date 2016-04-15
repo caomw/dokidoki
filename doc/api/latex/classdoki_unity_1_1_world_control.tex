@@ -1,0 +1,986 @@
+\hypertarget{classdoki_unity_1_1_world_control}{}\section{doki\+Unity.\+World\+Control Class Reference}
+\label{classdoki_unity_1_1_world_control}\index{doki\+Unity.\+World\+Control@{doki\+Unity.\+World\+Control}}
+
+
+\hyperlink{classdoki_unity_1_1_world_control}{World\+Control} is a Game\+Object, represents the controller of the world, used to distribute actions to \hyperlink{classdoki_unity_1_1_world}{World} or Characters to take, and also itself could take some actinos to manipulate the flow the game. Those actions contain\+: Jump\+Action, Flag\+Action. In addition, World\+Controls contain all setting operation of the world for all UI components. \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} could save and load the game, change the volume, screen size, and other game commands like auto, skip.  
+
+
+Inheritance diagram for doki\+Unity.\+World\+Control\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdoki_unity_1_1_world_control}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classdoki_unity_1_1_world_control_a473fbf334f1dd96f5fa0fbbe0a5000bf}{get\+Dialog\+Mode} ()
+\begin{DoxyCompactList}\small\item\em get the dialog\+Mode in the game config, normal or bubble \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a21f4d4bda7ad397ad92f9970c9c83e33}{step} ()
+\begin{DoxyCompactList}\small\item\em Step the game, which means distribute a set of actions to \hyperlink{classdoki_unity_1_1_world}{World} or a \hyperlink{classdoki_unity_1_1_character}{Character} to take, the last action should be ended with the mouse click. Also, when needs to jump to another script or take flag action, world\+Control itself takes them \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_ac847f05a3a50573d1777ca056869f536}{take\+Focus\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} focus\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} takes focus action to change current focused\+Game\+Object that further is the target to distribute actions to \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a8bd0eb2bb67bb25fd2ecf1f83ef272dd}{take\+Flag\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} flag\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} takes flag action to show flag\+Board, wait for user to choose \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a89c510beb7ed4d5b4562b8c6acc92caf}{on\+Flag\+Text\+Button\+Click} (bool confirmed, System.\+Object option\+Parameter)
+\begin{DoxyCompactList}\small\item\em This functions is called when player clicks on a flag\+Text\+Button, which represents a option. And then jump to that option by loading new scripts \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_aa103f4095742d045e60a608f6c2f7d67}{take\+Jump\+Action} (\hyperlink{classdoki_script_setting_1_1_action}{Action} jump\+Action)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} takes jump action to jump to specific scripts \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a14311cb9ab401b556dd7f1c5b000b829}{create\+New\+Character} (string id)
+\begin{DoxyCompactList}\small\item\em Create new character Game\+Object with id \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a4ceab05db8ef564ec44a7beef621e583}{hide\+In\+Play\+UI} ()
+\begin{DoxyCompactList}\small\item\em Hide game\+Board UI \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_ac519c4fe54a706bfdf67a61ceca1be99}{show\+In\+Play\+UI} ()
+\begin{DoxyCompactList}\small\item\em show game\+Board UI \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a5dfd7a49e2aa4559bdfef17e53020b33}{create\+Log\+Text\+Button} (\hyperlink{classdoki_unity_1_1_dialog}{Dialog} dialog)
+\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a3566b054b725be2b66811f4ad1daec26}{create\+Text\+Button} (string text, Game\+Object prefab, Game\+Object parent\+Game\+Object, Unity\+Action$<$ bool, System.\+Object $>$ onclick, System.\+Object parameter)
+\begin{DoxyCompactList}\small\item\em this function is used to create a new text\+Button from Text\+Prefab which its appearence could be custumized by developers \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_aa15a36423abbd488ef87725cb87b855f}{setup\+Text\+Button\+Board} (List$<$ string $>$ texts, Game\+Object button\+Prefab, Game\+Object content\+Game\+Object, bool to\+Bottom, Unity\+Action$<$ bool, System.\+Object $>$ onclick, List$<$ System.\+Object $>$ parameters)
+\begin{DoxyCompactList}\small\item\em Create the content of a board, which content is a set of Text\+Button. \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_aa2fbdb1bc8a27514eaa3a4e4d0159a8d}{click\+Start\+Button} ()
+\begin{DoxyCompactList}\small\item\em Called when Start\+Button is clicked, to start the game from beginning \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_ab2b13cf5edc7d185474a4c0f45fffbce}{click\+Config\+Button} ()
+\begin{DoxyCompactList}\small\item\em Called when Config\+Button is clicked, to show or hide Config\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a468630c51ee248f187a3451e58e3e404}{click\+Exit\+Button} (bool confirmed)
+\begin{DoxyCompactList}\small\item\em Called when Exit\+Button is clicked, to exit game which needs confirmation from poped up Confirm\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_ac84c65f22696cd7984b06b7ccb736f72}{click\+Back\+Log\+Button} ()
+\begin{DoxyCompactList}\small\item\em Called when Back\+Log\+Button is clicked, to show or hide Back\+Log\+Board, which needs updates Back\+Log, creates new Back\+Log\+Text\+Buttons before show Back\+Log\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a82bcff41f6c6bb6ec848a87de10b1088}{on\+Log\+Text\+Button\+Click} (bool confirmed, System.\+Object voice\+Src)
+\begin{DoxyCompactList}\small\item\em Called when Log\+Text\+Button is clicked, used to replay the voice audio, which needs confirmation from poped up Confirm\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a59aab116fa2e6e50008b07c01ba905b7}{click\+Quick\+Save\+Button} (bool confirmed)
+\begin{DoxyCompactList}\small\item\em Called when Quick\+Save\+Button is clicked, used to save current game to 0 position, which needs confirmation from poped up Confirm\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a1d05a29567a665053aebf308c6b79886}{click\+Quick\+Load\+Button} (bool confirmed)
+\begin{DoxyCompactList}\small\item\em Called when Quick\+Load\+Button is clicked, used to load game from 0 position, which needs confirmation from poped up Confirm\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a1eebc8a7a6d85e8864f05498d39751b8}{click\+Save\+Button} ()
+\begin{DoxyCompactList}\small\item\em Called when Save\+Button is clicked, to show or hide Save\+Board, which needs updates Save\+Text\+Button, creates new Save\+Text\+Button before show Save\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a18cb218542ba16a3cb127a3bf134e304}{on\+Save\+Text\+Button\+Click} (bool confirmed, System.\+Object position)
+\begin{DoxyCompactList}\small\item\em Called when Save\+Text\+Button is clicked, used to save current game to specific postion, which needs confirmation from poped up Confirm\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_aa98acf0c81a8ec1e31d3f2ae72b5a8cb}{click\+Load\+Button} ()
+\begin{DoxyCompactList}\small\item\em Called when Load\+Button is clicked, to show or hide Load\+Board, which needs updates Load\+Text\+Button, creates new Load\+Text\+Buttons before show Load\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a9b21814247603741c6687f2eb931e9dc}{on\+Load\+Text\+Button\+Click} (bool confirmed, System.\+Object position)
+\begin{DoxyCompactList}\small\item\em Called when Load\+Text\+Button is clicked, used to load game from specific postion, which needs confirmation from poped up Confirm\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a22997355be4716d79773434108fb43ed}{check\+Saved\+Data} (List$<$ string $>$ texts)
+\begin{DoxyCompactList}\small\item\em Called when Save\+Board or Load\+Board is going to be shown, read saved data from disk and display saved data information \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a9d7c2602d61ad91fa4dd3f153a80ca08}{save\+To} (int label)
+\begin{DoxyCompactList}\small\item\em Called when Save\+Text\+Button is confirmed or Quick\+Save\+Button is confirmed, used to save current game to specified postion \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_adf111cd1b291659b688eb5a853d79332}{load\+From} (int label)
+\begin{DoxyCompactList}\small\item\em Called when Load\+Text\+Button is confirmed or Quick\+Load\+Button is confirmed, used to load game from specified postion \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a722bd30c844f00bd02a9ad566b2d4090}{click\+Auto\+Button} ()
+\begin{DoxyCompactList}\small\item\em Called when Auto\+Button is clicked, used to enter or exit Auto mode \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_afb4876dc4a7415bcab16e156d6a0784c}{update\+Next\+Auto\+Click\+Time} (float new\+Next\+Auto\+Click\+Time)
+\begin{DoxyCompactList}\small\item\em Update the most long next auto click time, except for Mathf.\+Infinity \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a7d095ab3d2a45d6317ab253259915224}{click\+Skip\+Button} ()
+\begin{DoxyCompactList}\small\item\em Called when Skip\+Button skip key is down and called again when skip key is up, used to enter or exit skip mode \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a801410629965a66e07a93f8e2e228ab0}{click\+Hide\+Button} ()
+\begin{DoxyCompactList}\small\item\em Called when Hide\+Button is clicked, used to hide or show the Game\+Board UI \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a8ccb0f53a4738e830edeacd39f06934f}{value\+Changed\+Screen\+Mode} (int value)
+\begin{DoxyCompactList}\small\item\em Called when Screen\+Mode option on Config\+Board is changed, used for game setting and saved into Player\+Prefs \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a39d7cb1affea057d1e2d82706e2884e9}{value\+Changed\+Dialog\+Mode} (int value)
+\begin{DoxyCompactList}\small\item\em Called when Dialog\+Mode option on Config\+Board is changed, used for game setting and saved into Player\+Prefs \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a7107e89917c673c363c3f9bc5d29e409}{value\+Changed\+Bgm\+Volume} (float value)
+\begin{DoxyCompactList}\small\item\em Called when Bgm\+Volume option on Config\+Board is changed, used for game setting and saved into Player\+Prefs \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a48b8e450a703e229cc2e61e561b6f34e}{value\+Changed\+Se\+Volume} (float value)
+\begin{DoxyCompactList}\small\item\em Called when Se\+Volume option on Config\+Board is changed, used for game setting and saved into Player\+Prefs \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_afe68f5556292c4534370c1fddf6cea85}{value\+Changed\+Voice\+Volume} (float value)
+\begin{DoxyCompactList}\small\item\em Called when Voice\+Volume option on Config\+Board is changed, used for game setting and saved into Player\+Prefs \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a1e1996c4d563de0a87cd555bdd678cb6}{value\+Changed\+Text\+Speed} (float value)
+\begin{DoxyCompactList}\small\item\em Called when Text\+Speed option on Config\+Board is changed, used for game setting and saved into Player\+Prefs \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a7a45fa13dfc12f20031a6a98d56f9da2}{value\+Changed\+Auto\+Speed} (float value)
+\begin{DoxyCompactList}\small\item\em Called when Auto\+Speed option on Config\+Board is changed, used for game setting and saved into Player\+Prefs \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a7c23e87a393bd9ee80730ad28a5ecb5b}{click\+Title\+Button} (bool confirmed)
+\begin{DoxyCompactList}\small\item\em Called when Title\+Button is clicked, used to back to game title, which needs further confirmation from poped up Confirm\+Board \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_a58cb22ada26ebb40723b886e41ebf995}{confirm\+Current\+Action} (string title, string message, Unity\+Action$<$ bool $>$ click\+Button\+With\+Yes)
+\begin{DoxyCompactList}\small\item\em Called when current operation needs confirmed, such Save\+Text\+Button is clicked, used to pop up the Confirm\+Board to ask player whether continue current operation \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_aa59b432b818516551938ca516feeb746}{confirm\+Current\+Action} (string title, string message, Unity\+Action$<$ bool, System.\+Object $>$ click\+Button\+With\+Yes, System.\+Object yes\+Parameter)
+\begin{DoxyCompactList}\small\item\em Called when current operation needs confirmed, such Save\+Text\+Button is clicked, used to pop up the Confirm\+Board to ask player whether continue current operation \end{DoxyCompactList}\item 
+void \hyperlink{classdoki_unity_1_1_world_control_af8300d17c658b78da34f456bedc0a540}{load\+Data} (\hyperlink{classdoki_unity_1_1_world_control_data}{World\+Control\+Data} \hyperlink{classdoki_unity_1_1_world_control_ae4d88d77b7d39fb0dda5ffa4dbf2e2af}{world\+Control\+Data})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} game entity load data from saving data (on the disk) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdoki_unity_1_1_world_control_data}{World\+Control\+Data} \hyperlink{classdoki_unity_1_1_world_control_ae4d88d77b7d39fb0dda5ffa4dbf2e2af}{world\+Control\+Data} = new \hyperlink{classdoki_unity_1_1_world_control_data}{World\+Control\+Data}()
+\begin{DoxyCompactList}\small\item\em world\+Control\+Data records status for saving and loading \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_ad0c8093d2369420fe7a2945685569943}{world}
+\begin{DoxyCompactList}\small\item\em world is the pointer of the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object, for world\+Control to distribute actions to them \end{DoxyCompactList}\item 
+Dictionary$<$ string, Game\+Object $>$ \hyperlink{classdoki_unity_1_1_world_control_ac9f5d3a5d09d2ebb06d329ca35c7c6c1}{characters} = new Dictionary$<$string, Game\+Object$>$()
+\begin{DoxyCompactList}\small\item\em characters is a dictionary of all characters, for world\+Control to distribute actions to them \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_ae8c5b33906c63ababdf909c53fb9065f}{game\+Board\+UI}
+\begin{DoxyCompactList}\small\item\em game\+Board\+UI pointer is used to show and hide game\+Board \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a59c87f26e0e71d252a213a33d5fab725}{dialog\+Board\+UI}
+\begin{DoxyCompactList}\small\item\em dialog\+Board\+UI pointer is used to show and hide dialog\+Board \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a75860dbad7622880a7423f9591c100eb}{quick\+Buttons\+UI}
+\begin{DoxyCompactList}\small\item\em quick\+Buttons\+UI pointer is used to show and hide quick\+Buttons \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a0a45da5cc8aca07edcb84b2b4efdb405}{back\+Log\+UI}
+\begin{DoxyCompactList}\small\item\em back\+Log\+UI pointer is used to show and hide back\+Log \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_aa1f447bae428cf45ad3aa78221fc9af2}{save\+Board\+UI}
+\begin{DoxyCompactList}\small\item\em save\+Board\+UI pointer is used to show and hide save\+Board \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a1acfce34bd2ad676c0f4e8e0aaf4321b}{load\+Board\+UI}
+\begin{DoxyCompactList}\small\item\em load\+Board\+UI pointer is used to show and hide load\+Board \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a0749c8bf0a4cd1dc9049ffabfc14e6c9}{start\+Board\+UI}
+\begin{DoxyCompactList}\small\item\em start\+Board\+UI pointer is used to show and hide start\+Board \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_aa5a18b41fc9213ac80284f21ab447c53}{config\+Board\+UI}
+\begin{DoxyCompactList}\small\item\em config\+Board\+UI pointer is used to show and hide config\+Board \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a323c9efc2a87491a2de3c1beae73d177}{confirm\+Board\+UI}
+\begin{DoxyCompactList}\small\item\em confirm\+Board\+UI pointer is used to show and hide confirm\+Board \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a99dcc33e772703c54d35cf0afe37bc8d}{flag\+Board\+UI}
+\begin{DoxyCompactList}\small\item\em flag\+Board\+UI pointer is used to show and hide flag\+Board \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a9bb72d8cad2cc61503e3855ea47d6e6c}{character\+Prefab}
+\begin{DoxyCompactList}\small\item\em character\+Prefab is a unity prefab, used to create new character, when a new character appear to take some actions \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a181a566112a87ee1d59a57120f50191c}{log\+Text\+Prefab}
+\begin{DoxyCompactList}\small\item\em log\+Text\+Prefab is a unity prefab, used to create new log\+Text Buttons when log\+Board is shown \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a4b65998064f8be0d9c5671305f06d0ce}{save\+Text\+Prefab}
+\begin{DoxyCompactList}\small\item\em save\+Text\+Prefab is a unity prefab, used to create new save\+Text Buttons when save\+Board is shown \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a8b463cfe781120e636a40d52df4dcd7b}{load\+Text\+Prefab}
+\begin{DoxyCompactList}\small\item\em load\+Text\+Prefab is a unity prefab, used to create new load\+Text Buttons when load\+Board is shown \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a60f26fb8915ffa6d19a9811fb782b7ab}{flag\+Text\+Prefab}
+\begin{DoxyCompactList}\small\item\em flag\+Text\+Prefab is a unity prefab, used to create new flag\+Text Buttons when flag\+Board is shown \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a833394abd1744d3fa592070b6c99b9d4}{back\+Log\+Content}
+\begin{DoxyCompactList}\small\item\em back\+Log\+Content pointer is a child of back\+Log\+Board Game\+Object, used to change the content of background\+Board, such as a set log\+Text Buttons \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a7e11b2dcb01ad0f244644b6cf2d08b84}{save\+Content}
+\begin{DoxyCompactList}\small\item\em save\+Content pointer is a child of save\+Board Game\+Object, used to change the content of save\+Board, such as a set save\+Text Buttons \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_ad1c77f4fac85bf16c963907cf2fe1b1a}{load\+Content}
+\begin{DoxyCompactList}\small\item\em load\+Content pointer is a child of load\+Board Game\+Object, used to change the content of load\+Board, such as a set load\+Text Buttons \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_aedd97c791d102d3e9c71fc774403d5cc}{flag\+Content}
+\begin{DoxyCompactList}\small\item\em flag\+Content pointer is a child of flag\+Board Game\+Object, used to change the content of flag\+Board, such as a set flag\+Text Buttons \end{DoxyCompactList}\item 
+Game\+Object \hyperlink{classdoki_unity_1_1_world_control_a894d9bac26faeae9bde2ded0ca1e171e}{dialog\+Content}
+\begin{DoxyCompactList}\small\item\em dialog\+Content pointer is a child of dialog\+Content Game\+Object, used to change the content of dialog\+Board, such as dialog text \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classdoki_unity_1_1_world_control}{World\+Control} is a Game\+Object, represents the controller of the world, used to distribute actions to \hyperlink{classdoki_unity_1_1_world}{World} or Characters to take, and also itself could take some actinos to manipulate the flow the game. Those actions contain\+: Jump\+Action, Flag\+Action. In addition, World\+Controls contain all setting operation of the world for all UI components. \hyperlink{classdoki_unity_1_1_world_control}{World\+Control} could save and load the game, change the volume, screen size, and other game commands like auto, skip. 
+
+
+
+\subsection{Member Function Documentation}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!check\+Saved\+Data@{check\+Saved\+Data}}
+\index{check\+Saved\+Data@{check\+Saved\+Data}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{check\+Saved\+Data(\+List$<$ string $>$ texts)}{checkSavedData(List< string > texts)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+check\+Saved\+Data (
+\begin{DoxyParamCaption}
+\item[{List$<$ string $>$}]{texts}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a22997355be4716d79773434108fb43ed}{}\label{classdoki_unity_1_1_world_control_a22997355be4716d79773434108fb43ed}
+
+
+Called when Save\+Board or Load\+Board is going to be shown, read saved data from disk and display saved data information 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texts} & Texts array which saved data information would copy to\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Auto\+Button@{click\+Auto\+Button}}
+\index{click\+Auto\+Button@{click\+Auto\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Auto\+Button()}{clickAutoButton()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Auto\+Button (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a722bd30c844f00bd02a9ad566b2d4090}{}\label{classdoki_unity_1_1_world_control_a722bd30c844f00bd02a9ad566b2d4090}
+
+
+Called when Auto\+Button is clicked, used to enter or exit Auto mode 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Back\+Log\+Button@{click\+Back\+Log\+Button}}
+\index{click\+Back\+Log\+Button@{click\+Back\+Log\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Back\+Log\+Button()}{clickBackLogButton()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Back\+Log\+Button (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_ac84c65f22696cd7984b06b7ccb736f72}{}\label{classdoki_unity_1_1_world_control_ac84c65f22696cd7984b06b7ccb736f72}
+
+
+Called when Back\+Log\+Button is clicked, to show or hide Back\+Log\+Board, which needs updates Back\+Log, creates new Back\+Log\+Text\+Buttons before show Back\+Log\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Config\+Button@{click\+Config\+Button}}
+\index{click\+Config\+Button@{click\+Config\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Config\+Button()}{clickConfigButton()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Config\+Button (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_ab2b13cf5edc7d185474a4c0f45fffbce}{}\label{classdoki_unity_1_1_world_control_ab2b13cf5edc7d185474a4c0f45fffbce}
+
+
+Called when Config\+Button is clicked, to show or hide Config\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Exit\+Button@{click\+Exit\+Button}}
+\index{click\+Exit\+Button@{click\+Exit\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Exit\+Button(bool confirmed)}{clickExitButton(bool confirmed)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Exit\+Button (
+\begin{DoxyParamCaption}
+\item[{bool}]{confirmed}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a468630c51ee248f187a3451e58e3e404}{}\label{classdoki_unity_1_1_world_control_a468630c51ee248f187a3451e58e3e404}
+
+
+Called when Exit\+Button is clicked, to exit game which needs confirmation from poped up Confirm\+Board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em confirmed} & \\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Hide\+Button@{click\+Hide\+Button}}
+\index{click\+Hide\+Button@{click\+Hide\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Hide\+Button()}{clickHideButton()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Hide\+Button (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a801410629965a66e07a93f8e2e228ab0}{}\label{classdoki_unity_1_1_world_control_a801410629965a66e07a93f8e2e228ab0}
+
+
+Called when Hide\+Button is clicked, used to hide or show the Game\+Board UI 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Load\+Button@{click\+Load\+Button}}
+\index{click\+Load\+Button@{click\+Load\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Load\+Button()}{clickLoadButton()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Load\+Button (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_aa98acf0c81a8ec1e31d3f2ae72b5a8cb}{}\label{classdoki_unity_1_1_world_control_aa98acf0c81a8ec1e31d3f2ae72b5a8cb}
+
+
+Called when Load\+Button is clicked, to show or hide Load\+Board, which needs updates Load\+Text\+Button, creates new Load\+Text\+Buttons before show Load\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Quick\+Load\+Button@{click\+Quick\+Load\+Button}}
+\index{click\+Quick\+Load\+Button@{click\+Quick\+Load\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Quick\+Load\+Button(bool confirmed)}{clickQuickLoadButton(bool confirmed)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Quick\+Load\+Button (
+\begin{DoxyParamCaption}
+\item[{bool}]{confirmed}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a1d05a29567a665053aebf308c6b79886}{}\label{classdoki_unity_1_1_world_control_a1d05a29567a665053aebf308c6b79886}
+
+
+Called when Quick\+Load\+Button is clicked, used to load game from 0 position, which needs confirmation from poped up Confirm\+Board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em confirmed} & Whether current action is confirmed or not\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Quick\+Save\+Button@{click\+Quick\+Save\+Button}}
+\index{click\+Quick\+Save\+Button@{click\+Quick\+Save\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Quick\+Save\+Button(bool confirmed)}{clickQuickSaveButton(bool confirmed)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Quick\+Save\+Button (
+\begin{DoxyParamCaption}
+\item[{bool}]{confirmed}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a59aab116fa2e6e50008b07c01ba905b7}{}\label{classdoki_unity_1_1_world_control_a59aab116fa2e6e50008b07c01ba905b7}
+
+
+Called when Quick\+Save\+Button is clicked, used to save current game to 0 position, which needs confirmation from poped up Confirm\+Board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em confirmed} & Whether current action is confirmed or not\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Save\+Button@{click\+Save\+Button}}
+\index{click\+Save\+Button@{click\+Save\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Save\+Button()}{clickSaveButton()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Save\+Button (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a1eebc8a7a6d85e8864f05498d39751b8}{}\label{classdoki_unity_1_1_world_control_a1eebc8a7a6d85e8864f05498d39751b8}
+
+
+Called when Save\+Button is clicked, to show or hide Save\+Board, which needs updates Save\+Text\+Button, creates new Save\+Text\+Button before show Save\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Skip\+Button@{click\+Skip\+Button}}
+\index{click\+Skip\+Button@{click\+Skip\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Skip\+Button()}{clickSkipButton()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Skip\+Button (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a7d095ab3d2a45d6317ab253259915224}{}\label{classdoki_unity_1_1_world_control_a7d095ab3d2a45d6317ab253259915224}
+
+
+Called when Skip\+Button skip key is down and called again when skip key is up, used to enter or exit skip mode 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Start\+Button@{click\+Start\+Button}}
+\index{click\+Start\+Button@{click\+Start\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Start\+Button()}{clickStartButton()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Start\+Button (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_aa2fbdb1bc8a27514eaa3a4e4d0159a8d}{}\label{classdoki_unity_1_1_world_control_aa2fbdb1bc8a27514eaa3a4e4d0159a8d}
+
+
+Called when Start\+Button is clicked, to start the game from beginning 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!click\+Title\+Button@{click\+Title\+Button}}
+\index{click\+Title\+Button@{click\+Title\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{click\+Title\+Button(bool confirmed)}{clickTitleButton(bool confirmed)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+click\+Title\+Button (
+\begin{DoxyParamCaption}
+\item[{bool}]{confirmed}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a7c23e87a393bd9ee80730ad28a5ecb5b}{}\label{classdoki_unity_1_1_world_control_a7c23e87a393bd9ee80730ad28a5ecb5b}
+
+
+Called when Title\+Button is clicked, used to back to game title, which needs further confirmation from poped up Confirm\+Board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em confirmed} & Whether current action is confirmed or not\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!confirm\+Current\+Action@{confirm\+Current\+Action}}
+\index{confirm\+Current\+Action@{confirm\+Current\+Action}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{confirm\+Current\+Action(string title, string message, Unity\+Action$<$ bool $>$ click\+Button\+With\+Yes)}{confirmCurrentAction(string title, string message, UnityAction< bool > clickButtonWithYes)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+confirm\+Current\+Action (
+\begin{DoxyParamCaption}
+\item[{string}]{title, }
+\item[{string}]{message, }
+\item[{Unity\+Action$<$ bool $>$}]{click\+Button\+With\+Yes}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a58cb22ada26ebb40723b886e41ebf995}{}\label{classdoki_unity_1_1_world_control_a58cb22ada26ebb40723b886e41ebf995}
+
+
+Called when current operation needs confirmed, such Save\+Text\+Button is clicked, used to pop up the Confirm\+Board to ask player whether continue current operation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Title of Confirm\+Board window\\
+\hline
+{\em message} & Message would be shown inside the Confirm\+Board window\\
+\hline
+{\em click\+Button\+With\+Yes} & Callback function to be called when player confirms this operation\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!confirm\+Current\+Action@{confirm\+Current\+Action}}
+\index{confirm\+Current\+Action@{confirm\+Current\+Action}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{confirm\+Current\+Action(string title, string message, Unity\+Action$<$ bool, System.\+Object $>$ click\+Button\+With\+Yes, System.\+Object yes\+Parameter)}{confirmCurrentAction(string title, string message, UnityAction< bool, System.Object > clickButtonWithYes, System.Object yesParameter)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+confirm\+Current\+Action (
+\begin{DoxyParamCaption}
+\item[{string}]{title, }
+\item[{string}]{message, }
+\item[{Unity\+Action$<$ bool, System.\+Object $>$}]{click\+Button\+With\+Yes, }
+\item[{System.\+Object}]{yes\+Parameter}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_aa59b432b818516551938ca516feeb746}{}\label{classdoki_unity_1_1_world_control_aa59b432b818516551938ca516feeb746}
+
+
+Called when current operation needs confirmed, such Save\+Text\+Button is clicked, used to pop up the Confirm\+Board to ask player whether continue current operation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Title of Confirm\+Board window\\
+\hline
+{\em message} & Message would be shown inside the Confirm\+Board window\\
+\hline
+{\em click\+Button\+With\+Yes} & Callback function to be called when player confirms this operation\\
+\hline
+{\em yes\+Parameter} & Parameter would be passed to the click\+Button\+With\+Yes callback function\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!create\+Log\+Text\+Button@{create\+Log\+Text\+Button}}
+\index{create\+Log\+Text\+Button@{create\+Log\+Text\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{create\+Log\+Text\+Button(\+Dialog dialog)}{createLogTextButton(Dialog dialog)}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+create\+Log\+Text\+Button (
+\begin{DoxyParamCaption}
+\item[{{\bf Dialog}}]{dialog}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a5dfd7a49e2aa4559bdfef17e53020b33}{}\label{classdoki_unity_1_1_world_control_a5dfd7a49e2aa4559bdfef17e53020b33}
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em dialog} & The dialog to display on the log\+Text\+Button\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Game\+Object pointer to the new created Log\+Text\+Button
+\end{DoxyReturn}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!create\+New\+Character@{create\+New\+Character}}
+\index{create\+New\+Character@{create\+New\+Character}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{create\+New\+Character(string id)}{createNewCharacter(string id)}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+create\+New\+Character (
+\begin{DoxyParamCaption}
+\item[{string}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a14311cb9ab401b556dd7f1c5b000b829}{}\label{classdoki_unity_1_1_world_control_a14311cb9ab401b556dd7f1c5b000b829}
+
+
+Create new character Game\+Object with id 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of new character in scripts\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Game\+Object pointer of the new character Game\+Object
+\end{DoxyReturn}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!create\+Text\+Button@{create\+Text\+Button}}
+\index{create\+Text\+Button@{create\+Text\+Button}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{create\+Text\+Button(string text, Game\+Object prefab, Game\+Object parent\+Game\+Object, Unity\+Action$<$ bool, System.\+Object $>$ onclick, System.\+Object parameter)}{createTextButton(string text, GameObject prefab, GameObject parentGameObject, UnityAction< bool, System.Object > onclick, System.Object parameter)}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+create\+Text\+Button (
+\begin{DoxyParamCaption}
+\item[{string}]{text, }
+\item[{Game\+Object}]{prefab, }
+\item[{Game\+Object}]{parent\+Game\+Object, }
+\item[{Unity\+Action$<$ bool, System.\+Object $>$}]{onclick, }
+\item[{System.\+Object}]{parameter}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a3566b054b725be2b66811f4ad1daec26}{}\label{classdoki_unity_1_1_world_control_a3566b054b725be2b66811f4ad1daec26}
+
+
+this function is used to create a new text\+Button from Text\+Prefab which its appearence could be custumized by developers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Text display on the button\\
+\hline
+{\em prefab} & Text\+Prefab defines the new created button\textquotesingle{}s appearence\\
+\hline
+{\em parent\+Game\+Object} & Create new text\+Button to be a child of this parent\+Game\+Object\\
+\hline
+{\em onclick} & Call the onclick function when this new created button is clicked\\
+\hline
+{\em parameter} & Attach some paramenters to this new created button, the parameter would be passed to the onclick function\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the Game\+Object pointer of the new created Text\+Button
+\end{DoxyReturn}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!get\+Dialog\+Mode@{get\+Dialog\+Mode}}
+\index{get\+Dialog\+Mode@{get\+Dialog\+Mode}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{get\+Dialog\+Mode()}{getDialogMode()}}]{\setlength{\rightskip}{0pt plus 5cm}string doki\+Unity.\+World\+Control.\+get\+Dialog\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a473fbf334f1dd96f5fa0fbbe0a5000bf}{}\label{classdoki_unity_1_1_world_control_a473fbf334f1dd96f5fa0fbbe0a5000bf}
+
+
+get the dialog\+Mode in the game config, normal or bubble 
+
+\begin{DoxyReturn}{Returns}
+the dialog\+Mode value
+\end{DoxyReturn}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!hide\+In\+Play\+UI@{hide\+In\+Play\+UI}}
+\index{hide\+In\+Play\+UI@{hide\+In\+Play\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{hide\+In\+Play\+U\+I()}{hideInPlayUI()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+hide\+In\+Play\+UI (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a4ceab05db8ef564ec44a7beef621e583}{}\label{classdoki_unity_1_1_world_control_a4ceab05db8ef564ec44a7beef621e583}
+
+
+Hide game\+Board UI 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!load\+Data@{load\+Data}}
+\index{load\+Data@{load\+Data}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{load\+Data(\+World\+Control\+Data world\+Control\+Data)}{loadData(WorldControlData worldControlData)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+load\+Data (
+\begin{DoxyParamCaption}
+\item[{{\bf World\+Control\+Data}}]{world\+Control\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_af8300d17c658b78da34f456bedc0a540}{}\label{classdoki_unity_1_1_world_control_af8300d17c658b78da34f456bedc0a540}
+
+
+\hyperlink{classdoki_unity_1_1_world_control}{World\+Control} game entity load data from saving data (on the disk) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Control\+Data} & world\+Control\+Data is the serialized data on the disk\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!load\+From@{load\+From}}
+\index{load\+From@{load\+From}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{load\+From(int label)}{loadFrom(int label)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+load\+From (
+\begin{DoxyParamCaption}
+\item[{int}]{label}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_adf111cd1b291659b688eb5a853d79332}{}\label{classdoki_unity_1_1_world_control_adf111cd1b291659b688eb5a853d79332}
+
+
+Called when Load\+Text\+Button is confirmed or Quick\+Load\+Button is confirmed, used to load game from specified postion 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & Position where game would load from, exactly the name of saved data folder\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!on\+Flag\+Text\+Button\+Click@{on\+Flag\+Text\+Button\+Click}}
+\index{on\+Flag\+Text\+Button\+Click@{on\+Flag\+Text\+Button\+Click}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{on\+Flag\+Text\+Button\+Click(bool confirmed, System.\+Object option\+Parameter)}{onFlagTextButtonClick(bool confirmed, System.Object optionParameter)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+on\+Flag\+Text\+Button\+Click (
+\begin{DoxyParamCaption}
+\item[{bool}]{confirmed, }
+\item[{System.\+Object}]{option\+Parameter}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a89c510beb7ed4d5b4562b8c6acc92caf}{}\label{classdoki_unity_1_1_world_control_a89c510beb7ed4d5b4562b8c6acc92caf}
+
+
+This functions is called when player clicks on a flag\+Text\+Button, which represents a option. And then jump to that option by loading new scripts 
+
+
+\begin{DoxyParams}{Parameters}
+{\em confirmed} & Whether to do operations directly, or pop up a confirm window to ask for confirmation\\
+\hline
+{\em option\+Parameter} & Option\+Parameter constains the infomation about player\textquotesingle{}s choice\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!on\+Load\+Text\+Button\+Click@{on\+Load\+Text\+Button\+Click}}
+\index{on\+Load\+Text\+Button\+Click@{on\+Load\+Text\+Button\+Click}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{on\+Load\+Text\+Button\+Click(bool confirmed, System.\+Object position)}{onLoadTextButtonClick(bool confirmed, System.Object position)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+on\+Load\+Text\+Button\+Click (
+\begin{DoxyParamCaption}
+\item[{bool}]{confirmed, }
+\item[{System.\+Object}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a9b21814247603741c6687f2eb931e9dc}{}\label{classdoki_unity_1_1_world_control_a9b21814247603741c6687f2eb931e9dc}
+
+
+Called when Load\+Text\+Button is clicked, used to load game from specific postion, which needs confirmation from poped up Confirm\+Board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em confirmed} & Whether current action is confirmed or not\\
+\hline
+{\em position} & where the game should load from, exactly the name of saved data folder\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!on\+Log\+Text\+Button\+Click@{on\+Log\+Text\+Button\+Click}}
+\index{on\+Log\+Text\+Button\+Click@{on\+Log\+Text\+Button\+Click}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{on\+Log\+Text\+Button\+Click(bool confirmed, System.\+Object voice\+Src)}{onLogTextButtonClick(bool confirmed, System.Object voiceSrc)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+on\+Log\+Text\+Button\+Click (
+\begin{DoxyParamCaption}
+\item[{bool}]{confirmed, }
+\item[{System.\+Object}]{voice\+Src}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a82bcff41f6c6bb6ec848a87de10b1088}{}\label{classdoki_unity_1_1_world_control_a82bcff41f6c6bb6ec848a87de10b1088}
+
+
+Called when Log\+Text\+Button is clicked, used to replay the voice audio, which needs confirmation from poped up Confirm\+Board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em confirmed} & Whether current action is confirmed or not\\
+\hline
+{\em voice\+Src} & Name of voice audio to replay\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!on\+Save\+Text\+Button\+Click@{on\+Save\+Text\+Button\+Click}}
+\index{on\+Save\+Text\+Button\+Click@{on\+Save\+Text\+Button\+Click}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{on\+Save\+Text\+Button\+Click(bool confirmed, System.\+Object position)}{onSaveTextButtonClick(bool confirmed, System.Object position)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+on\+Save\+Text\+Button\+Click (
+\begin{DoxyParamCaption}
+\item[{bool}]{confirmed, }
+\item[{System.\+Object}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a18cb218542ba16a3cb127a3bf134e304}{}\label{classdoki_unity_1_1_world_control_a18cb218542ba16a3cb127a3bf134e304}
+
+
+Called when Save\+Text\+Button is clicked, used to save current game to specific postion, which needs confirmation from poped up Confirm\+Board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em confirmed} & Whether current action is confirmed or not\\
+\hline
+{\em position} & where current game should save to, exactly the name of saved data folder\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!save\+To@{save\+To}}
+\index{save\+To@{save\+To}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{save\+To(int label)}{saveTo(int label)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+save\+To (
+\begin{DoxyParamCaption}
+\item[{int}]{label}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a9d7c2602d61ad91fa4dd3f153a80ca08}{}\label{classdoki_unity_1_1_world_control_a9d7c2602d61ad91fa4dd3f153a80ca08}
+
+
+Called when Save\+Text\+Button is confirmed or Quick\+Save\+Button is confirmed, used to save current game to specified postion 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & Position where current game would be saved to, exactly the name of saved data folder\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!setup\+Text\+Button\+Board@{setup\+Text\+Button\+Board}}
+\index{setup\+Text\+Button\+Board@{setup\+Text\+Button\+Board}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{setup\+Text\+Button\+Board(\+List$<$ string $>$ texts, Game\+Object button\+Prefab, Game\+Object content\+Game\+Object, bool to\+Bottom, Unity\+Action$<$ bool, System.\+Object $>$ onclick, List$<$ System.\+Object $>$ parameters)}{setupTextButtonBoard(List< string > texts, GameObject buttonPrefab, GameObject contentGameObject, bool toBottom, UnityAction< bool, System.Object > onclick, List< System.Object > parameters)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+setup\+Text\+Button\+Board (
+\begin{DoxyParamCaption}
+\item[{List$<$ string $>$}]{texts, }
+\item[{Game\+Object}]{button\+Prefab, }
+\item[{Game\+Object}]{content\+Game\+Object, }
+\item[{bool}]{to\+Bottom, }
+\item[{Unity\+Action$<$ bool, System.\+Object $>$}]{onclick, }
+\item[{List$<$ System.\+Object $>$}]{parameters}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_aa15a36423abbd488ef87725cb87b855f}{}\label{classdoki_unity_1_1_world_control_aa15a36423abbd488ef87725cb87b855f}
+
+
+Create the content of a board, which content is a set of Text\+Button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texts} & The text array should be displayed on a set of Text\+Buttons\\
+\hline
+{\em button\+Prefab} & prefab of the Text\+Button, which could be customized by developers\\
+\hline
+{\em content\+Game\+Object} & parent Game\+Object that the created a set of Text\+Buttons should be child of\\
+\hline
+{\em to\+Bottom} & whether the content of board should scroll to bottom when shown\\
+\hline
+{\em onclick} & function to be called when responding Text\+Button is clicked\\
+\hline
+{\em parameters} & parameter array should be attached to the Text\+Button and would be passed to the on click function\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!show\+In\+Play\+UI@{show\+In\+Play\+UI}}
+\index{show\+In\+Play\+UI@{show\+In\+Play\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{show\+In\+Play\+U\+I()}{showInPlayUI()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+show\+In\+Play\+UI (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_ac519c4fe54a706bfdf67a61ceca1be99}{}\label{classdoki_unity_1_1_world_control_ac519c4fe54a706bfdf67a61ceca1be99}
+
+
+show game\+Board UI 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!step@{step}}
+\index{step@{step}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{step()}{step()}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+step (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a21f4d4bda7ad397ad92f9970c9c83e33}{}\label{classdoki_unity_1_1_world_control_a21f4d4bda7ad397ad92f9970c9c83e33}
+
+
+Step the game, which means distribute a set of actions to \hyperlink{classdoki_unity_1_1_world}{World} or a \hyperlink{classdoki_unity_1_1_character}{Character} to take, the last action should be ended with the mouse click. Also, when needs to jump to another script or take flag action, world\+Control itself takes them 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!take\+Flag\+Action@{take\+Flag\+Action}}
+\index{take\+Flag\+Action@{take\+Flag\+Action}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{take\+Flag\+Action(\+Action flag\+Action)}{takeFlagAction(Action flagAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+take\+Flag\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{flag\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a8bd0eb2bb67bb25fd2ecf1f83ef272dd}{}\label{classdoki_unity_1_1_world_control_a8bd0eb2bb67bb25fd2ecf1f83ef272dd}
+
+
+\hyperlink{classdoki_unity_1_1_world_control}{World\+Control} takes flag action to show flag\+Board, wait for user to choose 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+Action} & Action tagged as flag, which contains the parameters for flag setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!take\+Focus\+Action@{take\+Focus\+Action}}
+\index{take\+Focus\+Action@{take\+Focus\+Action}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{take\+Focus\+Action(\+Action focus\+Action)}{takeFocusAction(Action focusAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+take\+Focus\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{focus\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_ac847f05a3a50573d1777ca056869f536}{}\label{classdoki_unity_1_1_world_control_ac847f05a3a50573d1777ca056869f536}
+
+
+\hyperlink{classdoki_unity_1_1_world_control}{World\+Control} takes focus action to change current focused\+Game\+Object that further is the target to distribute actions to 
+
+
+\begin{DoxyParams}{Parameters}
+{\em focus\+Action} & Action tagged as focus, which contains the parameters for focus setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!take\+Jump\+Action@{take\+Jump\+Action}}
+\index{take\+Jump\+Action@{take\+Jump\+Action}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{take\+Jump\+Action(\+Action jump\+Action)}{takeJumpAction(Action jumpAction)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+take\+Jump\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action}}]{jump\+Action}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_aa103f4095742d045e60a608f6c2f7d67}{}\label{classdoki_unity_1_1_world_control_aa103f4095742d045e60a608f6c2f7d67}
+
+
+\hyperlink{classdoki_unity_1_1_world_control}{World\+Control} takes jump action to jump to specific scripts 
+
+
+\begin{DoxyParams}{Parameters}
+{\em jump\+Action} & Action tagged as jump, which contains the parameters for jump setting\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!update\+Next\+Auto\+Click\+Time@{update\+Next\+Auto\+Click\+Time}}
+\index{update\+Next\+Auto\+Click\+Time@{update\+Next\+Auto\+Click\+Time}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{update\+Next\+Auto\+Click\+Time(float new\+Next\+Auto\+Click\+Time)}{updateNextAutoClickTime(float newNextAutoClickTime)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+update\+Next\+Auto\+Click\+Time (
+\begin{DoxyParamCaption}
+\item[{float}]{new\+Next\+Auto\+Click\+Time}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_afb4876dc4a7415bcab16e156d6a0784c}{}\label{classdoki_unity_1_1_world_control_afb4876dc4a7415bcab16e156d6a0784c}
+
+
+Update the most long next auto click time, except for Mathf.\+Infinity 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Next\+Auto\+Click\+Time} & New next auto click time\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!value\+Changed\+Auto\+Speed@{value\+Changed\+Auto\+Speed}}
+\index{value\+Changed\+Auto\+Speed@{value\+Changed\+Auto\+Speed}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{value\+Changed\+Auto\+Speed(float value)}{valueChangedAutoSpeed(float value)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+value\+Changed\+Auto\+Speed (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a7a45fa13dfc12f20031a6a98d56f9da2}{}\label{classdoki_unity_1_1_world_control_a7a45fa13dfc12f20031a6a98d56f9da2}
+
+
+Called when Auto\+Speed option on Config\+Board is changed, used for game setting and saved into Player\+Prefs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Changed value\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!value\+Changed\+Bgm\+Volume@{value\+Changed\+Bgm\+Volume}}
+\index{value\+Changed\+Bgm\+Volume@{value\+Changed\+Bgm\+Volume}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{value\+Changed\+Bgm\+Volume(float value)}{valueChangedBgmVolume(float value)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+value\+Changed\+Bgm\+Volume (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a7107e89917c673c363c3f9bc5d29e409}{}\label{classdoki_unity_1_1_world_control_a7107e89917c673c363c3f9bc5d29e409}
+
+
+Called when Bgm\+Volume option on Config\+Board is changed, used for game setting and saved into Player\+Prefs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Changed value\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!value\+Changed\+Dialog\+Mode@{value\+Changed\+Dialog\+Mode}}
+\index{value\+Changed\+Dialog\+Mode@{value\+Changed\+Dialog\+Mode}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{value\+Changed\+Dialog\+Mode(int value)}{valueChangedDialogMode(int value)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+value\+Changed\+Dialog\+Mode (
+\begin{DoxyParamCaption}
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a39d7cb1affea057d1e2d82706e2884e9}{}\label{classdoki_unity_1_1_world_control_a39d7cb1affea057d1e2d82706e2884e9}
+
+
+Called when Dialog\+Mode option on Config\+Board is changed, used for game setting and saved into Player\+Prefs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Changed value\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!value\+Changed\+Screen\+Mode@{value\+Changed\+Screen\+Mode}}
+\index{value\+Changed\+Screen\+Mode@{value\+Changed\+Screen\+Mode}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{value\+Changed\+Screen\+Mode(int value)}{valueChangedScreenMode(int value)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+value\+Changed\+Screen\+Mode (
+\begin{DoxyParamCaption}
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a8ccb0f53a4738e830edeacd39f06934f}{}\label{classdoki_unity_1_1_world_control_a8ccb0f53a4738e830edeacd39f06934f}
+
+
+Called when Screen\+Mode option on Config\+Board is changed, used for game setting and saved into Player\+Prefs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Changed value\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!value\+Changed\+Se\+Volume@{value\+Changed\+Se\+Volume}}
+\index{value\+Changed\+Se\+Volume@{value\+Changed\+Se\+Volume}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{value\+Changed\+Se\+Volume(float value)}{valueChangedSeVolume(float value)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+value\+Changed\+Se\+Volume (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a48b8e450a703e229cc2e61e561b6f34e}{}\label{classdoki_unity_1_1_world_control_a48b8e450a703e229cc2e61e561b6f34e}
+
+
+Called when Se\+Volume option on Config\+Board is changed, used for game setting and saved into Player\+Prefs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Changed value\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!value\+Changed\+Text\+Speed@{value\+Changed\+Text\+Speed}}
+\index{value\+Changed\+Text\+Speed@{value\+Changed\+Text\+Speed}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{value\+Changed\+Text\+Speed(float value)}{valueChangedTextSpeed(float value)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+value\+Changed\+Text\+Speed (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_a1e1996c4d563de0a87cd555bdd678cb6}{}\label{classdoki_unity_1_1_world_control_a1e1996c4d563de0a87cd555bdd678cb6}
+
+
+Called when Text\+Speed option on Config\+Board is changed, used for game setting and saved into Player\+Prefs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Changed value\\
+\hline
+\end{DoxyParams}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!value\+Changed\+Voice\+Volume@{value\+Changed\+Voice\+Volume}}
+\index{value\+Changed\+Voice\+Volume@{value\+Changed\+Voice\+Volume}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{value\+Changed\+Voice\+Volume(float value)}{valueChangedVoiceVolume(float value)}}]{\setlength{\rightskip}{0pt plus 5cm}void doki\+Unity.\+World\+Control.\+value\+Changed\+Voice\+Volume (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classdoki_unity_1_1_world_control_afe68f5556292c4534370c1fddf6cea85}{}\label{classdoki_unity_1_1_world_control_afe68f5556292c4534370c1fddf6cea85}
+
+
+Called when Voice\+Volume option on Config\+Board is changed, used for game setting and saved into Player\+Prefs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Changed value\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!back\+Log\+Content@{back\+Log\+Content}}
+\index{back\+Log\+Content@{back\+Log\+Content}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{back\+Log\+Content}{backLogContent}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+back\+Log\+Content}\hypertarget{classdoki_unity_1_1_world_control_a833394abd1744d3fa592070b6c99b9d4}{}\label{classdoki_unity_1_1_world_control_a833394abd1744d3fa592070b6c99b9d4}
+
+
+back\+Log\+Content pointer is a child of back\+Log\+Board Game\+Object, used to change the content of background\+Board, such as a set log\+Text Buttons 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!back\+Log\+UI@{back\+Log\+UI}}
+\index{back\+Log\+UI@{back\+Log\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{back\+Log\+UI}{backLogUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+back\+Log\+UI}\hypertarget{classdoki_unity_1_1_world_control_a0a45da5cc8aca07edcb84b2b4efdb405}{}\label{classdoki_unity_1_1_world_control_a0a45da5cc8aca07edcb84b2b4efdb405}
+
+
+back\+Log\+UI pointer is used to show and hide back\+Log 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!character\+Prefab@{character\+Prefab}}
+\index{character\+Prefab@{character\+Prefab}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{character\+Prefab}{characterPrefab}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+character\+Prefab}\hypertarget{classdoki_unity_1_1_world_control_a9bb72d8cad2cc61503e3855ea47d6e6c}{}\label{classdoki_unity_1_1_world_control_a9bb72d8cad2cc61503e3855ea47d6e6c}
+
+
+character\+Prefab is a unity prefab, used to create new character, when a new character appear to take some actions 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!characters@{characters}}
+\index{characters@{characters}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{characters}{characters}}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, Game\+Object$>$ doki\+Unity.\+World\+Control.\+characters = new Dictionary$<$string, Game\+Object$>$()}\hypertarget{classdoki_unity_1_1_world_control_ac9f5d3a5d09d2ebb06d329ca35c7c6c1}{}\label{classdoki_unity_1_1_world_control_ac9f5d3a5d09d2ebb06d329ca35c7c6c1}
+
+
+characters is a dictionary of all characters, for world\+Control to distribute actions to them 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!config\+Board\+UI@{config\+Board\+UI}}
+\index{config\+Board\+UI@{config\+Board\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{config\+Board\+UI}{configBoardUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+config\+Board\+UI}\hypertarget{classdoki_unity_1_1_world_control_aa5a18b41fc9213ac80284f21ab447c53}{}\label{classdoki_unity_1_1_world_control_aa5a18b41fc9213ac80284f21ab447c53}
+
+
+config\+Board\+UI pointer is used to show and hide config\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!confirm\+Board\+UI@{confirm\+Board\+UI}}
+\index{confirm\+Board\+UI@{confirm\+Board\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{confirm\+Board\+UI}{confirmBoardUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+confirm\+Board\+UI}\hypertarget{classdoki_unity_1_1_world_control_a323c9efc2a87491a2de3c1beae73d177}{}\label{classdoki_unity_1_1_world_control_a323c9efc2a87491a2de3c1beae73d177}
+
+
+confirm\+Board\+UI pointer is used to show and hide confirm\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!dialog\+Board\+UI@{dialog\+Board\+UI}}
+\index{dialog\+Board\+UI@{dialog\+Board\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{dialog\+Board\+UI}{dialogBoardUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+dialog\+Board\+UI}\hypertarget{classdoki_unity_1_1_world_control_a59c87f26e0e71d252a213a33d5fab725}{}\label{classdoki_unity_1_1_world_control_a59c87f26e0e71d252a213a33d5fab725}
+
+
+dialog\+Board\+UI pointer is used to show and hide dialog\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!dialog\+Content@{dialog\+Content}}
+\index{dialog\+Content@{dialog\+Content}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{dialog\+Content}{dialogContent}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+dialog\+Content}\hypertarget{classdoki_unity_1_1_world_control_a894d9bac26faeae9bde2ded0ca1e171e}{}\label{classdoki_unity_1_1_world_control_a894d9bac26faeae9bde2ded0ca1e171e}
+
+
+dialog\+Content pointer is a child of dialog\+Content Game\+Object, used to change the content of dialog\+Board, such as dialog text 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!flag\+Board\+UI@{flag\+Board\+UI}}
+\index{flag\+Board\+UI@{flag\+Board\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{flag\+Board\+UI}{flagBoardUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+flag\+Board\+UI}\hypertarget{classdoki_unity_1_1_world_control_a99dcc33e772703c54d35cf0afe37bc8d}{}\label{classdoki_unity_1_1_world_control_a99dcc33e772703c54d35cf0afe37bc8d}
+
+
+flag\+Board\+UI pointer is used to show and hide flag\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!flag\+Content@{flag\+Content}}
+\index{flag\+Content@{flag\+Content}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{flag\+Content}{flagContent}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+flag\+Content}\hypertarget{classdoki_unity_1_1_world_control_aedd97c791d102d3e9c71fc774403d5cc}{}\label{classdoki_unity_1_1_world_control_aedd97c791d102d3e9c71fc774403d5cc}
+
+
+flag\+Content pointer is a child of flag\+Board Game\+Object, used to change the content of flag\+Board, such as a set flag\+Text Buttons 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!flag\+Text\+Prefab@{flag\+Text\+Prefab}}
+\index{flag\+Text\+Prefab@{flag\+Text\+Prefab}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{flag\+Text\+Prefab}{flagTextPrefab}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+flag\+Text\+Prefab}\hypertarget{classdoki_unity_1_1_world_control_a60f26fb8915ffa6d19a9811fb782b7ab}{}\label{classdoki_unity_1_1_world_control_a60f26fb8915ffa6d19a9811fb782b7ab}
+
+
+flag\+Text\+Prefab is a unity prefab, used to create new flag\+Text Buttons when flag\+Board is shown 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!game\+Board\+UI@{game\+Board\+UI}}
+\index{game\+Board\+UI@{game\+Board\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{game\+Board\+UI}{gameBoardUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+game\+Board\+UI}\hypertarget{classdoki_unity_1_1_world_control_ae8c5b33906c63ababdf909c53fb9065f}{}\label{classdoki_unity_1_1_world_control_ae8c5b33906c63ababdf909c53fb9065f}
+
+
+game\+Board\+UI pointer is used to show and hide game\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!load\+Board\+UI@{load\+Board\+UI}}
+\index{load\+Board\+UI@{load\+Board\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{load\+Board\+UI}{loadBoardUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+load\+Board\+UI}\hypertarget{classdoki_unity_1_1_world_control_a1acfce34bd2ad676c0f4e8e0aaf4321b}{}\label{classdoki_unity_1_1_world_control_a1acfce34bd2ad676c0f4e8e0aaf4321b}
+
+
+load\+Board\+UI pointer is used to show and hide load\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!load\+Content@{load\+Content}}
+\index{load\+Content@{load\+Content}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{load\+Content}{loadContent}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+load\+Content}\hypertarget{classdoki_unity_1_1_world_control_ad1c77f4fac85bf16c963907cf2fe1b1a}{}\label{classdoki_unity_1_1_world_control_ad1c77f4fac85bf16c963907cf2fe1b1a}
+
+
+load\+Content pointer is a child of load\+Board Game\+Object, used to change the content of load\+Board, such as a set load\+Text Buttons 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!load\+Text\+Prefab@{load\+Text\+Prefab}}
+\index{load\+Text\+Prefab@{load\+Text\+Prefab}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{load\+Text\+Prefab}{loadTextPrefab}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+load\+Text\+Prefab}\hypertarget{classdoki_unity_1_1_world_control_a8b463cfe781120e636a40d52df4dcd7b}{}\label{classdoki_unity_1_1_world_control_a8b463cfe781120e636a40d52df4dcd7b}
+
+
+load\+Text\+Prefab is a unity prefab, used to create new load\+Text Buttons when load\+Board is shown 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!log\+Text\+Prefab@{log\+Text\+Prefab}}
+\index{log\+Text\+Prefab@{log\+Text\+Prefab}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{log\+Text\+Prefab}{logTextPrefab}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+log\+Text\+Prefab}\hypertarget{classdoki_unity_1_1_world_control_a181a566112a87ee1d59a57120f50191c}{}\label{classdoki_unity_1_1_world_control_a181a566112a87ee1d59a57120f50191c}
+
+
+log\+Text\+Prefab is a unity prefab, used to create new log\+Text Buttons when log\+Board is shown 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!quick\+Buttons\+UI@{quick\+Buttons\+UI}}
+\index{quick\+Buttons\+UI@{quick\+Buttons\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{quick\+Buttons\+UI}{quickButtonsUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+quick\+Buttons\+UI}\hypertarget{classdoki_unity_1_1_world_control_a75860dbad7622880a7423f9591c100eb}{}\label{classdoki_unity_1_1_world_control_a75860dbad7622880a7423f9591c100eb}
+
+
+quick\+Buttons\+UI pointer is used to show and hide quick\+Buttons 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!save\+Board\+UI@{save\+Board\+UI}}
+\index{save\+Board\+UI@{save\+Board\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{save\+Board\+UI}{saveBoardUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+save\+Board\+UI}\hypertarget{classdoki_unity_1_1_world_control_aa1f447bae428cf45ad3aa78221fc9af2}{}\label{classdoki_unity_1_1_world_control_aa1f447bae428cf45ad3aa78221fc9af2}
+
+
+save\+Board\+UI pointer is used to show and hide save\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!save\+Content@{save\+Content}}
+\index{save\+Content@{save\+Content}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{save\+Content}{saveContent}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+save\+Content}\hypertarget{classdoki_unity_1_1_world_control_a7e11b2dcb01ad0f244644b6cf2d08b84}{}\label{classdoki_unity_1_1_world_control_a7e11b2dcb01ad0f244644b6cf2d08b84}
+
+
+save\+Content pointer is a child of save\+Board Game\+Object, used to change the content of save\+Board, such as a set save\+Text Buttons 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!save\+Text\+Prefab@{save\+Text\+Prefab}}
+\index{save\+Text\+Prefab@{save\+Text\+Prefab}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{save\+Text\+Prefab}{saveTextPrefab}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+save\+Text\+Prefab}\hypertarget{classdoki_unity_1_1_world_control_a4b65998064f8be0d9c5671305f06d0ce}{}\label{classdoki_unity_1_1_world_control_a4b65998064f8be0d9c5671305f06d0ce}
+
+
+save\+Text\+Prefab is a unity prefab, used to create new save\+Text Buttons when save\+Board is shown 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!start\+Board\+UI@{start\+Board\+UI}}
+\index{start\+Board\+UI@{start\+Board\+UI}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{start\+Board\+UI}{startBoardUI}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+start\+Board\+UI}\hypertarget{classdoki_unity_1_1_world_control_a0749c8bf0a4cd1dc9049ffabfc14e6c9}{}\label{classdoki_unity_1_1_world_control_a0749c8bf0a4cd1dc9049ffabfc14e6c9}
+
+
+start\+Board\+UI pointer is used to show and hide start\+Board 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!world@{world}}
+\index{world@{world}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{world}{world}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object doki\+Unity.\+World\+Control.\+world}\hypertarget{classdoki_unity_1_1_world_control_ad0c8093d2369420fe7a2945685569943}{}\label{classdoki_unity_1_1_world_control_ad0c8093d2369420fe7a2945685569943}
+
+
+world is the pointer of the \hyperlink{classdoki_unity_1_1_world}{World} Game\+Object, for world\+Control to distribute actions to them 
+
+\index{doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}!world\+Control\+Data@{world\+Control\+Data}}
+\index{world\+Control\+Data@{world\+Control\+Data}!doki\+Unity\+::\+World\+Control@{doki\+Unity\+::\+World\+Control}}
+\subsubsection[{\texorpdfstring{world\+Control\+Data}{worldControlData}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World\+Control\+Data} doki\+Unity.\+World\+Control.\+world\+Control\+Data = new {\bf World\+Control\+Data}()}\hypertarget{classdoki_unity_1_1_world_control_ae4d88d77b7d39fb0dda5ffa4dbf2e2af}{}\label{classdoki_unity_1_1_world_control_ae4d88d77b7d39fb0dda5ffa4dbf2e2af}
+
+
+world\+Control\+Data records status for saving and loading 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+Game\+Entity/World\+Control.\+cs\end{DoxyCompactItemize}
