@@ -1,0 +1,81 @@
+\hypertarget{class_dialog_manager}{}\section{Dialog\+Manager Class Reference}
+\label{class_dialog_manager}\index{Dialog\+Manager@{Dialog\+Manager}}
+
+
+\hyperlink{class_dialog_manager}{Dialog\+Manager} manages dialog\+Content under dialog\+Board. \hyperlink{class_dialog_manager}{Dialog\+Manager} could receive characters\textquotesingle{} or \hyperlink{class_world}{World}\textquotesingle{}s calls from voice action or text action, to display their text content on dialog\+Board.  
+
+
+Inheritance diagram for Dialog\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_dialog_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_dialog_manager_a4699c45424df9dcb63b9b2dda98554ad}{write\+On\+Dialog\+Board} (string shown\+Name, string content, string voice\+Src)
+\begin{DoxyCompactList}\small\item\em Called from voice action or text action, to display text content on dialog\+Board, and record a new history dialog into history\+Dialogs \end{DoxyCompactList}\item 
+void \hyperlink{class_dialog_manager_ae3a45e59a6021bbc9361e903fe61037e}{clear} ()
+\begin{DoxyCompactList}\small\item\em Clear old history\+Dialogs when loads game from saved data \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{class_dialog}{Dialog} $>$ \hyperlink{class_dialog_manager_a77ed2b79b0cc521e693446b510087b80}{history\+Dialogs} = new List$<$\hyperlink{class_dialog}{Dialog}$>$()
+\begin{DoxyCompactList}\small\item\em History dialogs recorded, for later being shown on Back\+Log\+Board \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_dialog_manager}{Dialog\+Manager} manages dialog\+Content under dialog\+Board. \hyperlink{class_dialog_manager}{Dialog\+Manager} could receive characters\textquotesingle{} or \hyperlink{class_world}{World}\textquotesingle{}s calls from voice action or text action, to display their text content on dialog\+Board. 
+
+
+
+\subsection{Member Function Documentation}
+\index{Dialog\+Manager@{Dialog\+Manager}!clear@{clear}}
+\index{clear@{clear}!Dialog\+Manager@{Dialog\+Manager}}
+\subsubsection[{\texorpdfstring{clear()}{clear()}}]{\setlength{\rightskip}{0pt plus 5cm}void Dialog\+Manager.\+clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_dialog_manager_ae3a45e59a6021bbc9361e903fe61037e}{}\label{class_dialog_manager_ae3a45e59a6021bbc9361e903fe61037e}
+
+
+Clear old history\+Dialogs when loads game from saved data 
+
+\index{Dialog\+Manager@{Dialog\+Manager}!write\+On\+Dialog\+Board@{write\+On\+Dialog\+Board}}
+\index{write\+On\+Dialog\+Board@{write\+On\+Dialog\+Board}!Dialog\+Manager@{Dialog\+Manager}}
+\subsubsection[{\texorpdfstring{write\+On\+Dialog\+Board(string shown\+Name, string content, string voice\+Src)}{writeOnDialogBoard(string shownName, string content, string voiceSrc)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dialog\+Manager.\+write\+On\+Dialog\+Board (
+\begin{DoxyParamCaption}
+\item[{string}]{shown\+Name, }
+\item[{string}]{content, }
+\item[{string}]{voice\+Src}
+\end{DoxyParamCaption}
+)}\hypertarget{class_dialog_manager_a4699c45424df9dcb63b9b2dda98554ad}{}\label{class_dialog_manager_a4699c45424df9dcb63b9b2dda98554ad}
+
+
+Called from voice action or text action, to display text content on dialog\+Board, and record a new history dialog into history\+Dialogs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shown\+Name} & \hyperlink{class_character}{Character}\textquotesingle{}s name\\
+\hline
+{\em content} & \hyperlink{class_dialog}{Dialog} text content\\
+\hline
+{\em voice\+Src} & \hyperlink{class_character}{Character}\textquotesingle{}s voice source name\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\index{Dialog\+Manager@{Dialog\+Manager}!history\+Dialogs@{history\+Dialogs}}
+\index{history\+Dialogs@{history\+Dialogs}!Dialog\+Manager@{Dialog\+Manager}}
+\subsubsection[{\texorpdfstring{history\+Dialogs}{historyDialogs}}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Dialog}$>$ Dialog\+Manager.\+history\+Dialogs = new List$<${\bf Dialog}$>$()}\hypertarget{class_dialog_manager_a77ed2b79b0cc521e693446b510087b80}{}\label{class_dialog_manager_a77ed2b79b0cc521e693446b510087b80}
+
+
+History dialogs recorded, for later being shown on Back\+Log\+Board 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+U\+I\+Manager/Dialog\+Manager.\+cs\end{DoxyCompactItemize}

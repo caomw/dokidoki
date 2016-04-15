@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 
+/// <summary>
+/// Dialog is the combination of text and voice and character's name
+/// </summary>
 [System.Serializable]
 public class Dialog{
 	public string shownName;

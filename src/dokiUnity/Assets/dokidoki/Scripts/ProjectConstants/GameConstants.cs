@@ -1,5 +1,9 @@
 ﻿using System.Collections;
 
+
+/// <summary>
+/// GameConstants contains all constant parameters in the game.
+/// </summary>
 public class GameConstants{
     public const int HISTORY_DIALOG_MAX = 100;
     public const float TEXT_DELAY_FACTOR = 0.1f;

@@ -4,12 +4,27 @@ using System.Collections;
 using System.Collections.Generic;
 using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
 
+/// <summary>
+/// DialogManager manages dialogContent under dialogBoard.
+/// DialogManager could receive characters' or World's calls from voice action or text action, to display their text content on dialogBoard.
+/// </summary>
 public class DialogManager : MonoBehaviour {
-
+    /// <summary>
+    /// History dialogs recorded, for later being shown on BackLogBoard
+    /// </summary>
 	public List<Dialog> historyDialogs = new List<Dialog>();
-
+    /// <summary>
+    /// Coroutine recorded to be able to be stopped when needs new animated text to be shown
+    /// </summary>
     IEnumerator currentAnimateText = null;
 
+
+    /// <summary>
+    /// Called from voice action or text action, to display text content on dialogBoard, and record a new history dialog into historyDialogs
+    /// </summary>
+    /// <param name="shownName">Character's name</param>
+    /// <param name="content">Dialog text content</param>
+    /// <param name="voiceSrc">Character's voice source name</param>
 	public void writeOnDialogBoard(string shownName, string content, string voiceSrc){
         //Display dialog
         if (currentAnimateText != null)
@@ -30,7 +45,12 @@ public class DialogManager : MonoBehaviour {
 		}
 		//Debug.Log ("writeOnDialogBoard: "+content);
 	}
-
+    /// <summary>
+    /// Called when needs to display new animateText on the dialogBoard
+    /// </summary>
+    /// <param name="shownName">Character's name</param>
+    /// <param name="content">Dialog text content</param>
+    /// <returns>Coroutine pointer of this running animateText function, used to stop this old functions when new animateText functions is needed</returns>
     IEnumerator animateText(string shownName, string content)
     {
         int i = 0;
@@ -41,7 +61,9 @@ public class DialogManager : MonoBehaviour {
             yield return new WaitForSeconds( PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR);
         }
     }
-
+    /// <summary>
+    /// Clear old historyDialogs when loads game from saved data
+    /// </summary>
     public void clear() {
         historyDialogs = new List<Dialog>();
     }

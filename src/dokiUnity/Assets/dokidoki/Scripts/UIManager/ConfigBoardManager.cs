@@ -2,16 +2,44 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// ConfigBoardManager manages the ConfigBoard.
+/// ConfigBoardManager could read player's game settings from PlayerPrefs when game starts up.
+/// </summary>
 public class ConfigBoardManager : MonoBehaviour {
 
+    /// <summary>
+    /// Pointer to screenModeDropdown GameObject
+    /// </summary>
     public Dropdown screenModeDropdown;
+    /// <summary>
+    /// Pointer to dialogModeDropdown GameObject
+    /// </summary>
     public Dropdown dialogModeDropdown;
+    /// <summary>
+    /// Pointer to bgmVolumeSlider GameObject
+    /// </summary>
     public Slider bgmVolumeSlider;
+    /// <summary>
+    /// Pointer to seVolumeSlider GameObject
+    /// </summary>
     public Slider seVolumeSlider;
+    /// <summary>
+    /// Pointer to voiceVolumeSlider GameObject
+    /// </summary>
     public Slider voiceVolumeSlider;
+    /// <summary>
+    /// Pointer to textSpeedSlider GameObject
+    /// </summary>
     public Slider textSpeedSlider;
+    /// <summary>
+    /// Pointer to autoSpeedSlider GameObject
+    /// </summary>
     public Slider autoSpeedSlider;
 
+    /// <summary>
+    /// Loads game settings from PlayerPrefs, when game starts up
+    /// </summary>
     void Awake() {
         int screenMode = PlayerPrefs.GetInt(GameConstants.CONFIG_SCREEN_MODE, 0);
         int dialogMode = PlayerPrefs.GetInt(GameConstants.CONFIG_DIALOG_MODE, 0);

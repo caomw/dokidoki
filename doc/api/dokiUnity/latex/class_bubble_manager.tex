@@ -1,0 +1,163 @@
+\hypertarget{class_bubble_manager}{}\section{Bubble\+Manager Class Reference}
+\label{class_bubble_manager}\index{Bubble\+Manager@{Bubble\+Manager}}
+
+
+\hyperlink{class_bubble_manager}{Bubble\+Manager} manages bubble of the character to show bubble effect. Create the atmosphere like reading manga  
+
+
+Inheritance diagram for Bubble\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_bubble_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_bubble_manager_af9acea2ad3e43b4b6a2678f0d1923c55}{position\+Bubble} (Vector2 position)
+\begin{DoxyCompactList}\small\item\em Put bubble into a proper postion according to the character\textquotesingle{}s position \end{DoxyCompactList}\item 
+void \hyperlink{class_bubble_manager_a11a6a2b1085ffb9aa1109dfe3be2e55d}{write\+On\+Bubble\+Board} (string shown\+Name, string content, string voice\+Src, Vector2 character\+Position)
+\begin{DoxyCompactList}\small\item\em Write a new dialog which contains character\textquotesingle{}s name, text content, and voice source, into the bubble \end{DoxyCompactList}\item 
+void {\bfseries test\+Bubble\+Board} ()\hypertarget{class_bubble_manager_ab2f4db139391c7cebbe1f3f2488fd198}{}\label{class_bubble_manager_ab2f4db139391c7cebbe1f3f2488fd198}
+
+\item 
+void \hyperlink{class_bubble_manager_aecb219fb99fdc12f56be6a217f91f744}{hide} ()
+\begin{DoxyCompactList}\small\item\em Hide the bubble \end{DoxyCompactList}\item 
+void \hyperlink{class_bubble_manager_a7196e8a86d6a57b8001a1291e052b035}{show} ()
+\begin{DoxyCompactList}\small\item\em Show the bubble \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \hyperlink{class_bubble_manager_a695c03d55290b06d575b33ea6457881a}{bubble}
+\begin{DoxyCompactList}\small\item\em Pointer to the bubble Game\+Object \end{DoxyCompactList}\item 
+Text\+Mesh \hyperlink{class_bubble_manager_a527b93910188f40019b8a47717e004f7}{text\+Mesh}
+\begin{DoxyCompactList}\small\item\em Pointer to text Game\+Object\textquotesingle{}s the text\+Mesh component \end{DoxyCompactList}\item 
+Sprite \hyperlink{class_bubble_manager_a7fd323149c28ab5289e9292349f8f41e}{bubble\+Top\+Left}
+\begin{DoxyCompactList}\small\item\em Sprite Pointer to the bubble background picture which tail is pointed to bottom right \end{DoxyCompactList}\item 
+Sprite \hyperlink{class_bubble_manager_aa3b8d53f60bbba28edec8924ca5a1ee3}{bubble\+Top\+Right}
+\begin{DoxyCompactList}\small\item\em Sprite Pointer to the bubble background picture which tail is pointed to bottom left \end{DoxyCompactList}\item 
+Sprite \hyperlink{class_bubble_manager_a17c953ad296ced986643535f4a736cdd}{bubble\+Bottom\+Left}
+\begin{DoxyCompactList}\small\item\em Sprite Pointer to the bubble background picture which tail is pointed to top right \end{DoxyCompactList}\item 
+Sprite \hyperlink{class_bubble_manager_ab8f69b885d62fcb4411ccaeeed4617d9}{bubble\+Bottom\+Right}
+\begin{DoxyCompactList}\small\item\em Sprite Pointer to the bubble background picture which tail is pointed to top left \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_bubble_manager}{Bubble\+Manager} manages bubble of the character to show bubble effect. Create the atmosphere like reading manga 
+
+
+
+\subsection{Member Function Documentation}
+\index{Bubble\+Manager@{Bubble\+Manager}!hide@{hide}}
+\index{hide@{hide}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{hide()}{hide()}}]{\setlength{\rightskip}{0pt plus 5cm}void Bubble\+Manager.\+hide (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bubble_manager_aecb219fb99fdc12f56be6a217f91f744}{}\label{class_bubble_manager_aecb219fb99fdc12f56be6a217f91f744}
+
+
+Hide the bubble 
+
+\index{Bubble\+Manager@{Bubble\+Manager}!position\+Bubble@{position\+Bubble}}
+\index{position\+Bubble@{position\+Bubble}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{position\+Bubble(\+Vector2 position)}{positionBubble(Vector2 position)}}]{\setlength{\rightskip}{0pt plus 5cm}void Bubble\+Manager.\+position\+Bubble (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bubble_manager_af9acea2ad3e43b4b6a2678f0d1923c55}{}\label{class_bubble_manager_af9acea2ad3e43b4b6a2678f0d1923c55}
+
+
+Put bubble into a proper postion according to the character\textquotesingle{}s position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & \hyperlink{class_character}{Character}\textquotesingle{}s position\\
+\hline
+\end{DoxyParams}
+\index{Bubble\+Manager@{Bubble\+Manager}!show@{show}}
+\index{show@{show}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{show()}{show()}}]{\setlength{\rightskip}{0pt plus 5cm}void Bubble\+Manager.\+show (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bubble_manager_a7196e8a86d6a57b8001a1291e052b035}{}\label{class_bubble_manager_a7196e8a86d6a57b8001a1291e052b035}
+
+
+Show the bubble 
+
+\index{Bubble\+Manager@{Bubble\+Manager}!write\+On\+Bubble\+Board@{write\+On\+Bubble\+Board}}
+\index{write\+On\+Bubble\+Board@{write\+On\+Bubble\+Board}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{write\+On\+Bubble\+Board(string shown\+Name, string content, string voice\+Src, Vector2 character\+Position)}{writeOnBubbleBoard(string shownName, string content, string voiceSrc, Vector2 characterPosition)}}]{\setlength{\rightskip}{0pt plus 5cm}void Bubble\+Manager.\+write\+On\+Bubble\+Board (
+\begin{DoxyParamCaption}
+\item[{string}]{shown\+Name, }
+\item[{string}]{content, }
+\item[{string}]{voice\+Src, }
+\item[{Vector2}]{character\+Position}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bubble_manager_a11a6a2b1085ffb9aa1109dfe3be2e55d}{}\label{class_bubble_manager_a11a6a2b1085ffb9aa1109dfe3be2e55d}
+
+
+Write a new dialog which contains character\textquotesingle{}s name, text content, and voice source, into the bubble 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shown\+Name} & \hyperlink{class_character}{Character}\textquotesingle{}s name\\
+\hline
+{\em content} & \hyperlink{class_dialog}{Dialog}\textquotesingle{}s text content\\
+\hline
+{\em voice\+Src} & Voice source name\\
+\hline
+{\em character\+Position} & \hyperlink{class_character}{Character}\textquotesingle{}s position\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\index{Bubble\+Manager@{Bubble\+Manager}!bubble@{bubble}}
+\index{bubble@{bubble}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{bubble}{bubble}}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Object Bubble\+Manager.\+bubble}\hypertarget{class_bubble_manager_a695c03d55290b06d575b33ea6457881a}{}\label{class_bubble_manager_a695c03d55290b06d575b33ea6457881a}
+
+
+Pointer to the bubble Game\+Object 
+
+\index{Bubble\+Manager@{Bubble\+Manager}!bubble\+Bottom\+Left@{bubble\+Bottom\+Left}}
+\index{bubble\+Bottom\+Left@{bubble\+Bottom\+Left}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{bubble\+Bottom\+Left}{bubbleBottomLeft}}]{\setlength{\rightskip}{0pt plus 5cm}Sprite Bubble\+Manager.\+bubble\+Bottom\+Left}\hypertarget{class_bubble_manager_a17c953ad296ced986643535f4a736cdd}{}\label{class_bubble_manager_a17c953ad296ced986643535f4a736cdd}
+
+
+Sprite Pointer to the bubble background picture which tail is pointed to top right 
+
+\index{Bubble\+Manager@{Bubble\+Manager}!bubble\+Bottom\+Right@{bubble\+Bottom\+Right}}
+\index{bubble\+Bottom\+Right@{bubble\+Bottom\+Right}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{bubble\+Bottom\+Right}{bubbleBottomRight}}]{\setlength{\rightskip}{0pt plus 5cm}Sprite Bubble\+Manager.\+bubble\+Bottom\+Right}\hypertarget{class_bubble_manager_ab8f69b885d62fcb4411ccaeeed4617d9}{}\label{class_bubble_manager_ab8f69b885d62fcb4411ccaeeed4617d9}
+
+
+Sprite Pointer to the bubble background picture which tail is pointed to top left 
+
+\index{Bubble\+Manager@{Bubble\+Manager}!bubble\+Top\+Left@{bubble\+Top\+Left}}
+\index{bubble\+Top\+Left@{bubble\+Top\+Left}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{bubble\+Top\+Left}{bubbleTopLeft}}]{\setlength{\rightskip}{0pt plus 5cm}Sprite Bubble\+Manager.\+bubble\+Top\+Left}\hypertarget{class_bubble_manager_a7fd323149c28ab5289e9292349f8f41e}{}\label{class_bubble_manager_a7fd323149c28ab5289e9292349f8f41e}
+
+
+Sprite Pointer to the bubble background picture which tail is pointed to bottom right 
+
+\index{Bubble\+Manager@{Bubble\+Manager}!bubble\+Top\+Right@{bubble\+Top\+Right}}
+\index{bubble\+Top\+Right@{bubble\+Top\+Right}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{bubble\+Top\+Right}{bubbleTopRight}}]{\setlength{\rightskip}{0pt plus 5cm}Sprite Bubble\+Manager.\+bubble\+Top\+Right}\hypertarget{class_bubble_manager_aa3b8d53f60bbba28edec8924ca5a1ee3}{}\label{class_bubble_manager_aa3b8d53f60bbba28edec8924ca5a1ee3}
+
+
+Sprite Pointer to the bubble background picture which tail is pointed to bottom left 
+
+\index{Bubble\+Manager@{Bubble\+Manager}!text\+Mesh@{text\+Mesh}}
+\index{text\+Mesh@{text\+Mesh}!Bubble\+Manager@{Bubble\+Manager}}
+\subsubsection[{\texorpdfstring{text\+Mesh}{textMesh}}]{\setlength{\rightskip}{0pt plus 5cm}Text\+Mesh Bubble\+Manager.\+text\+Mesh}\hypertarget{class_bubble_manager_a527b93910188f40019b8a47717e004f7}{}\label{class_bubble_manager_a527b93910188f40019b8a47717e004f7}
+
+
+Pointer to text Game\+Object\textquotesingle{}s the text\+Mesh component 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+U\+I\+Manager/Bubble\+Manager.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,149 @@
+\hypertarget{class_modal_panel}{}\section{Modal\+Panel Class Reference}
+\label{class_modal_panel}\index{Modal\+Panel@{Modal\+Panel}}
+
+
+\hyperlink{class_modal_panel}{Modal\+Panel} is a template to create a pop up window to wait for player\textquotesingle{}s option input. \hyperlink{class_modal_panel}{Modal\+Panel} has a title, message, Yes button (and No button). External callback function could be passed to this window, and when responding button is clicked, the responding functions would be called.  
+
+
+Inheritance diagram for Modal\+Panel\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_modal_panel}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_modal_panel_a483b135984734fae019d7eb7756f071c}{Choice} (string title, string message, Unity\+Action$<$ bool $>$ yes\+Event)
+\begin{DoxyCompactList}\small\item\em Show and customize the popup window\textquotesingle{}s title, message, yes\+Button\textquotesingle{}s callback function \end{DoxyCompactList}\item 
+void \hyperlink{class_modal_panel_ac09d315fc2a04509b943d768dad3b54b}{Choice} (string title, string message, Unity\+Action$<$ bool, System.\+Object $>$ yes\+Event, System.\+Object yes\+Parameter)
+\begin{DoxyCompactList}\small\item\em Show and customize the popup window\textquotesingle{}s title, message, yes\+Button\textquotesingle{}s callback function and parameters should be passed to the function \end{DoxyCompactList}\item 
+void \hyperlink{class_modal_panel_a8eb51394f84fff6341ee2e96230f09c0}{Choice} (string title, string message, Unity\+Action$<$ bool $>$ yes\+Event, Unity\+Action$<$ bool $>$ no\+Event)
+\begin{DoxyCompactList}\small\item\em Show and customize the popup window\textquotesingle{}s title, message, yes\+Button\textquotesingle{}s callback function and no\+Button\textquotesingle{}s callback function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Text \hyperlink{class_modal_panel_a372eb52ee36c5bd204ca4659bc0f2e8c}{title\+Text}
+\begin{DoxyCompactList}\small\item\em Pointer to the title\+Text Game\+Object \end{DoxyCompactList}\item 
+Text \hyperlink{class_modal_panel_aa0f1e1e45589f671cba12b0f05647a77}{message\+Text}
+\begin{DoxyCompactList}\small\item\em Pointer to the message\+Text Game\+Object \end{DoxyCompactList}\item 
+Button \hyperlink{class_modal_panel_ad03ef3b69d09cf3c4b6a9d309bb7401d}{yes\+Button}
+\begin{DoxyCompactList}\small\item\em Pointer to the yes\+Button Game\+Object \end{DoxyCompactList}\item 
+Button \hyperlink{class_modal_panel_a87f88998d90ba4c3c07bd7fb9aac6d58}{no\+Button}
+\begin{DoxyCompactList}\small\item\em Pointer to the no\+Button Game\+Object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_modal_panel}{Modal\+Panel} is a template to create a pop up window to wait for player\textquotesingle{}s option input. \hyperlink{class_modal_panel}{Modal\+Panel} has a title, message, Yes button (and No button). External callback function could be passed to this window, and when responding button is clicked, the responding functions would be called. 
+
+
+
+\subsection{Member Function Documentation}
+\index{Modal\+Panel@{Modal\+Panel}!Choice@{Choice}}
+\index{Choice@{Choice}!Modal\+Panel@{Modal\+Panel}}
+\subsubsection[{\texorpdfstring{Choice(string title, string message, Unity\+Action$<$ bool $>$ yes\+Event)}{Choice(string title, string message, UnityAction< bool > yesEvent)}}]{\setlength{\rightskip}{0pt plus 5cm}void Modal\+Panel.\+Choice (
+\begin{DoxyParamCaption}
+\item[{string}]{title, }
+\item[{string}]{message, }
+\item[{Unity\+Action$<$ bool $>$}]{yes\+Event}
+\end{DoxyParamCaption}
+)}\hypertarget{class_modal_panel_a483b135984734fae019d7eb7756f071c}{}\label{class_modal_panel_a483b135984734fae019d7eb7756f071c}
+
+
+Show and customize the popup window\textquotesingle{}s title, message, yes\+Button\textquotesingle{}s callback function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Title of the window\\
+\hline
+{\em message} & Message insidethe window\\
+\hline
+{\em yes\+Event} & Callback function of yes\+Button\\
+\hline
+\end{DoxyParams}
+\index{Modal\+Panel@{Modal\+Panel}!Choice@{Choice}}
+\index{Choice@{Choice}!Modal\+Panel@{Modal\+Panel}}
+\subsubsection[{\texorpdfstring{Choice(string title, string message, Unity\+Action$<$ bool, System.\+Object $>$ yes\+Event, System.\+Object yes\+Parameter)}{Choice(string title, string message, UnityAction< bool, System.Object > yesEvent, System.Object yesParameter)}}]{\setlength{\rightskip}{0pt plus 5cm}void Modal\+Panel.\+Choice (
+\begin{DoxyParamCaption}
+\item[{string}]{title, }
+\item[{string}]{message, }
+\item[{Unity\+Action$<$ bool, System.\+Object $>$}]{yes\+Event, }
+\item[{System.\+Object}]{yes\+Parameter}
+\end{DoxyParamCaption}
+)}\hypertarget{class_modal_panel_ac09d315fc2a04509b943d768dad3b54b}{}\label{class_modal_panel_ac09d315fc2a04509b943d768dad3b54b}
+
+
+Show and customize the popup window\textquotesingle{}s title, message, yes\+Button\textquotesingle{}s callback function and parameters should be passed to the function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Title of the window\\
+\hline
+{\em message} & Message inside the window\\
+\hline
+{\em yes\+Event} & Callback function of yes\+Button\\
+\hline
+{\em yes\+Parameter} & Parameter should be passed to the yes\+Button\textquotesingle{}s callback function\\
+\hline
+\end{DoxyParams}
+\index{Modal\+Panel@{Modal\+Panel}!Choice@{Choice}}
+\index{Choice@{Choice}!Modal\+Panel@{Modal\+Panel}}
+\subsubsection[{\texorpdfstring{Choice(string title, string message, Unity\+Action$<$ bool $>$ yes\+Event, Unity\+Action$<$ bool $>$ no\+Event)}{Choice(string title, string message, UnityAction< bool > yesEvent, UnityAction< bool > noEvent)}}]{\setlength{\rightskip}{0pt plus 5cm}void Modal\+Panel.\+Choice (
+\begin{DoxyParamCaption}
+\item[{string}]{title, }
+\item[{string}]{message, }
+\item[{Unity\+Action$<$ bool $>$}]{yes\+Event, }
+\item[{Unity\+Action$<$ bool $>$}]{no\+Event}
+\end{DoxyParamCaption}
+)}\hypertarget{class_modal_panel_a8eb51394f84fff6341ee2e96230f09c0}{}\label{class_modal_panel_a8eb51394f84fff6341ee2e96230f09c0}
+
+
+Show and customize the popup window\textquotesingle{}s title, message, yes\+Button\textquotesingle{}s callback function and no\+Button\textquotesingle{}s callback function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Title of the window\\
+\hline
+{\em message} & Message inside the window\\
+\hline
+{\em yes\+Event} & Callback function of yes\+Button\\
+\hline
+{\em no\+Event} & Callback function of no\+Button\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\index{Modal\+Panel@{Modal\+Panel}!message\+Text@{message\+Text}}
+\index{message\+Text@{message\+Text}!Modal\+Panel@{Modal\+Panel}}
+\subsubsection[{\texorpdfstring{message\+Text}{messageText}}]{\setlength{\rightskip}{0pt plus 5cm}Text Modal\+Panel.\+message\+Text}\hypertarget{class_modal_panel_aa0f1e1e45589f671cba12b0f05647a77}{}\label{class_modal_panel_aa0f1e1e45589f671cba12b0f05647a77}
+
+
+Pointer to the message\+Text Game\+Object 
+
+\index{Modal\+Panel@{Modal\+Panel}!no\+Button@{no\+Button}}
+\index{no\+Button@{no\+Button}!Modal\+Panel@{Modal\+Panel}}
+\subsubsection[{\texorpdfstring{no\+Button}{noButton}}]{\setlength{\rightskip}{0pt plus 5cm}Button Modal\+Panel.\+no\+Button}\hypertarget{class_modal_panel_a87f88998d90ba4c3c07bd7fb9aac6d58}{}\label{class_modal_panel_a87f88998d90ba4c3c07bd7fb9aac6d58}
+
+
+Pointer to the no\+Button Game\+Object 
+
+\index{Modal\+Panel@{Modal\+Panel}!title\+Text@{title\+Text}}
+\index{title\+Text@{title\+Text}!Modal\+Panel@{Modal\+Panel}}
+\subsubsection[{\texorpdfstring{title\+Text}{titleText}}]{\setlength{\rightskip}{0pt plus 5cm}Text Modal\+Panel.\+title\+Text}\hypertarget{class_modal_panel_a372eb52ee36c5bd204ca4659bc0f2e8c}{}\label{class_modal_panel_a372eb52ee36c5bd204ca4659bc0f2e8c}
+
+
+Pointer to the title\+Text Game\+Object 
+
+\index{Modal\+Panel@{Modal\+Panel}!yes\+Button@{yes\+Button}}
+\index{yes\+Button@{yes\+Button}!Modal\+Panel@{Modal\+Panel}}
+\subsubsection[{\texorpdfstring{yes\+Button}{yesButton}}]{\setlength{\rightskip}{0pt plus 5cm}Button Modal\+Panel.\+yes\+Button}\hypertarget{class_modal_panel_ad03ef3b69d09cf3c4b6a9d309bb7401d}{}\label{class_modal_panel_ad03ef3b69d09cf3c4b6a9d309bb7401d}
+
+
+Pointer to the yes\+Button Game\+Object 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+U\+I\+Manager/Modal\+Panel.\+cs\end{DoxyCompactItemize}

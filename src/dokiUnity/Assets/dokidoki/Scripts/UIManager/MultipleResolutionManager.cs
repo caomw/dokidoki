@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// MultipleResolutionManager is attached to each Board GameObject, used to set the size of each Board into just the size of the screen
+/// </summary>
 public class MultipleResolutionManager : MonoBehaviour {
-
+    /// <summary>
+    /// Called when game startsup, read the size of screen and set it to all Boards
+    /// </summary>
 	void Start () {
         int width = Screen.width;
         int height = Screen.height;

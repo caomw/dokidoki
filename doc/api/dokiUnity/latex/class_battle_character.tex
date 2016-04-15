@@ -1,0 +1,76 @@
+\hypertarget{class_battle_character}{}\section{Battle\+Character Class Reference}
+\label{class_battle_character}\index{Battle\+Character@{Battle\+Character}}
+Inheritance diagram for Battle\+Character\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_battle_character}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Battle\+Character} (string id, string name, string role, Dictionary$<$ string, float $>$ statuses, Dictionary$<$ string, float $>$ abilities, \hyperlink{class_battle_weapon}{Battle\+Weapon} weapon)\hypertarget{class_battle_character_a76c7ff8ed41a24b2acd445219546743b}{}\label{class_battle_character_a76c7ff8ed41a24b2acd445219546743b}
+
+\item 
+int {\bfseries Compare\+To} (\hyperlink{class_battle_character}{Battle\+Character} other\+Battle\+Character)\hypertarget{class_battle_character_a1f079054d3c78bd6bb49320a9d0d85e4}{}\label{class_battle_character_a1f079054d3c78bd6bb49320a9d0d85e4}
+
+\item 
+List$<$ \hyperlink{class_battle_skill}{Battle\+Skill} $>$ {\bfseries get\+Skills} ()\hypertarget{class_battle_character_a883e1a0a7dcad2ce29ac10faa3042fd1}{}\label{class_battle_character_a883e1a0a7dcad2ce29ac10faa3042fd1}
+
+\item 
+string {\bfseries take\+Battle\+Action} (\hyperlink{class_battle_action}{Battle\+Action} action)\hypertarget{class_battle_character_add0ddbd8794a862ab463b55a9c5ac925}{}\label{class_battle_character_add0ddbd8794a862ab463b55a9c5ac925}
+
+\item 
+string {\bfseries receive\+Battle\+Action} (\hyperlink{class_battle_action}{Battle\+Action} action)\hypertarget{class_battle_character_a2f987bc1bfbcbb023c819ec875295a47}{}\label{class_battle_character_a2f987bc1bfbcbb023c819ec875295a47}
+
+\item 
+\hyperlink{class_battle_weapon}{Battle\+Weapon} {\bfseries set\+Weapon} (\hyperlink{class_battle_weapon}{Battle\+Weapon} weapon)\hypertarget{class_battle_character_a7f53d6f9f9e6b43716c2cddfc25a70f9}{}\label{class_battle_character_a7f53d6f9f9e6b43716c2cddfc25a70f9}
+
+\item 
+void {\bfseries add\+Career} (\hyperlink{class_battle_career}{Battle\+Career} career)\hypertarget{class_battle_character_a037ed1ed5327a1f72a8fbde46c660b29}{}\label{class_battle_character_a037ed1ed5327a1f72a8fbde46c660b29}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries id}\hypertarget{class_battle_character_aefcd8895f3b4314d8d9162177f7dc544}{}\label{class_battle_character_aefcd8895f3b4314d8d9162177f7dc544}
+
+\item 
+string {\bfseries name}\hypertarget{class_battle_character_adc7a29b174259b7ea842a1def5c368cd}{}\label{class_battle_character_adc7a29b174259b7ea842a1def5c368cd}
+
+\item 
+string {\bfseries role}\hypertarget{class_battle_character_a854569c8ef8d4300673db4f0915f453e}{}\label{class_battle_character_a854569c8ef8d4300673db4f0915f453e}
+
+\item 
+Vector3 {\bfseries position}\hypertarget{class_battle_character_a2657c45583a4eddf69b51a9af78158fe}{}\label{class_battle_character_a2657c45583a4eddf69b51a9af78158fe}
+
+\item 
+int {\bfseries level}\hypertarget{class_battle_character_aac9f8189b1745340cf72478e00431b55}{}\label{class_battle_character_aac9f8189b1745340cf72478e00431b55}
+
+\item 
+float {\bfseries speed}\hypertarget{class_battle_character_a08bd64c76e7fa1c43358a18fae0bc321}{}\label{class_battle_character_a08bd64c76e7fa1c43358a18fae0bc321}
+
+\item 
+Dictionary$<$ string, float $>$ {\bfseries statuses}\hypertarget{class_battle_character_ab89653fa7dd2c33ee8cd8c04427495c9}{}\label{class_battle_character_ab89653fa7dd2c33ee8cd8c04427495c9}
+
+\item 
+Dictionary$<$ string, float $>$ {\bfseries abilities}\hypertarget{class_battle_character_a66a754e6c3d0ad4f47954a328ef93d12}{}\label{class_battle_character_a66a754e6c3d0ad4f47954a328ef93d12}
+
+\item 
+List$<$ \hyperlink{class_battle_career}{Battle\+Career} $>$ {\bfseries careers} = new List$<$\hyperlink{class_battle_career}{Battle\+Career}$>$()\hypertarget{class_battle_character_a45d2b5a7a48d60401a62cbba17fa9da9}{}\label{class_battle_character_a45d2b5a7a48d60401a62cbba17fa9da9}
+
+\item 
+Dictionary$<$ string, float $>$ {\bfseries statuses\+Level\+Up\+Increment}\hypertarget{class_battle_character_af27640d38720d42ef40751071634e9c9}{}\label{class_battle_character_af27640d38720d42ef40751071634e9c9}
+
+\item 
+Dictionary$<$ string, float $>$ {\bfseries abilities\+Leve\+Up\+Increment}\hypertarget{class_battle_character_afacdd007931886034437179d4f4cb28e}{}\label{class_battle_character_afacdd007931886034437179d4f4cb28e}
+
+\item 
+\hyperlink{class_battle_weapon}{Battle\+Weapon} {\bfseries weapon}\hypertarget{class_battle_character_a025e99a16b9839f65c8e6565df60e866}{}\label{class_battle_character_a025e99a16b9839f65c8e6565df60e866}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Projects/dokidoki/src/doki\+Unity/\+Assets/dokidoki/\+Scripts/\+Battle/Battle\+Character.\+cs\end{DoxyCompactItemize}

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Error message related to script operation
+/// </summary>
 public static class ScriptError{
     public const string NOT_ASSIGN_GAMEOBJECT = "[DokiErr] Not assign GameObject";
 

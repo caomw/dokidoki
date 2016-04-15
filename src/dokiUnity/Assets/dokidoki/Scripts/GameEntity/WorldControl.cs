@@ -884,7 +884,7 @@ public class WorldControl : MonoBehaviour {
     /// <param name="label">Position where current game would be saved to, exactly the name of saved data folder</param>
     public void saveTo(int label) {
         this.worldControlData.currentScriptName = scriptReader.currentScriptName;
-        this.worldControlData.currentActionIndex = scriptReader.getCurrentActionIndex(lastAction);
+        this.worldControlData.currentActionIndex = scriptReader.getCurrentActionIndex();
         this.worldControlData.historyDialogs = dialogContent.GetComponent<DialogManager>().historyDialogs;
 
         this.worldControlData.saveTime = DateTime.Now.ToString("yyyy/MM/dd h:mm tt");
