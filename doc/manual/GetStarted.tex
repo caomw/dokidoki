@@ -1,3 +1,52 @@
 \chapter{Get Started}
 
-\section{My first game}
+\section{Run sample games}
+
+Inside \textbf{sample} folder in dokidoki, there are sample games on multiple platforms. You could run it to see what games dokidoki could build.
+
+\section{Develop my first game}
+
+Here is the step-to-step tutorial to develop a AVG game based on dikidoki. To start development of your game, firstly create a new folder named MyFirstdokidokiProject (In my case C:/\_Projects/MyFirstdokidokiProject).
+
+\subsection{Write my first dokiScript}
+
+Open your Atom, new file, and save it to disk (../MyFirstdokidokiProject/scripts/MyFirstScript.dks). \textbf{scripts} folder name could be any other name, but it is better not to contain space.
+
+Then start to write your dokidoki scripts. Write the script just the same as below. To learn more detail about scripts writing, you should take a look at Chapter 5. Though you don't know much about dokiScript's grammar now. You could still understand the script easily, for that this script language is designed to be intuitive. 
+
+\begin{lstlisting}
+world
+	background src=ba0 transition=instant;
+	bgm src=bg0;
+	>There are someone stand beside the school gate.
+	>She looks anxious.
+
+Mary
+	role type=character name="Mary";
+	posture src=po0;
+	voice src=mary000 >It is almost the time.
+
+world
+	>I find she is there.
+	>And I walk towards her slowly.
+	>However, she does not notice me.
+
+I
+	role type=player name="Jack";
+	voice >Hello, Mary.
+
+world
+	>I said to her.
+	>Heared what I said, she turns happy face immediately.
+
+Mary
+	>I am happy to see you again, Jack.
+\end{lstlisting}
+
+After wrote this above dokiScript code, save it and close Atom.
+
+\subsection{Create my first dokiUnity project}
+
+
+
+\subsection{Build my first game}

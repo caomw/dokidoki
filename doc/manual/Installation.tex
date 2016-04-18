@@ -1,7 +1,91 @@
 \chapter{Installation}
 
-First go to \href{https://github.com/kesumu/dokidoki}{dokidoki} project page on github to download all related project parts: dokiUnity(unity package), dokiScriptCompiler(compile program), dokiScriptSetting(script definition shared by dokiUnity and dokiScriptCompiler).
+First go to \href{https://github.com/kesumu/dokidoki}{dokidoki} project page on github to download all source code: dokiUnity(Unity assets), dokiScriptCompiler(compile program), dokiScriptSetting(script definition shared by dokiUnity and dokiScriptCompiler).
 
-\section{Develop on Windows}
-\section{Develop on Mac OS}
-\section{Develop on Linux}
+We suggest to write dokiScript on \href{https://atom.io/}{atom} that is a text editor that's modern, approachable. dokidoki project has a package named language-doki-script to support your script writing, which you could download in atom.
+
+After you wrote and compiled all scripts, you should also put those compiled scripts into Unity assets with your other resources(paintings, voices, videos and so on). Finally, the AVG game you create should be built via \href{http://unity3d.com/}{Unity}.
+
+\section{Develop AVG game on Windows}
+
+Download latest \href{https://github.com/kesumu/dokidoki}{dokidoki} project source code,  \href{https://atom.io/}{atom} and \href{http://unity3d.com/}{Unity}.
+
+\subsection{dokidoki}
+
+Inside the dokidoki project folder you downloaded, you would see structures below. There is some explaintation about it.
+
+\begin{lstlisting}
++---doc
+|   +---api
+|   |   +---html
+|   |   \---latex
+|   \---manual
++---sample
+|   +---android
+|   \---windows
+\---src
+    +---dokiEditor
+    |   \---SampleScripts
+    +---dokiScriptCompiler   
+    +---dokiScriptSetting    
+    \---dokiUnity
+\end{lstlisting}
+
+\begin{itemize}
+	\item  \textbf{doc}: contains all documents.
+	\begin{itemize}
+		\item  \textbf{api}: contains api documents as reference.
+		\begin{itemize}
+			\item  \textbf{html} 
+			\item  \textbf{latex} 
+		\end{itemize}
+		\item  \textbf{manual}: contains documents on HOW-TO and architecture design behind this projects in detail.
+	\end{itemize}
+	\item  \textbf{sample}: contains sample game on multiple platforms.
+	\begin{itemize}
+		\item  \textbf{android}: sample game on Android.
+		\item  \textbf{windows}: sample game on Windows.
+	\end{itemize}
+	\item  \textbf{src}: contains all source code.
+	\begin{itemize}
+		\item  \textbf{dokiEditor}: sub-project for script writing, because \href{https://github.com/kesumu/language-doki-script}{language-doki-script}(atom package) is transfered into another GitHub repository, now it only contains sample scripts.
+		\begin{itemize}
+			\item  \textbf{SampleScripts}: sample scripts as reference for script writing.
+		\end{itemize}
+		\item  \textbf{dokiScriptCompiler} : sub-project used to compile dokidoki scripts
+		\item  \textbf{dokiScriptSetting}: sub-project used to define the script keywords and compiled output
+		\item  \textbf{dokiUnity}: sub-projects used to combine all resources together, and build the game on all platforms that Unity supports.
+	\end{itemize}
+\end{itemize}
+
+What you need from dokidoki project is that: \textbf{dokiScriptCompiler} to compile your dokidoki scripts, and \textbf{dokiUnity} to combine all your game resources and build your game on Unity. 
+
+Inside \textbf{dokiScriptCompiler} folder, it is a C\# source code project. To open it and use it as a compiler, you could run it with \href{https://www.xamarin.com/}{Xamarin} directly, or build it into runable program(named dokiScriptCompiler.exe in default) with Xamarin.
+
+\subsection{Atom}
+
+Atom is good editor for code writing, and we have a package named \href{https://github.com/kesumu/language-doki-script}{language-doki-script} to support you to write dokidoki scripts. Take a look on document for atom, you could install this package after you install Atom.
+
+\subsection{Unity}
+
+We already have a Unity project inside \textbf{dokiUnity} folder, you could open it directly and go on this project for your own game. Or you could create a new project and import all assets inside this project.
+
+\section{Develop AVG game on Mac OS}
+
+\subsection{dokidoki}
+
+Almost the same with Windows. 
+
+The only thing different is that you could not build \textbf{dokiScriptCompiler} into a runalbe program and run it(it is a .exe program on Windows). However, you could run it using \href{https://www.xamarin.com/}{Xamarin} directly.
+
+\subsection{Atom}
+
+The same with Windows. 
+
+\subsection{Unity}
+
+The same with Windows. 
+
+\section{Develop AVG game on Linux}
+
+To be tested.
