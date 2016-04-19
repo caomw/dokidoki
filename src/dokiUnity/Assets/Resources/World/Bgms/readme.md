@@ -1,0 +1,1 @@
+All bgm audio files should be put into this folder.

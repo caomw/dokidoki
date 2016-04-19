@@ -1,0 +1,1 @@
+All effect sound audio files should be put into this folder.

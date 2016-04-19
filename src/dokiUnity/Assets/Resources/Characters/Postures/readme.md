@@ -1,0 +1,1 @@
+All character posture(tachie) image files should be put into this folder.

@@ -1,0 +1,1 @@
+All background image files should be put into this folder.

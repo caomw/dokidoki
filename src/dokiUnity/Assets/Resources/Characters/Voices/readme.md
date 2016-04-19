@@ -1,0 +1,1 @@
+All character voice audio files should be put into this folder.
