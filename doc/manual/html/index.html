@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="kesumu" />
+  <title>dokidoki Manual</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">dokidoki Manual</h1>
+<h2 class="author">kesumu</h2>
+<h3 class="date">March 2016</h3>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#overview"><span class="toc-section-number">1</span> Overview</a><ul>
+<li><a href="#features"><span class="toc-section-number">1.1</span> Features</a><ul>
+<li><a href="#open-source"><span class="toc-section-number">1.1.1</span> Open source</a></li>
+<li><a href="#more-clear-logic-for-avg-game"><span class="toc-section-number">1.1.2</span> More clear logic for AVG game</a></li>
+<li><a href="#easy-to-write-script-grammer"><span class="toc-section-number">1.1.3</span> Easy to write script grammer</a></li>
+<li><a href="#write-once-run-on-all-platforms"><span class="toc-section-number">1.1.4</span> Write once, run on all platforms</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#installation"><span class="toc-section-number">2</span> Installation</a><ul>
+<li><a href="#develop-avg-game-on-windows"><span class="toc-section-number">2.1</span> Develop AVG game on Windows</a><ul>
+<li><a href="#dokidoki"><span class="toc-section-number">2.1.1</span> dokidoki</a></li>
+<li><a href="#atom"><span class="toc-section-number">2.1.2</span> Atom</a></li>
+<li><a href="#unity"><span class="toc-section-number">2.1.3</span> Unity</a></li>
+</ul></li>
+<li><a href="#develop-avg-game-on-mac-os"><span class="toc-section-number">2.2</span> Develop AVG game on Mac OS</a><ul>
+<li><a href="#dokidoki-1"><span class="toc-section-number">2.2.1</span> dokidoki</a></li>
+<li><a href="#atom-1"><span class="toc-section-number">2.2.2</span> Atom</a></li>
+<li><a href="#unity-1"><span class="toc-section-number">2.2.3</span> Unity</a></li>
+</ul></li>
+<li><a href="#develop-avg-game-on-linux"><span class="toc-section-number">2.3</span> Develop AVG game on Linux</a></li>
+</ul></li>
+<li><a href="#get-started"><span class="toc-section-number">3</span> Get Started</a><ul>
+<li><a href="#run-sample-games"><span class="toc-section-number">3.1</span> Run sample games</a></li>
+<li><a href="#develop-my-first-game"><span class="toc-section-number">3.2</span> Develop my first game</a><ul>
+<li><a href="#write-my-first-dokiscript"><span class="toc-section-number">3.2.1</span> Write my first dokiScript</a></li>
+<li><a href="#create-my-first-dokiunity-project"><span class="toc-section-number">3.2.2</span> Create my first dokiUnity project</a></li>
+<li><a href="#build-my-first-game"><span class="toc-section-number">3.2.3</span> Build my first game</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#architecture"><span class="toc-section-number">4</span> Architecture</a><ul>
+<li><a href="#overview-1"><span class="toc-section-number">4.1</span> Overview</a></li>
+<li><a href="#dokiscriptsetting"><span class="toc-section-number">4.2</span> dokiScriptSetting</a></li>
+<li><a href="#dokiscriptcompiler"><span class="toc-section-number">4.3</span> dokiScriptCompiler</a></li>
+<li><a href="#dokiunity"><span class="toc-section-number">4.4</span> dokiUnity</a></li>
+</ul></li>
+<li><a href="#dokiscript"><span class="toc-section-number">5</span> dokiScript</a><ul>
+<li><a href="#example"><span class="toc-section-number">5.1</span> Example</a></li>
+<li><a href="#grammar"><span class="toc-section-number">5.2</span> Grammar</a></li>
+</ul></li>
+<li><a href="#dokiunity-1"><span class="toc-section-number">6</span> dokiUnity</a></li>
+<li><a href="#dokibattle"><span class="toc-section-number">7</span> dokiBattle</a></li>
+</ul>
+</div>
+<h1 id="overview"><span class="header-section-number">1</span> Overview</h1>
+<p>dokidoki aimed at being a AVG development tool based on unity3d. It could improve the efficiency to develop AVG games and also could implement the one-time-code-multiple-platform-run based on the features of unity3d.</p>
+<h2 id="features"><span class="header-section-number">1.1</span> Features</h2>
+<h3 id="open-source"><span class="header-section-number">1.1.1</span> Open source</h3>
+<p>dokidoki project is open source on github.</p>
+<h3 id="more-clear-logic-for-avg-game"><span class="header-section-number">1.1.2</span> More clear logic for AVG game</h3>
+<p>More clear logic. In the game built by this tool, there exists only 3 main parts: WorldControl, World (contains characters), UI. WorldControl is used for controling the flow of the game. World is the container of apperence in this game world, and also character stands on the stage named world. UI is for setting of the game and in game operation.</p>
+<p>As the game proceeds, only actions which written in scripts are excuated.</p>
+<h3 id="easy-to-write-script-grammer"><span class="header-section-number">1.1.3</span> Easy to write script grammer</h3>
+<p>To be easy to use, we try to make the script of AVG game is as muck as easy to write, just like you are writting Screenplay.</p>
+<h3 id="write-once-run-on-all-platforms"><span class="header-section-number">1.1.4</span> Write once, run on all platforms</h3>
+<p>Yes, because this tool based on unity3d, it could run on any device the unity3d supports.</p>
+<h1 id="installation"><span class="header-section-number">2</span> Installation</h1>
+<p>First go to <a href="https://github.com/kesumu/dokidoki">dokidoki</a> project page on github to download all source code: dokiUnity(Unity assets), dokiScriptCompiler(compile program), dokiScriptSetting(script definition shared by dokiUnity and dokiScriptCompiler).</p>
+<p>We suggest to write dokiScript on <a href="https://atom.io/">atom</a> that is a text editor that’s modern, approachable. dokidoki project has a package named language-doki-script to support your script writing, which you could download in atom.</p>
+<p>After you wrote and compiled all scripts, you should also put those compiled scripts into Unity assets with your other resources(paintings, voices, videos and so on). Finally, the AVG game you create should be built via <a href="http://unity3d.com/">Unity</a>.</p>
+<h2 id="develop-avg-game-on-windows"><span class="header-section-number">2.1</span> Develop AVG game on Windows</h2>
+<p>Download latest <a href="https://github.com/kesumu/dokidoki">dokidoki</a> project source code, <a href="https://atom.io/">atom</a> and <a href="http://unity3d.com/">Unity</a>.</p>
+<h3 id="dokidoki"><span class="header-section-number">2.1.1</span> dokidoki</h3>
+<p>Inside the dokidoki project folder you downloaded, you would see structures below. There is some explaintation about it.</p>
+<pre><code>+---doc
+|   +---api
+|   |   +---html
+|   |   \---latex
+|   \---manual
++---sample
+|   +---android
+|   \---windows
+\---src
+    +---dokiEditor
+    |   \---SampleScripts
+    +---dokiScriptCompiler   
+    +---dokiScriptSetting    
+    \---dokiUnity</code></pre>
+<ul>
+<li><p><strong>doc</strong>: contains all documents.</p>
+<ul>
+<li><p><strong>api</strong>: contains api documents as reference.</p>
+<ul>
+<li><p><strong>html</strong></p></li>
+<li><p><strong>latex</strong></p></li>
+</ul></li>
+<li><p><strong>manual</strong>: contains documents on HOW-TO and architecture design behind this projects in detail.</p></li>
+</ul></li>
+<li><p><strong>sample</strong>: contains sample game on multiple platforms.</p>
+<ul>
+<li><p><strong>android</strong>: sample game on Android.</p></li>
+<li><p><strong>windows</strong>: sample game on Windows.</p></li>
+</ul></li>
+<li><p><strong>src</strong>: contains all source code.</p>
+<ul>
+<li><p><strong>dokiEditor</strong>: sub-project for script writing, because <a href="https://github.com/kesumu/language-doki-script">language-doki-script</a>(atom package) is transfered into another GitHub repository, now it only contains sample scripts.</p>
+<ul>
+<li><p><strong>SampleScripts</strong>: sample scripts as reference for script writing.</p></li>
+</ul></li>
+<li><p><strong>dokiScriptCompiler</strong> : sub-project used to compile dokidoki scripts</p></li>
+<li><p><strong>dokiScriptSetting</strong>: sub-project used to define the script keywords and compiled output</p></li>
+<li><p><strong>dokiUnity</strong>: sub-projects used to combine all resources together, and build the game on all platforms that Unity supports.</p></li>
+</ul></li>
+</ul>
+<p>What you need from dokidoki project is that: <strong>dokiScriptCompiler</strong> to compile your dokidoki scripts, and <strong>dokiUnity</strong> to combine all your game resources and build your game on Unity.</p>
+<p>Inside <strong>dokiScriptCompiler</strong> folder, it is a C# source code project. To open it and use it as a compiler, you could run it with <a href="https://www.xamarin.com/">Xamarin</a> directly, or build it into runable program(named dokiScriptCompiler.exe in default) with Xamarin.</p>
+<h3 id="atom"><span class="header-section-number">2.1.2</span> Atom</h3>
+<p>Atom is good editor for code writing, and we have a package named <a href="https://github.com/kesumu/language-doki-script">language-doki-script</a> to support you to write dokidoki scripts. Take a look on document for atom, you could install this package after you install Atom.</p>
+<h3 id="unity"><span class="header-section-number">2.1.3</span> Unity</h3>
+<p>We already have a Unity project inside <strong>dokiUnity</strong> folder, you could open it directly and go on this project for your own game. Or you could create a new project and import all assets inside this project.</p>
+<h2 id="develop-avg-game-on-mac-os"><span class="header-section-number">2.2</span> Develop AVG game on Mac OS</h2>
+<h3 id="dokidoki-1"><span class="header-section-number">2.2.1</span> dokidoki</h3>
+<p>Almost the same with Windows.</p>
+<p>The only thing different is that you could not build <strong>dokiScriptCompiler</strong> into a runalbe program and run it(it is a .exe program on Windows). However, you could run it using <a href="https://www.xamarin.com/">Xamarin</a> directly.</p>
+<h3 id="atom-1"><span class="header-section-number">2.2.2</span> Atom</h3>
+<p>The same with Windows.</p>
+<h3 id="unity-1"><span class="header-section-number">2.2.3</span> Unity</h3>
+<p>The same with Windows.</p>
+<h2 id="develop-avg-game-on-linux"><span class="header-section-number">2.3</span> Develop AVG game on Linux</h2>
+<p>To be tested.</p>
+<h1 id="get-started"><span class="header-section-number">3</span> Get Started</h1>
+<h2 id="run-sample-games"><span class="header-section-number">3.1</span> Run sample games</h2>
+<p>Inside <strong>sample</strong> folder in dokidoki, there are sample games on multiple platforms. You could run it to see what games dokidoki could build.</p>
+<h2 id="develop-my-first-game"><span class="header-section-number">3.2</span> Develop my first game</h2>
+<p>Here is the step-to-step tutorial to develop a AVG game based on dikidoki. To start development of your game, firstly create a new folder named MyFirstdokidokiProject (In my case C:/_Projects/MyFirstdokidokiProject).</p>
+<h3 id="write-my-first-dokiscript"><span class="header-section-number">3.2.1</span> Write my first dokiScript</h3>
+<p>Open your Atom, new file, and save it to disk (../MyFirstdokidokiProject/scripts/MyFirstScript.dks). <strong>scripts</strong> folder name could be any other name, but it is better not to contain space.</p>
+<p>Then start to write your dokidoki scripts. Write the script just the same as below. To learn more detail about scripts writing, you should take a look at Chapter 5. Though you don’t know much about dokiScript’s grammar now. You could still understand the script easily, for that this script language is designed to be intuitive.</p>
+<pre><code>world
+	background src=ba0 transition=instant;
+	bgm src=bg0;
+	&gt;There are someone stand beside the school gate.
+	&gt;She looks anxious.
+
+Mary
+	role type=character name=&quot;Mary&quot;;
+	posture src=mary000;
+	voice src=mary000 &gt;It is almost the time.
+
+world
+	&gt;I find she is there.
+	&gt;And I walk towards her slowly.
+	&gt;However, she does not notice me.
+
+I
+	role type=player name=&quot;Jack&quot;;
+	voice &gt;Hello, Mary.
+
+world
+	&gt;I said to her.
+	&gt;Heared what I said, she turns happy face immediately.
+
+Mary
+	voice src=mary001 &gt;I am happy to see you again, Jack.</code></pre>
+<p>After wrote this above dokiScript code, save it and close Atom.</p>
+<h3 id="create-my-first-dokiunity-project"><span class="header-section-number">3.2.2</span> Create my first dokiUnity project</h3>
+<h4 id="setup-dokiunity-template"><span class="header-section-number">3.2.2.1</span> Setup dokiUnity template</h4>
+<p>Then, create dokiUnity project to combine all your game resources. Open Unity, create a new project named MyFirstdokiUnityProject. Then import custom package from <strong>dokiUnity</strong> folder named <strong>dokiUnityTemplate.unitypackage</strong>. <strong>dokiUnityTemplate.unitypackage</strong> contains dokidoki’s Unity parts and folder structure to arrange all game resources. Each folder has a <strong>readme.md</strong> file to explain about what files should be put here. Up to now, you have setup the dokiUnity template.</p>
+<h4 id="compile-my-dokiscript-files"><span class="header-section-number">3.2.2.2</span> Compile my dokiScript files</h4>
+<p>Your dokiScript files have extension <strong>.dks</strong>. You should compile them using <strong>dokiScriptCompiler</strong> before you put them into dokiUnity project.</p>
+<p>Open <strong>dokiScriptCompiler</strong> sub-project in folder <strong>/dokidoki/src/dokiScriptCompiler</strong> with <strong>Xamarin</strong>. To compile all your dokidoki scripts, on the menu bar, click <strong>Run</strong>—<strong>Run With</strong>—<strong>Custom Parameters</strong>, insert your scripts folder absolute path into <strong>Arguments</strong> row, and then click <strong>Execute</strong>. If your scripts don’t contain any syntax errors, <strong>dokiScriptCompiler</strong> would generate compiled dokiScripts with <strong>.txt</strong> extension for each script files.</p>
+<h4 id="put-all-game-resources-into-responding-folders"><span class="header-section-number">3.2.2.3</span> Put all game resources into responding folders</h4>
+<p>With dokiUnity template, you could start to put your game resources into responding folders. See the dokiScript(not compiled one) you write, you could find that <strong>src</strong> key parameters have values like <strong>ba0</strong>, <strong>bg0</strong> and <strong>mary000</strong>. These values are names of your responding game resource files, but they are all without extensions.</p>
+<ul>
+<li><p>You should have a background image file named <strong>ba0</strong> with proper extension (maybe ba0.png) and put it into folder <strong>/Assets/Resources/World/Backgrounds</strong>.</p></li>
+<li><p>You should have a bgm audio file named <strong>bg0</strong> with proper extension and put it into folder <strong>/Assets/Resources/World/Bgms</strong>.</p></li>
+<li><p>You should have a posture image file named <strong>mary000</strong> with proper extension and put it into folder <strong>/Assets/Resources/Characters/Postures</strong>.</p></li>
+<li><p>You should have a voice audio file named <strong>mary000</strong> with proper extension and another voice audio file named <strong>mary001</strong> with proper extension, and put them into folder <strong>/Assets/Resources/Characters/Voices</strong>.</p></li>
+</ul>
+<p>And most importantly, your compiled dokiScript file (script with <strong>.txt</strong> extension) is also a kind of game resources. You should put all of them into folder <strong>/Assets/Resources/DokiScripts</strong>.</p>
+<h3 id="build-my-first-game"><span class="header-section-number">3.2.3</span> Build my first game</h3>
+<h4 id="have-a-run-for-my-game"><span class="header-section-number">3.2.3.1</span> Have a run for my game</h4>
+<p>Now, you almost complete your game. Once you put all your game resources into responding folders. Use Unity to run your game, click <strong>play</strong> button on the <strong>Toolbar</strong> and your game would start. It is the most exciting moment for me too.</p>
+<h4 id="build-for-windows-mac-os"><span class="header-section-number">3.2.3.2</span> Build for Windows, Mac OS</h4>
+<p>Nothing different from normal Unity games build. On the <strong>Topbar</strong> click <strong>File</strong>—<strong>Build Settings</strong>. You would see a pop-up window, on the left option for platforms, choose <strong>PC, Mac, Linux Standalone</strong>, then on the right side choose <strong>windows</strong>, finally click <strong>Build</strong> choose a folder to export the runable game (in my case <strong>/MyFirstdokidokiProject/windows</strong>). Then, Unity would start to build your game, after it finished. Check the export folder you chose before, you would see your game is already there. Wait for what? Play it!</p>
+<h4 id="build-for-android"><span class="header-section-number">3.2.3.3</span> Build for Android</h4>
+<p>In order to build for mobile platforms like Android, the extra work you need to do is to move all your video resources from original folder <strong>/Assets/Resources/World/Videos</strong> into new folder <strong>/Assets/StreamingAssets/World/Videos</strong>. The other part is similar to <strong>Build for Windows, Mac OS</strong>.</p>
+<h1 id="architecture"><span class="header-section-number">4</span> Architecture</h1>
+<p>System is responsible for arranging every thing inside dokidoki system. It contains a world which has lots of characters and one player. These characters take behaviors to interact with each other to progress the game. Behavior is a kind of action. Action is the minimum unit of things that happens in the AVG game, such as the position changing of a character, a sentence the character spoke. Effect is another kind of action such as the start of playing a sound, the start of the video and so on.</p>
+<h2 id="overview-1"><span class="header-section-number">4.1</span> Overview</h2>
+<h2 id="dokiscriptsetting"><span class="header-section-number">4.2</span> dokiScriptSetting</h2>
+<h2 id="dokiscriptcompiler"><span class="header-section-number">4.3</span> dokiScriptCompiler</h2>
+<h2 id="dokiunity"><span class="header-section-number">4.4</span> dokiUnity</h2>
+<h1 id="dokiscript"><span class="header-section-number">5</span> dokiScript</h1>
+<p>dokiScripts screenplay written by AVG game developer, and script screenplay file would be compiled into a list of actions.</p>
+<h2 id="example"><span class="header-section-number">5.1</span> Example</h2>
+<p>Here give an example.</p>
+<pre><code>world
+video src=video0;
+bgm src=bgm0 mode=loop;
+background src=background0 transition=instant;
+weather type=snow level=0.2;
+&gt;??????????
+&gt;????????????
+sound src=sound0;
+&gt;????????
+
+
+dokiChan
+role type=character name = &quot;??&quot;; 
+move position=center transition=instant; 
+posture src=posture0; 
+voice src=voice001 &gt;&gt;??????
+voice src=voice002 &gt;&gt;???????
+voice src=voice003 &gt;&gt;?????????
+
+[&quot;????????????????&quot;(option011, sample1) | &quot;???????????????&quot;(option012, sample1)] 
+
+
+&lt;option011&gt;
+
+
+world
+&gt;&gt;?????????
+
+I
+role type=player;
+voice &gt;&gt;??????????????
+
+dokiChan
+move position=(0.45, 0.0, 0.0) transition=instant; 
+voice src=voice004 &gt;&gt;??????????
+
+I
+voice &gt;&gt;????????
+
+(sample2)
+
+&lt;option012&gt;
+I
+&gt;&gt;????????????????????? 
+
+world
+&gt;&gt;??????????????????? 
+weather type=sunny; 
+&gt;&gt;????????
+
+(sample3)</code></pre>
+<h2 id="grammar"><span class="header-section-number">5.2</span> Grammar</h2>
+<p><span>| C<span>1cm</span> | L<span>8cm</span> | L<span>3cm</span> |</span> &amp; Example &amp; Description<br />
+Doki &amp; &amp; Mostly, one script file<br />
+Flag &amp;</p>
+<pre><code>		[????????????????(option011, sample1) | ???????????????(option012, sample1)]
+		</code></pre>
+<p>&amp; &amp; Flag with options to choose<br />
+Option &amp;</p>
+<pre><code>		&lt;option011&gt;
+		</code></pre>
+<p>&amp; &amp; Option that Flags should jump here when this option is chosen<br />
+Lock &amp;</p>
+<pre><code>		{ xxx }
+		</code></pre>
+<p>&amp; &amp; For some performance, disable players? operations<br />
+Block &amp;</p>
+<pre><code>		world
+		video src=video0;
+		bgm src=bgm0 mode=loop;
+		backgound src=background0 transition=instant;
+		weather type=snow level=0.2;
+		??????????&gt;
+		????????????&gt;
+		sound src=sound0;
+		????????&gt;
+		</code></pre>
+<p>&amp; &amp; One block of script code, start with one focused Object, maybe world or characterId (here means those lines code would focus on the world)<br />
+Action &amp;</p>
+<pre><code>		bgm src=bgm0 mode=loop
+		</code></pre>
+<p>&amp; &amp; Action, focused on current<br />
+Tag &amp;</p>
+<pre><code>		bgm
+		</code></pre>
+<p>&amp; &amp; Action tags<br />
+Key=Value &amp;</p>
+<pre><code>		src=bgm0 mode=loop
+		</code></pre>
+<p>&amp; &amp; Parameters for current action<br />
+Key &amp;</p>
+<pre><code>		src	
+		</code></pre>
+<p>&amp; &amp; Attributes key<br />
+Value &amp;</p>
+<pre><code>		bgm0
+		</code></pre>
+<p>&amp; &amp; Attributes value<br />
+Text &amp;</p>
+<pre><code>		??????????
+		</code></pre>
+<p>&amp; &amp;<br />
+</p>
+<h1 id="dokiunity-1"><span class="header-section-number">6</span> dokiUnity</h1>
+<h1 id="dokibattle"><span class="header-section-number">7</span> dokiBattle</h1>
+</body>
+</html>
