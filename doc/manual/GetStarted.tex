@@ -23,7 +23,7 @@ world
 
 Mary
 	role type=character name="Mary";
-	posture src=po0;
+	posture src=mary000;
 	voice src=mary000 >It is almost the time.
 
 world
@@ -40,13 +40,45 @@ world
 	>Heared what I said, she turns happy face immediately.
 
 Mary
-	>I am happy to see you again, Jack.
+	voice src=mary001 >I am happy to see you again, Jack.
 \end{lstlisting}
 
 After wrote this above dokiScript code, save it and close Atom.
 
 \subsection{Create my first dokiUnity project}
 
+\subsubsection{Setup dokiUnity template}
 
+Then, create dokiUnity project to combine all your game resources. Open Unity, create a new project named MyFirstdokiUnityProject. Then import custom package from \textbf{dokiUnity} folder named \textbf{dokiUnityTemplate.unitypackage}. \textbf{dokiUnityTemplate.unitypackage} contains dokidoki's Unity parts and folder structure to arrange all game resources. Each folder has a \textbf{readme.md} file to explain about what files should be put here. Up to now, you have setup the dokiUnity template.
+
+\subsubsection{Compile my dokiScript files}
+
+Your dokiScript files have extension \textbf{.dks}. You should compile them using \textbf{dokiScriptCompiler} before you put them into dokiUnity project.
+
+Open \textbf{dokiScriptCompiler} sub-project in folder \textbf{/dokidoki/src/dokiScriptCompiler} with \textbf{Xamarin}. To compile all your dokidoki scripts, on the menu bar, click \textbf{Run}---\textbf{Run With}---\textbf{Custom Parameters}, insert your scripts folder absolute path into \textbf{Arguments} row, and then click \textbf{Execute}. If your scripts don't contain any syntax errors, \textbf{dokiScriptCompiler} would generate compiled dokiScripts with \textbf{.txt} extension for each script files.
+
+\subsubsection{Put all game resources into responding folders}
+
+With dokiUnity template, you could start to put your game resources into responding folders. See the dokiScript(not compiled one) you write, you could find that \textbf{src} key parameters have values like \textbf{ba0}, \textbf{bg0} and \textbf{mary000}. These values are names of your responding game resource files, but they are all without extensions. 
+\begin{itemize}
+	\item You should have a background image file named \textbf{ba0} with proper extension (maybe ba0.png) and put it into folder \textbf{/Assets/Resources/World/Backgrounds}. 
+	\item You should have a bgm audio file named \textbf{bg0} with proper extension and put it into folder \textbf{/Assets/Resources/World/Bgms}. 
+	\item You should have a posture image file named \textbf{mary000} with proper extension and put it into folder \textbf{/Assets/Resources/Characters/Postures}.
+	\item  You should have a voice audio file named \textbf{mary000} with proper extension and another voice audio file named \textbf{mary001} with proper extension, and put them into folder \textbf{/Assets/Resources/Characters/Voices}.
+\end{itemize}
+
+And most importantly, your compiled dokiScript file (script with \textbf{.txt} extension) is also a kind of game resources. You should put all of them into folder \textbf{/Assets/Resources/DokiScripts}.
 
 \subsection{Build my first game}
+
+\subsubsection{Have a run for my game}
+
+Now, you almost complete your game. Once you put all your game resources into responding folders. Use Unity to run your game, click \textbf{play} button on the \textbf{Toolbar} and your game would start. It is the most exciting moment for me too.
+
+\subsubsection{Build for Windows, Mac OS}
+
+Nothing different from normal Unity games build. On the \textbf{Topbar} click \textbf{File}---\textbf{Build Settings}. You would see a pop-up window, on the left option for platforms, choose \textbf{PC, Mac, Linux Standalone}, then on the right side choose \textbf{windows}, finally click \textbf{Build} choose a folder to export the runable game (in my case \textbf{/MyFirstdokidokiProject/windows}). Then, Unity would start to build your game, after it finished. Check the export folder you chose before, you would see your game is already there. Wait for what? Play it!
+
+\subsubsection{Build for Android}
+
+In order to build for mobile platforms like Android, the extra work you need to do is to move all your video resources from original folder \textbf{/Assets/Resources/World/Videos} into new folder \textbf{/Assets/StreamingAssets/World/Videos}. The other part is similar to \textbf{Build for Windows, Mac OS}.
