@@ -1,6 +1,6 @@
 # dokidoki
 
-## Introduction
+<a href="http://dokidoki.snknstudio.com">Homepage is available now.</a>
 
 AVG game development tool based on unity3d. This tool is specifically developed for Galgame development (Girls and Love game).
 
@@ -13,8 +13,6 @@ Yes, because this tool based on unity3d, it could run on any device the unity3d 
 ### Easy to write script grammer
 
 To be easy to use, we try to make the script of AVG game is as muck as easy to write, just like you are writting Screenplay.
-
-Here is the  <a href="dokidoki/src/dokiUnity/Assets/Resources/DokiScripts/sample1.txt">sample</a> (in Chinese). 
 
 ### More clear logic for AVG game
 More clear logic. In the game built by this tool, there exists only 3 main parts: WorldControl, World (contains characters), UI. WorldControl is used for controling the flow of the game. World is the container of apperence in this game world, and also character stands on the stage named world. UI is for setting of the game and in game operation.
