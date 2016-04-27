@@ -1,4 +1,6 @@
 world
+	video src=vi0;
+	other tag=face type=smile;
 	background src=yama0;
 	bgm src=b00 mode=loop;
 	weather type=sunny level=1.0;

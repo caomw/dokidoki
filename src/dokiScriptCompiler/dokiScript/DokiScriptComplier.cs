@@ -76,7 +76,9 @@ namespace dokiScriptCompiler
 		public override Node ExitRole(Token node){node.Values.Add("role");
 			return node;
 		}
-
+		public override Node ExitOther(Token node){node.Values.Add("other");
+			return node;
+		}
 
 		public override Node ExitSrc(Token node){node.Values.Add("src");
 			return node;
@@ -138,7 +140,9 @@ namespace dokiScriptCompiler
 		public override Node ExitAnchor(Token node){node.Values.Add ("anchor");
 			return node;
 		}
-
+		public override Node ExitTagParameter(Token node){node.Values.Add ("tag");
+			return node;
+		}
 
 		public override Node ExitBracketLeft(Token node){node.Values.Add("{");
 			return node;
@@ -203,7 +207,9 @@ namespace dokiScriptCompiler
 			return node;
 		}
 		public override Node ExitQuotedText(Token node){
-			node.Values.Add(node.Image);
+			string quatedText = node.Image;
+			quatedText = quatedText.Substring (1, quatedText.Length-2);
+			node.Values.Add(quatedText);
 			return node;
 		}
 

@@ -184,6 +184,9 @@ internal class DokiScriptParser : RecursiveDescentParser {
         alt = new ProductionPatternAlternative();
         alt.AddToken((int) DokiScriptConstants.ROLE, 1, 1);
         pattern.AddAlternative(alt);
+        alt = new ProductionPatternAlternative();
+        alt.AddToken((int) DokiScriptConstants.OTHER, 1, 1);
+        pattern.AddAlternative(alt);
         AddPattern(pattern);
 
         pattern = new ProductionPattern((int) DokiScriptConstants.KEY,
@@ -211,6 +214,9 @@ internal class DokiScriptParser : RecursiveDescentParser {
         pattern.AddAlternative(alt);
         alt = new ProductionPatternAlternative();
         alt.AddToken((int) DokiScriptConstants.ANCHOR, 1, 1);
+        pattern.AddAlternative(alt);
+        alt = new ProductionPatternAlternative();
+        alt.AddToken((int) DokiScriptConstants.TAG_PARAMETER, 1, 1);
         pattern.AddAlternative(alt);
         AddPattern(pattern);
 

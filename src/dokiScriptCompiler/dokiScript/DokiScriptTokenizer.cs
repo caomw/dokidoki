@@ -98,6 +98,12 @@ internal class DokiScriptTokenizer : Tokenizer {
                                    "role");
         AddPattern(pattern);
 
+        pattern = new TokenPattern((int) DokiScriptConstants.OTHER,
+                                   "OTHER",
+                                   TokenPattern.PatternType.STRING,
+                                   "other");
+        AddPattern(pattern);
+
         pattern = new TokenPattern((int) DokiScriptConstants.SRC,
                                    "SRC",
                                    TokenPattern.PatternType.STRING,
@@ -216,6 +222,12 @@ internal class DokiScriptTokenizer : Tokenizer {
                                    "ANCHOR",
                                    TokenPattern.PatternType.STRING,
                                    "anchor");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.TAG_PARAMETER,
+                                   "TAG_PARAMETER",
+                                   TokenPattern.PatternType.STRING,
+                                   "tag");
         AddPattern(pattern);
 
         pattern = new TokenPattern((int) DokiScriptConstants.BRACKET_LEFT,

@@ -180,6 +180,14 @@ namespace dokiUnity {
         }
 
         /// <summary>
+        /// Character takes other actions you defined
+        /// </summary>
+        /// <param name="otherAction">Action tagged as other, which contains the parameters you defined</param>
+        public void takeOtherAction(Action otherAction) { 
+            
+        }
+
+        /// <summary>
         /// Character game entity load data from saving data (on the disk)
         /// </summary>
         /// <param name="characterData">characterData is the serialized data on the disk</param>

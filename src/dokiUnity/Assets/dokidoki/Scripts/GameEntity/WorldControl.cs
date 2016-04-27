@@ -62,19 +62,45 @@ namespace dokiUnity {
         public GameObject gameBoardUI;
 
         /// <summary>
-        /// dialogBoardUI pointer is used to show and hide dialogBoard
-        /// </summary>
-        public GameObject dialogBoardUI;
-
-        /// <summary>
         /// quickButtonsUI pointer is used to show and hide quickButtons
         /// </summary>
         public GameObject quickButtonsUI;
 
         /// <summary>
-        /// backLogUI pointer is used to show and hide backLog
+        /// dialogBoardUI pointer is used to show and hide dialogBoard
         /// </summary>
-        public GameObject backLogUI;
+        public GameObject dialogBoardUI;
+
+        /// <summary>
+        /// dialogContent pointer is a child of dialogContent GameObject, used to change the content of dialogBoard, such as dialog text
+        /// </summary>
+        public GameObject dialogContent;
+
+        /// <summary>
+        /// flagBoardUI pointer is used to show and hide flagBoard
+        /// </summary>
+        public GameObject flagBoardUI;
+
+        /// <summary>
+        /// flagContent pointer is a child of flagBoard GameObject, used to change the content of flagBoard, such as a set flagText Buttons
+        /// </summary>
+        public GameObject flagContent;
+
+        /// <summary>
+        /// backLogBoardUI pointer is used to show and hide backLog
+        /// </summary>
+        public GameObject backLogBoardUI;
+
+        //UI content pointers are used to shown content of UI
+        /// <summary>
+        /// backLogContent pointer is a child of backLogBoard GameObject, used to change the content of backgroundBoard, such as a set logText Buttons
+        /// </summary>
+        public GameObject backLogContent;
+
+        /// <summary>
+        /// titleBoardUI pointer is used to show and hide startBoard
+        /// </summary>
+        public GameObject titleBoardUI;
 
         /// <summary>
         /// saveBoardUI pointer is used to show and hide saveBoard
@@ -82,14 +108,19 @@ namespace dokiUnity {
         public GameObject saveBoardUI;
 
         /// <summary>
+        /// saveContent pointer is a child of saveBoard GameObject, used to change the content of saveBoard, such as a set saveText Buttons
+        /// </summary>
+        public GameObject saveContent;
+
+        /// <summary>
         /// loadBoardUI pointer is used to show and hide loadBoard
         /// </summary>
         public GameObject loadBoardUI;
 
         /// <summary>
-        /// startBoardUI pointer is used to show and hide startBoard
+        /// loadContent pointer is a child of loadBoard GameObject, used to change the content of loadBoard, such as a set loadText Buttons
         /// </summary>
-        public GameObject startBoardUI;
+        public GameObject loadContent;
 
         /// <summary>
         /// configBoardUI pointer is used to show and hide configBoard
@@ -100,12 +131,6 @@ namespace dokiUnity {
         /// confirmBoardUI pointer is used to show and hide confirmBoard
         /// </summary>
         public GameObject confirmBoardUI;
-
-        /// <summary>
-        /// flagBoardUI pointer is used to show and hide flagBoard
-        /// </summary>
-        public GameObject flagBoardUI;
-
 
         //prefabs pointer used to initiate new GameObjects at runtime
         /// <summary>
@@ -134,31 +159,6 @@ namespace dokiUnity {
         public GameObject flagTextPrefab;
 
 
-        //UI content pointers are used to shown content of UI
-        /// <summary>
-        /// backLogContent pointer is a child of backLogBoard GameObject, used to change the content of backgroundBoard, such as a set logText Buttons
-        /// </summary>
-        public GameObject backLogContent;
-
-        /// <summary>
-        /// saveContent pointer is a child of saveBoard GameObject, used to change the content of saveBoard, such as a set saveText Buttons
-        /// </summary>
-        public GameObject saveContent;
-
-        /// <summary>
-        /// loadContent pointer is a child of loadBoard GameObject, used to change the content of loadBoard, such as a set loadText Buttons
-        /// </summary>
-        public GameObject loadContent;
-
-        /// <summary>
-        /// flagContent pointer is a child of flagBoard GameObject, used to change the content of flagBoard, such as a set flagText Buttons
-        /// </summary>
-        public GameObject flagContent;
-
-        /// <summary>
-        /// dialogContent pointer is a child of dialogContent GameObject, used to change the content of dialogBoard, such as dialog text
-        /// </summary>
-        public GameObject dialogContent;
 
         /// <summary>
         /// get the dialogMode in the game config, normal or bubble
@@ -171,14 +171,19 @@ namespace dokiUnity {
         /// <summary>
         /// UI shown or hidden setting when game on startBoard
         /// </summary>
-        void Start() {
+        void Awake() {
             if (scriptReader == null) {
                 scriptReader = new ScriptReader();
             }
-            //Load PlayerPrefs
-            configBoardUI.SetActive(true);
+            //Show title board only when game starts up
+            gameBoardUI.SetActive(false);
+            flagBoardUI.SetActive(false);
+            backLogBoardUI.SetActive(false);
+            titleBoardUI.SetActive(true);
+            saveBoardUI.SetActive(false);
+            loadBoardUI.SetActive(false);
             configBoardUI.SetActive(false);
-            startBoardUI.SetActive(true);
+            configBoardUI.SetActive(false);
         }
 
         /// <summary>
@@ -221,7 +226,7 @@ namespace dokiUnity {
             //Hot key
             //Return key could be used as click
             if (Input.GetKeyDown(KeyCode.Return)) {
-                if (startBoardUI.activeSelf == true) {
+                if (titleBoardUI.activeSelf == true) {
                     clickStartButton();
                 } else {
                     step();
@@ -571,7 +576,7 @@ namespace dokiUnity {
         /// Called when StartButton is clicked, to start the game from beginning
         /// </summary>
         public void clickStartButton() {
-            startBoardUI.SetActive(false);
+            titleBoardUI.SetActive(false);
             gameBoardUI.SetActive(true);
             step();
         }
@@ -608,7 +613,7 @@ namespace dokiUnity {
             if (this.worldControlData.currentGameState == GameConstants.NORMAL) {
                 //Open backlog window
                 this.worldControlData.currentGameState = GameConstants.BACKLOG;
-                backLogUI.SetActive(true);
+                backLogBoardUI.SetActive(true);
 
                 //Get texts to display
                 List<Dialog> historyDialogs = dialogContent.GetComponent<DialogManager>().historyDialogs;
@@ -629,7 +634,7 @@ namespace dokiUnity {
                 setupTextButtonBoard(texts, logTextPrefab, backLogContent, true, onLogTextButtonClick, parameters);
             } else if (this.worldControlData.currentGameState == GameConstants.BACKLOG) {
                 //close backlog window
-                backLogUI.SetActive(false);
+                backLogBoardUI.SetActive(false);
                 this.worldControlData.currentGameState = GameConstants.NORMAL;
             }
         }
@@ -675,7 +680,7 @@ namespace dokiUnity {
                 return;
             }
             gameBoardUI.SetActive(true);
-            startBoardUI.SetActive(false);
+            titleBoardUI.SetActive(false);
             loadFrom(0);
         }
         /// <summary>
@@ -760,7 +765,7 @@ namespace dokiUnity {
                 return;
             }
             gameBoardUI.SetActive(true);
-            startBoardUI.SetActive(false);
+            titleBoardUI.SetActive(false);
             loadFrom((int)position);
             clickLoadButton();
             return;
@@ -914,6 +919,16 @@ namespace dokiUnity {
                 //EditorUtility.DisplayDialog("Load failed", "Please try again", "yes", "");
             }
         }
+
+        public void RemoveAllSavedData() {
+            string dirPath = Application.persistentDataPath + "/" + GameConstants.SAVE_DIRECTORY;
+            if (Directory.Exists(dirPath)) {
+                //Delete original saved files, then create new directory
+                Directory.Delete(dirPath, true);
+                //FileUtil.DeleteFileOrDirectory(dirPath);
+            }
+        }
+
         /// <summary>
         /// Called when AutoButton is clicked, used to enter or exit Auto mode
         /// </summary>
@@ -943,7 +958,7 @@ namespace dokiUnity {
         /// Called when SkipButton skip key is down and called again when skip key is up, used to enter or exit skip mode
         /// </summary>
         public void clickSkipButton() {
-            if (this.worldControlData.currentGameState == GameConstants.NORMAL && startBoardUI.activeSelf == false) {
+            if (this.worldControlData.currentGameState == GameConstants.NORMAL && titleBoardUI.activeSelf == false) {
                 this.worldControlData.currentGameState = GameConstants.SKIP;
                 //Start skip mode, here could modify the speed of skip
                 InvokeRepeating("step", 0.1f, 0.3f);

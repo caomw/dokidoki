@@ -28,6 +28,7 @@ namespace dokiScriptSetting{
 	    public const string FLAG = "flag";
 		public const string OPTION = "option";
 		public const string JUMP = "jump";
+		public const string OTHER = "other";
 
 	    //parameter keywords
 	    	//background src=xxx transition=(instant|gradual) speed=0.xxx;
@@ -102,6 +103,8 @@ namespace dokiScriptSetting{
 	    public const string OPTION_9 = "option9";
 		public const string OPTION_ID_9 = "optionId9";
 	    public const string OPTION_SRC_9 = "optionSrc9";
+		//other tag=xxx ...;
+		public const string TAG = "tag";
 
 	    //symbol keywords
 	    public const string BRACKET_LEFT = "{";
