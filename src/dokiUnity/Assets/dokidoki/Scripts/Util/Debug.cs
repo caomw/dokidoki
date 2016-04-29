@@ -16,5 +16,27 @@ namespace dokiUnity {
             if (!ON) { return; }
             UnityEngine.Debug.LogError(message);
         }
+		public static void CheckResources(string name, Sprite resource){
+			if (!ON) { return; }
+			Debug.CheckResources (name, resource, "Sprite");
+		}
+		public static void CheckResources(string name, AudioClip resource){
+			if (!ON) { return; }
+			Debug.CheckResources (name, resource, "AudioClip");
+		}
+		public static void CheckResources(string name, MovieTexture resource){
+			if (!ON) { return; }
+			Debug.CheckResources (name, resource, "MovieTexture");
+		}
+		public static void CheckResources(string name, Texture2D resource){
+			if (!ON) { return; }
+			Debug.CheckResources (name, resource, "Texture2D");
+		}
+		public static void CheckResources(string name, System.Object resource, string type){
+			if(resource == null){
+				Debug.LogError ("[dokidoki] Could not find "+type+": "+name);
+				Application.Quit ();
+			}
+		}
     }
 }

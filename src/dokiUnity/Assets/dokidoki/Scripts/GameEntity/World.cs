@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
-
+using Prime31.TransitionKit;
 
 namespace dokiUnity {
     /// <summary>
@@ -21,6 +21,10 @@ namespace dokiUnity {
 
 
         //Effect related GameObjects
+		/// <summary>
+		/// worldControl is a GameObject to control all things in the game like world, characters and UIs. Here it is used to read the worldControl modes.
+		/// </summary>
+		public GameObject worldControl;
         /// <summary>
         /// videoBoard is a GameObject to play video, is a child of World GameObject
         /// </summary>
@@ -46,12 +50,19 @@ namespace dokiUnity {
         /// </summary>
         public GameObject weatherRain;
 
-        void Start() {
-            videoBoard.SetActive(true);
-            videoBoard.GetComponent<Renderer>().sortingOrder = 100;
-            //hide videoBoard at first
-            videoBoard.GetComponent<Renderer>().enabled = false;
-        }
+
+		void Awake(){
+			videoBoard.SetActive(true);
+			videoBoard.GetComponent<Renderer>().sortingOrder = 100;
+			//hide videoBoard at first
+			videoBoard.GetComponent<Renderer>().enabled = false;
+
+			System.Action onScreenObscured = new System.Action (this.BackgroundTransitionOnScreenObscured);
+			System.Action onTransitionComplete = new System.Action (this.BackgroundTransitionComplete);
+
+			TransitionKit.onScreenObscured += onScreenObscured;
+			TransitionKit.onTransitionComplete += onTransitionComplete;
+		}
 
         /// <summary>
         /// World takes background action to change the background effects, the background is a child GameObject below the World GameObject
@@ -60,9 +71,30 @@ namespace dokiUnity {
         public void takeBackgroundAction(Action backgroundAction) {
             worldData.backgroundSrc = backgroundAction.parameters[ScriptKeyword.SRC];
 
-            Sprite sprite = Resources.Load<Sprite>(FolderStructure.WORLD + FolderStructure.BACKGROUNDS + backgroundAction.parameters[ScriptKeyword.SRC]);
-            background.GetComponent<SpriteRenderer>().sprite = sprite;
+			this.worldControl.GetComponent<WorldControl> ().DisablePlayerInput ();
+			this.worldControl.GetComponent<WorldControl> ().hideInPlayUI ();
+
+			var fishEye = new FishEyeTransition()
+			{
+				nextScene = -1,
+				duration = 2.0f,
+				size = 0.08f,
+				zoom = 10.0f,
+				colorSeparation = 3.0f
+			};
+			TransitionKit.instance.transitionWithDelegate( fishEye );
         }
+		private void BackgroundTransitionOnScreenObscured(){
+			this.worldControl.GetComponent<WorldControl> ().hideCharacters ();
+			Sprite sprite = Resources.Load<Sprite>(FolderStructure.WORLD + FolderStructure.BACKGROUNDS + worldData.backgroundSrc);
+			Debug.CheckResources (worldData.backgroundSrc, sprite);
+			background.GetComponent<SpriteRenderer>().sprite = sprite;
+		}
+		private void BackgroundTransitionComplete(){
+			this.worldControl.GetComponent<WorldControl> ().showCharacters ();
+			this.worldControl.GetComponent<WorldControl> ().showInPlayUI ();
+			this.worldControl.GetComponent<WorldControl> ().EnablePlayerInput ();
+		}
 
         /// <summary>
         /// World takes background action to change weather effects, the weather is a child GameObject below the World GameObject
@@ -100,7 +132,8 @@ namespace dokiUnity {
         /// <param name="soundAction">Action tagged as sound, which contains the parameters for sound setting</param>
         public void takeSoundAction(Action soundAction) {
             AudioClip soundAudioClip = Resources.Load(FolderStructure.WORLD + FolderStructure.SOUNDS + soundAction.parameters[ScriptKeyword.SRC]) as AudioClip;
-            this.GetComponent<AudioSource>().clip = soundAudioClip;
+			Debug.CheckResources (soundAction.parameters[ScriptKeyword.SRC], soundAudioClip);
+			this.GetComponent<AudioSource>().clip = soundAudioClip;
             this.GetComponent<AudioSource>().Play();
         }
 
@@ -113,7 +146,8 @@ namespace dokiUnity {
 
             //load bgm
             AudioClip bgmAudioClip = Resources.Load(FolderStructure.WORLD + FolderStructure.BGMS + bgmAction.parameters[ScriptKeyword.SRC]) as AudioClip;
-            //attach bgm audio file on to background GameObject
+			Debug.CheckResources (bgmAction.parameters[ScriptKeyword.SRC], bgmAudioClip);
+			//attach bgm audio file on to background GameObject
             background.GetComponent<AudioSource>().clip = bgmAudioClip;
             //check bgm mode
             string mode = "";
@@ -139,7 +173,7 @@ namespace dokiUnity {
             videoBoard.GetComponent<Renderer>().enabled = true;
 
             MovieTexture movTexture = Resources.Load(FolderStructure.WORLD + FolderStructure.VIDEOS + videoAction.parameters[ScriptKeyword.SRC]) as MovieTexture;
-
+			Debug.CheckResources(videoAction.parameters[ScriptKeyword.SRC], movTexture);
             videoBoard.GetComponent<Renderer>().material.mainTexture = movTexture;
             videoBoard.GetComponent<AudioSource>().clip = movTexture.audioClip;
 

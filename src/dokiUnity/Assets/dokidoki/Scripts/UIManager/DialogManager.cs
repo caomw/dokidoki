@@ -53,11 +53,13 @@ namespace dokiUnity {
         /// <returns>Coroutine pointer of this running animateText function, used to stop this old functions when new animateText functions is needed</returns>
         IEnumerator animateText(string shownName, string content) {
             int i = 0;
-            this.GetComponent<Text>().text = shownName + "\n\n";
-            while (i < content.Length) {
-                this.GetComponent<Text>().text += content[i++];
-                yield return new WaitForSeconds(PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR);
-            }
+			if(this.gameObject.activeSelf == true){
+	            this.GetComponent<Text>().text = shownName + "\n\n";
+	            while (i < content.Length) {
+	                this.GetComponent<Text>().text += content[i++];
+	                yield return new WaitForSeconds(PlayerPrefs.GetFloat(GameConstants.CONFIG_TEXT_SPEED) * GameConstants.TEXT_DELAY_FACTOR);
+	            }
+			}
         }
         /// <summary>
         /// Clear old historyDialogs when loads game from saved data
@@ -65,5 +67,10 @@ namespace dokiUnity {
         public void clear() {
             historyDialogs = new List<Dialog>();
         }
+		void OnDisable(){
+			if(historyDialogs.Count >0){
+				this.GetComponent<Text>().text = historyDialogs[historyDialogs.Count-1].shownName + "\n\n" + historyDialogs[historyDialogs.Count-1].content;
+			}
+		}
     }
 }

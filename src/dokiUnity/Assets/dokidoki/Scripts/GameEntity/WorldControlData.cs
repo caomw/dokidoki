@@ -10,7 +10,7 @@ namespace dokiUnity {
         /// <summary>
         /// The current focused GameObject id
         /// </summary>
-        public string focusGameObjectId;
+        public string FocusedGameObjectId;
         /// <summary>
         /// Current text content should be displayed on dialog window
         /// </summary>

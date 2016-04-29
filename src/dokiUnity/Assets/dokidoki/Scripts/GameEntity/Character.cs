@@ -71,7 +71,8 @@ namespace dokiUnity {
 
             //read pixelsPerUnit from user setting
             Sprite postureSpriteOriginal = Resources.Load<Sprite>(FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
-            float pixelsPerUnity = postureSpriteOriginal.pixelsPerUnit;
+			Debug.CheckResources (postureAction.parameters[ScriptKeyword.SRC], postureSpriteOriginal);
+			float pixelsPerUnity = postureSpriteOriginal.pixelsPerUnit;
             //create the sprite again for setting the pivot from the script
             Texture2D postureTexture2D = Resources.Load<Texture2D>(
                                     FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
@@ -111,7 +112,8 @@ namespace dokiUnity {
             float nextAutoClickTimeVoice = Time.realtimeSinceStartup;
             if (voiceAction.parameters.TryGetValue(ScriptKeyword.SRC, out voiceSrc)) {
                 AudioClip voiceAudioClip = Resources.Load(FolderStructure.CHARACTERS + FolderStructure.VOICES + voiceSrc) as AudioClip;
-                this.GetComponent<AudioSource>().clip = voiceAudioClip;
+				Debug.CheckResources (voiceSrc, voiceAudioClip);
+				this.GetComponent<AudioSource>().clip = voiceAudioClip;
                 this.GetComponent<AudioSource>().Play();
                 nextAutoClickTimeVoice = nextAutoClickTimeVoice + this.GetComponent<AudioSource>().clip.length + (PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR);
             }

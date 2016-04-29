@@ -50,9 +50,14 @@ namespace dokiUnity {
         public Dictionary<string, GameObject> characters = new Dictionary<string, GameObject>();
 
         /// <summary>
-        /// focusGameObject is used to know current actions should distribute to whom
+        /// FocusedGameObject is used to know current actions should distribute to whom
         /// </summary>
-        private GameObject focusGameObject;
+        private GameObject FocusedGameObject;
+
+		/// <summary>
+		/// The player input is enabled or not.
+		/// </summary>
+		private bool playerInputIsEnabled = true;
 
 
         //In play UI gameobjects
@@ -168,6 +173,46 @@ namespace dokiUnity {
             return this.worldControlData.dialogMode;
         }
 
+		/// <summary>
+		/// Hides the characters.
+		/// </summary>
+		public void hideCharacters(){
+			foreach(KeyValuePair<string, GameObject> characterIdGameObjectPair in characters){
+				characterIdGameObjectPair.Value.SetActive (false);
+			}
+		}
+
+		/// <summary>
+		/// Shows the characters.
+		/// </summary>
+		public void showCharacters(){
+			foreach(KeyValuePair<string, GameObject> characterIdGameObjectPair in characters){
+				characterIdGameObjectPair.Value.SetActive (true);
+			}
+		}
+
+		/// <summary>
+		/// Hide gameBoard UI
+		/// </summary>
+		public void hideInPlayUI() {
+			dialogBoardUI.SetActive(false);
+			quickButtonsUI.SetActive(false);
+		}
+		/// <summary>
+		/// show gameBoard UI
+		/// </summary>
+		public void showInPlayUI() {
+			dialogBoardUI.SetActive(true);
+			quickButtonsUI.SetActive(true);
+		}
+
+		public void DisablePlayerInput(){
+			this.playerInputIsEnabled = false;
+		}
+		public void EnablePlayerInput(){
+			this.playerInputIsEnabled = true;
+		}
+
         /// <summary>
         /// UI shown or hidden setting when game on startBoard
         /// </summary>
@@ -194,6 +239,7 @@ namespace dokiUnity {
         /// Ctrl key is used to skip game.
         /// </summary>
         void Update() {
+			if(!this.playerInputIsEnabled){return;}
             if (Input.GetMouseButtonDown(1)) {
                 if (this.worldControlData.currentGameState == GameConstants.BACKLOG) {
                     clickBackLogButton();
@@ -271,6 +317,7 @@ namespace dokiUnity {
         /// Also, when needs to jump to another script or take flag action, worldControl itself takes them
         /// </summary>
         public void step() {
+			if(!this.playerInputIsEnabled){return;}
             //Debug.Log(++count);
             //Check game state first
             if (this.worldControlData.currentGameState == GameConstants.BACKLOG) {
@@ -310,7 +357,8 @@ namespace dokiUnity {
                 //store last action
                 lastAction = currentAction;
                 //Save the last text content
-                if (currentAction.tag == ScriptKeyword.TEXT || currentAction.tag == ScriptKeyword.VOICE) {
+                if (currentAction.tag == ScriptKeyword.TEXT 
+					|| currentAction.tag == ScriptKeyword.VOICE) {
                     worldControlData.textContent = currentAction.parameters[ScriptKeyword.CONTENT];
                 }
                 //remove already completed action
@@ -321,46 +369,52 @@ namespace dokiUnity {
                 if (currentAction.tag == ScriptKeyword.FOCUS) {
                     this.takeFocusAction(currentAction);
                 }
-                if (focusGameObject == null) {
+                if (FocusedGameObject == null) {
                     Debug.LogError(ScriptError.NOT_FOCUS_OBJECT);
                     return;
                 }
                 if (currentAction.tag == ScriptKeyword.BACKGROUND) {
-                    focusGameObject.GetComponent<World>().takeBackgroundAction(currentAction);
+                    FocusedGameObject.GetComponent<World>().takeBackgroundAction(currentAction);
+					break;
                 } else if (currentAction.tag == ScriptKeyword.WEATHER) {
-                    focusGameObject.GetComponent<World>().takeWeatherAction(currentAction);
+                    FocusedGameObject.GetComponent<World>().takeWeatherAction(currentAction);
                 } else if (currentAction.tag == ScriptKeyword.SOUND) {
-                    focusGameObject.GetComponent<World>().takeSoundAction(currentAction);
+                    FocusedGameObject.GetComponent<World>().takeSoundAction(currentAction);
                 } else if (currentAction.tag == ScriptKeyword.BGM) {
-                    focusGameObject.GetComponent<World>().takeBgmAction(currentAction);
+                    FocusedGameObject.GetComponent<World>().takeBgmAction(currentAction);
                 } else if (currentAction.tag == ScriptKeyword.VIDEO) {
                     hideInPlayUI();
-                    updateNextAutoClickTime(focusGameObject.GetComponent<World>().takeVideoAction(currentAction));
+                    updateNextAutoClickTime(FocusedGameObject.GetComponent<World>().takeVideoAction(currentAction));
                     //wait next click for video action
                     break;
                 } else if (currentAction.tag == ScriptKeyword.TEXT) {
-                    if (focusGameObject.GetComponent<World>() != null) {
-                        updateNextAutoClickTime(focusGameObject.GetComponent<World>().takeTextAction(currentAction));
-                    }
-                    if (focusGameObject.GetComponent<Character>() != null) {
-                        updateNextAutoClickTime(focusGameObject.GetComponent<Character>().takeTextAction(currentAction));
+                    if (FocusedGameObject.GetComponent<World>() != null) {
+                        updateNextAutoClickTime(FocusedGameObject.GetComponent<World>().takeTextAction(currentAction));
+                    } else if (FocusedGameObject.GetComponent<Character>() != null) {
+                        updateNextAutoClickTime(FocusedGameObject.GetComponent<Character>().takeTextAction(currentAction));
                     }
                     break;
                 } else if (currentAction.tag == ScriptKeyword.MOVE) {
-                    focusGameObject.GetComponent<Character>().takeMoveAction(currentAction);
+                    FocusedGameObject.GetComponent<Character>().takeMoveAction(currentAction);
                 } else if (currentAction.tag == ScriptKeyword.POSTURE) {
-                    focusGameObject.GetComponent<Character>().takePostureAction(currentAction);
+                    FocusedGameObject.GetComponent<Character>().takePostureAction(currentAction);
                 } else if (currentAction.tag == ScriptKeyword.VOICE) {
-                    updateNextAutoClickTime(focusGameObject.GetComponent<Character>().takeVoiceAction(currentAction));
+                    updateNextAutoClickTime(FocusedGameObject.GetComponent<Character>().takeVoiceAction(currentAction));
                     break;
                 } else if (currentAction.tag == ScriptKeyword.ROLE) {
-                    focusGameObject.GetComponent<Character>().takeRoleAction(currentAction);
+                    FocusedGameObject.GetComponent<Character>().takeRoleAction(currentAction);
                 } else if (currentAction.tag == ScriptKeyword.FLAG) {
                     this.takeFlagAction(currentAction);
                     break;
                 } else if (currentAction.tag == ScriptKeyword.JUMP) {
                     this.takeJumpAction(currentAction);
-                }
+				} else if (currentAction.tag == ScriptKeyword.OTHER){
+					if (FocusedGameObject.GetComponent<World>() != null) {
+						FocusedGameObject.GetComponent<World>().takeOtherAction(currentAction);
+					}else if (FocusedGameObject.GetComponent<Character>() != null) {
+						FocusedGameObject.GetComponent<Character>().takeOtherAction(currentAction);
+					}
+				}
             }
         }
 
@@ -369,18 +423,18 @@ namespace dokiUnity {
         /// </summary>
         /// <param name="focusAction">Action tagged as focus, which contains the parameters for focus setting</param>
         public void takeFocusAction(Action focusAction) {
-            worldControlData.focusGameObjectId = focusAction.parameters[ScriptKeyword.ID];
+            worldControlData.FocusedGameObjectId = focusAction.parameters[ScriptKeyword.ID];
 
-            focusGameObject = null;
+            FocusedGameObject = null;
             //focus on object to take further actions
             if (focusAction.parameters[ScriptKeyword.ID] == ScriptKeyword.WORLD) {
-                focusGameObject = world;
+                FocusedGameObject = world;
             } else {
                 if (!characters.ContainsKey(focusAction.parameters[ScriptKeyword.ID])) {
                     //there is no character on this id, create one
                     characters.Add(focusAction.parameters[ScriptKeyword.ID], createNewCharacter(focusAction.parameters[ScriptKeyword.ID]));
                 }
-                focusGameObject = characters[focusAction.parameters[ScriptKeyword.ID]];
+                FocusedGameObject = characters[focusAction.parameters[ScriptKeyword.ID]];
             }
         }
 
@@ -482,20 +536,7 @@ namespace dokiUnity {
             newCharacter.GetComponentInChildren<BubbleManager>().hide();
             return newCharacter;
         }
-        /// <summary>
-        /// Hide gameBoard UI
-        /// </summary>
-        public void hideInPlayUI() {
-            dialogBoardUI.SetActive(false);
-            quickButtonsUI.SetActive(false);
-        }
-        /// <summary>
-        /// show gameBoard UI
-        /// </summary>
-        public void showInPlayUI() {
-            dialogBoardUI.SetActive(true);
-            quickButtonsUI.SetActive(true);
-        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -819,7 +860,7 @@ namespace dokiUnity {
 
             this.worldControlData.saveTime = DateTime.Now.ToString("yyyy/MM/dd h:mm tt");
 
-            Debug.Log("worldControlData.focusGameObjectId: " + this.worldControlData.focusGameObjectId);
+            Debug.Log("worldControlData.FocusedGameObjectId: " + this.worldControlData.FocusedGameObjectId);
             Debug.Log("worldControlData.textContent: " + this.worldControlData.textContent);
             Debug.Log("worldControlData.saveTime: " + this.worldControlData.saveTime);
             Debug.Log("worldControlData.worldLine: " + this.worldControlData.worldLine);
@@ -920,7 +961,10 @@ namespace dokiUnity {
             }
         }
 
-        public void RemoveAllSavedData() {
+		/// <summary>
+		/// Removes all saved data.
+		/// </summary>
+        private void RemoveAllSavedData() {
             string dirPath = Application.persistentDataPath + "/" + GameConstants.SAVE_DIRECTORY;
             if (Directory.Exists(dirPath)) {
                 //Delete original saved files, then create new directory
@@ -947,7 +991,7 @@ namespace dokiUnity {
         /// Update the most long next auto click time, except for Mathf.Infinity
         /// </summary>
         /// <param name="newNextAutoClickTime"> New next auto click time</param>
-        public void updateNextAutoClickTime(float newNextAutoClickTime) {
+        private void updateNextAutoClickTime(float newNextAutoClickTime) {
             if (this.worldControlData.nextAutoClickTime == Mathf.Infinity) {
                 this.worldControlData.nextAutoClickTime = newNextAutoClickTime;
             } else if (this.worldControlData.nextAutoClickTime < Mathf.Infinity) {
@@ -1114,7 +1158,7 @@ namespace dokiUnity {
             this.worldControlData.currentGameState = currentGameState;
 
             Action loadedFocusAction = new Action(ScriptKeyword.FOCUS, new Dictionary<string, string>(){
-            {ScriptKeyword.ID, worldControlData.focusGameObjectId}
+            {ScriptKeyword.ID, worldControlData.FocusedGameObjectId}
         });
             this.takeFocusAction(loadedFocusAction);
 
@@ -1122,11 +1166,11 @@ namespace dokiUnity {
             {ScriptKeyword.CONTENT, worldControlData.textContent},
             {ScriptKeyword.TYPE, ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE}
         });
-            if (focusGameObject.GetComponent<World>() != null) {
-                updateNextAutoClickTime(focusGameObject.GetComponent<World>().takeTextAction(loadedTextAction));
+            if (FocusedGameObject.GetComponent<World>() != null) {
+                updateNextAutoClickTime(FocusedGameObject.GetComponent<World>().takeTextAction(loadedTextAction));
             }
-            if (focusGameObject.GetComponent<Character>() != null) {
-                updateNextAutoClickTime(focusGameObject.GetComponent<Character>().takeTextAction(loadedTextAction));
+            if (FocusedGameObject.GetComponent<Character>() != null) {
+                updateNextAutoClickTime(FocusedGameObject.GetComponent<Character>().takeTextAction(loadedTextAction));
             }
 
             //Load saved script to saved action index
