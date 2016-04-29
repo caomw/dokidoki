@@ -24,10 +24,16 @@ namespace dokiUnity {
 			if (!ON) { return; }
 			Debug.CheckResources (name, resource, "AudioClip");
 		}
+#if UNITY_STANDALONE  || UNITY_EDITOR
 		public static void CheckResources(string name, MovieTexture resource){
 			if (!ON) { return; }
 			Debug.CheckResources (name, resource, "MovieTexture");
 		}
+#endif
+#if UNITY_IOS
+#endif
+#if UNITY_ANDROID
+#endif
 		public static void CheckResources(string name, Texture2D resource){
 			if (!ON) { return; }
 			Debug.CheckResources (name, resource, "Texture2D");
