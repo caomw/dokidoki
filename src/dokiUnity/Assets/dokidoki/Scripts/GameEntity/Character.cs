@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using dokiScriptSetting;
-using Action = dokiScriptSetting.Action;
+using dokidoki.dokiScriptSetting;
+using Action = dokidoki.dokiScriptSetting.Action;
 
 
 namespace dokidoki.dokiUnity {
@@ -53,34 +53,80 @@ namespace dokidoki.dokiUnity {
         /// </summary>
         /// <param name="postureAction">Action tagged as posture, which contains the parameters for posture setting</param>
         public void takePostureAction(Action postureAction) {
+			//Check anchor value
+			string anchorStringValue = "";
+			if (postureAction.parameters.TryGetValue(ScriptKeyword.ANCHOR, out anchorStringValue)) {
 
-            string anchorStringValue = "";
-            if (postureAction.parameters.TryGetValue(ScriptKeyword.ANCHOR, out anchorStringValue)) {
+			} else {
+				anchorStringValue = "(0.5, 0.5)";
+			}
 
-            } else {
-                anchorStringValue = "(0.5, 0.5)";
-            }
+			anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
+			anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);
+			anchorStringValue = anchorStringValue.Replace(@"\s+", string.Empty);
+			string[] anchorStrings = anchorStringValue.Split(ScriptKeyword.COMMA.ToCharArray());
+			this.characterData.anchorX = float.Parse(anchorStrings[0]);
+			this.characterData.anchorY = float.Parse(anchorStrings[1]);
 
-            anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_LEFT, string.Empty);
-            anchorStringValue = anchorStringValue.Replace(ScriptKeyword.PARENTHESE_RIGHT, string.Empty);
-            anchorStringValue = anchorStringValue.Replace(@"\s+", string.Empty);
-            string[] anchorStrings = anchorStringValue.Split(ScriptKeyword.COMMA.ToCharArray());
-            this.characterData.anchorX = float.Parse(anchorStrings[0]);
-            this.characterData.anchorY = float.Parse(anchorStrings[1]);
-            this.characterData.postrueSrc = postureAction.parameters[ScriptKeyword.SRC];
+			//check zoom value
+			string zoomValue = "";
+			float zoom = 1f;
+			if(postureAction.parameters.TryGetValue(ScriptKeyword.ZOOM, out zoomValue)){
+				zoom = float.Parse (zoomValue);
+			}
+			this.characterData.zoom = zoom;
 
-            //read pixelsPerUnit from user setting
-            Sprite postureSpriteOriginal = Resources.Load<Sprite>(FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
-			Debug.CheckResources (postureAction.parameters[ScriptKeyword.SRC], postureSpriteOriginal);
-			float pixelsPerUnity = postureSpriteOriginal.pixelsPerUnit;
-            //create the sprite again for setting the pivot from the script
-            Texture2D postureTexture2D = Resources.Load<Texture2D>(
-                                    FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
-            Sprite postureSprite = Sprite.Create(postureTexture2D
-                                    , new Rect(0, 0, postureTexture2D.width, postureTexture2D.height)
-                                    , new Vector2(characterData.anchorX, characterData.anchorY)
-                                    , pixelsPerUnity);
-            this.GetComponent<SpriteRenderer>().sprite = postureSprite;
+			string live2dValue = "";
+			if (postureAction.parameters.TryGetValue (ScriptKeyword.LIVE2D, out live2dValue)) {
+				this.characterData.postrueSrc = null;
+				this.characterData.postureLive2D = live2dValue;
+				//Use live2d posture
+				this.GetComponent<SpriteRenderer>().sprite = null;
+				//find all live2d file resources
+				Live2DSimpleModel live2DSimpleModel = this.GetComponent<Live2DSimpleModel>();
+				Debug.Log ("live2DSimpleModel="+live2DSimpleModel.enabled);
+				Object[] live2DFiles = Resources.LoadAll(FolderStructure.CHARACTERS + FolderStructure.POSTURES + live2dValue);
+				TextAsset mocFile = null;
+				TextAsset physicsFile = null;
+				List<Texture2D> textureFiles = new List<Texture2D>();
+				foreach (Object live2DFile in live2DFiles) {
+					Debug.Log ("live2DFile="+live2DFile.name);
+					//scriptNames.Add(Path.GetFileNameWithoutExtension(scriptObject.name));
+					if (live2DFile.name.EndsWith (ScriptKeyword.LIVE2D_MOC_EXTENSION)) {
+						mocFile = live2DFile as TextAsset;
+					} else if(live2DFile.name.EndsWith(ScriptKeyword.LIVE2D_PHYSICS_EXTENSION)) {
+						physicsFile = live2DFile as TextAsset;
+					}else if( live2DFile.name.Contains(ScriptKeyword.LIVE2D_TEXTURE_EXTENSION)){
+						textureFiles.Add (live2DFile as Texture2D);
+					}
+				}
+				Debug.CheckResources (live2dValue, mocFile);
+				Debug.CheckResources (live2dValue, physicsFile);
+				Debug.CheckResources (live2dValue, textureFiles);
+
+				live2DSimpleModel.mocFile = mocFile;
+				live2DSimpleModel.physicsFile = physicsFile;
+				live2DSimpleModel.textureFiles = textureFiles.ToArray();
+				live2DSimpleModel.zoom = this.characterData.zoom;
+				live2DSimpleModel.enabled = true;
+			} else {
+				//Use normal image posture
+				this.GetComponent<Live2DSimpleModel>().enabled = false;
+				this.characterData.postrueSrc = postureAction.parameters[ScriptKeyword.SRC];
+				this.characterData.postureLive2D = null;
+				//read pixelsPerUnit from user setting
+				Sprite postureSpriteOriginal = Resources.Load<Sprite>(FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
+				Debug.CheckResources (postureAction.parameters[ScriptKeyword.SRC], postureSpriteOriginal);
+				float pixelsPerUnity = postureSpriteOriginal.pixelsPerUnit;
+				//create the sprite again for setting the pivot from the script
+				Texture2D postureTexture2D = Resources.Load<Texture2D>(
+					FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
+				Sprite postureSprite = Sprite.Create(postureTexture2D
+					, new Rect(0, 0, postureTexture2D.width, postureTexture2D.height)
+					, new Vector2(characterData.anchorX, characterData.anchorY)
+					, pixelsPerUnity);
+				this.GetComponent<SpriteRenderer>().sprite = postureSprite;
+			}
         }
 
         /// <summary>
@@ -173,12 +219,20 @@ namespace dokidoki.dokiUnity {
                 characterData.positionY = float.Parse(posString[1]);
                 characterData.positionZ = float.Parse(posString[2]);
             }
-            //float backgroundWidth = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.x;
-            //float backgroundHeight = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.y;
-            //Debug.Log("characterData.posX = " + characterData.positionX + ", characterData.posY = " + characterData.positionY + ", characterData.posZ = " + characterData.positionZ);
-            Vector3 characterScreenToWorldPoint = Camera.main.ViewportToWorldPoint(new Vector3(characterData.positionX, characterData.positionY
-                                                                                             , Mathf.Abs(Camera.main.transform.position.z)));
-            this.transform.localPosition = characterScreenToWorldPoint;
+
+			if(this.characterData.postureLive2D != null){
+				float width = this.GetComponent<Renderer> ().bounds.size.x;
+				float height = this.GetComponent<Renderer> ().bounds.size.y;
+				Debug.Log ("width="+width);
+				Debug.Log ("height="+height);
+			}else if(this.characterData.postrueSrc != null){
+				//float backgroundWidth = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.x;
+				//float backgroundHeight = worldControl.GetComponent<WorldControl>().world.GetComponent<World>().background.GetComponent<Renderer>().bounds.extents.y;
+				//Debug.Log("characterData.posX = " + characterData.positionX + ", characterData.posY = " + characterData.positionY + ", characterData.posZ = " + characterData.positionZ);
+				Vector3 characterScreenToWorldPoint = Camera.main.ViewportToWorldPoint(new Vector3(characterData.positionX, characterData.positionY
+					, Mathf.Abs(Camera.main.transform.position.z)));
+				this.transform.localPosition = characterScreenToWorldPoint;
+			}
         }
 
         /// <summary>

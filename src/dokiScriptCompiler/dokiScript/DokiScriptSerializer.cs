@@ -2,10 +2,11 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using PerCederberg.Grammatica.Runtime;
-using dokiScriptSetting;
-using Action = dokiScriptSetting.Action;
-using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
+using dokidoki.dokiScriptSetting;
+using Action = dokidoki.dokiScriptSetting.Action;
+using ScriptKeyword = dokidoki.dokiScriptSetting.ScriptKeyword;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.RegularExpressions;
 
 namespace dokidoki.dokiScriptCompiler
 {
@@ -64,10 +65,14 @@ namespace dokidoki.dokiScriptCompiler
 			Console.WriteLine ("...Compiling: "+scriptPathWithoutExtension);
 			string scriptText = File.ReadAllText(scriptPathWithoutExtension + "." + ScriptKeyword.SCRIPT_EXTENSION, System.Text.Encoding.UTF8);
 
+			System.Console.WriteLine ("...Deleting comments");
+			string scriptTextWithoutComment = Regex.Replace(scriptText,"\\/\\/[^\\n]*", string.Empty);
+			System.Console.WriteLine ("...Comment deleted");
+			//System.Console.Write (scriptTextWithoutComment);
 			DokiScriptCompiler  compiler = null;
 			compiler = new DokiScriptCompiler();
 
-			List<Action> actions = compiler.compile(scriptText);
+			List<Action> actions = compiler.compile(scriptTextWithoutComment);
 
 			try{
 				BinaryFormatter bf = new BinaryFormatter();
@@ -75,7 +80,7 @@ namespace dokidoki.dokiScriptCompiler
 				Script scriptData = new Script();
 				scriptData.actions = actions;
 
-				FileStream scriptFile = File.Create(scriptPathWithoutExtension + "." + ScriptKeyword.SCRIPT_COMPILED_EXTENSION);
+				FileStream scriptFile = File.Create(scriptPathWithoutExtension + "." + ScriptKeyword.SCRIPT_EXTENSION + "." + ScriptKeyword.SCRIPT_COMPILED_EXTENSION);
 				bf.Serialize(scriptFile, scriptData);
 				scriptFile.Close();
 			}catch(IOException ex){

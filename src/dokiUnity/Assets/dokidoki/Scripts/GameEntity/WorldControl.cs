@@ -7,8 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using dokiScriptSetting;
-using Action = dokiScriptSetting.Action;
+using dokidoki.dokiScriptSetting;
+using Action = dokidoki.dokiScriptSetting.Action;
 
 
 namespace dokidoki.dokiUnity {

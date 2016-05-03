@@ -1,27 +1,27 @@
-world
-	video src=vi0;
-	other tag=face type=smile;
-	background src=yama0;
-	bgm src=b00 mode=loop;
-	weather type=sunny level=1.0;
-	>天空晴朗，附近的家庭都带着小孩子到公园玩耍。
+world//world is pre-defined id
+	video src=vi0;//video action: play video named vi0
+	other tag=face type=smile;//other action: defined by developer themselves, have parameter tag, type, and so on
+	background src=yama0 transition=fade time=1.0;//background action: set world background named yama0
+	bgm src=b00 mode=loop;//bgm action: play bgm named b00 in loop mode
+	weather type=sunny level=1.0;//weather action: change world's weather into sunny type at 1.0 level
+	>天空晴朗，附近的家庭都带着小孩子到公园玩耍。//text action: world reads aside, content is above
 	>奔跑声，欢笑声，不时地从窗外传了进来。
 	>我住的地方离公园并不近，但欢乐开朗的空气仍不断的冲过来。
-kesumu
-	role type=player name="小热";
-	>还是出去走走吧。
+kesumu//kesumu is a character id, defined by developers
+	role type=player name="小热";//role action: set this character role be player, and his name is 小热
+	>还是出去走走吧。//text action: show what this character is thinking, please be aware that only player's character should show his thinking
 world
 	>最终我还是妥协了。
-	background src=street0;
+	background src=street0 transition=fade time=2.0;
 	>出了家门，来到了街道上。
 kesumu
 	>还是先去一趟便利店吧。
 world
 	>在街头上站着一会儿，一股无聊感就冲了出来。
 	>想着这周的jump还没有买，我走向了便利店。
-lily
-	role type=character;
-	voice src=lily000 >让开，让开，快让开。
+lily//lily is the id of another character
+	role type=character;//role action: set this character's role be character, and no name yet
+	voice src=lily000 >让开，让开，快让开。//voice action: play voice named lily000, and display what this charcter said
 kesumu
 	>嗯？
 world
@@ -37,19 +37,19 @@ world
 kesumu
 	>这么热的天，穿这么多不热吗？
 
-["站起来批评她一顿"(option011, sample1) | "原谅她，并提醒她下次注意一点"(option012, sample1)]
+["站起来批评她一顿"(option011, sample1) | "原谅她，并提醒她下次注意一点"(option012, sample1)]//flag action: show 2 options to choose, first option is named option011 and if it were chosen jump to script named sample1(which contains the responding option action), and jump to the responding option action to continue
 
-<option011>
+<option011>//option action: mark this place as a jump point
 kesumu
 	voice >你叫什么名字？
 lily
 	role name="Lily";
-	posture src=lilyNormal0;
-	move position=center;
+	posture live2d=Epsilon00 zoom=0.4 anchor=(0.5,0.1) transition=fade time=0.5;//posture action: show this charcter's body, zoom to adjust size of image, anchor decide the pivot of posture
+	move position=center;//move action: move this character's posture into center position
 	voice src=lily003 >我叫Lily。
 kesumu
 	voice >啊，lily呀，你听好。作为年长者给你点建议，做错事，你首先得道歉，知道吗？
-(sample2)
+(sample2)//jump action: jump to script named sample2, and excute this script from the top
 
 <option012>
 kesumu

@@ -61,26 +61,11 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
         case (int) DokiScriptConstants.TRANSITION:
             EnterTransition((Token) node);
             break;
-        case (int) DokiScriptConstants.TRANSITION_INSTANT:
-            EnterTransitionInstant((Token) node);
-            break;
-        case (int) DokiScriptConstants.TRANSITION_GRADUAL:
-            EnterTransitionGradual((Token) node);
-            break;
-        case (int) DokiScriptConstants.SPEED:
-            EnterSpeed((Token) node);
+        case (int) DokiScriptConstants.TIME:
+            EnterTime((Token) node);
             break;
         case (int) DokiScriptConstants.TYPE:
             EnterType((Token) node);
-            break;
-        case (int) DokiScriptConstants.TYPE_SUNNY:
-            EnterTypeSunny((Token) node);
-            break;
-        case (int) DokiScriptConstants.TYPE_RAIN:
-            EnterTypeRain((Token) node);
-            break;
-        case (int) DokiScriptConstants.TYPE_SNOW:
-            EnterTypeSnow((Token) node);
             break;
         case (int) DokiScriptConstants.LEVEL:
             EnterLevel((Token) node);
@@ -88,26 +73,8 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
         case (int) DokiScriptConstants.MODE:
             EnterMode((Token) node);
             break;
-        case (int) DokiScriptConstants.MODE_LOOP:
-            EnterModeLoop((Token) node);
-            break;
         case (int) DokiScriptConstants.POSITION:
             EnterPosition((Token) node);
-            break;
-        case (int) DokiScriptConstants.POSITION_CENTER:
-            EnterPositionCenter((Token) node);
-            break;
-        case (int) DokiScriptConstants.POSITION_LEFT:
-            EnterPositionLeft((Token) node);
-            break;
-        case (int) DokiScriptConstants.POSITION_RIGHT:
-            EnterPositionRight((Token) node);
-            break;
-        case (int) DokiScriptConstants.TYPE_PLAYER:
-            EnterTypePlayer((Token) node);
-            break;
-        case (int) DokiScriptConstants.TYPE_CHARACTER:
-            EnterTypeCharacter((Token) node);
             break;
         case (int) DokiScriptConstants.NAME:
             EnterName((Token) node);
@@ -117,6 +84,39 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
             break;
         case (int) DokiScriptConstants.TAG_PARAMETER:
             EnterTagParameter((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY1:
+            EnterKey1((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY2:
+            EnterKey2((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY3:
+            EnterKey3((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY4:
+            EnterKey4((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY5:
+            EnterKey5((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY6:
+            EnterKey6((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY7:
+            EnterKey7((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY8:
+            EnterKey8((Token) node);
+            break;
+        case (int) DokiScriptConstants.KEY9:
+            EnterKey9((Token) node);
+            break;
+        case (int) DokiScriptConstants.LIVE2D:
+            EnterLive2d((Token) node);
+            break;
+        case (int) DokiScriptConstants.ZOOM:
+            EnterZoom((Token) node);
             break;
         case (int) DokiScriptConstants.BRACKET_LEFT:
             EnterBracketLeft((Token) node);
@@ -262,44 +262,44 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
             return ExitSrc((Token) node);
         case (int) DokiScriptConstants.TRANSITION:
             return ExitTransition((Token) node);
-        case (int) DokiScriptConstants.TRANSITION_INSTANT:
-            return ExitTransitionInstant((Token) node);
-        case (int) DokiScriptConstants.TRANSITION_GRADUAL:
-            return ExitTransitionGradual((Token) node);
-        case (int) DokiScriptConstants.SPEED:
-            return ExitSpeed((Token) node);
+        case (int) DokiScriptConstants.TIME:
+            return ExitTime((Token) node);
         case (int) DokiScriptConstants.TYPE:
             return ExitType((Token) node);
-        case (int) DokiScriptConstants.TYPE_SUNNY:
-            return ExitTypeSunny((Token) node);
-        case (int) DokiScriptConstants.TYPE_RAIN:
-            return ExitTypeRain((Token) node);
-        case (int) DokiScriptConstants.TYPE_SNOW:
-            return ExitTypeSnow((Token) node);
         case (int) DokiScriptConstants.LEVEL:
             return ExitLevel((Token) node);
         case (int) DokiScriptConstants.MODE:
             return ExitMode((Token) node);
-        case (int) DokiScriptConstants.MODE_LOOP:
-            return ExitModeLoop((Token) node);
         case (int) DokiScriptConstants.POSITION:
             return ExitPosition((Token) node);
-        case (int) DokiScriptConstants.POSITION_CENTER:
-            return ExitPositionCenter((Token) node);
-        case (int) DokiScriptConstants.POSITION_LEFT:
-            return ExitPositionLeft((Token) node);
-        case (int) DokiScriptConstants.POSITION_RIGHT:
-            return ExitPositionRight((Token) node);
-        case (int) DokiScriptConstants.TYPE_PLAYER:
-            return ExitTypePlayer((Token) node);
-        case (int) DokiScriptConstants.TYPE_CHARACTER:
-            return ExitTypeCharacter((Token) node);
         case (int) DokiScriptConstants.NAME:
             return ExitName((Token) node);
         case (int) DokiScriptConstants.ANCHOR:
             return ExitAnchor((Token) node);
         case (int) DokiScriptConstants.TAG_PARAMETER:
             return ExitTagParameter((Token) node);
+        case (int) DokiScriptConstants.KEY1:
+            return ExitKey1((Token) node);
+        case (int) DokiScriptConstants.KEY2:
+            return ExitKey2((Token) node);
+        case (int) DokiScriptConstants.KEY3:
+            return ExitKey3((Token) node);
+        case (int) DokiScriptConstants.KEY4:
+            return ExitKey4((Token) node);
+        case (int) DokiScriptConstants.KEY5:
+            return ExitKey5((Token) node);
+        case (int) DokiScriptConstants.KEY6:
+            return ExitKey6((Token) node);
+        case (int) DokiScriptConstants.KEY7:
+            return ExitKey7((Token) node);
+        case (int) DokiScriptConstants.KEY8:
+            return ExitKey8((Token) node);
+        case (int) DokiScriptConstants.KEY9:
+            return ExitKey9((Token) node);
+        case (int) DokiScriptConstants.LIVE2D:
+            return ExitLive2d((Token) node);
+        case (int) DokiScriptConstants.ZOOM:
+            return ExitZoom((Token) node);
         case (int) DokiScriptConstants.BRACKET_LEFT:
             return ExitBracketLeft((Token) node);
         case (int) DokiScriptConstants.BRACKET_RIGHT:
@@ -769,7 +769,7 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
      * <exception cref='ParseException'>if the node analysis
      * discovered errors</exception>
      */
-    public virtual void EnterTransitionInstant(Token node) {
+    public virtual void EnterTime(Token node) {
     }
 
     /**
@@ -783,59 +783,7 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
      * <exception cref='ParseException'>if the node analysis
      * discovered errors</exception>
      */
-    public virtual Node ExitTransitionInstant(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterTransitionGradual(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitTransitionGradual(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterSpeed(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitSpeed(Token node) {
+    public virtual Node ExitTime(Token node) {
         return node;
     }
 
@@ -862,84 +810,6 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
      * discovered errors</exception>
      */
     public virtual Node ExitType(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterTypeSunny(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitTypeSunny(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterTypeRain(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitTypeRain(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterTypeSnow(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitTypeSnow(Token node) {
         return node;
     }
 
@@ -1003,32 +873,6 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
      * <exception cref='ParseException'>if the node analysis
      * discovered errors</exception>
      */
-    public virtual void EnterModeLoop(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitModeLoop(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
     public virtual void EnterPosition(Token node) {
     }
 
@@ -1044,136 +888,6 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
      * discovered errors</exception>
      */
     public virtual Node ExitPosition(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterPositionCenter(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitPositionCenter(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterPositionLeft(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitPositionLeft(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterPositionRight(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitPositionRight(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterTypePlayer(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitTypePlayer(Token node) {
-        return node;
-    }
-
-    /**
-     * <summary>Called when entering a parse tree node.</summary>
-     *
-     * <param name='node'>the node being entered</param>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual void EnterTypeCharacter(Token node) {
-    }
-
-    /**
-     * <summary>Called when exiting a parse tree node.</summary>
-     *
-     * <param name='node'>the node being exited</param>
-     *
-     * <returns>the node to add to the parse tree, or
-     *          null if no parse tree should be created</returns>
-     *
-     * <exception cref='ParseException'>if the node analysis
-     * discovered errors</exception>
-     */
-    public virtual Node ExitTypeCharacter(Token node) {
         return node;
     }
 
@@ -1252,6 +966,292 @@ internal abstract class DokiScriptAnalyzer : Analyzer {
      * discovered errors</exception>
      */
     public virtual Node ExitTagParameter(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey1(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey1(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey2(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey2(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey3(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey3(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey4(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey4(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey5(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey5(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey6(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey6(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey7(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey7(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey8(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey8(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterKey9(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitKey9(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterLive2d(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitLive2d(Token node) {
+        return node;
+    }
+
+    /**
+     * <summary>Called when entering a parse tree node.</summary>
+     *
+     * <param name='node'>the node being entered</param>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual void EnterZoom(Token node) {
+    }
+
+    /**
+     * <summary>Called when exiting a parse tree node.</summary>
+     *
+     * <param name='node'>the node being exited</param>
+     *
+     * <returns>the node to add to the parse tree, or
+     *          null if no parse tree should be created</returns>
+     *
+     * <exception cref='ParseException'>if the node analysis
+     * discovered errors</exception>
+     */
+    public virtual Node ExitZoom(Token node) {
         return node;
     }
 

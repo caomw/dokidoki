@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using dokiScriptSetting;
-using Action = dokiScriptSetting.Action;
+using dokidoki.dokiScriptSetting;
+using Action = dokidoki.dokiScriptSetting.Action;
 using Prime31.TransitionKit;
 
 namespace dokidoki.dokiUnity {
@@ -74,22 +74,55 @@ namespace dokidoki.dokiUnity {
 			this.worldControl.GetComponent<WorldControl> ().DisablePlayerInput ();
 			this.worldControl.GetComponent<WorldControl> ().hideInPlayUI ();
 
-			var fishEye = new FishEyeTransition()
-			{
-				nextScene = -1,
-				duration = 2.0f,
-				size = 0.08f,
-				zoom = 10.0f,
-				colorSeparation = 3.0f
-			};
-			TransitionKit.instance.transitionWithDelegate( fishEye );
+			string transitionValue;
+			if (backgroundAction.parameters.TryGetValue (ScriptKeyword.TRANSITION, out transitionValue)) {
+				string transitionTimeString;
+				float transitionTime = 1f;
+				if (backgroundAction.parameters.TryGetValue (ScriptKeyword.TIME, out transitionTimeString)) {
+					transitionTime = float.Parse (transitionTimeString);
+				}
+				//Debug.Log ("transitionTime="+transitionTime);
+				switch(transitionValue){
+				case ScriptKeyword.TRANSITION_INSTANT:
+					{
+						this.BackgroundTransitionOnScreenObscured ();
+						this.BackgroundTransitionComplete ();
+						break;
+					}
+				case ScriptKeyword.TRANSITION_FADE:
+					{
+						var fader = new FadeTransition()
+						{
+							nextScene = -1,
+							fadedDelay = transitionTime,
+							fadeToColor = Color.black
+						};
+						TransitionKit.instance.transitionWithDelegate( fader );
+						break;
+					}
+				}
+			} else {
+				var fader = new FadeTransition()
+				{
+					nextScene = -1,
+					fadedDelay = 1f,
+					fadeToColor = Color.black
+				};
+				TransitionKit.instance.transitionWithDelegate( fader );
+			}
         }
+		/// <summary>
+		/// Backgrounds the transition on screen obscured.
+		/// </summary>
 		private void BackgroundTransitionOnScreenObscured(){
 			this.worldControl.GetComponent<WorldControl> ().hideCharacters ();
 			Sprite sprite = Resources.Load<Sprite>(FolderStructure.WORLD + FolderStructure.BACKGROUNDS + worldData.backgroundSrc);
 			Debug.CheckResources (worldData.backgroundSrc, sprite);
 			background.GetComponent<SpriteRenderer>().sprite = sprite;
 		}
+		/// <summary>
+		/// Backgrounds the transition complete.
+		/// </summary>
 		private void BackgroundTransitionComplete(){
 			this.worldControl.GetComponent<WorldControl> ().showCharacters ();
 			this.worldControl.GetComponent<WorldControl> ().showInPlayUI ();

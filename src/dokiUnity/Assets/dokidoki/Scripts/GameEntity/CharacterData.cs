@@ -23,6 +23,10 @@ namespace dokidoki.dokiUnity {
         /// Record posture name, for displaying original posture after saved data is loaded
         /// </summary>
         public string postrueSrc;
+		/// <summary>
+		/// Record posture live2d name, for displaying original posture after saved data is loaded.
+		/// </summary>
+		public string postureLive2D;
         /// <summary>
         /// Record position's X value, for repositioning character into original postion after saved data is loaded
         /// </summary>
@@ -43,5 +47,9 @@ namespace dokidoki.dokiUnity {
         /// Record posture's anchor Y value
         /// </summary>
         public float anchorY = 0.5f;
+		/// <summary>
+		/// Record posture's zoom value.
+		/// </summary>
+		public float zoom = 1f;
     }
 }

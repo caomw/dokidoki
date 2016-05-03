@@ -116,46 +116,16 @@ internal class DokiScriptTokenizer : Tokenizer {
                                    "transition");
         AddPattern(pattern);
 
-        pattern = new TokenPattern((int) DokiScriptConstants.TRANSITION_INSTANT,
-                                   "TRANSITION_INSTANT",
+        pattern = new TokenPattern((int) DokiScriptConstants.TIME,
+                                   "TIME",
                                    TokenPattern.PatternType.STRING,
-                                   "instant");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.TRANSITION_GRADUAL,
-                                   "TRANSITION_GRADUAL",
-                                   TokenPattern.PatternType.STRING,
-                                   "gradual");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.SPEED,
-                                   "SPEED",
-                                   TokenPattern.PatternType.STRING,
-                                   "speed");
+                                   "time");
         AddPattern(pattern);
 
         pattern = new TokenPattern((int) DokiScriptConstants.TYPE,
                                    "TYPE",
                                    TokenPattern.PatternType.STRING,
                                    "type");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.TYPE_SUNNY,
-                                   "TYPE_SUNNY",
-                                   TokenPattern.PatternType.STRING,
-                                   "sunny");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.TYPE_RAIN,
-                                   "TYPE_RAIN",
-                                   TokenPattern.PatternType.STRING,
-                                   "rain");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.TYPE_SNOW,
-                                   "TYPE_SNOW",
-                                   TokenPattern.PatternType.STRING,
-                                   "snow");
         AddPattern(pattern);
 
         pattern = new TokenPattern((int) DokiScriptConstants.LEVEL,
@@ -170,46 +140,10 @@ internal class DokiScriptTokenizer : Tokenizer {
                                    "mode");
         AddPattern(pattern);
 
-        pattern = new TokenPattern((int) DokiScriptConstants.MODE_LOOP,
-                                   "MODE_LOOP",
-                                   TokenPattern.PatternType.STRING,
-                                   "loop");
-        AddPattern(pattern);
-
         pattern = new TokenPattern((int) DokiScriptConstants.POSITION,
                                    "POSITION",
                                    TokenPattern.PatternType.STRING,
                                    "position");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.POSITION_CENTER,
-                                   "POSITION_CENTER",
-                                   TokenPattern.PatternType.STRING,
-                                   "center");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.POSITION_LEFT,
-                                   "POSITION_LEFT",
-                                   TokenPattern.PatternType.STRING,
-                                   "left");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.POSITION_RIGHT,
-                                   "POSITION_RIGHT",
-                                   TokenPattern.PatternType.STRING,
-                                   "right");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.TYPE_PLAYER,
-                                   "TYPE_PLAYER",
-                                   TokenPattern.PatternType.STRING,
-                                   "player");
-        AddPattern(pattern);
-
-        pattern = new TokenPattern((int) DokiScriptConstants.TYPE_CHARACTER,
-                                   "TYPE_CHARACTER",
-                                   TokenPattern.PatternType.STRING,
-                                   "character");
         AddPattern(pattern);
 
         pattern = new TokenPattern((int) DokiScriptConstants.NAME,
@@ -228,6 +162,72 @@ internal class DokiScriptTokenizer : Tokenizer {
                                    "TAG_PARAMETER",
                                    TokenPattern.PatternType.STRING,
                                    "tag");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY1,
+                                   "KEY1",
+                                   TokenPattern.PatternType.STRING,
+                                   "key1");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY2,
+                                   "KEY2",
+                                   TokenPattern.PatternType.STRING,
+                                   "key2");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY3,
+                                   "KEY3",
+                                   TokenPattern.PatternType.STRING,
+                                   "key3");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY4,
+                                   "KEY4",
+                                   TokenPattern.PatternType.STRING,
+                                   "key4");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY5,
+                                   "KEY5",
+                                   TokenPattern.PatternType.STRING,
+                                   "key5");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY6,
+                                   "KEY6",
+                                   TokenPattern.PatternType.STRING,
+                                   "key6");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY7,
+                                   "KEY7",
+                                   TokenPattern.PatternType.STRING,
+                                   "key7");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY8,
+                                   "KEY8",
+                                   TokenPattern.PatternType.STRING,
+                                   "key8");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.KEY9,
+                                   "KEY9",
+                                   TokenPattern.PatternType.STRING,
+                                   "key9");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.LIVE2D,
+                                   "LIVE2D",
+                                   TokenPattern.PatternType.STRING,
+                                   "live2d");
+        AddPattern(pattern);
+
+        pattern = new TokenPattern((int) DokiScriptConstants.ZOOM,
+                                   "ZOOM",
+                                   TokenPattern.PatternType.STRING,
+                                   "zoom");
         AddPattern(pattern);
 
         pattern = new TokenPattern((int) DokiScriptConstants.BRACKET_LEFT,
@@ -347,7 +347,7 @@ internal class DokiScriptTokenizer : Tokenizer {
         pattern = new TokenPattern((int) DokiScriptConstants.DECIMAL,
                                    "DECIMAL",
                                    TokenPattern.PatternType.REGEXP,
-                                   "[01]\\.?\\d*");
+                                   "\\d+\\.?\\d*");
         AddPattern(pattern);
 
         pattern = new TokenPattern((int) DokiScriptConstants.TEXT,

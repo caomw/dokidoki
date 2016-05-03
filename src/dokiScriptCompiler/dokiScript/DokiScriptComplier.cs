@@ -3,8 +3,9 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using PerCederberg.Grammatica.Runtime;
-using dokiScriptSetting;
-using Action = dokiScriptSetting.Action;
+using dokidoki.dokiScriptSetting;
+using Action = dokidoki.dokiScriptSetting.Action;
+using ScriptKeyword = dokidoki.dokiScriptSetting.ScriptKeyword;
 
 namespace dokidoki.dokiScriptCompiler
 {
@@ -46,147 +47,149 @@ namespace dokidoki.dokiScriptCompiler
 		}
 
 
-		public override Node ExitWorld(Token node){node.Values.Add("world");
+		public override Node ExitWorld(Token node){node.Values.Add(ScriptKeyword.WORLD);
 			return node;
 		}
-		public override Node ExitBackground(Token node){node.Values.Add("background");
+		public override Node ExitBackground(Token node){node.Values.Add(ScriptKeyword.BACKGROUND);
 			return node;
 		}
-		public override Node ExitWeather(Token node){node.Values.Add("weather");
+		public override Node ExitWeather(Token node){node.Values.Add(ScriptKeyword.WEATHER);
 			return node;
 		}
-		public override Node ExitSound(Token node){node.Values.Add("sound");
+		public override Node ExitSound(Token node){node.Values.Add(ScriptKeyword.SOUND);
 			return node;
 		}
-		public override Node ExitBgm(Token node){node.Values.Add("bgm");
+		public override Node ExitBgm(Token node){node.Values.Add(ScriptKeyword.BGM);
 			return node;
 		}
-		public override Node ExitVideo(Token node){node.Values.Add("video");
+		public override Node ExitVideo(Token node){node.Values.Add(ScriptKeyword.VIDEO);
 			return node;
 		}
-		public override Node ExitMove(Token node){node.Values.Add("move");
+		public override Node ExitMove(Token node){node.Values.Add(ScriptKeyword.MOVE);
 			return node;
 		}
-		public override Node ExitPosture(Token node){node.Values.Add("posture");
+		public override Node ExitPosture(Token node){node.Values.Add(ScriptKeyword.POSTURE);
 			return node;
 		}
-		public override Node ExitVoice(Token node){node.Values.Add("voice");
+		public override Node ExitVoice(Token node){node.Values.Add(ScriptKeyword.VOICE);
 			return node;
 		}
-		public override Node ExitRole(Token node){node.Values.Add("role");
+		public override Node ExitRole(Token node){node.Values.Add(ScriptKeyword.ROLE);
 			return node;
 		}
-		public override Node ExitOther(Token node){node.Values.Add("other");
-			return node;
-		}
-
-		public override Node ExitSrc(Token node){node.Values.Add("src");
-			return node;
-		}
-		public override Node ExitTransition(Token node){node.Values.Add("transition");
-			return node;
-		}
-		public override Node ExitTransitionInstant(Token node){node.Values.Add("instant");
-			return node;
-		}
-		public override Node ExitTransitionGradual(Token node){node.Values.Add("gradual");
-			return node;
-		}
-		public override Node ExitSpeed(Token node){node.Values.Add("speed");
-			return node;
-		}
-		public override Node ExitType(Token node){node.Values.Add("type");
-			return node;
-		}
-		public override Node ExitTypeSunny(Token node){node.Values.Add("sunny");
-			return node;
-		}
-		public override Node ExitTypeRain(Token node){node.Values.Add("rain");
-			return node;
-		}
-		public override Node ExitTypeSnow(Token node){node.Values.Add("snow");
-			return node;
-		}
-		public override Node ExitLevel(Token node){node.Values.Add("level");
-			return node;
-		}
-		public override Node ExitMode(Token node){node.Values.Add("mode");
-			return node;
-		}
-		public override Node ExitModeLoop(Token node){node.Values.Add("loop");
-			return node;
-		}
-		public override Node ExitPosition(Token node){node.Values.Add("position");
-			return node;
-		}
-		public override Node ExitPositionCenter(Token node){node.Values.Add("center");
-			return node;
-		}
-		public override Node ExitPositionLeft(Token node){node.Values.Add("left");
-			return node;
-		}
-		public override Node ExitPositionRight(Token node){node.Values.Add("right");
-			return node;
-		}
-		public override Node ExitTypePlayer(Token node){node.Values.Add("player");
-			return node;
-		}
-		public override Node ExitTypeCharacter(Token node){node.Values.Add("character");
-			return node;
-		}
-		public override Node ExitName(Token node){node.Values.Add("name");
-			return node;
-		}
-		public override Node ExitAnchor(Token node){node.Values.Add ("anchor");
-			return node;
-		}
-		public override Node ExitTagParameter(Token node){node.Values.Add ("tag");
+		public override Node ExitOther(Token node){node.Values.Add(ScriptKeyword.OTHER);
 			return node;
 		}
 
-		public override Node ExitBracketLeft(Token node){node.Values.Add("{");
+		public override Node ExitSrc(Token node){node.Values.Add(ScriptKeyword.SRC);
 			return node;
 		}
-		public override Node ExitBracketRight(Token node){node.Values.Add("}");
+		public override Node ExitTransition(Token node){node.Values.Add(ScriptKeyword.TRANSITION);
 			return node;
 		}
-		public override Node ExitSquareBracketLeft(Token node){node.Values.Add("[");
+		public override Node ExitTime(Token node){node.Values.Add(ScriptKeyword.TIME);
 			return node;
 		}
-		public override Node ExitSquareBracketRight(Token node){node.Values.Add("]");
+		public override Node ExitType(Token node){node.Values.Add(ScriptKeyword.TYPE);
 			return node;
 		}
-		public override Node ExitParentheseLeft(Token node){node.Values.Add("(");
+		public override Node ExitLevel(Token node){node.Values.Add(ScriptKeyword.LEVEL);
 			return node;
 		}
-		public override Node ExitParentheseRight(Token node){node.Values.Add(")");
+		public override Node ExitMode(Token node){node.Values.Add(ScriptKeyword.MODE);
 			return node;
 		}
-		public override Node ExitAngleBracketLeft(Token node){node.Values.Add("<");
+		public override Node ExitPosition(Token node){node.Values.Add(ScriptKeyword.POSITION);
 			return node;
 		}
-		public override Node ExitDoubleQuote(Token node){node.Values.Add('"');
+		public override Node ExitName(Token node){node.Values.Add(ScriptKeyword.NAME);
 			return node;
 		}
-		public override Node ExitPeriod(Token node){node.Values.Add(".");
+		public override Node ExitAnchor(Token node){node.Values.Add (ScriptKeyword.ANCHOR);
 			return node;
 		}
-		public override Node ExitComma(Token node){node.Values.Add(",");
+		public override Node ExitTagParameter(Token node){node.Values.Add (ScriptKeyword.TAG);
 			return node;
 		}
-		public override Node ExitSemicolon(Token node){node.Values.Add(";");
+		public override Node ExitKey1(Token node){node.Values.Add (ScriptKeyword.KEY1);
 			return node;
 		}
-		public override Node ExitEqual(Token node){node.Values.Add("=");
+		public override Node ExitKey2(Token node){node.Values.Add (ScriptKeyword.KEY2);
 			return node;
 		}
-		public override Node ExitClick(Token node){node.Values.Add(">");
+		public override Node ExitKey3(Token node){node.Values.Add (ScriptKeyword.KEY3);
 			return node;
 		}
-		public override Node ExitClickNextDialoguePage(Token node){node.Values.Add(">>");
+		public override Node ExitKey4(Token node){node.Values.Add (ScriptKeyword.KEY4);
 			return node;
 		}
-		public override Node ExitOr(Token node){node.Values.Add("|");
+		public override Node ExitKey5(Token node){node.Values.Add (ScriptKeyword.KEY5);
+			return node;
+		}
+		public override Node ExitKey6(Token node){node.Values.Add (ScriptKeyword.KEY6);
+			return node;
+		}
+		public override Node ExitKey7(Token node){node.Values.Add (ScriptKeyword.KEY7);
+			return node;
+		}
+		public override Node ExitKey8(Token node){node.Values.Add (ScriptKeyword.KEY8);
+			return node;
+		}
+		public override Node ExitKey9(Token node){node.Values.Add (ScriptKeyword.KEY9);
+			return node;
+		}
+		public override Node ExitLive2d(Token node){node.Values.Add (ScriptKeyword.LIVE2D);
+			return node;
+		}
+		public override Node ExitZoom(Token node){node.Values.Add (ScriptKeyword.ZOOM);
+			return node;
+		}
+
+
+		//Symbols
+		public override Node ExitBracketLeft(Token node){node.Values.Add(ScriptKeyword.BRACKET_LEFT);
+			return node;
+		}
+		public override Node ExitBracketRight(Token node){node.Values.Add(ScriptKeyword.BRACKET_RIGHT);
+			return node;
+		}
+		public override Node ExitSquareBracketLeft(Token node){node.Values.Add(ScriptKeyword.SQUARE_BRACKET_LEFT);
+			return node;
+		}
+		public override Node ExitSquareBracketRight(Token node){node.Values.Add(ScriptKeyword.SQUARE_BRACKET_RIGHT);
+			return node;
+		}
+		public override Node ExitParentheseLeft(Token node){node.Values.Add(ScriptKeyword.PARENTHESE_LEFT);
+			return node;
+		}
+		public override Node ExitParentheseRight(Token node){node.Values.Add(ScriptKeyword.PARENTHESE_RIGHT);
+			return node;
+		}
+		public override Node ExitAngleBracketLeft(Token node){node.Values.Add(ScriptKeyword.ANGLE_BRACKET_LEFT);
+			return node;
+		}
+		public override Node ExitDoubleQuote(Token node){node.Values.Add(ScriptKeyword.DOUBLE_QUOTE);
+			return node;
+		}
+		public override Node ExitPeriod(Token node){node.Values.Add(ScriptKeyword.PERIOD);
+			return node;
+		}
+		public override Node ExitComma(Token node){node.Values.Add(ScriptKeyword.COMMA);
+			return node;
+		}
+		public override Node ExitSemicolon(Token node){node.Values.Add(ScriptKeyword.SEMICOLON);
+			return node;
+		}
+		public override Node ExitEqual(Token node){node.Values.Add(ScriptKeyword.EQUAL);
+			return node;
+		}
+		public override Node ExitClick(Token node){node.Values.Add(ScriptKeyword.CLICK);
+			return node;
+		}
+		public override Node ExitClickNextDialoguePage(Token node){node.Values.Add(ScriptKeyword.CLICK_NEXT_DIALOGUE_PAGE);
+			return node;
+		}
+		public override Node ExitOr(Token node){node.Values.Add(ScriptKeyword.OR);
 			return node;
 		}
 

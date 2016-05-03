@@ -1,8 +1,11 @@
-﻿<Properties StartupItem="..\dokiScript\dokiScriptCompiler.csproj">
+﻿<Properties StartupItem="../dokiScript/dokiScriptCompiler.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\dokiScript\DokiScriptSerializer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../dokiScript/DokiScriptComplier.cs">
     <Files>
-      <File FileName="..\dokiScript\DokiScriptSerializer.cs" Line="1" Column="1" />
+      <File FileName="../dokiScript/NamespaceDoc.cs" Line="1" Column="1" />
+      <File FileName="../dokiScript/DokiScriptComplier.cs" Line="144" Column="80" />
+      <File FileName="../dokiScript/DokiScriptSerializer.cs" Line="1" Column="1" />
+      <File FileName="../dokiScript/DokiScriptAnalyzer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -11,21 +14,27 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.dokiScriptCompiler>
     <MonoDevelop.Ide.CustomExecutionModes>
-      <Data Name="Default (Custom)" Id="41ca2c7c-bf98-4c16-8e41-76d9382cdee0" ModeId="Default">
+      <Data Name="Sample1" Id="9bb814b1-4cd4-447f-b6d0-d114549ffaac" ModeId="Default" PromptForParameters="True">
         <CommandData>
           <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
-            <Value Arguments="C:\_Projects\MyFirstdokidokiProject\scripts\MyFirstScript.dks" ctype="CustomArgsExecutionModeData">
+            <Value Arguments="/Users/kesumu/_Projects/dokidoki/src/dokiEditor/SampleScripts/sample1.dks" ctype="CustomArgsExecutionModeData">
               <EnvironmentVariables />
             </Value>
           </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
         </CommandData>
       </Data>
-      <Data Name="Default (Custom 2)" Id="f86d7ddd-1fec-4832-b4ac-71d52cff0b53" ModeId="Default">
+      <Data Name="all" Id="ab0ead44-01a8-4488-bc7f-e1554c816107" ModeId="Default">
         <CommandData>
           <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
-            <Value Arguments="C:\_Projects\dokidoki\src\dokiEditor\SampleScripts" ctype="CustomArgsExecutionModeData">
+            <Value Arguments="/Users/kesumu/_Projects/dokidoki/src/dokiEditor/SampleScripts" ctype="CustomArgsExecutionModeData">
               <EnvironmentVariables />
             </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
           </Item>
         </CommandData>
       </Data>

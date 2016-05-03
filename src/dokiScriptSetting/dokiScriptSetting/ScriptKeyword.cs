@@ -6,8 +6,12 @@ namespace dokidoki.dokiScriptSetting{
 	/// </summary>
 	public class ScriptKeyword{
 
+		//file extension
 		public const string SCRIPT_EXTENSION = "dks";
-		public const string SCRIPT_COMPILED_EXTENSION = "txt";
+		public const string SCRIPT_COMPILED_EXTENSION = "bytes";
+		public const string LIVE2D_MOC_EXTENSION = "moc";
+		public const string LIVE2D_PHYSICS_EXTENSION = "physics.json";
+		public const string LIVE2D_TEXTURE_EXTENSION = "texture";
 	    
 	    //world keyword
 	    public const string WORLD = "world";
@@ -31,13 +35,17 @@ namespace dokidoki.dokiScriptSetting{
 		public const string OTHER = "other";
 
 	    //parameter keywords
-	    	//background src=xxx transition=(instant|gradual) speed=0.xxx;
+	    	//background src=xxx transition=(instant|gradual) time=0.xxx;
 	    public const string SRC = "src";
 	    public const string TRANSITION = "transition";
 	    public const string TRANSITION_INSTANT = "instant";
-	    public const string TRANSITION_GRADUAL = "gradual";
-	    public const string SPEED = "speed";
-	        //weather type=(sunny|cloudy|rain|snow) level=xxx transition=xxx speed=xxx;
+	    public const string TRANSITION_FADE = "fade";
+		public const string TRANSITION_PIXELATE = "pixelate";
+		public const string TRANSITION_SQUARE = "square";
+		public const string TRANSITION_MASK = "mask";
+		public const string TRANSITION_FISH_EYE = "fishEye";
+	    public const string TIME = "time";
+	        //weather type=(sunny|cloudy|rain|snow) level=xxx transition=xxx time=xxx;
 	    public const string TYPE = "type";
 	    public const string TYPE_SUNNY = "sunny";
 	    public const string TYPE_CLOUDY = "cloudy";
@@ -51,7 +59,7 @@ namespace dokidoki.dokiScriptSetting{
 	        //video src=xxx
 	        //textContent (>|>>)
 	    public const string CONTENT = "content";
-	        //move position=(center|left|right|(0.xxx,0.xxx,0.xxx)) transition=(instant|gradual) speed=0.xxx
+	        //move position=(center|left|right|(0.xxx,0.xxx,0.xxx)) transition=(instant|gradual) time=0.xxx
 	    public const string POSITION = "position";
 	    public const string POSITION_CENTER = "center";
 	    public const string POSITION_LEFT = "left";
@@ -103,8 +111,20 @@ namespace dokidoki.dokiScriptSetting{
 	    public const string OPTION_9 = "option9";
 		public const string OPTION_ID_9 = "optionId9";
 	    public const string OPTION_SRC_9 = "optionSrc9";
-		//other tag=xxx ...;
+			//other tag=xxx ...;
 		public const string TAG = "tag";
+		public const string KEY1 = "key1";
+		public const string KEY2 = "key2";
+		public const string KEY3 = "key3";
+		public const string KEY4 = "key4";
+		public const string KEY5 = "key5";
+		public const string KEY6 = "key6";
+		public const string KEY7 = "key7";
+		public const string KEY8 = "key8";
+		public const string KEY9 = "key9";
+		public const string LIVE2D = "live2d";
+		public const string ZOOM = "zoom";
+			
 
 	    //symbol keywords
 	    public const string BRACKET_LEFT = "{";

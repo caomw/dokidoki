@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using dokiScriptSetting;
-using Action = dokiScriptSetting.Action;
-using Script = dokiScriptSetting.Script;
-using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
+using dokidoki.dokiScriptSetting;
+using Action = dokidoki.dokiScriptSetting.Action;
+using Script = dokidoki.dokiScriptSetting.Script;
+using ScriptKeyword = dokidoki.dokiScriptSetting.ScriptKeyword;
 using System.Runtime.Serialization.Formatters.Binary;
 
 
@@ -103,7 +103,7 @@ namespace dokidoki.dokiUnity {
                 }
             }
             currentScriptName = scriptName;
-            string scriptPath = FolderStructure.SCRIPTS + scriptName;
+			string scriptPath = FolderStructure.SCRIPTS + scriptName + "." + ScriptKeyword.SCRIPT_EXTENSION;
             Debug.Log("scriptPath: " + scriptPath);
             try {
                 BinaryFormatter bf = new BinaryFormatter();
@@ -115,7 +115,7 @@ namespace dokidoki.dokiUnity {
                 Script scriptData = (Script)bf.Deserialize(scriptFile);
                 scriptFile.Close();
 
-                Debug.Log("scriptData = " + scriptData);
+                //Debug.Log("scriptData = " + scriptData);
 
                 this.currentScript = scriptData;
                 this.currentScriptActionsCount = scriptData.actions.Count;
