@@ -6,7 +6,7 @@ using PerCederberg.Grammatica.Runtime;
 using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 
-namespace dokiScriptCompiler
+namespace dokidoki.dokiScriptCompiler
 {
 	/// <summary>
 	/// DokiScriptCompiler is script compiler for dokiScript.

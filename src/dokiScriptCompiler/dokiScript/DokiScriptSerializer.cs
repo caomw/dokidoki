@@ -7,7 +7,7 @@ using Action = dokiScriptSetting.Action;
 using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace dokiScriptCompiler
+namespace dokidoki.dokiScriptCompiler
 {
 	/// <summary>
 	/// DokiScriptSerializer is used to compile and serialize script file(a set of actions) into the disk.

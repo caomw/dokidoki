@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace dokiScriptSetting{
+namespace dokidoki.dokiScriptSetting{
 	/// <summary>
 	/// ScriptKeyword is the pre-defined related keywords of script
 	/// </summary>

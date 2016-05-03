@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace dokiBattle {
+namespace dokidoki.dokiBattle {
     public class BattleTurn {
         public BattleManager battleManager;
         public List<BattleCharacter> battleCharacters;

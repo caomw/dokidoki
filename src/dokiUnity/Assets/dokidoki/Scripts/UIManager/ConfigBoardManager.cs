@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// ConfigBoardManager manages the ConfigBoard.
     /// ConfigBoardManager could read player's game settings from PlayerPrefs when game starts up.

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace dokiBattle {
+namespace dokidoki.dokiBattle {
     public class BattleManager : MonoBehaviour {
         public Dropdown redsDropdown;
         public Dropdown skillsDropdown;

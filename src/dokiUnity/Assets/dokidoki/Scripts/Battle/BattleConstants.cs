@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace dokiBattle {
+namespace dokidoki.dokiBattle {
     public class BattleConstants {
         public const string GOAL_KILL_ALL = "goalKillAll";
         public const string GOAL_NOT_KILLED_ALL = "goalNotKilledAll";

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace dokiBattle {
+namespace dokidoki.dokiBattle {
     public class BattleCareer {
         public string id;
 

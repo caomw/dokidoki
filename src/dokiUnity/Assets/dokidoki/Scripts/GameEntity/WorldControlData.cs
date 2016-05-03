@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// WorldControl's data to be serialized
     /// </summary>

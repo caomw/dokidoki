@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace dokiScriptSetting{
+namespace dokidoki.dokiScriptSetting{
 	[System.Serializable()]
 	/// <summary>
 	/// Action is the minimal unit action that World or Character could take.

@@ -6,7 +6,7 @@ using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 using Prime31.TransitionKit;
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// World is a GameObject, represents the world that all characters are in, used to take a series of actions to show effects.
     /// Those actions contain: BackgroundAction, BgmAction, SoundAction, TextAction, VideoAction, WeatherAction.

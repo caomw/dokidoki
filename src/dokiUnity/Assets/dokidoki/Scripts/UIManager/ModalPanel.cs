@@ -5,7 +5,7 @@ using System.Collections;
 using System;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// ModalPanel is a template to create a pop up window to wait for player's option input.
     /// ModalPanel has a title, message, Yes button (and No button).

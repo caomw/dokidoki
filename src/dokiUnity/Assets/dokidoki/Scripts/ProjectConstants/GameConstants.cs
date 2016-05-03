@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// GameConstants contains all constant parameters in the game.
     /// </summary>

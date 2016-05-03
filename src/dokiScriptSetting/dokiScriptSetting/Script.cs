@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace dokiScriptSetting
+namespace dokidoki.dokiScriptSetting
 {
 	/// <summary>
 	/// Script represents one script file which is compiled into an object.

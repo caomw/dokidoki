@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// State is a util to control the state transition
     /// </summary>

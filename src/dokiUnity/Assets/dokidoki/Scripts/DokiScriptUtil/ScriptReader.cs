@@ -10,7 +10,7 @@ using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
 using System.Runtime.Serialization.Formatters.Binary;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// ScriptReader is resiponsible for all script relating operations during the game.
     /// ScriptReader could automatically search all scripts under the pre-defined folder(asset/Resources/DokiScripts), and sort it in alphabet order.

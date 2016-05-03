@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// BubbleManager manages bubble of the character to show bubble effect.
     /// Create the atmosphere like reading manga

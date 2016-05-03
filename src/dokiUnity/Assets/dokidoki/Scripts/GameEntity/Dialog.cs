@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// Dialog is the combination of text and voice and character's name
     /// </summary>

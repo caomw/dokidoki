@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace dokiBattle {
+namespace dokidoki.dokiBattle {
     public class BattleCharacter : IComparable<BattleCharacter> {
         public string id;
 

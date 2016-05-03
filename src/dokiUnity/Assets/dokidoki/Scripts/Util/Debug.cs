@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// Debug is a wrapper of UnityEngine.Debug
     /// </summary>

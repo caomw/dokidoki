@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// The <see cref="dokiUnity"/> namespace contains classes for effect part on Unity.
     /// </summary>

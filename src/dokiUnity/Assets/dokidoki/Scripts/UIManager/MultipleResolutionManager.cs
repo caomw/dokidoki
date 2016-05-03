@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// MultipleResolutionManager is attached to each Board GameObject, used to set the size of each Board into just the size of the screen
     /// </summary>

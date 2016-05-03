@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using ScriptKeyword = dokiScriptSetting.ScriptKeyword;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// DialogManager manages dialogContent under dialogBoard.
     /// DialogManager could receive characters' or World's calls from voice action or text action, to display their text content on dialogBoard.

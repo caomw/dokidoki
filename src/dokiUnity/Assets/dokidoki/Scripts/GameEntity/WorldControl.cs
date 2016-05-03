@@ -11,7 +11,7 @@ using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// WorldControl is a GameObject, represents the controller of the world, used to distribute actions to World or Characters to take, and also itself could take some actinos to manipulate the flow the game.
     /// Those actions contain: JumpAction, FlagAction.

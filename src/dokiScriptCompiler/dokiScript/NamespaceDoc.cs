@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace dokiScriptCompiler
+namespace dokidoki.dokiScriptCompiler
 {
 	/// <summary>
 	/// The <see cref="dokiScriptCompiler"/> namespace contains classes for script compiling.

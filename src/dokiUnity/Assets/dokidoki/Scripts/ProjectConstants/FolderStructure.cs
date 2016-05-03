@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// FolderStructure is used to pre-define the structure of all game resources.
     /// Difference type resources should be put into responding folders, in order to find it only by the name.

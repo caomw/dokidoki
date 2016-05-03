@@ -6,7 +6,7 @@ using dokiScriptSetting;
 using Action = dokiScriptSetting.Action;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     /// <summary>
     /// Character is a GameObject, represents a character in game, used to take a series actions to tell game story.
     /// Those actions contain: RoleAction, PostureAction, TextAction, VoiceAction, MoveAction.

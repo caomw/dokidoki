@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace dokiBattle {
+namespace dokidoki.dokiBattle {
     public class BattleAction : IComparable<BattleAction> {
         public List<BattleCharacter> sources = new List<BattleCharacter>();
         public List<BattleCharacter> targets = new List<BattleCharacter>();

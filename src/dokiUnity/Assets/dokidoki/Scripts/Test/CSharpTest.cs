@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-namespace dokiUnity {
+namespace dokidoki.dokiUnity {
     public class CSharpTest : MonoBehaviour {
 
         // Use this for initialization
