@@ -219,13 +219,11 @@ namespace dokidoki.dokiUnity {
             nextAutoClickTime = nextAutoClickTime + movTexture.duration + PlayerPrefs.GetFloat(GameConstants.CONFIG_AUTO_SPEED) * GameConstants.AUTO_DELAY_FACTOR;
             return nextAutoClickTime;
 #endif
-#if UNITY_IPHONE
-        return 0;
-#endif
-#if UNITY_ANDROID
-        Handheld.PlayFullScreenMovie("StreamingAssets/" + FolderStructure.WORLD + FolderStructure.VIDEOS + videoAction.parameters[ScriptKeyword.SRC]);
-        Debug.Log("Play video");
-        return 0;
+#if UNITY_ANDROID || UNITY_IPHONE
+			string videoURL = FolderStructure.WORLD + FolderStructure.VIDEOS + videoAction.parameters[ScriptKeyword.SRC]+".mp4";
+			Handheld.PlayFullScreenMovie (videoURL , Color.black, FullScreenMovieControlMode.Full);
+	        Debug.Log("Play video on mobile");
+	        return 0;
 #endif
         }
 
@@ -255,9 +253,8 @@ namespace dokidoki.dokiUnity {
             }
             videoBoard.GetComponent<Renderer>().enabled = false;
 #endif
-#if UNITY_IOS
-#endif
-#if UNITY_ANDROID
+
+#if UNITY_ANDROID || UNITY_IOS
 #endif
         }
 
