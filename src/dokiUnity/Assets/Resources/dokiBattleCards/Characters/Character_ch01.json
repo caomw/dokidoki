@@ -1,0 +1,32 @@
+{
+  "type": "Character",
+  "id": "ch01",
+  "name": "Tom",
+  "role": "Blue",
+  "position": "(0.5, 0.5, 0)",
+  "level": 2,
+  "speed": 7.8,
+  "statuses":
+    {
+      "HP": 128,
+      "MP": 256
+    },
+  "abilities":{
+      "Mental": 50,
+      "Agility": 20
+    },
+  "careers": [
+    "ca00"
+  ],
+  "statusesLevelUpIncrement":{
+      "HP": 12,
+      "MP": 24
+    },
+  "abilitiesLevelUpIncrement":{
+      "Mental": 3,
+      "Agility": 2
+    },
+  "equipments": [
+    "eq000"
+  ]
+}

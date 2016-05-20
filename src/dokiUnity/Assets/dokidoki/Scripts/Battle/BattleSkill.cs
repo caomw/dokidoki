@@ -11,26 +11,29 @@ namespace dokidoki.dokiBattle {
         public string type;
 
         public int levelLimit;
-        public Dictionary<string, float> cost;
-        public Dictionary<string, float> depend;
+        public Dictionary<string, string> cost;
 
         public float damageRange;
         public int damageCharacterMaximum;
-        public Dictionary<string, float> damage;
+        public Dictionary<string, string> damage;
         public float healRange;
         public int healCharacterMaximum;
-        public Dictionary<string, float> heal;
+        public Dictionary<string, string> heal;
 
-        public BattleSkill(string id, string name, Dictionary<string, float> cost
-                           , Dictionary<string, float> damage
+        public BattleSkill(string id, string name, Dictionary<string, string> cost
+                           , float damageRange
+                           , Dictionary<string, string> damage
                            , int damageCharacterMaximum
-                           , Dictionary<string, float> heal
+                           , float healRange
+                           , Dictionary<string, string> heal
                            , int healCharacterMaximum) {
             this.id = id;
             this.name = name;
             this.cost = cost;
+            this.damageRange = damageRange;
             this.damage = damage;
             this.damageCharacterMaximum = damageCharacterMaximum;
+            this.healRange = healRange;
             this.heal = heal;
             this.healCharacterMaximum = healCharacterMaximum;
         }

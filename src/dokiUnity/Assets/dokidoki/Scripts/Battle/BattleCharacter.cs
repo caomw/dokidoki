@@ -21,18 +21,30 @@ namespace dokidoki.dokiBattle {
         public Dictionary<string, float> statusesLevelUpIncrement;
         public Dictionary<string, float> abilitiesLeveUpIncrement;
 
-        public BattleWeapon weapon;
+        public Dictionary<string, BattleEquipment> equipments;
 
         public BattleCharacter(string id, string name, string role
+                               , Vector3 position
+                               , int level
+                               , float speed
                                , Dictionary<string, float> statuses
                                , Dictionary<string, float> abilities
-                               , BattleWeapon weapon) {
+                               , List<BattleCareer> careers
+                               , Dictionary<string, float> statusesLevelUpIncrement
+                               , Dictionary<string, float> abilitiesLeveUpIncrement
+                               , Dictionary<string, BattleEquipment> equipments) {
             this.id = id;
             this.name = name;
             this.role = role;
+            this.position = position;
+            this.level = level;
+            this.speed = speed;
             this.statuses = statuses;
             this.abilities = abilities;
-            this.weapon = weapon;
+            this.careers = careers;
+            this.statusesLevelUpIncrement = statusesLevelUpIncrement;
+            this.abilitiesLeveUpIncrement = abilitiesLeveUpIncrement;
+            this.equipments = equipments;
         }
 
         public int CompareTo(BattleCharacter otherBattleCharacter) {
@@ -65,16 +77,12 @@ namespace dokidoki.dokiBattle {
             log += ")\n";
             Debug.Log(log);
 
-            Dictionary<string, float> cost = action.skill.cost;
+            Dictionary<string, string> cost = action.skill.cost;
             if (cost == null) {
                 return log;
             }
-            foreach (KeyValuePair<string, float> costKeyValuePair in cost) {
-                if (this.statuses[costKeyValuePair.Key] < costKeyValuePair.Value) {
-                    return null;
-                } else {
-                    this.statuses[costKeyValuePair.Key] -= costKeyValuePair.Value;
-                }
+            foreach (KeyValuePair<string, string> costKeyValuePair in cost) {
+                
             }
 
             return log;
@@ -93,17 +101,12 @@ namespace dokidoki.dokiBattle {
             log += ")\n";
             Debug.Log(log);
 
-            Dictionary<string, float> damage = action.skill.damage;
+            Dictionary<string, string> damage = action.skill.damage;
             if (damage == null) {
                 return null;
             }
-            foreach (KeyValuePair<string, float> damageKeyValuePair in damage) {
-
-                if (this.statuses[damageKeyValuePair.Key] < damageKeyValuePair.Value) {
-                    this.statuses[damageKeyValuePair.Key] = 0f;
-                } else {
-                    this.statuses[damageKeyValuePair.Key] -= damageKeyValuePair.Value;
-                }
+            foreach (KeyValuePair<string, string> damageKeyValuePair in damage) {
+                
             }
 
             log = this.name + "'s HP = " + this.statuses["HP"] + "\n" + log;
@@ -115,11 +118,15 @@ namespace dokidoki.dokiBattle {
             return log;
         }
 
-        public BattleWeapon setWeapon(BattleWeapon weapon) {
-            BattleWeapon oldWeapon = this.weapon;
-            this.weapon = weapon;
-            return oldWeapon;
+        public BattleEquipment SetEquipment (string position, BattleEquipment equipment) {
+            BattleEquipment oldEquipment = null;
+            if(this.equipments.TryGetValue(position, out oldEquipment)){
+                
+            }
+            this.equipments[position] = equipment;
+            return oldEquipment;
         }
+
         public void addCareer(BattleCareer career) {
             this.careers.Add(career);
         }

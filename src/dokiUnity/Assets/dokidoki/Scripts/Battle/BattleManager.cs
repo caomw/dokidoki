@@ -3,6 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+using SimpleJSON;
+using dokidoki.dokiUnity;
+using Debug = dokidoki.dokiUnity.Debug;
+
 namespace dokidoki.dokiBattle {
     public class BattleManager : MonoBehaviour {
         public Dropdown redsDropdown;
@@ -11,69 +15,133 @@ namespace dokidoki.dokiBattle {
         public Text battleLogText;
 
         public Battle battle;
-        public List<BattleWeapon> battleWeapons = new List<BattleWeapon>();
-        public List<BattleSkill> battleSkills = new List<BattleSkill>();
-        public List<BattleCareer> battleCareers = new List<BattleCareer>();
+        public Dictionary<string, BattleEquipment> equipments = new Dictionary<string, BattleEquipment>();
+        public Dictionary<string, BattleSkill> skills = new Dictionary<string, BattleSkill>();
+        public Dictionary<string, BattleCareer> careers = new Dictionary<string, BattleCareer>();
+        public Dictionary<string, BattleCharacter> characters = new Dictionary<string, BattleCharacter>();
         public List<BattleCharacter> battleCharacters = new List<BattleCharacter>();
         public BattleCharacter focusedBattleCharacter;
 
         private bool isOK = false;
 
-        public void loadWeapons() {
-            BattleWeapon weapon0 = new BattleWeapon("weapon0", "hand", 0f
-                                                     , null);
-            battleWeapons.Add(weapon0);
+        private void AutoLoad(){
+            Object[] skillCards = Resources.LoadAll(FolderStructure.BATTLE_CARDS + FolderStructure.BATTLE_SKILLS);
+            Object[] careerCards = Resources.LoadAll(FolderStructure.BATTLE_CARDS + FolderStructure.BATTLE_CAREERS);
+            Object[] equipmentCards = Resources.LoadAll(FolderStructure.BATTLE_CARDS + FolderStructure.BATTLE_EQUIPMENTS);
+            Object[] characterCards = Resources.LoadAll(FolderStructure.BATTLE_CARDS + FolderStructure.BAtTLE_CHARACTERS);
+
+            foreach(var skillCard in skillCards){
+                var N = JSONNode.Parse(skillCard.ToString());
+                Debug.Log("name: "+N[BattleConstants.NAME]);
+                this.LoadSkill(N);
+            }
+
+            foreach (var careerCard in careerCards) {
+                var N = JSONNode.Parse(careerCard.ToString());
+                Debug.Log("name: " + N[BattleConstants.NAME]);
+                this.LoadCareer(N);
+            }
+
+            foreach (var equipmentCard in equipmentCards) {
+                var N = JSONNode.Parse(equipmentCard.ToString());
+                Debug.Log("name: " + N[BattleConstants.NAME]);
+                this.LoadEquipment(N);
+            }
+
+            foreach (var characterCard in characterCards) {
+                var N = JSONNode.Parse(characterCard.ToString());
+                Debug.Log("name: " + N[BattleConstants.NAME]);
+                this.LoadCharacter(N);
+            }
         }
 
-        public void loadSkills() {
-            Dictionary<string, float> skill0Damage = new Dictionary<string, float>();
-            skill0Damage.Add("HP", 1f);
-            BattleSkill skill0 = new BattleSkill("skill0", "bite", null, skill0Damage, 1
-                                                  , null, 0);
-
-            BattleSkill skill1 = new BattleSkill("skill1", "sleep", null, null, 0
-                                                  , null, 0);
-            Dictionary<string, float> skill1Damage = new Dictionary<string, float>();
-            skill1Damage.Add("HP", 2f);
-            BattleSkill skill2 = new BattleSkill("skill2", "superpower", null, skill1Damage, 1
-                                                  , null, 0);
-            battleSkills.Add(skill0);
-            battleSkills.Add(skill1);
-            battleSkills.Add(skill2);
+        private void LoadEquipment(JSONNode N) {
+            string id = N[BattleConstants.ID];
+            string name = N[BattleConstants.NAME];
+            float range = float.Parse(N[BattleConstants.RANGE]);
+            Dictionary<string, float> abilitiesIncrement = this.GetDictionaryFloat((JSONClass)N.AsObject[BattleConstants.ABILITIES_INCREMENT]);
+            BattleEquipment equipment = new BattleEquipment(id, name, range, abilitiesIncrement);
+            equipments[id] = equipment;
         }
 
-        public void loadCareers() {
-            BattleCareer career0 = new BattleCareer("career0", "creature");
-            career0.addSkill(battleSkills[0]);
-            career0.addSkill(battleSkills[1]);
-            career0.addSkill(battleSkills[2]);
-            battleCareers.Add(career0);
+        private void LoadSkill(JSONNode N) {
+            string id = N[BattleConstants.ID];
+            string name = N[BattleConstants.NAME];
+            Dictionary<string, string> cost = this.GetDictionary((JSONClass)N.AsObject[BattleConstants.COST]);
+            float damageRange = float.Parse(N[BattleConstants.DAMAGE_RANGE]);
+            Dictionary<string, string> damage = this.GetDictionary((JSONClass)N.AsObject[BattleConstants.DAMAGE]);
+            int damageCharacterMaximum = int.Parse(N[BattleConstants.DAMAGE_CHARACTER_MAXIMUM]);
+            float healRange = float.Parse(N[BattleConstants.HEAL_RANGE]);
+            Dictionary<string, string> heal = this.GetDictionary((JSONClass)N.AsObject[BattleConstants.HEAL]);
+            int healCharacterMaximum = int.Parse(N[BattleConstants.HEAL_CHARACTER_MAXIMUM]);
+            BattleSkill skill = new BattleSkill(id, name, cost
+                                                , damageRange, damage, damageCharacterMaximum
+                                                , healRange, heal, healCharacterMaximum);
+            skills[id] = skill;
         }
 
-        public void loadCharacters() {
-            Dictionary<string, float> meStatuses = new Dictionary<string, float>();
-            meStatuses.Add("HP", 5f);
-            BattleCharacter me = new BattleCharacter("character0", "me"
-                                                      , BattleConstants.CHARACTER_ROLE_RED
-                                                      , meStatuses, null, battleWeapons[0]);
-            me.addCareer(battleCareers[0]);
+        public Dictionary<string, float> GetDictionaryFloat(JSONClass N) {
+            Dictionary<string, string> d = this.GetDictionary(N);
+            Dictionary<string, float> df = new Dictionary<string, float>();
+            foreach(KeyValuePair<string, string> keyValuePair in d){
+                df[keyValuePair.Key] = float.Parse(keyValuePair.Value);
+            }
+            return df;
+        }
 
-            Dictionary<string, float> me2Statuses = new Dictionary<string, float>();
-            me2Statuses.Add("HP", 5f);
-            BattleCharacter me2 = new BattleCharacter("character1", "you"
-                                                      , BattleConstants.CHARACTER_ROLE_RED
-                                                      , me2Statuses, null, battleWeapons[0]);
-            me2.addCareer(battleCareers[0]);
+        public Dictionary<string, string> GetDictionary(JSONClass N) {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+            foreach (string key in N.GetKeys()) {
+                d.Add(key, N[key]);
+            }
+            return d;
+        }
 
-            Dictionary<string, float> suraimuStatuses = new Dictionary<string, float>();
-            suraimuStatuses.Add("HP", 3f);
-            BattleCharacter suraimu = new BattleCharacter("character1", "suraimu"
-                                                      , BattleConstants.CHARACTER_ROLE_BLUE
-                                                      , suraimuStatuses, null, battleWeapons[0]);
-            suraimu.addCareer(battleCareers[0]);
+        public List<string> GetList(JSONNode N) {
+            List<string> l = new List<string>();
+            foreach(string value in N.Childs){
+                l.Add(value);
+            }
+            return l;
+        }
 
-            battleCharacters.Add(me);
-            battleCharacters.Add(suraimu);
+        private void LoadCareer(JSONNode N) {
+            string id = N[BattleConstants.ID];
+            string name = N[BattleConstants.NAME];
+            List<string> skillIds = this.GetList(N[BattleConstants.SKILLS]);
+            List<BattleSkill> careerSkills = new List<BattleSkill>();
+            foreach(var skillId in skillIds){
+                careerSkills.Add(skills[skillId]);
+            }
+            BattleCareer career = new BattleCareer(id, name, careerSkills);
+            careers[id] = career;
+        }
+
+        private void LoadCharacter(JSONNode N) {
+            string id = N[BattleConstants.ID];
+            string name = N[BattleConstants.NAME];
+            string role = N[BattleConstants.ROLE];
+            string position = N[BattleConstants.POSITION];
+            int level = int.Parse(N[BattleConstants.LEVEL]);
+            float speed = float.Parse(N[BattleConstants.SPEED]);
+            Dictionary<string, float> statuses = this.GetDictionaryFloat((JSONClass)N.AsObject[BattleConstants.STATUSES]);
+            Dictionary<string, float> abilities = this.GetDictionaryFloat((JSONClass)N.AsObject[BattleConstants.ABILITIES]);
+            List<string> careerIds = this.GetList(N[BattleConstants.CAREERS]);
+            List<BattleCareer> characterCareers = new List<BattleCareer>();
+            foreach(var careerId in careerIds){
+                characterCareers.Add(careers[careerId]);
+            }
+            Dictionary<string, float> statusesLevelUpIncrement = this.GetDictionaryFloat((JSONClass)N.AsObject[BattleConstants.STATUSES_LEVEL_UP_INCREMENT]);
+            Dictionary<string, float> abilitiesLevelUpIncrement = this.GetDictionaryFloat((JSONClass)N.AsObject[BattleConstants.ABILITIES_LEVEL_UP_INCREMENT]);
+            List<string> equipmentIds = this.GetList(N[BattleConstants.EQUIPMENTS]);
+            List<BattleEquipment> characterEquipments = new List<BattleEquipment>();
+            foreach(var equipmentId in equipmentIds){
+                characterEquipments.Add(equipments[equipmentId]);
+            }
+            BattleCharacter character = new BattleCharacter(id, name, role, new Vector3(), level, speed, statuses
+                                                            , abilities, characterCareers, statusesLevelUpIncrement
+                                                            , abilitiesLevelUpIncrement, equipments);
+            characters[id] = character;
         }
 
         public void chooseBattleActionOptions() {
@@ -102,7 +170,6 @@ namespace dokidoki.dokiBattle {
 
         public void updateBattleActionOptions(BattleCharacter battleCharacter) {
             this.focusedBattleCharacter = battleCharacter;
-            //this.log ("focus = " + this.focusedBattleCharacter.name);
 
             if (focusedBattleCharacter.role == BattleConstants.CHARACTER_ROLE_BLUE) {
                 BattleAction battleAction = new BattleAction();
@@ -149,15 +216,15 @@ namespace dokidoki.dokiBattle {
         }
 
         void Awake() {
-            loadWeapons();
-            loadSkills();
-            loadCareers();
-            loadCharacters();
+            this.AutoLoad();
         }
 
         void Start() {
+            foreach(KeyValuePair<string, BattleCharacter> keyValuePair in characters){
+                this.battleCharacters.Add(keyValuePair.Value);
+            }
             this.battle = new Battle(this, this.battleCharacters, BattleConstants.GOAL_KILL_ALL
-                                 , BattleConstants.GOAL_NOT_KILLED_ALL, 9999);
+                                 , BattleConstants.GOAL_NOT_KILLED_ALL, 3);
             this.battle.start();
         }
 

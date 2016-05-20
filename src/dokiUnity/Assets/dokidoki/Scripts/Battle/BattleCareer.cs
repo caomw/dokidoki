@@ -9,12 +9,13 @@ namespace dokidoki.dokiBattle {
         public string name;
         public List<BattleSkill> skills = new List<BattleSkill>();
 
-        public BattleCareer(string id, string name) {
+        public BattleCareer(string id, string name, List<BattleSkill> skills) {
             this.id = id;
             this.name = name;
+            this.skills = skills;
         }
 
-        public void addSkill(BattleSkill skill) {
+        public void AddSkill(BattleSkill skill) {
             this.skills.Add(skill);
         }
     }

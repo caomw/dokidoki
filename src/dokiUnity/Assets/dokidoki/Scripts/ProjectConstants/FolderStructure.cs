@@ -21,8 +21,13 @@ namespace dokidoki.dokiUnity {
         public const string DOKIDOKI = "dokidoki/";
 
         public const string CHARACTERS = "Characters/";
-        public const string SCRIPTS = "DokiScripts/";
+        public const string SCRIPTS = "dokiScripts/";
         public const string WORLD = "World/";
+        public const string BATTLE_CARDS = "dokiBattleCards/";
+        public const string BATTLE_SKILLS = "Skills/";
+        public const string BATTLE_CAREERS = "Careers/";
+        public const string BATTLE_EQUIPMENTS = "Equipments/";
+        public const string BAtTLE_CHARACTERS = "Characters/";
 
         public const string POSTURES = "Postures/";
         public const string VOICES = "Voices/";
