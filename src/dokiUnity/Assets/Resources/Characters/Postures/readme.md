@@ -1,1 +1,2 @@
 All character posture(tachie) image files should be put into this folder.
+If you use live2d, please put all files into one directory and name this directory with the same name you used in your dokiScript.
