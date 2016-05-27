@@ -36,11 +36,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="dokiScriptSetting">
-      <HintPath>..\..\dokiScriptSetting\dokiScriptSetting\bin\Release\dokiScriptSetting.dll</HintPath>
-    </Reference>
     <Reference Include="grammatica-1.6">
       <HintPath>lib\grammatica-1.6.dll</HintPath>
+    </Reference>
+    <Reference Include="dokiScriptSetting">
+      <HintPath>..\..\dokiScriptSetting\dokiScriptSetting\bin\Release\dokiScriptSetting.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
