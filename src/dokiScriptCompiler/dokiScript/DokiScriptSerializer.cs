@@ -102,6 +102,7 @@ namespace dokidoki.dokiScriptCompiler
 		/// <param name="scriptFolderPath">Script files folder path.</param>
 		public void serializeAll(string scriptFolderPath = ""){
 			string[] currentFolderfilePaths = this.getCurrentFolderFilePaths (scriptFolderPath);
+
 			Console.WriteLine (currentFolderfilePaths[0]);
 
 			List<string> scriptPathsWithoutExtension = new List<string> ();
@@ -109,6 +110,15 @@ namespace dokidoki.dokiScriptCompiler
 				if(filePath.EndsWith(ScriptKeyword.SCRIPT_EXTENSION)){
 					scriptPathsWithoutExtension.Add (filePath.Substring(0, filePath.IndexOf(ScriptKeyword.SCRIPT_EXTENSION) - 1));
 				}
+			}
+			if(scriptPathsWithoutExtension==null || scriptPathsWithoutExtension.Count==0){
+				Console.WriteLine ("No dokiScripts in current directory.");
+				Console.WriteLine ("------");
+				Console.WriteLine ("[1]You could run this program directly to compile current directory's dokiScripts.");
+				Console.WriteLine ("[2]Or run this program on command line, with parameter on absolute path to dokiScript or dokiScripts' directory.");
+				Console.WriteLine ("------");
+				Console.WriteLine ("Input any key to exit.");
+				return;
 			}
 			Console.WriteLine (scriptPathsWithoutExtension[0]);
 

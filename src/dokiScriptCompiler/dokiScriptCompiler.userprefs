@@ -1,10 +1,10 @@
 ﻿<Properties StartupItem="..\dokiScript\dokiScriptCompiler.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\dokiScript\DokiScriptComplier.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\dokiScript\DokiScriptSerializer.cs">
     <Files>
       <File FileName="..\dokiScript\NamespaceDoc.cs" Line="1" Column="1" />
       <File FileName="..\dokiScript\DokiScriptComplier.cs" Line="7" Column="25" />
-      <File FileName="..\dokiScript\DokiScriptSerializer.cs" Line="1" Column="1" />
+      <File FileName="..\dokiScript\DokiScriptSerializer.cs" Line="119" Column="34" />
       <File FileName="..\dokiScript\DokiScriptAnalyzer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
