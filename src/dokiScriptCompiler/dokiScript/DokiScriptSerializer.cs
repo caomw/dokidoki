@@ -24,7 +24,7 @@ namespace dokidoki.dokiScriptCompiler
 		/// Command line entry
 		/// </summary>
 		/// <param name="args">Root directory path of all script files, or one script file path</param>
-		public static void Main (string[] args)
+		public static void _Main (string[] args)
 		{
 			DokiScriptSerializer dokiScriptSerializer = new DokiScriptSerializer ();
 			if (args == null || args.Length == 0) {
@@ -107,12 +107,13 @@ namespace dokidoki.dokiScriptCompiler
 
 			List<string> scriptPathsWithoutExtension = new List<string> ();
 			foreach(string filePath in currentFolderfilePaths){
+				Console.WriteLine ("File: " + filePath);
 				if(filePath.EndsWith(ScriptKeyword.SCRIPT_EXTENSION)){
 					scriptPathsWithoutExtension.Add (filePath.Substring(0, filePath.IndexOf(ScriptKeyword.SCRIPT_EXTENSION) - 1));
 				}
 			}
 			if(scriptPathsWithoutExtension==null || scriptPathsWithoutExtension.Count==0){
-				Console.WriteLine ("No dokiScripts in current directory.");
+				Console.WriteLine ("No dokiScripts in current directory: "+scriptFolderPath);
 				Console.WriteLine ("------");
 				Console.WriteLine ("[1]You could run this program directly to compile current directory's dokiScripts.");
 				Console.WriteLine ("[2]Or run this program on command line, with parameter on absolute path to dokiScript or dokiScripts' directory.");
