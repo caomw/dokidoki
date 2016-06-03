@@ -116,8 +116,10 @@ namespace dokidoki.dokiUnity {
 		/// </summary>
 		private void BackgroundTransitionOnScreenObscured(){
 			this.worldControl.GetComponent<WorldControl> ().hideCharacters ();
-			Sprite sprite = Resources.Load<Sprite>(FolderStructure.WORLD + FolderStructure.BACKGROUNDS + worldData.backgroundSrc);
-			Debug.CheckResources (worldData.backgroundSrc, sprite);
+            Texture2D texture2D = Resources.Load<Texture2D>(FolderStructure.WORLD + FolderStructure.BACKGROUNDS + worldData.backgroundSrc);
+            Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5f,0.5f));
+            //Sprite sprite = Resources.Load<Sprite>(FolderStructure.WORLD + FolderStructure.BACKGROUNDS + worldData.backgroundSrc);
+			Debug.CheckResources (worldData.backgroundSrc, texture2D);
 			background.GetComponent<SpriteRenderer>().sprite = sprite;
 		}
 		/// <summary>

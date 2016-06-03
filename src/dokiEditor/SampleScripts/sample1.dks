@@ -44,7 +44,7 @@ kesumu
 	voice >你叫什么名字？
 lily
 	role name="Lily";
-	posture live2d=Epsilon00 zoom=0.4 anchor=(0.5,0.1) transition=fade time=0.5;//posture action: show this charcter's body, zoom to adjust size of image, anchor decide the pivot of posture
+	posture src=lilyNormal0 zoom=2.5 anchor=(0.5,0.5) transition=fade time=0.5;//posture action: show this charcter's body, zoom to adjust size of image, anchor decide the pivot of posture
 	move position=center;//move action: move this character's posture into center position
 	voice src=lily003 >我叫Lily。
 kesumu

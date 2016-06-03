@@ -115,9 +115,12 @@ namespace dokidoki.dokiUnity {
 				this.characterData.postrueSrc = postureAction.parameters[ScriptKeyword.SRC];
 				this.characterData.postureLive2D = null;
 				//read pixelsPerUnit from user setting
+                /*
 				Sprite postureSpriteOriginal = Resources.Load<Sprite>(FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
 				Debug.CheckResources (postureAction.parameters[ScriptKeyword.SRC], postureSpriteOriginal);
 				float pixelsPerUnity = postureSpriteOriginal.pixelsPerUnit;
+                */
+                float pixelsPerUnity = 100 / characterData.zoom;
 				//create the sprite again for setting the pivot from the script
 				Texture2D postureTexture2D = Resources.Load<Texture2D>(
 					FolderStructure.CHARACTERS + FolderStructure.POSTURES + postureAction.parameters[ScriptKeyword.SRC]);
