@@ -30,6 +30,9 @@ namespace dokidoki.dokiUnity {
         /// </summary>
         public GameObject dialogContent;
 
+        private IEnumerator moving = null;
+        private System.DateTime movingStartTime;
+
         /// <summary>
         /// Character takes role action to change character infomation, like this character type, character name
         /// </summary>
@@ -234,8 +237,40 @@ namespace dokidoki.dokiUnity {
 				//Debug.Log("characterData.posX = " + characterData.positionX + ", characterData.posY = " + characterData.positionY + ", characterData.posZ = " + characterData.positionZ);
 				Vector3 characterScreenToWorldPoint = Camera.main.ViewportToWorldPoint(new Vector3(characterData.positionX, characterData.positionY
 					, Mathf.Abs(Camera.main.transform.position.z)));
-				this.transform.localPosition = characterScreenToWorldPoint;
+
+                //Here do the trajectory move
+                string type;
+                if(!moveAction.parameters.TryGetValue(ScriptKeyword.TYPE, out type)){
+
+                }
+                if (type != null) {
+                    //string durationString;
+                    //if (!moveAction.parameters.TryGetValue(ScriptKeyword.TYPE, out durationString)) {
+
+                    //}
+                    movingStartTime = System.DateTime.Now;
+                    if (moving != null) {
+                        StopCoroutine(moving);
+                    }
+                    //Vector3 direction = characterScreenToWorldPoint - transform.localPosition;
+                    moving = Moving(transform.localPosition, characterScreenToWorldPoint, 1f, type);
+                    StartCoroutine(moving);
+                } else {
+                    this.transform.localPosition = characterScreenToWorldPoint;
+                }
 			}
+        }
+
+        IEnumerator Moving(Vector3 start, Vector3 end, float duration, string type) {
+            while (true) {
+                System.DateTime now = System.DateTime.Now;
+                float t = (float)(now - movingStartTime).TotalMilliseconds / 1000f;
+                if(t<duration){
+                    //this.transform.localPosition = position - direction * (1f - t / duration);
+                    transform.localPosition = Trajectory.Sin(start, end, t, duration);
+                }
+                yield return new WaitForSeconds(0.001f);
+            }
         }
 
         /// <summary>

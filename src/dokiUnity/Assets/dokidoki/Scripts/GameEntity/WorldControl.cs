@@ -348,10 +348,13 @@ namespace dokidoki.dokiUnity {
                     return;
                 }
             }
-            if (lastAction != null && lastAction.tag == ScriptKeyword.VIDEO) {
+            if(lastAction == null){
+            
+            }else if (lastAction.tag == ScriptKeyword.VIDEO) {
                 world.GetComponent<World>().skipVideoAction();
                 showInPlayUI();
             }
+
             while (currentActions.Count > 0) {
                 Action currentAction = currentActions[0];
                 //store last action

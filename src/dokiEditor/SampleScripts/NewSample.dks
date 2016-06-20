@@ -1,0 +1,23 @@
+world
+	background src=bg00;
+	bgm src=bm00;
+you
+	role type=character name="ushitoru";
+	posture src=you00 zoom=2.5 anchor=(0.5, 0.4);
+	move position=(0.5, 0.0, 0.0);
+	>I'm here.
+	move position=(0.2, 0.0, 0.0) type=s;
+	>Now, I'm going here.
+	move position=(0.9, 0.0, 0.0) type=s;
+	>Now, I'm going here.
+
+
+	>Stop.
+	>Stop.
+	>Stop.
+	move position=(0.4, 0.0, 0.0) type=s;
+	>Now, I'm going here.
+	move position=(0.2, 0.0, 0.0) type=s;
+	>Now, I'm going here.
+	move position=(0.7, 0.0, 0.0) type=s;
+	>Now, I'm going here.
