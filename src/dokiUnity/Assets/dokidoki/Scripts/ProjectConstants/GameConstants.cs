@@ -7,6 +7,7 @@ namespace dokidoki.dokiUnity {
     /// </summary>
     public class GameConstants {
         public const int HISTORY_DIALOG_MAX = 100;
+        public const int HISTORY_DIALOG_NUM_PER_PAGE = 7;
         public const float TEXT_DELAY_FACTOR = 0.1f;
         public const float AUTO_DELAY_FACTOR = 2.0f;
         public const string SAVE_DIRECTORY = "SaveData";

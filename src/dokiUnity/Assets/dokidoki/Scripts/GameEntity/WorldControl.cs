@@ -569,9 +569,16 @@ namespace dokidoki.dokiUnity {
         /// <returns>Return the GameObject pointer of the new created TextButton</returns>
         public GameObject createTextButton(string text, GameObject prefab, GameObject parentGameObject, UnityAction<bool, System.Object> onclick, System.Object parameter) {
             GameObject newTextButton = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            //The content parent' recttransform doesn't have fixed width and height
             newTextButton.transform.SetParent(parentGameObject.transform);
-            newTextButton.transform.localPosition = new Vector3(0, -newTextButton.GetComponent<RectTransform>().rect.height, 0);
+            float width = parentGameObject.transform.parent.transform.parent.GetComponent<RectTransform>().rect.width * 0.90f;
+            float height = parentGameObject.transform.parent.transform.parent.GetComponent<RectTransform>().rect.height / (GameConstants.HISTORY_DIALOG_NUM_PER_PAGE + 2 + (GameConstants.HISTORY_DIALOG_NUM_PER_PAGE-1)*0.25f);
+            RectTransform rt = newTextButton.GetComponent(typeof(RectTransform)) as RectTransform;
+            rt.sizeDelta = new Vector2(width, height);
             newTextButton.GetComponentInChildren<Text>().text = text;
+            newTextButton.GetComponentInChildren<Text>().fontSize = (int)(height / 3f);
+            rt.localScale = new Vector3(1f, 1f, 1f);
+            newTextButton.transform.localPosition = new Vector3(0, -height, 0);
             newTextButton.GetComponent<Button>().onClick.AddListener(() => { onclick(false, parameter); });
             return newTextButton;
         }
@@ -597,7 +604,7 @@ namespace dokidoki.dokiUnity {
                 if (textButtons.Count > 0) {
                     newTextButton.transform.localPosition = textButtons[textButtons.Count - 1].transform.localPosition;
                     newTextButton.transform.localPosition = new Vector3(newTextButton.transform.localPosition.x,
-                                                                    newTextButton.transform.localPosition.y - newTextButton.GetComponent<RectTransform>().rect.height,
+                                                                    newTextButton.transform.localPosition.y - newTextButton.GetComponent<RectTransform>().rect.height*1f,
                                                                     newTextButton.transform.localPosition.z);
                 }
                 textButtons.Add(newTextButton);
