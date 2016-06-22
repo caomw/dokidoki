@@ -357,6 +357,7 @@ namespace dokidoki.dokiUnity {
 
             while (currentActions.Count > 0) {
                 Action currentAction = currentActions[0];
+                Debug.Log("Action="+currentAction.tag);
                 //store last action
                 lastAction = currentAction;
                 //Save the last text content
@@ -366,8 +367,6 @@ namespace dokidoki.dokiUnity {
                 }
                 //remove already completed action
                 currentActions.RemoveAt(0);
-
-
 
                 if (currentAction.tag == ScriptKeyword.FOCUS) {
                     this.takeFocusAction(currentAction);
