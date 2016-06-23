@@ -364,6 +364,7 @@ namespace dokidoki.dokiUnity {
                 if (currentAction.tag == ScriptKeyword.TEXT 
 					|| currentAction.tag == ScriptKeyword.VOICE) {
                     worldControlData.textContent = currentAction.parameters[ScriptKeyword.CONTENT];
+                    showInPlayUI();
                 }
                 //remove already completed action
                 currentActions.RemoveAt(0);

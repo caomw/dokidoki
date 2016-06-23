@@ -127,7 +127,8 @@ namespace dokidoki.dokiUnity {
 		/// </summary>
 		private void BackgroundTransitionComplete(){
 			this.worldControl.GetComponent<WorldControl> ().showCharacters ();
-			this.worldControl.GetComponent<WorldControl> ().showInPlayUI ();
+            //To avoid empty dialog board
+			//this.worldControl.GetComponent<WorldControl> ().showInPlayUI ();
 			this.worldControl.GetComponent<WorldControl> ().EnablePlayerInput ();
 		}
 
